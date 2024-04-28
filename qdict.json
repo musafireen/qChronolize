@@ -1,0 +1,800 @@
+{
+    "1": {
+        "surah_name": "The Opening",
+        "verse_count": 7,
+        "word_count": 74,
+        "char_count": 314,
+        "order": 5
+    },
+    "2": {
+        "surah_name": "The Cow",
+        "verse_count": 286,
+        "word_count": 12316,
+        "char_count": 52639,
+        "order": 87
+    },
+    "3": {
+        "surah_name": "The Family of Imraan",
+        "verse_count": 200,
+        "word_count": 7080,
+        "char_count": 30276,
+        "order": 89
+    },
+    "4": {
+        "surah_name": "The Women",
+        "verse_count": 176,
+        "word_count": 7347,
+        "char_count": 31845,
+        "order": 92
+    },
+    "5": {
+        "surah_name": "The Table",
+        "verse_count": 120,
+        "word_count": 5598,
+        "char_count": 23932,
+        "order": 112
+    },
+    "6": {
+        "surah_name": "The Cattle",
+        "verse_count": 165,
+        "word_count": 6226,
+        "char_count": 26109,
+        "order": 55
+    },
+    "7": {
+        "surah_name": "The Heights",
+        "verse_count": 206,
+        "word_count": 6796,
+        "char_count": 28550,
+        "order": 39
+    },
+    "8": {
+        "surah_name": "The Spoils of War",
+        "verse_count": 75,
+        "word_count": 2525,
+        "char_count": 10834,
+        "order": 88
+    },
+    "9": {
+        "surah_name": "The Repentance",
+        "verse_count": 129,
+        "word_count": 5169,
+        "char_count": 22679,
+        "order": 113
+    },
+    "10": {
+        "surah_name": "Jonas",
+        "verse_count": 109,
+        "word_count": 3588,
+        "char_count": 14947,
+        "order": 51
+    },
+    "11": {
+        "surah_name": "Hud",
+        "verse_count": 123,
+        "word_count": 3930,
+        "char_count": 16168,
+        "order": 52
+    },
+    "12": {
+        "surah_name": "Joseph",
+        "verse_count": 111,
+        "word_count": 3566,
+        "char_count": 14512,
+        "order": 53
+    },
+    "13": {
+        "surah_name": "The Thunder",
+        "verse_count": 43,
+        "word_count": 1701,
+        "char_count": 7360,
+        "order": 96
+    },
+    "14": {
+        "surah_name": "Abraham",
+        "verse_count": 52,
+        "word_count": 1649,
+        "char_count": 7050,
+        "order": 72
+    },
+    "15": {
+        "surah_name": "The Rock",
+        "verse_count": 99,
+        "word_count": 1389,
+        "char_count": 5896,
+        "order": 54
+    },
+    "16": {
+        "surah_name": "The Bee",
+        "verse_count": 128,
+        "word_count": 3757,
+        "char_count": 15908,
+        "order": 70
+    },
+    "17": {
+        "surah_name": "The Night Journey",
+        "verse_count": 111,
+        "word_count": 3223,
+        "char_count": 13549,
+        "order": 50
+    },
+    "18": {
+        "surah_name": "The Cave",
+        "verse_count": 110,
+        "word_count": 3350,
+        "char_count": 13823,
+        "order": 69
+    },
+    "19": {
+        "surah_name": "Mary",
+        "verse_count": 98,
+        "word_count": 2036,
+        "char_count": 8188,
+        "order": 44
+    },
+    "20": {
+        "surah_name": "Taa-Haa",
+        "verse_count": 135,
+        "word_count": 2830,
+        "char_count": 11608,
+        "order": 45
+    },
+    "21": {
+        "surah_name": "The Prophets",
+        "verse_count": 112,
+        "word_count": 2437,
+        "char_count": 10109,
+        "order": 73
+    },
+    "22": {
+        "surah_name": "The Pilgrimage",
+        "verse_count": 78,
+        "word_count": 2537,
+        "char_count": 10938,
+        "order": 103
+    },
+    "23": {
+        "surah_name": "The Believers",
+        "verse_count": 118,
+        "word_count": 2116,
+        "char_count": 8871,
+        "order": 74
+    },
+    "24": {
+        "surah_name": "The Light",
+        "verse_count": 64,
+        "word_count": 2611,
+        "char_count": 11316,
+        "order": 102
+    },
+    "25": {
+        "surah_name": "The Criterion",
+        "verse_count": 77,
+        "word_count": 1846,
+        "char_count": 7811,
+        "order": 42
+    },
+    "26": {
+        "surah_name": "The Poets",
+        "verse_count": 227,
+        "word_count": 2710,
+        "char_count": 10938,
+        "order": 47
+    },
+    "27": {
+        "surah_name": "The Ant",
+        "verse_count": 93,
+        "word_count": 2352,
+        "char_count": 9712,
+        "order": 48
+    },
+    "28": {
+        "surah_name": "The Stories",
+        "verse_count": 88,
+        "word_count": 2900,
+        "char_count": 11817,
+        "order": 49
+    },
+    "29": {
+        "surah_name": "The Spider",
+        "verse_count": 69,
+        "word_count": 1969,
+        "char_count": 8353,
+        "order": 85
+    },
+    "30": {
+        "surah_name": "The Romans",
+        "verse_count": 60,
+        "word_count": 1636,
+        "char_count": 7003,
+        "order": 84
+    },
+    "31": {
+        "surah_name": "Luqman",
+        "verse_count": 34,
+        "word_count": 1038,
+        "char_count": 4415,
+        "order": 57
+    },
+    "32": {
+        "surah_name": "The Prostration",
+        "verse_count": 30,
+        "word_count": 745,
+        "char_count": 3153,
+        "order": 75
+    },
+    "33": {
+        "surah_name": "The Clans",
+        "verse_count": 73,
+        "word_count": 2594,
+        "char_count": 11343,
+        "order": 90
+    },
+    "34": {
+        "surah_name": "Sheba",
+        "verse_count": 54,
+        "word_count": 1741,
+        "char_count": 7287,
+        "order": 58
+    },
+    "35": {
+        "surah_name": "The Originator",
+        "verse_count": 45,
+        "word_count": 1519,
+        "char_count": 6492,
+        "order": 43
+    },
+    "36": {
+        "surah_name": "Yaseen",
+        "verse_count": 83,
+        "word_count": 1498,
+        "char_count": 6040,
+        "order": 41
+    },
+    "37": {
+        "surah_name": "Those drawn up in Ranks",
+        "verse_count": 182,
+        "word_count": 1881,
+        "char_count": 7896,
+        "order": 56
+    },
+    "38": {
+        "surah_name": "The letter Saad",
+        "verse_count": 88,
+        "word_count": 1553,
+        "char_count": 6600,
+        "order": 38
+    },
+    "39": {
+        "surah_name": "The Groups",
+        "verse_count": 75,
+        "word_count": 2319,
+        "char_count": 9831,
+        "order": 59
+    },
+    "40": {
+        "surah_name": "The Forgiver",
+        "verse_count": 85,
+        "word_count": 2449,
+        "char_count": 10388,
+        "order": 60
+    },
+    "41": {
+        "surah_name": "Explained in detail",
+        "verse_count": 54,
+        "word_count": 1648,
+        "char_count": 6929,
+        "order": 61
+    },
+    "42": {
+        "surah_name": "Consultation",
+        "verse_count": 53,
+        "word_count": 1682,
+        "char_count": 7227,
+        "order": 62
+    },
+    "43": {
+        "surah_name": "Ornaments of gold",
+        "verse_count": 89,
+        "word_count": 1785,
+        "char_count": 7486,
+        "order": 63
+    },
+    "44": {
+        "surah_name": "The Smoke",
+        "verse_count": 59,
+        "word_count": 710,
+        "char_count": 3023,
+        "order": 64
+    },
+    "45": {
+        "surah_name": "Crouching",
+        "verse_count": 37,
+        "word_count": 999,
+        "char_count": 4167,
+        "order": 65
+    },
+    "46": {
+        "surah_name": "The Dunes",
+        "verse_count": 35,
+        "word_count": 1311,
+        "char_count": 5561,
+        "order": 66
+    },
+    "47": {
+        "surah_name": "Muhammad",
+        "verse_count": 38,
+        "word_count": 1099,
+        "char_count": 4853,
+        "order": 95
+    },
+    "48": {
+        "surah_name": "The Victory",
+        "verse_count": 29,
+        "word_count": 1169,
+        "char_count": 5157,
+        "order": 111
+    },
+    "49": {
+        "surah_name": "The Inner Apartments",
+        "verse_count": 18,
+        "word_count": 663,
+        "char_count": 2889,
+        "order": 106
+    },
+    "50": {
+        "surah_name": "The letter Qaaf",
+        "verse_count": 45,
+        "word_count": 762,
+        "char_count": 3150,
+        "order": 34
+    },
+    "51": {
+        "surah_name": "The Winnowing Winds",
+        "verse_count": 60,
+        "word_count": 753,
+        "char_count": 3182,
+        "order": 67
+    },
+    "52": {
+        "surah_name": "The Mount",
+        "verse_count": 49,
+        "word_count": 680,
+        "char_count": 2852,
+        "order": 76
+    },
+    "53": {
+        "surah_name": "The Star",
+        "verse_count": 62,
+        "word_count": 738,
+        "char_count": 3072,
+        "order": 23
+    },
+    "54": {
+        "surah_name": "The Moon",
+        "verse_count": 55,
+        "word_count": 723,
+        "char_count": 3155,
+        "order": 37
+    },
+    "55": {
+        "surah_name": "The Beneficent",
+        "verse_count": 78,
+        "word_count": 815,
+        "char_count": 3278,
+        "order": 97
+    },
+    "56": {
+        "surah_name": "The Inevitable",
+        "verse_count": 96,
+        "word_count": 849,
+        "char_count": 3538,
+        "order": 46
+    },
+    "57": {
+        "surah_name": "The Iron",
+        "verse_count": 29,
+        "word_count": 1188,
+        "char_count": 5139,
+        "order": 94
+    },
+    "58": {
+        "surah_name": "The Pleading Woman",
+        "verse_count": 22,
+        "word_count": 920,
+        "char_count": 4111,
+        "order": 105
+    },
+    "59": {
+        "surah_name": "The Exile",
+        "verse_count": 24,
+        "word_count": 897,
+        "char_count": 3971,
+        "order": 101
+    },
+    "60": {
+        "surah_name": "She that is to be examined",
+        "verse_count": 13,
+        "word_count": 715,
+        "char_count": 3129,
+        "order": 91
+    },
+    "61": {
+        "surah_name": "The Ranks",
+        "verse_count": 14,
+        "word_count": 425,
+        "char_count": 1828,
+        "order": 109
+    },
+    "62": {
+        "surah_name": "Friday",
+        "verse_count": 11,
+        "word_count": 341,
+        "char_count": 1406,
+        "order": 110
+    },
+    "63": {
+        "surah_name": "The Hypocrites",
+        "verse_count": 11,
+        "word_count": 367,
+        "char_count": 1558,
+        "order": 104
+    },
+    "64": {
+        "surah_name": "Mutual Disillusion",
+        "verse_count": 18,
+        "word_count": 503,
+        "char_count": 2182,
+        "order": 108
+    },
+    "65": {
+        "surah_name": "Divorce",
+        "verse_count": 12,
+        "word_count": 562,
+        "char_count": 2511,
+        "order": 99
+    },
+    "66": {
+        "surah_name": "The Prohibition",
+        "verse_count": 12,
+        "word_count": 478,
+        "char_count": 2115,
+        "order": 107
+    },
+    "67": {
+        "surah_name": "The Sovereignty",
+        "verse_count": 30,
+        "word_count": 659,
+        "char_count": 2707,
+        "order": 77
+    },
+    "68": {
+        "surah_name": "The Pen",
+        "verse_count": 52,
+        "word_count": 650,
+        "char_count": 2760,
+        "order": 2
+    },
+    "69": {
+        "surah_name": "The Reality",
+        "verse_count": 52,
+        "word_count": 575,
+        "char_count": 2318,
+        "order": 78
+    },
+    "70": {
+        "surah_name": "The Ascending Stairways",
+        "verse_count": 44,
+        "word_count": 448,
+        "char_count": 1945,
+        "order": 79
+    },
+    "71": {
+        "surah_name": "Noah",
+        "verse_count": 28,
+        "word_count": 430,
+        "char_count": 1900,
+        "order": 71
+    },
+    "72": {
+        "surah_name": "The Jinn",
+        "verse_count": 28,
+        "word_count": 573,
+        "char_count": 2424,
+        "order": 40
+    },
+    "73": {
+        "surah_name": "The Enshrouded One",
+        "verse_count": 20,
+        "word_count": 422,
+        "char_count": 1750,
+        "order": 3
+    },
+    "74": {
+        "surah_name": "The Cloaked One",
+        "verse_count": 56,
+        "word_count": 526,
+        "char_count": 2274,
+        "order": 4
+    },
+    "75": {
+        "surah_name": "The Resurrection",
+        "verse_count": 40,
+        "word_count": 353,
+        "char_count": 1445,
+        "order": 31
+    },
+    "76": {
+        "surah_name": "Man",
+        "verse_count": 31,
+        "word_count": 520,
+        "char_count": 2252,
+        "order": 98
+    },
+    "77": {
+        "surah_name": "The Emissaries",
+        "verse_count": 50,
+        "word_count": 402,
+        "char_count": 1653,
+        "order": 33
+    },
+    "78": {
+        "surah_name": "The Announcement",
+        "verse_count": 40,
+        "word_count": 374,
+        "char_count": 1618,
+        "order": 80
+    },
+    "79": {
+        "surah_name": "Those who drag forth",
+        "verse_count": 46,
+        "word_count": 418,
+        "char_count": 1783,
+        "order": 81
+    },
+    "80": {
+        "surah_name": "He frowned",
+        "verse_count": 42,
+        "word_count": 306,
+        "char_count": 1329,
+        "order": 24
+    },
+    "81": {
+        "surah_name": "The Overthrowing",
+        "verse_count": 29,
+        "word_count": 243,
+        "char_count": 1005,
+        "order": 7
+    },
+    "82": {
+        "surah_name": "The Cleaving",
+        "verse_count": 19,
+        "word_count": 171,
+        "char_count": 730,
+        "order": 82
+    },
+    "83": {
+        "surah_name": "Defrauding",
+        "verse_count": 36,
+        "word_count": 350,
+        "char_count": 1520,
+        "order": 86
+    },
+    "84": {
+        "surah_name": "The Splitting Open",
+        "verse_count": 25,
+        "word_count": 243,
+        "char_count": 993,
+        "order": 83
+    },
+    "85": {
+        "surah_name": "The Constellations",
+        "verse_count": 22,
+        "word_count": 211,
+        "char_count": 995,
+        "order": 27
+    },
+    "86": {
+        "surah_name": "The Morning Star",
+        "verse_count": 17,
+        "word_count": 132,
+        "char_count": 523,
+        "order": 36
+    },
+    "87": {
+        "surah_name": "The Most High",
+        "verse_count": 19,
+        "word_count": 144,
+        "char_count": 638,
+        "order": 8
+    },
+    "88": {
+        "surah_name": "The Overwhelming",
+        "verse_count": 26,
+        "word_count": 191,
+        "char_count": 835,
+        "order": 68
+    },
+    "89": {
+        "surah_name": "The Dawn",
+        "verse_count": 30,
+        "word_count": 293,
+        "char_count": 1211,
+        "order": 10
+    },
+    "90": {
+        "surah_name": "The City",
+        "verse_count": 20,
+        "word_count": 177,
+        "char_count": 727,
+        "order": 35
+    },
+    "91": {
+        "surah_name": "The Sun",
+        "verse_count": 15,
+        "word_count": 157,
+        "char_count": 655,
+        "order": 26
+    },
+    "92": {
+        "surah_name": "The Night",
+        "verse_count": 21,
+        "word_count": 172,
+        "char_count": 703,
+        "order": 9
+    },
+    "93": {
+        "surah_name": "The Morning Hours",
+        "verse_count": 11,
+        "word_count": 108,
+        "char_count": 418,
+        "order": 11
+    },
+    "94": {
+        "surah_name": "The Consolation",
+        "verse_count": 8,
+        "word_count": 62,
+        "char_count": 265,
+        "order": 12
+    },
+    "95": {
+        "surah_name": "The Fig",
+        "verse_count": 8,
+        "word_count": 69,
+        "char_count": 280,
+        "order": 28
+    },
+    "96": {
+        "surah_name": "The Clot",
+        "verse_count": 19,
+        "word_count": 134,
+        "char_count": 557,
+        "order": 1
+    },
+    "97": {
+        "surah_name": "The Power, Fate",
+        "verse_count": 5,
+        "word_count": 56,
+        "char_count": 237,
+        "order": 25
+    },
+    "98": {
+        "surah_name": "The Evidence",
+        "verse_count": 8,
+        "word_count": 169,
+        "char_count": 822,
+        "order": 100
+    },
+    "99": {
+        "surah_name": "The Earthquake",
+        "verse_count": 8,
+        "word_count": 75,
+        "char_count": 319,
+        "order": 93
+    },
+    "100": {
+        "surah_name": "The Chargers",
+        "verse_count": 11,
+        "word_count": 83,
+        "char_count": 373,
+        "order": 14
+    },
+    "101": {
+        "surah_name": "The Calamity",
+        "verse_count": 11,
+        "word_count": 86,
+        "char_count": 343,
+        "order": 30
+    },
+    "102": {
+        "surah_name": "Competition",
+        "verse_count": 8,
+        "word_count": 60,
+        "char_count": 259,
+        "order": 16
+    },
+    "103": {
+        "surah_name": "The Declining Day, Epoch",
+        "verse_count": 3,
+        "word_count": 29,
+        "char_count": 132,
+        "order": 13
+    },
+    "104": {
+        "surah_name": "The Traducer",
+        "verse_count": 9,
+        "word_count": 66,
+        "char_count": 297,
+        "order": 32
+    },
+    "105": {
+        "surah_name": "The Elephant",
+        "verse_count": 5,
+        "word_count": 46,
+        "char_count": 203,
+        "order": 19
+    },
+    "106": {
+        "surah_name": "Quraysh",
+        "verse_count": 4,
+        "word_count": 41,
+        "char_count": 186,
+        "order": 29
+    },
+    "107": {
+        "surah_name": "Almsgiving",
+        "verse_count": 7,
+        "word_count": 52,
+        "char_count": 218,
+        "order": 17
+    },
+    "108": {
+        "surah_name": "Abundance",
+        "verse_count": 3,
+        "word_count": 26,
+        "char_count": 108,
+        "order": 15
+    },
+    "109": {
+        "surah_name": "The Disbelievers",
+        "verse_count": 6,
+        "word_count": 48,
+        "char_count": 191,
+        "order": 18
+    },
+    "110": {
+        "surah_name": "Divine Support",
+        "verse_count": 3,
+        "word_count": 43,
+        "char_count": 191,
+        "order": 114
+    },
+    "111": {
+        "surah_name": "The Palm Fibre",
+        "verse_count": 5,
+        "word_count": 52,
+        "char_count": 193,
+        "order": 6
+    },
+    "112": {
+        "surah_name": "Sincerity",
+        "verse_count": 4,
+        "word_count": 24,
+        "char_count": 93,
+        "order": 22
+    },
+    "113": {
+        "surah_name": "The Dawn",
+        "verse_count": 5,
+        "word_count": 45,
+        "char_count": 170,
+        "order": 20
+    },
+    "114": {
+        "surah_name": "Mankind",
+        "verse_count": 6,
+        "word_count": 38,
+        "char_count": 167,
+        "order": 21
+    }
+}
