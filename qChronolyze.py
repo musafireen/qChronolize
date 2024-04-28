@@ -14,8 +14,8 @@ def confPres(pres):
         import os
         import re
 
-        if not os.path.isfile('.cnf.txt'):
-          with open('./cnf.txt', 'x') as f:
+        if not os.path.isfile('./cnf.txt'):
+          with open('./cnf.txt', 'w') as f:
               f.write(f, '')
         with open('./cnf.txt') as f:
             txt = f.read()
