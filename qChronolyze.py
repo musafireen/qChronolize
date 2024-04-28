@@ -351,6 +351,13 @@ def sortchron(dicti={},refLng='',pres=''):
       # )
 
       # # fig.layout=go.Layout(clickmode='event+select')
+      
+      fig.update_layout(
+        #  hovermode=False,
+         clickmode='event+select',
+         hoverdistance=-1
+        #  itemclick='toggle'
+      )
 
       # for rt in dicti:
       #     if rt != '' and rt != None:
