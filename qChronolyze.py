@@ -93,8 +93,11 @@ def dataGrabber(tafs,rt,flt=''):
     import json
 
     links = [
-        "https://corpus.quran.com/qurandictionary.jsp?q=",
-        "https://corpus.quran.com/search.jsp?q="
+        # "https://corpus.quran.com/qurandictionary.jsp?q=",
+        "https://corpus.quran.com/search.jsp?q=",
+        "https://corpus.quran.com/search.jsp?q=root%3A",
+        "https://corpus.quran.com/search.jsp?q=stem%3A",
+        "https://corpus.quran.com/search.jsp?q=lem%3A",
         ]
 
     data=[]
