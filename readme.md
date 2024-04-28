@@ -1,5 +1,5 @@
 # qChronolyze
-Try on google <a href="https://colab.research.google.com/drive/1Su624t2FdQdWnnZTdl1_pz2bH7DujU2G?usp=sharing" target="_blank">Colab<a>
+Try on google <a href="https://colab.research.google.com/drive/1tK21rWFKUIWH_3-lMX99d2SCNJx1mSnJ?usp=sharing" target="_blank">Colab<a>
 
 [![alt text](https://img.youtube.com/vi/2es9qayH5oo/0.jpg)](https://www.youtube.com/embed/2es9qayH5oo?si=3oEls05_2FFtQjEh&amp;start=80)
 
