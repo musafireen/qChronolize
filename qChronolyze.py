@@ -93,11 +93,11 @@ def dataGrabber(tafs,rt,flt=''):
     import json
 
     links = [
-        # "https://corpus.quran.com/qurandictionary.jsp?q=",
-        "https://corpus.quran.com/search.jsp?q=",
+        "https://corpus.quran.com/qurandictionary.jsp?q=",
         "https://corpus.quran.com/search.jsp?q=root%3A",
-        "https://corpus.quran.com/search.jsp?q=stem%3A",
         "https://corpus.quran.com/search.jsp?q=lem%3A",
+        "https://corpus.quran.com/search.jsp?q=stem%3A",
+        "https://corpus.quran.com/search.jsp?q=",
         ]
 
     data=[]
@@ -144,7 +144,9 @@ def dataGrabber(tafs,rt,flt=''):
 
           strng_sub =re.sub(
               r'\((\d*):(\d*):(\d*)\)\s*_([^\d+\t]+?)_\|\s*\[([^\d\t]+?)\]\(.*\)\|([^\()]+)\n',
-              '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a style=\'color:black\' href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
+              # '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a style=\'color:rgb(150,200,255)\' href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
+              '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a style=\'color:#95C7FF\' href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
+              # '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
               strng_prepare
           )
 
@@ -298,8 +300,25 @@ def sortchron(dicti={},refLng='',pres=''):
     df.reset_index(drop=True,inplace=True)
     df.reset_index(inplace=True)
 
+    # import numpy.random as rand
+    import numpy as np
+    colMap = {}
+    leng = len(df["query"].unique())
+    p = np.linspace(50,180,num=leng)
+    for idx in range(1,leng+1):
+      # n1=rand.randn()
+      # n2=rand.randn()
+      # i1=rand.randint(0,50)
+      # i2=rand.randint(0,50)
+      # clr=f"rgb({50+(100/leng)*idx})"
+      # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
+      colMap[df["query"].unique()[idx-1]] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+      print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
+
     if pres=='table':
-      df.drop(columns=["query","index"],inplace=True)
+      df.drop(columns=[
+        #  "query",
+         "index"],inplace=True)
       compareDict = {}
       for i in range(len(sorter)):
           compareDict[sorter[i]]=i
@@ -315,7 +334,18 @@ def sortchron(dicti={},refLng='',pres=''):
 
       from IPython.core.display import HTML
 
-      return HTML(df.to_html(render_links=True,escape=False,index=False))
+      def colo(s):
+        return [
+           f'background-color: {colMap[s["query"]]};' + 
+           'foreground-color: black;' +
+           'color: blue'
+           'opacity: 1' 
+        ] * len(s)
+      
+      return HTML(df.style.apply(
+         colo , axis=1
+        ).to_html(render_links=True,escape=False,index=False)
+      )
 
 
     if pres=='plot':
@@ -338,8 +368,9 @@ def sortchron(dicti={},refLng='',pres=''):
             'index': False
           },
          color='query',
-         color_continuous_scale=["green","yellow","orange","red"],
-         height=(len(df))*8,
+        #  color_continuous_scale=["green","yellow","orange","red"],
+        color_discrete_map=colMap,
+         height=(len(df))*10,
          width=(len(sorter))/5,
       )
 
@@ -352,7 +383,10 @@ def sortchron(dicti={},refLng='',pres=''):
       fig.update_layout(
         #  hovermode=False,
          clickmode='event+select',
-         hoverdistance=-1
+         hoverdistance=-1,
+         hoverlabel=dict(
+            font_size=16
+         )
         #  itemclick='toggle'
       )
 
@@ -373,8 +407,17 @@ def sortchron(dicti={},refLng='',pres=''):
       #           ),
       #           secondary_y=True
       #       )
-      fig.update_xaxes(categoryorder='array',categoryarray=sorter,range=[0,len(sorter)],title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)")
-      fig.update_yaxes(showticklabels=False,range=[0,len(df)],title='')
+      fig.update_xaxes(
+         categoryorder='array',
+         categoryarray=sorter,
+         range=[0,len(sorter)],
+         title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
+      )
+      fig.update_yaxes(
+        #  showticklabels=False,
+        #  range=[0,len(df)],
+         title=''
+      )
       fig.show()
       # iplot(fig)
       # import matplotlib.pyplot as plt
