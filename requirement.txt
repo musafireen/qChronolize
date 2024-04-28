@@ -1,0 +1,4 @@
+pandas
+html2text
+IPython
+plotly
