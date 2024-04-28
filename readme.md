@@ -1,7 +1,9 @@
 # qChronolyze
+[![alt text](https://img.youtube.com/vi/2es9qayH5oo/1.jpg)](https://www.youtube.com/embed/2es9qayH5oo?si=3oEls05_2FFtQjEh&amp;start=80)
+
+
 Try on google <a href="https://colab.research.google.com/drive/1Su624t2FdQdWnnZTdl1_pz2bH7DujU2G?usp=sharing" target="_blank">Colab<a>
 
-[![alt text](https://img.youtube.com/vi/2es9qayH5oo/0.jpg)](https://www.youtube.com/embed/2es9qayH5oo?si=3oEls05_2FFtQjEh&amp;start=80)
 
 <a href="https://ibb.co/vZjz4ZZ"><img src="https://i.ibb.co/vZjz4ZZ/vlcsnap-2024-04-23-21h02m52s708.png" alt="vlcsnap-2024-04-23-21h02m52s708" border="0"></a>  <a href="https://ibb.co/p0YPPRr"><img src="https://i.ibb.co/p0YPPRr/vlcsnap-2024-04-23-21h03m12s122.png" alt="vlcsnap-2024-04-23-21h03m12s122" border="0"></a> 
 
