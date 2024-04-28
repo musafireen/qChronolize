@@ -103,9 +103,9 @@ def dataGrabber(tafs,rt,flt=''):
 
     propDat = False
     import os
-    if os.path.isfile(f'data/{rt}'):
+    if os.path.isfile(f'data/roots/{rt}'):
       try:
-        with open(f'data/{rt}') as f:
+        with open(f'data/roots/{rt}') as f:
           tmpDat = json.loads(f.read())
         if type(tmpDat) == type([]):
           data = tmpDat
@@ -167,7 +167,7 @@ def dataGrabber(tafs,rt,flt=''):
               dat = []
           data += dat
 
-    with open(f'data/{rt}', 'w') as f:
+    with open(f'data/roots/{rt}', 'w') as f:
       f.write(json.dumps(data))
 
 
@@ -177,7 +177,8 @@ def dataGrabber(tafs,rt,flt=''):
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_colwidth', None)
 
-    df = pd.DataFrame.from_records(data)
+    df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
+    df = pd.concat([df,pd.DataFrame.from_records(data)],axis=0)
     df = df.drop_duplicates(['surah:ayah','position'])
     df = df.drop(['position'], axis=1)
     df = df[df['meaning'].str.contains(flt, case=False)]
