@@ -10,7 +10,13 @@ def confPres(pres):
         else:
             print('Invalid presentation style:', pres)
         pres=''
+
+        import os
         import re
+
+        if not os.path.isfile('.cnf.txt'):
+          with open('./cnf.txt', 'x') as f:
+              f.write(f, '')
         with open('./cnf.txt') as f:
             txt = f.read()
         for m in re.compile('(?<=presentation\=).*?(?=$|\n)').findall(txt):
