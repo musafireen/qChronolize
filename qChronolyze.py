@@ -292,11 +292,12 @@ def sortchron(dicti={},refLng='',pres=''):
     df = pd.DataFrame()
     for rt in dicti.keys():
       df = pd.concat([df,dataGrabber(tafs,rt,dicti[rt])])
-      df.reset_index(drop=True,inplace=True)
-      df.reset_index(inplace=True)
+    
+    df.reset_index(drop=True,inplace=True)
+    df.reset_index(inplace=True)
 
     if pres=='table':
-      df.drop(columns=["query"],inplace=True)
+      df.drop(columns=["query","index"],inplace=True)
       compareDict = {}
       for i in range(len(sorter)):
           compareDict[sorter[i]]=i+1
@@ -331,16 +332,18 @@ def sortchron(dicti={},refLng='',pres=''):
       fig = px.scatter(
          df,
          x='surah:ayah',
-         y='ayah_link',
-         hover_data={'ayah_link':True,'query': False, 'surah:ayah': False},
+        #  y='ayah_link',
+         y='index',
+         hover_data={
+            'ayah_link':True,
+            'query': False, 
+            'surah:ayah': False,
+            'index': False
+          },
          color='query',
          color_continuous_scale=["green","yellow","orange","red"],
          height=(len(df))*8,
          width=(len(sorter))/5,
-         labels={
-          "surah:ayah": " (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)",
-          "ayah_link": ""
-         }
       )
 
       # fig = make_subplots(
@@ -366,8 +369,8 @@ def sortchron(dicti={},refLng='',pres=''):
       #           ),
       #           secondary_y=True
       #       )
-      fig.update_xaxes(categoryorder='array',categoryarray=sorter,range=[0,len(sorter)])
-      fig.update_yaxes(showticklabels=False,range=[0,len(df)])
+      fig.update_xaxes(categoryorder='array',categoryarray=sorter,range=[0,len(sorter)],title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)")
+      fig.update_yaxes(showticklabels=False,range=[0,len(df)],title='')
       fig.show()
       # iplot(fig)
       # import matplotlib.pyplot as plt
