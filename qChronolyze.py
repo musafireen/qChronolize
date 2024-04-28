@@ -183,11 +183,11 @@ def dataGrabber(tafs,rt,flt=''):
     df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
     df = pd.concat([df,pd.DataFrame.from_records(data)],axis=0)
     df = df.drop_duplicates(['surah:ayah','position'])
-    df = df.drop(['position'], axis=1)
+    # df = df.drop(['position'], axis=1)
     df = df[df['meaning'].str.contains(flt, case=False)]
     df["query"] = f'{rt} ({flt})'
 
-    return df
+    return df.sort_values(["surah:ayah","position"])
 
 
 
@@ -258,7 +258,7 @@ def sortchron(dicti={},refLng='',pres=''):
             sorter[i] = sa
             i += 1
     
-    print(sorter[-1], len(sorter))
+    # print(sorter[-1], len(sorter))
 
     if type(dicti) != type({}):
         print("Invalid root-filter key value pairs")
@@ -293,6 +293,8 @@ def sortchron(dicti={},refLng='',pres=''):
     for rt in dicti.keys():
       df = pd.concat([df,dataGrabber(tafs,rt,dicti[rt])])
     
+    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
+    df.sort_values(["surah:ayah","position"],inplace=True)
     df.reset_index(drop=True,inplace=True)
     df.reset_index(inplace=True)
 
@@ -300,7 +302,7 @@ def sortchron(dicti={},refLng='',pres=''):
       df.drop(columns=["query","index"],inplace=True)
       compareDict = {}
       for i in range(len(sorter)):
-          compareDict[sorter[i]]=i+1
+          compareDict[sorter[i]]=i
 
       df.insert( 0, 'verses_before',    list(
               map(
@@ -311,14 +313,9 @@ def sortchron(dicti={},refLng='',pres=''):
           )
       )
 
-      df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
-
       from IPython.core.display import HTML
 
-      return HTML(df.sort_values( ## 'sort' changed to 'sort_values'
-            # ["surah","ayah"]
-            ['surah:ayah']
-        ).to_html(render_links=True,escape=False,index=False))
+      return HTML(df.to_html(render_links=True,escape=False,index=False))
 
 
     if pres=='plot':
@@ -328,7 +325,7 @@ def sortchron(dicti={},refLng='',pres=''):
       # from plotly.offline import iplot, init_notebook_mode
 
       # init_notebook_mode()
-      df["ayah_link"] = df["surah:ayah"] + df["ayah_link"]
+      df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
       fig = px.scatter(
          df,
          x='surah:ayah',
