@@ -184,7 +184,7 @@ def dataGrabber(tafs,rt,flt=''):
 
     df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
     df = pd.concat([df,pd.DataFrame.from_records(data)],
-                  #  axis=0
+                   axis=0
                    )
     df = df.drop_duplicates(['surah:ayah','position'])
     # df = df.drop(['position'], axis=1)
