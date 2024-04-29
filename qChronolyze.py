@@ -329,7 +329,12 @@ def sortchron(dicti={},refLng='',pres=''):
     import pandas as pd
     df = pd.DataFrame()
     for rt in dicti.keys():
-      df = pd.concat([df,dataGrabber(tafs,rt,dicti[rt])])
+      df = pd.concat([
+         df,
+         dataGrabber(tafs,rt,dicti[rt])
+        ],
+        axis=1
+      )
     
     df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
     df.sort_values(["surah:ayah","position"],inplace=True)
