@@ -383,6 +383,7 @@ def aggregLsts(dicti,tafs):
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
     instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
+    print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
 
