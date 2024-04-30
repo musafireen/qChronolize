@@ -396,15 +396,9 @@ def tabular(df,colMap,sorter):
     #     df = pd.concat([df, dfNew], axis=0)
 
     print(f'dataframe length: {len(df)}')
-    # return df
-
-    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah:ayah","position"],inplace=True)
-    df.reset_index(drop=True,inplace=True)
-    # df.reset_index(inplace=True)
-    # df.drop(columns=[
-    # #  "query",
-    #     "index"],inplace=True)
+    df.drop(columns=[
+    #  "query",
+        "index"],inplace=True)
 
     compareDict = {}
     for i in range(len(sorter)):
@@ -550,6 +544,11 @@ def sortchron(dicti={},refLng='',pres=''):
 
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
+    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
+    df.sort_values(["surah:ayah","position"],inplace=True)
+    df.reset_index(drop=True,inplace=True)
+    # df.reset_index(inplace=True)
+
     if pres == "table":
         return tabular(df,colMap,sorter)
     if pres == "plot":
