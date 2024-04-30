@@ -4,3 +4,4 @@ __pycache__
 dev.ipynb
 data/ref/*
 !data/ref/Qsorted.md
+*.png
