@@ -457,9 +457,10 @@ def plotDf(df,colMap,sorter):
         },
         color='query',
     #  color_continuous_scale=["green","yellow","orange","red"],
-    color_discrete_map=colMap,
-        height=(len(df))*8,
-        width=(len(sorter))/5,
+        color_discrete_map=colMap,
+        height=((len(df))*7)+200,
+        # height=1200,
+        width=(len(sorter))/8+500,
     )
 
     # fig = make_subplots(
