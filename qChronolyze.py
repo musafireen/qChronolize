@@ -396,9 +396,12 @@ def tabular(df,colMap,sorter):
     #     df = pd.concat([df, dfNew], axis=0)
 
     print(f'dataframe length: {len(df)}')
-    df.drop(columns=[
-    #  "query",
-        "index"],inplace=True)
+    # df.drop(columns=[
+    # #  "query",
+    #     "index"
+    #     ],
+    #     inplace=True
+    # )
 
     compareDict = {}
     for i in range(len(sorter)):
@@ -454,7 +457,7 @@ def plotDf(df,colMap,sorter):
         color='query',
     #  color_continuous_scale=["green","yellow","orange","red"],
     color_discrete_map=colMap,
-        height=(len(df))*10,
+        height=(len(df))*8,
         width=(len(sorter))/5,
     )
 
