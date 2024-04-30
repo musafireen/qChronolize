@@ -81,118 +81,183 @@ def confLng(refLng):
     return tafsDict[refLng]
 
 
+def dataGrabber(
+    rt,
+    flt=''
+  ):
 
-def dataGrabber(tafs,rt,flt=''):
-    '''Grabs data from corpus.quran.com & formats them'''
+  '''Grabs data from corpus.quran.com & formats them'''
 
-    flt=str(flt).lower()
+  flt=str(flt).lower()
+  import requests
+  # import html2text
+  from bs4 import BeautifulSoup
+  import re
+  import json
+  import csv
 
-    import requests
-    import re
-    import html2text
-    import json
+  def getTbl(grabhtmlPara):
+    soup = BeautifulSoup(
+      grabhtmlPara
+    )
 
-    links = [
-        "https://corpus.quran.com/qurandictionary.jsp?q=",
-        "https://corpus.quran.com/search.jsp?q=root%3A",
-        "https://corpus.quran.com/search.jsp?q=lem%3A",
-        "https://corpus.quran.com/search.jsp?q=stem%3A",
-        "https://corpus.quran.com/search.jsp?q=",
-        ]
+    # print(f'\n\nsoup for {lnk} for {rt}:\n{soup.find_all("table",{"class":"taf"})}\n\n\n')
+    # print(f'\n\nsoup for {lnk} for {rt}:\n{len(soup.select(".taf"))}\n\n\n')
 
-    data=[]
+    tblsRet = soup.find_all(
+      "table",
+      {"class":"taf"}
+    )
 
+    return tblsRet
 
+  links = [
+      "https://corpus.quran.com/qurandictionary.jsp?q=",
+      "https://corpus.quran.com/search.jsp?q=root%3A",
+      "https://corpus.quran.com/search.jsp?q=lem%3A",
+      "https://corpus.quran.com/search.jsp?q=stem%3A",
+      "https://corpus.quran.com/search.jsp?q=",
+      ]
 
-    propDat = False
-    import os
-    if os.path.isfile(f'data/roots/{rt}'):
-      try:
-        with open(f'data/roots/{rt}') as f:
-          tmpDat = json.loads(f.read())
-        if type(tmpDat) == type([]):
-          data = tmpDat
-          propDat = True
-      except:
-        propDat = False
-    if not propDat:
-      for lnk in links:
-          txt = requests.get(f"{lnk}{rt}").text
+  poss = set()
+  tblCumul = []
+  instLst=[]
 
-          txt_ex_list = re.findall('<table class="taf".*?</table>', txt)
+  propDat = False
+  import os
+  if os.path.isfile(f'data/roots/{rt}.tsv'):
+    print(f"file found for {rt}")
+    try:
+      with open(f'data/roots/{rt}.tsv') as f:
+        print(f"reading data/roots/{rt}.tsv")
+        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+      #   tmpDat = json.loads(f.read())
+      # if type(tmpDat) == type([]):
+      #   if len(tmpDat) > 0:
+      #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
+      #       propDat = True    
+      #       instLst = tmpDat
+      #       print(f"instLst loaded from 'data/roots/")
+      #   instLst = tmpDat
+        print(f"Successfully read data from 'dat/roots/{rt}.tsv'")
+        propDat = True
+      #   print(f"instLst loaded from 'data/roots/")
+    except:
+      propDat = False
+  if not propDat:
+    print(f"proper data not found for {rt}")
+    tblAgg = []
+    for lnk in links:
+      if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
+        grabhtml = requests.get(f"{lnk}{rt}").text
+        tbls = getTbl(grabhtml)
+      else:
+        pgs = []
+        grabhtml = requests.get(f"{lnk}{rt}").text
+        tbls = getTbl(grabhtml)
+        if '>\nResults <b>' in grabhtml:
+          matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
+          if len(matches) > 0:
+            pgFlt = int(matches[0])/50
+            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
+            # print(f"page count in {lnk} is: {pgCount}")
+            # print(type(pgCount), pgCount)
+            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
 
-          txt_ex=''
-          for i in txt_ex_list:
-              txt_ex += i
+          for pg in pgs:
+            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
+            tbls += getTbl(grabhtml)
+            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
+            # grabhtml += grabhtmlNew
+            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
 
-          txt_ex=re.sub(
-              '<\/*span[^>]*>',
-              '',
-              txt_ex
-          )
-          txt_ex
+      # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
+      # print(f"{tbls}\n")
 
-          str2 = html2text.html2text(txt_ex)
+      for tbl in tbls:
+        # print(tbl)
+        tblAgg += tbl
 
-          strng_prepare = re.sub(
-              "###[^\n]*\n",
-              "",
-              str2
-              )
+      # print(len(tblAgg))
 
-          strng_prepare = strng_prepare.replace(',','').replace('"', '`').replace('\'','`')
+      if len(tblAgg) > 0:
+        # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
+        if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
+          if rt.lower() != 'adam' and rt != 'A^Edam':
+            # print("no results")
+            tblAgg = []
 
-          strng_sub =re.sub(
-              r'\((\d*):(\d*):(\d*)\)\s*_([^\d+\t]+?)_\|\s*\[([^\d\t]+?)\]\(.*\)\|([^\()]+)\n',
-              # '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a style=\'color:rgb(150,200,255)\' href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
-              '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a style=\'color:#95C7FF\' href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
-              # '{ "surah:ayah": "\\1:\\2", "position": \\3, "word": "\\4", "meaning": "\\5", "ayah_link": "<a href=\'https://quran.com/\\1:\\2/tafsirs/'+tafs+'\'>\\6</a>" }, \n',
-              strng_prepare
-          )
+      # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
+      # print(tblAgg)
 
-          strng_sub = '[' + strng_sub.replace('\n',' ')[:-3] + ']'
+      tblCumul += tblAgg
+      # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
 
-          dat = json.loads(strng_sub)
+      for rw in tblCumul:
+        row = [ fld.get_text() for fld in rw.find_all("td") ]
+        # row = []
+        # for fld in rw:
+        #   row.append(fld.get_text())
+          
+        # print(row)
+        pos = posSplit = row[0].split(' ')[0].strip('()')
+        # print(pos)
+        if pos not in poss:
+          # print(posSplit)
+          posSplit = pos.split(':')
+          # print(posSplit)
+          instLst.append({
+              "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
+              "position": int(posSplit[2]), 
+              "word": row[0].split(' ')[1], 
+              "meaning": row[1],
+              "ayah_link": f"<a style='color:#95C7FF' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
+          })
+          
+          poss.add(pos)
 
+      # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+    
+    # with open(f'data/roots/{rt}', 'w') as f:
+    #   print("writing to data/roots")
+    #   f.write(
+    #     json.dumps(instLst)
+    #   )
+    list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
 
-          if type(dat) != type([]):
-            dat = []
-          elif len(dat) == 0:
-            dat = []
-          elif type(dat[0]) != type({"a":"b"}):
-            dat = []
-          elif 'word' not in dat[0].keys():
-            dat = []
-          else:
-            misMatch = False
-            if 'adam' in dat[0]['meaning'].lower():
-              if rt.lower() != 'adam' and rt != 'A^Edam':
-                misMatch = True
-            if misMatch:
-              dat = []
-          data += dat
+    with open(f'data/roots/{rt}.tsv', 'w') as f:
+      print(f"writing {rt} to 'data/roots/{rt}.tsv'")
+      writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+      writer.writeheader()
+      for datum in instLst:
+        writer.writerow({
+          list_header[0] : datum['surah:ayah'],
+          list_header[1] : datum['position'],
+          list_header[2] : datum['word'],
+          list_header[3] : datum['meaning'],
+          list_header[4] : datum['ayah_link'],
+        })
+    
+    
+    # print(len(instLst))
 
-    with open(f'data/roots/{rt}', 'w') as f:
-      f.write(json.dumps(data))
+  return instLst
 
+    # import pandas as pd
 
+    # pd.set_option('display.max_rows', None)
+    # pd.set_option('display.max_colwidth', None)
 
-    import pandas as pd
+    # df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
+    # df = pd.concat([df,pd.DataFrame.from_records(data)],
+    #                 axis=0
+    #                 )
+    # df = df.drop_duplicates(['surah:ayah','position'])
+    # # df = df.drop(['position'], axis=1)
+    # df = df[df['meaning'].str.contains(flt, case=False)]
+    # df["query"] = f'{rt} ({flt})'
 
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_colwidth', None)
-
-    df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
-    df = pd.concat([df,pd.DataFrame.from_records(data)],
-                   axis=0
-                   )
-    df = df.drop_duplicates(['surah:ayah','position'])
-    # df = df.drop(['position'], axis=1)
-    df = df[df['meaning'].str.contains(flt, case=False)]
-    df["query"] = f'{rt} ({flt})'
-
-    return df.sort_values(["surah:ayah","position"])
-
+    # return df.sort_values(["surah:ayah","position"])
 
 
 def getSorter():
@@ -210,9 +275,8 @@ def getSorter():
     loadedFromDict = False
 
     if os.path.isfile('sorter.json'):
-        print("'sorter.json' found")
+        print("'sorter.json' found'")
         if os.path.getctime('sorter.json') > os.path.getctime('surOrd.tsv'):
-            print("'sorter.json' is newer than 'surOrd.tsv")
             with open('sorter.json') as f:
                 sortStr = f.read()
                 # print(f"in 'sorter.json': \n\n{sortStr}")
@@ -289,16 +353,166 @@ def getSorter():
     return sorter
 
 
+def getColMap(dicti):
+    import numpy as np
+    colMap = {}
+    leng = len(dicti)
+    p = np.linspace(50,180,num=leng)
+    for idx in range(1,leng+1):
+      # n1=rand.randn()
+      # n2=rand.randn()
+      # i1=rand.randint(0,50)
+      # i2=rand.randint(0,50)
+      # clr=f"rgb({50+(100/leng)*idx})"
+      # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
+      colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+    #   print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
+    return colMap
+
+
+def filtDown(rt,flt):
+    instLst = dataGrabber(rt,flt)
+    instLstFiltered =  list(filter( lambda row : flt in row["meaning"].lower() or rt in row["meaning"].lower(), instLst))
+    instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
+    return instLstFiltered
+
+
+def aggregLsts(dicti,tafs):
+    instLstAgg = []
+    for rt in dicti.keys():
+        instLst = filtDown(rt,dicti[rt])
+        instLstAgg += instLst
+    instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
+    return instLstAgg
+
+
+def tabular(df,colMap,sorter):
+    import pandas as pd
+    # print(df)
+
+    # for rt in dicti.keys():
+    #     instLst = aggregLsts(rt,dicti[rt])
+    #     dfNew = pd.DataFrame.from_records(instLst)
+    #     df = pd.concat([df, dfNew], axis=0)
+
+    print(f'dataframe length: {len(df)}')
+    # return df
+
+    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
+    df.sort_values(["surah:ayah","position"],inplace=True)
+    df.reset_index(drop=True,inplace=True)
+    # df.reset_index(inplace=True)
+    # df.drop(columns=[
+    # #  "query",
+    #     "index"],inplace=True)
+
+    compareDict = {}
+    for i in range(len(sorter)):
+        compareDict[sorter[i]]=i
+
+    df.insert( 0, 'verses_before',    list(
+        map(
+            lambda x: compareDict[x],
+            # df["surah"]
+            df["surah:ayah"]
+            )
+        )
+    )
+
+    from IPython.core.display import HTML
+
+    def colo(s):
+        # print(s)
+        return [
+            f'background-color: {colMap[s["query"]]};' + 
+            'foreground-color: black;' +
+            'color: blue'
+            'opacity: 1' 
+        ] * len(s)
+    
+    return HTML(df.style.apply(
+            colo , axis=1
+        ).to_html(render_links=True,escape=False,index=False)
+    )
+
+
+
+def plotDf(df,colMap,sorter):
+    import plotly.express as px
+    # import plotly.graph_objects as go
+    # from plotly.subplots import make_subplots
+    # from plotly.offline import iplot, init_notebook_mode
+
+    # init_notebook_mode()
+    df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
+    df.reset_index(inplace=True)
+    fig = px.scatter(
+        df,
+        x='surah:ayah',
+    #  y='ayah_link',
+        y='index',
+        hover_data={
+        'ayah_link':True,
+        'query': False, 
+        'surah:ayah': False,
+        'index': False
+        },
+        color='query',
+    #  color_continuous_scale=["green","yellow","orange","red"],
+    color_discrete_map=colMap,
+        height=(len(df))*10,
+        width=(len(sorter))/5,
+    )
+
+    # fig = make_subplots(
+    #     specs=[[{"secondary_y": True}]]
+    # )
+
+    # # fig.layout=go.Layout(clickmode='event+select')
+    
+    fig.update_layout(
+    #  hovermode=False,
+        clickmode='event+select',
+        hoverdistance=-1,
+        hoverlabel=dict(
+        font_size=16
+        )
+    #  itemclick='toggle'
+    )
+
+    # for rt in dicti:
+    #     if rt != '' and rt != None:
+    #       tbl = dataGrabber(tafs,rt,dicti[rt])
+    #       fig.add_trace(
+    #           go.Scatter(
+    #               y=tbl.ayah_link,
+    #               x=tbl['surah:ayah'],
+    #               name=rt +  f' ({dicti[rt]})' if dicti[rt] != None or dicti[rt] != '' else '',
+    #               mode='markers',
+    #               # customdata=dataGrabber(tafs,rt,dicti[rt]).ayah_link,
+    #               hoverinfo='y+x'
+    #               # marker=dict(
+    #               # color='rgb(34,163,192)'
+    #               # )
+    #           ),
+    #           secondary_y=True
+    #       )
+    fig.update_xaxes(
+        categoryorder='array',
+        categoryarray=sorter,
+        range=[0,len(sorter)],
+        title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
+    )
+    fig.update_yaxes(
+    #  showticklabels=False,
+    #  range=[0,len(df)],
+        title=''
+    )
+    fig.show()
+
+
 
 def sortchron(dicti={},refLng='',pres=''):
-    ''' Sorts ayahs chronologically '''
-
-    pres = confPres(pres=pres)
-    tafs = confLng(refLng=refLng)
-
-    sorter = getSorter()
-    
-    # print(sorter[-1], len(sorter))
 
     if type(dicti) != type({}):
         print("Invalid root-filter key value pairs")
@@ -328,142 +542,15 @@ def sortchron(dicti={},refLng='',pres=''):
                   dicti[pair[0]]=''
                   finished=True
 
+    pres = confPres(pres=pres)
+    tafs = confLng(refLng=refLng)
+    instLstAgg = aggregLsts(dicti,tafs)
+    colMap = getColMap(dicti)
+    sorter = getSorter()
+
     import pandas as pd
-    df = pd.DataFrame()
-    for rt in dicti.keys():
-      df = pd.concat([
-         df,
-         dataGrabber(tafs,rt,dicti[rt])
-        ],
-        axis=0
-      )
-    
-    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah:ayah","position"],inplace=True)
-    df.reset_index(drop=True,inplace=True)
-    df.reset_index(inplace=True)
-
-    # import numpy.random as rand
-    import numpy as np
-    colMap = {}
-    leng = len(df["query"].unique())
-    p = np.linspace(50,180,num=leng)
-    for idx in range(1,leng+1):
-      # n1=rand.randn()
-      # n2=rand.randn()
-      # i1=rand.randint(0,50)
-      # i2=rand.randint(0,50)
-      # clr=f"rgb({50+(100/leng)*idx})"
-      # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
-      colMap[df["query"].unique()[idx-1]] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
-      print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
-
-    if pres=='table':
-      df.drop(columns=[
-        #  "query",
-         "index"],inplace=True)
-      compareDict = {}
-      for i in range(len(sorter)):
-          compareDict[sorter[i]]=i
-
-      df.insert( 0, 'verses_before',    list(
-              map(
-                lambda x: compareDict[x],
-                # df["surah"]
-                df["surah:ayah"]
-              )
-          )
-      )
-
-      from IPython.core.display import HTML
-
-      def colo(s):
-        return [
-           f'background-color: {colMap[s["query"]]};' + 
-           'foreground-color: black;' +
-           'color: blue'
-           'opacity: 1' 
-        ] * len(s)
-      
-      return HTML(df.style.apply(
-         colo , axis=1
-        ).to_html(render_links=True,escape=False,index=False)
-      )
-
-
-    if pres=='plot':
-      import plotly.express as px
-      # import plotly.graph_objects as go
-      # from plotly.subplots import make_subplots
-      # from plotly.offline import iplot, init_notebook_mode
-
-      # init_notebook_mode()
-      df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
-      fig = px.scatter(
-         df,
-         x='surah:ayah',
-        #  y='ayah_link',
-         y='index',
-         hover_data={
-            'ayah_link':True,
-            'query': False, 
-            'surah:ayah': False,
-            'index': False
-          },
-         color='query',
-        #  color_continuous_scale=["green","yellow","orange","red"],
-        color_discrete_map=colMap,
-         height=(len(df))*10,
-         width=(len(sorter))/5,
-      )
-
-      # fig = make_subplots(
-      #     specs=[[{"secondary_y": True}]]
-      # )
-
-      # # fig.layout=go.Layout(clickmode='event+select')
-      
-      fig.update_layout(
-        #  hovermode=False,
-         clickmode='event+select',
-         hoverdistance=-1,
-         hoverlabel=dict(
-            font_size=16
-         )
-        #  itemclick='toggle'
-      )
-
-      # for rt in dicti:
-      #     if rt != '' and rt != None:
-      #       tbl = dataGrabber(tafs,rt,dicti[rt])
-      #       fig.add_trace(
-      #           go.Scatter(
-      #               y=tbl.ayah_link,
-      #               x=tbl['surah:ayah'],
-      #               name=rt +  f' ({dicti[rt]})' if dicti[rt] != None or dicti[rt] != '' else '',
-      #               mode='markers',
-      #               # customdata=dataGrabber(tafs,rt,dicti[rt]).ayah_link,
-      #               hoverinfo='y+x'
-      #               # marker=dict(
-      #               # color='rgb(34,163,192)'
-      #               # )
-      #           ),
-      #           secondary_y=True
-      #       )
-      fig.update_xaxes(
-         categoryorder='array',
-         categoryarray=sorter,
-         range=[0,len(sorter)],
-         title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
-      )
-      fig.update_yaxes(
-        #  showticklabels=False,
-        #  range=[0,len(df)],
-         title=''
-      )
-      fig.show()
-      # iplot(fig)
-      # import matplotlib.pyplot as plt
-      # plt.show()
-
-  
+    df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
+    if pres == "table":
+        return tabular(df,colMap,sorter)
+    if pres == "plot":
+        plotDf(df,colMap,sorter)
