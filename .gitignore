@@ -4,5 +4,6 @@ __pycache__
 !requirements.txt
 dev.ipynb
 data/ref/*
-!data/ref/Qsorted.md
+data/compare/*
+!data/ref/QsortedRukued.md
 *.png
