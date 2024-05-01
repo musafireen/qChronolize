@@ -1,9 +1,8 @@
 cnf.txt
 __pycache__
-*.txt
+intro.txt
 !requirements.txt
 dev.ipynb
 data/ref/*
-!data/ref/Qsorted.md
+!data/ref/QsortedRukued.md
 *.png
-*.txt
