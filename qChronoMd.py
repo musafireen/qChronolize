@@ -1,6 +1,6 @@
 from qChronolyze import filtDown, getSorter
 
-def qChronoMd(dicti,flnm):
+def qChronoMd(dicti,flnm,tafs):
     mdFile = f'data/compare/{flnm}.md'
     instLstAgg = []
     queriesLeft = { f'{k} ({v})' for k,v in dicti.items() }
@@ -28,7 +28,10 @@ def qChronoMd(dicti,flnm):
                 queriesLeft.remove(rec["query"])
         if rec["surah:ayah"] not in alreadyRefed:
             with open(mdFile, 'a') as f:
-                f.write(f'\n![[QsortedRukued#{rec["surah:ayah"]}]]\n')
+                f.write(
+                    f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
+                    + f'\n![[QsortedRukued#{rec["surah:ayah"]}]]\n'
+                )
             alreadyRefed.append(rec["surah:ayah"])
         
 

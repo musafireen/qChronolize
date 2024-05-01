@@ -193,7 +193,8 @@ def dataGrabber(
 
   def getTbl(grabhtmlPara):
     soup = BeautifulSoup(
-      grabhtmlPara
+      grabhtmlPara,
+      'lxml' 
     )
 
     tblsRet = soup.find_all(
@@ -214,14 +215,15 @@ def dataGrabber(
   poss = set()
   tblCumul = []
   instLst=[]
+  flnm = re.sub('([A-Z])','\\1?', rt)
 
   propDat = False
   import os
-  if os.path.isfile(f'data/roots/{rt}.tsv'):
+  if f'{flnm}.tsv' in os.listdir(f'data/roots/'):
     print(f"file found for {rt}")
     try:
-      with open(f'data/roots/{rt}.tsv') as f:
-        print(f"loading data/roots/{rt}.tsv")
+      with open(f'data/roots/{flnm}.tsv') as f:
+        print(f"loading data/roots/{flnm}.tsv")
         instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
       #   tmpDat = json.loads(f.read())
       # if type(tmpDat) == type([]):
@@ -231,7 +233,7 @@ def dataGrabber(
       #       instLst = tmpDat
       #       print(f"instLst loaded from 'data/roots/")
       #   instLst = tmpDat
-        print(f"Successfully loaded data from 'dat/roots/{rt}.tsv'")
+        print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
         propDat = True
     except:
       propDat = False
@@ -316,8 +318,8 @@ def dataGrabber(
     #   )
     list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
 
-    with open(f'data/roots/{rt}.tsv', 'w') as f:
-      print(f"writing {rt} to 'data/roots/{rt}.tsv'")
+    with open(f'data/roots/{flnm}.tsv', 'x') as f:
+      print(f"writing {rt} to 'data/roots/{flnm}.tsv'")
       writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
       writer.writeheader()
       for datum in instLst:
