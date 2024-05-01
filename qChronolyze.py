@@ -386,17 +386,10 @@ def aggregLsts(dicti,tafs):
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
     # instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
-        instLstAgg = [ { 
-           **row, 
-        #    "surah:ayah": f'<a style=\'color:black\'>{row["surah:ayah"]}</a>',	
-        #    "position": f'<a style=\'color:black\'>{row["position"]}</a>',	
-        #    "word": f'<a style=\'color:black\'>{row["word"]}</a>',
-        #    "ayah_link" : f'<a style="color\:#3233C9" href="https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}">{row["ayah_link"]}</a>'
-           "ayah_link" : f'<a>{row["ayah_link"]}</a>'
-        #    "ayah_link" : row["ayah_link"]
-        #    "ayah_link": f"<a style='color:#95C7FF' href='https://quran.com/{row['surah:ayah']}/tafsirs/toBeReplaced'>{row['ayah_link']}</a>"
-        #    "query":  f'<a style=\'color:black\'>{row["query"]}</a>'
-           } for row in instLstAgg ]
+    instLstAgg = [ { 
+        **row, 
+        "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+        } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
@@ -454,7 +447,6 @@ def plotDf(df,colMap,sorter):
     # import plotly.graph_objects as go
     # from plotly.subplots import make_subplots
     # from plotly.offline import iplot, init_notebook_mode
-
     # init_notebook_mode()
     df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
     df.reset_index(inplace=True)
