@@ -391,7 +391,10 @@ def aggregLsts(dicti,tafs):
         #    "surah:ayah": f'<a style=\'color:black\'>{row["surah:ayah"]}</a>',	
         #    "position": f'<a style=\'color:black\'>{row["position"]}</a>',	
         #    "word": f'<a style=\'color:black\'>{row["word"]}</a>',
-           "ayah_link" : f'<a style=\'color:#3233C9\' href=\'https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}\'>{row["ayah_link"]}</a>'
+        #    "ayah_link" : f'<a style="color\:#3233C9" href="https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}">{row["ayah_link"]}</a>'
+           "ayah_link" : f'<a>{row["ayah_link"]}</a>'
+        #    "ayah_link" : row["ayah_link"]
+        #    "ayah_link": f"<a style='color:#95C7FF' href='https://quran.com/{row['surah:ayah']}/tafsirs/toBeReplaced'>{row['ayah_link']}</a>"
         #    "query":  f'<a style=\'color:black\'>{row["query"]}</a>'
            } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
