@@ -306,7 +306,8 @@ def dataGrabber(
               "position": int(posSplit[2]), 
               "word": row[0].split(' ')[1], 
               "meaning": row[1],
-              "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
+            #   "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
+              "ayah_link": row[2]
           })
           
           poss.add(pos)
@@ -390,7 +391,7 @@ def aggregLsts(dicti,tafs):
         #    "surah:ayah": f'<a style=\'color:black\'>{row["surah:ayah"]}</a>',	
         #    "position": f'<a style=\'color:black\'>{row["position"]}</a>',	
         #    "word": f'<a style=\'color:black\'>{row["word"]}</a>',
-           "ayah_link" : f'<a style=\'color:rgb(50,50,220)\' href=\'https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}\'>{row["ayah_link"]}</a>',
+           "ayah_link" : f'<a style=\'color:#3233C9\' href=\'https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}\'>{row["ayah_link"]}</a>'
         #    "query":  f'<a style=\'color:black\'>{row["query"]}</a>'
            } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
@@ -432,10 +433,10 @@ def tabular(df,colMap,sorter):
     def colo(s):
         # print(s)
         return [
-            f'background-color: {colMap[s["query"]]};' + 
-            'foreground-color: black;' +
-            'color: black;' +
-            'opacity: 1;' 
+            f'background-color: {colMap[s["query"]]};'
+            + 'foreground-color: black;'
+            + 'color: black;'
+            + 'opacity: 1;' 
         ] * len(s)
     
     return HTML(df.style.apply(
