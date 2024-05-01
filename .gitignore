@@ -4,5 +4,6 @@ intro.txt
 !requirements.txt
 dev.ipynb
 data/ref/*
+data/compare/*
 !data/ref/QsortedRukued.md
 *.png
