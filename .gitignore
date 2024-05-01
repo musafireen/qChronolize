@@ -1,6 +1,7 @@
 cnf.txt
 __pycache__
 *.txt
+!requirements.txt
 dev.ipynb
 data/ref/*
 !data/ref/Qsorted.md

@@ -1,5 +1,0 @@
-numpy
-pandas
-html2text
-IPython
-plotly
