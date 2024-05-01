@@ -196,9 +196,6 @@ def dataGrabber(
       grabhtmlPara
     )
 
-    # print(f'\n\nsoup for {lnk} for {rt}:\n{soup.find_all("table",{"class":"taf"})}\n\n\n')
-    # print(f'\n\nsoup for {lnk} for {rt}:\n{len(soup.select(".taf"))}\n\n\n')
-
     tblsRet = soup.find_all(
       "table",
       {"class":"taf"}
@@ -224,7 +221,7 @@ def dataGrabber(
     print(f"file found for {rt}")
     try:
       with open(f'data/roots/{rt}.tsv') as f:
-        print(f"reading data/roots/{rt}.tsv")
+        print(f"loading data/roots/{rt}.tsv")
         instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
       #   tmpDat = json.loads(f.read())
       # if type(tmpDat) == type([]):
@@ -234,9 +231,8 @@ def dataGrabber(
       #       instLst = tmpDat
       #       print(f"instLst loaded from 'data/roots/")
       #   instLst = tmpDat
-        print(f"Successfully read data from 'dat/roots/{rt}.tsv'")
+        print(f"Successfully loaded data from 'dat/roots/{rt}.tsv'")
         propDat = True
-      #   print(f"instLst loaded from 'data/roots/")
     except:
       propDat = False
   if not propDat:
@@ -306,7 +302,6 @@ def dataGrabber(
               "position": int(posSplit[2]), 
               "word": row[0].split(' ')[1], 
               "meaning": row[1],
-            #   "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
               "ayah_link": row[2]
           })
           
@@ -385,7 +380,6 @@ def aggregLsts(dicti,tafs):
     for rt in dicti.keys():
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
-    # instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
