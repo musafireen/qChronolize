@@ -81,6 +81,101 @@ def confLng(refLng):
     return tafsDict[refLng]
 
 
+
+def getSorter():
+    
+    
+    """ to tweak the sorter tweak the "surOrd.tsv" file manually """
+
+    import os
+    import json
+    import csv
+    with open('qdict.json') as f:
+        qStr = f.read()
+    qDict = json.loads(qStr)
+
+    loadedFromDict = False
+
+    if os.path.isfile('sorter.json'):
+        print("'sorter.json' found'")
+        if os.path.getctime('sorter.json') > os.path.getctime('surOrd.tsv'):
+            with open('sorter.json') as f:
+                sortStr = f.read()
+                # print(f"in 'sorter.json': \n\n{sortStr}")
+            try:
+                sorter = json.loads(sortStr)
+                print('last item in sorter:', sorter[-1])
+                if len(sorter) == 6236:
+                    loadedFromDict = True
+                    print(f"successfully loaded sorter of length {len(sorter)} from 'sorter.json'")
+                else:
+                    print(f"length of sorter is {len(sorter)} (not equal to 114)")
+                    del sorter
+            except:
+                print("failed to load sorter from 'sorter.json'")
+        else:
+            print("'surOrd.tsv' was modified. \nCreating new sorter")
+
+    if not loadedFromDict:
+        print("creating sorter from 'surOrd.tsv'")
+        with open('surOrd.tsv') as f:
+            surOrd = [row for row in csv.DictReader(f, delimiter='\t') ]
+
+        sorter = [''] * 6236
+        bef = {}
+        aft = {}
+        befaft = []
+
+        for v in surOrd:
+            s=v["surah"]
+            if "exception" in v.keys():
+                exs = v["exception"]
+                if type(exs) == type(''):
+                    exs = json.loads(exs)
+                if len(exs) > 0:
+                    for ex in exs:
+                        ar = ex["ayah_range"].split('-')
+                        al = ar if len(ar) == 1 else list(range(int(ar[0]),int(ar[1])+1)) if len(ar) == 2 else []
+                        if "before" in ex.keys():
+                            if ex["before"] != '':
+                                if ex["before"] not in bef.keys():
+                                    bef[ex["before"]]=[]
+                                for ay in al:
+                                    bef[ex["before"]].append(f'{s}:{ay}')
+                                    befaft.append(f'{s}:{ay}')
+                        if "after" in ex.keys():
+                            if ex["after"] != '':
+                                if ex["after"] not in aft.keys():
+                                    aft[ex["after"]]=[]
+                                for ay in al:
+                                    aft[ex["after"]].append(f'{s}:{ay}')
+                                    befaft.append(f'{s}:{ay}')
+
+        i = 0
+
+        for v in surOrd:
+            s=v["surah"]
+            for a in range(1, qDict[s]["verse_count"]+1):
+                s_a= f'{s}:{a}'
+                if s_a in bef.keys():
+                    for sa in bef[s_a]:
+                        sorter[i] = sa
+                        i += 1
+                if s_a not in befaft:
+                    sorter[i] = s_a
+                    i += 1
+                if s_a in aft.keys():
+                    for sa in aft[s_a]:
+                        sorter[i] = sa
+                        i += 1
+
+        with open(f'sorter.json', 'w') as f:
+            f.write(json.dumps(sorter))
+    
+    return sorter
+
+
+
 def dataGrabber(
     rt,
     flt=''
@@ -211,7 +306,7 @@ def dataGrabber(
               "position": int(posSplit[2]), 
               "word": row[0].split(' ')[1], 
               "meaning": row[1],
-              "ayah_link": f"<a style='color:#95C7FF' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
+              "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
           })
           
           poss.add(pos)
@@ -260,104 +355,11 @@ def dataGrabber(
     # return df.sort_values(["surah:ayah","position"])
 
 
-def getSorter():
-    
-    
-    """ to tweak the sorter tweak the "surOrd.tsv" file manually """
-
-    import os
-    import json
-    import csv
-    with open('qdict.json') as f:
-        qStr = f.read()
-    qDict = json.loads(qStr)
-
-    loadedFromDict = False
-
-    if os.path.isfile('sorter.json'):
-        print("'sorter.json' found'")
-        if os.path.getctime('sorter.json') > os.path.getctime('surOrd.tsv'):
-            with open('sorter.json') as f:
-                sortStr = f.read()
-                # print(f"in 'sorter.json': \n\n{sortStr}")
-            try:
-                sorter = json.loads(sortStr)
-                print('last item in sorter:', sorter[-1])
-                if len(sorter) == 6236:
-                    loadedFromDict = True
-                    print(f"successfully loaded sorter of length {len(sorter)} from 'sorter.json'")
-                else:
-                    print(f"length of sorter is {len(sorter)} (not equal to 114)")
-                    del sorter
-            except:
-                print("failed to load sorter from 'sorter.json'")
-        else:
-            print("'surOrd.tsv' was modified. \nCreating new sorter")
-
-    if not loadedFromDict:
-        print("creating sorter from 'surOrd.tsv'")
-        with open('surOrd.tsv') as f:
-            surOrd = [row for row in csv.DictReader(f, delimiter='\t') ]
-
-        sorter = [''] * 6236
-        bef = {}
-        aft = {}
-        befaft = []
-
-        for v in surOrd:
-            s=v["surah"]
-            if "exception" in v.keys():
-                exs = v["exception"]
-                if type(exs) == type(''):
-                    exs = json.loads(exs)
-                if len(exs) > 0:
-                    for ex in exs:
-                        ar = ex["ayah_range"].split('-')
-                        al = ar if len(ar) == 1 else list(range(int(ar[0]),int(ar[1])+1)) if len(ar) == 2 else []
-                        if "before" in ex.keys():
-                            if ex["before"] != '':
-                                if ex["before"] not in bef.keys():
-                                    bef[ex["before"]]=[]
-                                for ay in al:
-                                    bef[ex["before"]].append(f'{s}:{ay}')
-                                    befaft.append(f'{s}:{ay}')
-                        if "after" in ex.keys():
-                            if ex["after"] != '':
-                                if ex["after"] not in aft.keys():
-                                    aft[ex["after"]]=[]
-                                for ay in al:
-                                    aft[ex["after"]].append(f'{s}:{ay}')
-                                    befaft.append(f'{s}:{ay}')
-
-        i = 0
-
-        for v in surOrd:
-            s=v["surah"]
-            for a in range(1, qDict[s]["verse_count"]+1):
-                s_a= f'{s}:{a}'
-                if s_a in bef.keys():
-                    for sa in bef[s_a]:
-                        sorter[i] = sa
-                        i += 1
-                if s_a not in befaft:
-                    sorter[i] = s_a
-                    i += 1
-                if s_a in aft.keys():
-                    for sa in aft[s_a]:
-                        sorter[i] = sa
-                        i += 1
-
-        with open(f'sorter.json', 'w') as f:
-            f.write(json.dumps(sorter))
-    
-    return sorter
-
-
 def getColMap(dicti):
     import numpy as np
     colMap = {}
     leng = len(dicti)
-    p = np.linspace(50,180,num=leng)
+    p = np.linspace(150,250,num=leng)
     for idx in range(1,leng+1):
       # n1=rand.randn()
       # n2=rand.randn()
@@ -382,7 +384,15 @@ def aggregLsts(dicti,tafs):
     for rt in dicti.keys():
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
-    instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
+    # instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
+        instLstAgg = [ { 
+           **row, 
+        #    "surah:ayah": f'<a style=\'color:black\'>{row["surah:ayah"]}</a>',	
+        #    "position": f'<a style=\'color:black\'>{row["position"]}</a>',	
+        #    "word": f'<a style=\'color:black\'>{row["word"]}</a>',
+           "ayah_link" : f'<a style=\'color:rgb(50,50,220)\' href=\'https://quran.com/{row["surah:ayah"]}/tafsirs/{tafs}\'>{row["ayah_link"]}</a>',
+        #    "query":  f'<a style=\'color:black\'>{row["query"]}</a>'
+           } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
@@ -424,8 +434,8 @@ def tabular(df,colMap,sorter):
         return [
             f'background-color: {colMap[s["query"]]};' + 
             'foreground-color: black;' +
-            'color: blue'
-            'opacity: 1' 
+            'color: black;' +
+            'opacity: 1;' 
         ] * len(s)
     
     return HTML(df.style.apply(
@@ -543,9 +553,9 @@ def sortchron(dicti={},refLng='',pres=''):
 
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
-    instLstAgg = aggregLsts(dicti,tafs)
-    colMap = getColMap(dicti)
     sorter = getSorter()
+    colMap = getColMap(dicti)
+    instLstAgg = aggregLsts(dicti,tafs)
 
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
