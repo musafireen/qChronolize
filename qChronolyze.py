@@ -81,184 +81,6 @@ def confLng(refLng):
     return tafsDict[refLng]
 
 
-def dataGrabber(
-    rt,
-    flt=''
-  ):
-
-  '''Grabs data from corpus.quran.com & formats them'''
-
-  flt=str(flt).lower()
-  import requests
-  # import html2text
-  from bs4 import BeautifulSoup
-  import re
-  import json
-  import csv
-
-  def getTbl(grabhtmlPara):
-    soup = BeautifulSoup(
-      grabhtmlPara
-    )
-
-    # print(f'\n\nsoup for {lnk} for {rt}:\n{soup.find_all("table",{"class":"taf"})}\n\n\n')
-    # print(f'\n\nsoup for {lnk} for {rt}:\n{len(soup.select(".taf"))}\n\n\n')
-
-    tblsRet = soup.find_all(
-      "table",
-      {"class":"taf"}
-    )
-
-    return tblsRet
-
-  links = [
-      "https://corpus.quran.com/qurandictionary.jsp?q=",
-      "https://corpus.quran.com/search.jsp?q=root%3A",
-      "https://corpus.quran.com/search.jsp?q=lem%3A",
-      "https://corpus.quran.com/search.jsp?q=stem%3A",
-      "https://corpus.quran.com/search.jsp?q=",
-      ]
-
-  poss = set()
-  tblCumul = []
-  instLst=[]
-
-  propDat = False
-  import os
-  if os.path.isfile(f'data/roots/{rt}.tsv'):
-    print(f"file found for {rt}")
-    try:
-      with open(f'data/roots/{rt}.tsv') as f:
-        print(f"reading data/roots/{rt}.tsv")
-        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-      #   tmpDat = json.loads(f.read())
-      # if type(tmpDat) == type([]):
-      #   if len(tmpDat) > 0:
-      #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
-      #       propDat = True    
-      #       instLst = tmpDat
-      #       print(f"instLst loaded from 'data/roots/")
-      #   instLst = tmpDat
-        print(f"Successfully read data from 'dat/roots/{rt}.tsv'")
-        propDat = True
-      #   print(f"instLst loaded from 'data/roots/")
-    except:
-      propDat = False
-  if not propDat:
-    print(f"proper data not found for {rt}")
-    tblAgg = []
-    for lnk in links:
-      if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
-        grabhtml = requests.get(f"{lnk}{rt}").text
-        tbls = getTbl(grabhtml)
-      else:
-        pgs = []
-        grabhtml = requests.get(f"{lnk}{rt}").text
-        tbls = getTbl(grabhtml)
-        if '>\nResults <b>' in grabhtml:
-          matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
-          if len(matches) > 0:
-            pgFlt = int(matches[0])/50
-            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-            # print(f"page count in {lnk} is: {pgCount}")
-            # print(type(pgCount), pgCount)
-            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-          for pg in pgs:
-            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
-            tbls += getTbl(grabhtml)
-            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-            # grabhtml += grabhtmlNew
-            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-
-      # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-      # print(f"{tbls}\n")
-
-      for tbl in tbls:
-        # print(tbl)
-        tblAgg += tbl
-
-      # print(len(tblAgg))
-
-      if len(tblAgg) > 0:
-        # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-        if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-          if rt.lower() != 'adam' and rt != 'A^Edam':
-            # print("no results")
-            tblAgg = []
-
-      # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
-      # print(tblAgg)
-
-      tblCumul += tblAgg
-      # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
-
-      for rw in tblCumul:
-        row = [ fld.get_text() for fld in rw.find_all("td") ]
-        # row = []
-        # for fld in rw:
-        #   row.append(fld.get_text())
-          
-        # print(row)
-        pos = posSplit = row[0].split(' ')[0].strip('()')
-        # print(pos)
-        if pos not in poss:
-          # print(posSplit)
-          posSplit = pos.split(':')
-          # print(posSplit)
-          instLst.append({
-              "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-              "position": int(posSplit[2]), 
-              "word": row[0].split(' ')[1], 
-              "meaning": row[1],
-              "ayah_link": f"<a style='color:#95C7FF' href='https://quran.com/{posSplit[0]}:{posSplit[1]}/tafsirs/toBeReplaced'>{row[2]}</a>"
-          })
-          
-          poss.add(pos)
-
-      # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
-    
-    # with open(f'data/roots/{rt}', 'w') as f:
-    #   print("writing to data/roots")
-    #   f.write(
-    #     json.dumps(instLst)
-    #   )
-    list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
-
-    with open(f'data/roots/{rt}.tsv', 'w') as f:
-      print(f"writing {rt} to 'data/roots/{rt}.tsv'")
-      writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-      writer.writeheader()
-      for datum in instLst:
-        writer.writerow({
-          list_header[0] : datum['surah:ayah'],
-          list_header[1] : datum['position'],
-          list_header[2] : datum['word'],
-          list_header[3] : datum['meaning'],
-          list_header[4] : datum['ayah_link'],
-        })
-    
-    
-    # print(len(instLst))
-
-  return instLst
-
-    # import pandas as pd
-
-    # pd.set_option('display.max_rows', None)
-    # pd.set_option('display.max_colwidth', None)
-
-    # df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
-    # df = pd.concat([df,pd.DataFrame.from_records(data)],
-    #                 axis=0
-    #                 )
-    # df = df.drop_duplicates(['surah:ayah','position'])
-    # # df = df.drop(['position'], axis=1)
-    # df = df[df['meaning'].str.contains(flt, case=False)]
-    # df["query"] = f'{rt} ({flt})'
-
-    # return df.sort_values(["surah:ayah","position"])
-
 
 def getSorter():
     
@@ -353,11 +175,187 @@ def getSorter():
     return sorter
 
 
+
+def dataGrabber(
+    rt,
+    flt=''
+  ):
+
+  '''Grabs data from corpus.quran.com & formats them'''
+
+  flt=str(flt).lower()
+  import requests
+  # import html2text
+  from bs4 import BeautifulSoup
+  import re
+  import json
+  import csv
+
+  def getTbl(grabhtmlPara):
+    soup = BeautifulSoup(
+      grabhtmlPara
+    )
+
+    tblsRet = soup.find_all(
+      "table",
+      {"class":"taf"}
+    )
+
+    return tblsRet
+
+  links = [
+      "https://corpus.quran.com/qurandictionary.jsp?q=",
+      "https://corpus.quran.com/search.jsp?q=root%3A",
+      "https://corpus.quran.com/search.jsp?q=lem%3A",
+      "https://corpus.quran.com/search.jsp?q=stem%3A",
+      "https://corpus.quran.com/search.jsp?q=",
+      ]
+
+  poss = set()
+  tblCumul = []
+  instLst=[]
+
+  propDat = False
+  import os
+  if os.path.isfile(f'data/roots/{rt}.tsv'):
+    print(f"file found for {rt}")
+    try:
+      with open(f'data/roots/{rt}.tsv') as f:
+        print(f"loading data/roots/{rt}.tsv")
+        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+      #   tmpDat = json.loads(f.read())
+      # if type(tmpDat) == type([]):
+      #   if len(tmpDat) > 0:
+      #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
+      #       propDat = True    
+      #       instLst = tmpDat
+      #       print(f"instLst loaded from 'data/roots/")
+      #   instLst = tmpDat
+        print(f"Successfully loaded data from 'dat/roots/{rt}.tsv'")
+        propDat = True
+    except:
+      propDat = False
+  if not propDat:
+    print(f"proper data not found for {rt}")
+    tblAgg = []
+    for lnk in links:
+      if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
+        grabhtml = requests.get(f"{lnk}{rt}").text
+        tbls = getTbl(grabhtml)
+      else:
+        pgs = []
+        grabhtml = requests.get(f"{lnk}{rt}").text
+        tbls = getTbl(grabhtml)
+        if '>\nResults <b>' in grabhtml:
+          matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
+          if len(matches) > 0:
+            pgFlt = int(matches[0])/50
+            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
+            # print(f"page count in {lnk} is: {pgCount}")
+            # print(type(pgCount), pgCount)
+            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
+
+          for pg in pgs:
+            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
+            tbls += getTbl(grabhtml)
+            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
+            # grabhtml += grabhtmlNew
+            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
+
+      # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
+      # print(f"{tbls}\n")
+
+      for tbl in tbls:
+        # print(tbl)
+        tblAgg += tbl
+
+      # print(len(tblAgg))
+
+      if len(tblAgg) > 0:
+        # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
+        if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
+          if rt.lower() != 'adam' and rt != 'A^Edam':
+            # print("no results")
+            tblAgg = []
+
+      # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
+      # print(tblAgg)
+
+      tblCumul += tblAgg
+      # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
+
+      for rw in tblCumul:
+        row = [ fld.get_text() for fld in rw.find_all("td") ]
+        # row = []
+        # for fld in rw:
+        #   row.append(fld.get_text())
+          
+        # print(row)
+        pos = posSplit = row[0].split(' ')[0].strip('()')
+        # print(pos)
+        if pos not in poss:
+          # print(posSplit)
+          posSplit = pos.split(':')
+          # print(posSplit)
+          instLst.append({
+              "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
+              "position": int(posSplit[2]), 
+              "word": row[0].split(' ')[1], 
+              "meaning": row[1],
+              "ayah_link": row[2]
+          })
+          
+          poss.add(pos)
+
+      # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+    
+    # with open(f'data/roots/{rt}', 'w') as f:
+    #   print("writing to data/roots")
+    #   f.write(
+    #     json.dumps(instLst)
+    #   )
+    list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
+
+    with open(f'data/roots/{rt}.tsv', 'w') as f:
+      print(f"writing {rt} to 'data/roots/{rt}.tsv'")
+      writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+      writer.writeheader()
+      for datum in instLst:
+        writer.writerow({
+          list_header[0] : datum['surah:ayah'],
+          list_header[1] : datum['position'],
+          list_header[2] : datum['word'],
+          list_header[3] : datum['meaning'],
+          list_header[4] : datum['ayah_link'],
+        })
+    
+    
+    # print(len(instLst))
+
+  return instLst
+
+    # import pandas as pd
+
+    # pd.set_option('display.max_rows', None)
+    # pd.set_option('display.max_colwidth', None)
+
+    # df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
+    # df = pd.concat([df,pd.DataFrame.from_records(data)],
+    #                 axis=0
+    #                 )
+    # df = df.drop_duplicates(['surah:ayah','position'])
+    # # df = df.drop(['position'], axis=1)
+    # df = df[df['meaning'].str.contains(flt, case=False)]
+    # df["query"] = f'{rt} ({flt})'
+
+    # return df.sort_values(["surah:ayah","position"])
+
+
 def getColMap(dicti):
     import numpy as np
     colMap = {}
     leng = len(dicti)
-    p = np.linspace(50,180,num=leng)
+    p = np.linspace(150,250,num=leng)
     for idx in range(1,leng+1):
       # n1=rand.randn()
       # n2=rand.randn()
@@ -382,7 +380,11 @@ def aggregLsts(dicti,tafs):
     for rt in dicti.keys():
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
-    instLstAgg = [ { **row, "ayah_link" : row["ayah_link"].replace("toBeReplaced", tafs) } for row in instLstAgg ]
+    instLstAgg = [ { 
+        **row, 
+        "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+        } for row in instLstAgg ]
+    print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
 
@@ -421,10 +423,10 @@ def tabular(df,colMap,sorter):
     def colo(s):
         # print(s)
         return [
-            f'background-color: {colMap[s["query"]]};' + 
-            'foreground-color: black;' +
-            'color: blue'
-            'opacity: 1' 
+            f'background-color: {colMap[s["query"]]};'
+            + 'foreground-color: black;'
+            + 'color: black;'
+            + 'opacity: 1;' 
         ] * len(s)
     
     return HTML(df.style.apply(
@@ -439,7 +441,6 @@ def plotDf(df,colMap,sorter):
     # import plotly.graph_objects as go
     # from plotly.subplots import make_subplots
     # from plotly.offline import iplot, init_notebook_mode
-
     # init_notebook_mode()
     df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
     df.reset_index(inplace=True)
@@ -542,9 +543,9 @@ def sortchron(dicti={},refLng='',pres=''):
 
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
-    instLstAgg = aggregLsts(dicti,tafs)
-    colMap = getColMap(dicti)
     sorter = getSorter()
+    colMap = getColMap(dicti)
+    instLstAgg = aggregLsts(dicti,tafs)
 
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
