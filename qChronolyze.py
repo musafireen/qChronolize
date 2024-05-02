@@ -357,7 +357,9 @@ def getColMap(dicti):
     import numpy as np
     colMap = {}
     leng = len(dicti)
-    p = np.linspace(150,250,num=leng)
+    lwrLmt = 100
+    uprLmt = 250
+    p = np.linspace(lwrLmt,uprLmt,num=leng)
     for idx in range(1,leng+1):
       # n1=rand.randn()
       # n2=rand.randn()
@@ -365,7 +367,10 @@ def getColMap(dicti):
       # i2=rand.randint(0,50)
       # clr=f"rgb({50+(100/leng)*idx})"
       # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
+    #   rd = int(p[idx-1])
+    #   radialDist = (rd - lwrLmt) if (rd - lwrLmt) < (uprLmt - rd) else (uprLmt - rd)
       colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+    #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({rd},{gn},{bl})' 
     #   print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
@@ -379,13 +384,25 @@ def filtDown(rt,flt):
 
 
 def aggregLsts(dicti,tafs):
+    # lnkStyle = ' '
+    fontSize = '18'
+    fontCol = 'rgb(0,0,150)'
+    shPx = str(int(fontSize)/100*0)
+    shCol = '#000000'
+    bgCol = 'rgb(220,220,250)'
+    txtShad = ''
+    # txtShad = f'text-shadow:{shPx}px {shPx}px 0 {shCol}, {shPx}px -{shPx}px 0 {shCol}, -{shPx}px -{shPx}px 0 {shCol}, -{shPx}px {shPx}px 0 {shCol};'
+    # lnkStyle = "style='background-color:rgb(250,250,250);font-size:30px;color:rgb(0,0,150);-webkit-text-stroke-width:5px;-webkit-text-stroke-color:white' "
+    lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
+    # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
     for rt in dicti.keys():
         instLst = filtDown(rt,dicti[rt])
         instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
-        "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+        "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+        # "ayah_link": f"<a href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
         } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
@@ -460,7 +477,7 @@ def plotDf(df,colMap,sorter):
         },
         color='query',
     #  color_continuous_scale=["green","yellow","orange","red"],
-        color_discrete_map=colMap,
+        # color_discrete_map=colMap,
         height=((len(df))*7)+200,
         # height=1200,
         width=(len(sorter))/8+500,
@@ -477,7 +494,13 @@ def plotDf(df,colMap,sorter):
         clickmode='event+select',
         hoverdistance=-1,
         hoverlabel=dict(
-        font_size=16
+           font=dict(
+              size=15,
+              color='rgb(0,0,0)',              
+           ),
+            # font_size=15,
+            # font_color='rgb(0,0,0)',
+            bgcolor = 'rgb(220,220,250)'
         )
     #  itemclick='toggle'
     )
