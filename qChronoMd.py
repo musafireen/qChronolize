@@ -22,16 +22,17 @@ def qChronoMd(dicti,flnm,tafs):
     sortedRecs = df.to_dict(orient='records')
 
     for rec in sortedRecs:
-        if rec["query"] in queriesLeft:
-            with open(mdFile, 'a') as f:
-                f.write(f'\n# {rec["query"]}\n')
-                queriesLeft.remove(rec["query"])
         if rec["surah:ayah"] not in alreadyRefed:
             with open(mdFile, 'a') as f:
                 f.write(
-                    f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
+                    f'\n# Q:{rec["surah:ayah"]}\n'
+                    + f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
                     + f'\n![[QsortedRukued#{rec["surah:ayah"]}]]\n'
                 )
             alreadyRefed.append(rec["surah:ayah"])
+        if rec["query"] in queriesLeft:
+            with open(mdFile, 'a') as f:
+                f.write(f'\n## {rec["query"]}\n')
+                queriesLeft.remove(rec["query"])
         
 
