@@ -443,8 +443,14 @@ def aggregLsts(dicti,tafs):
     instLstAgg = []
     for rt in dicti.keys():
         # instLst = filtDown(rt,dicti[rt])
-        instLst = intersct(rt,dicti[rt])
-        instLstAgg += instLst
+        # instLst = intersct(rt,dicti[rt])
+        # instLstAgg += instLst
+        rtOptLs = rt.split('/')
+        flOptLs = dicti[rt].split('/')
+        for i in range(len(rtOptLs)):
+            instLst = intersct(rtOptLs[i],flOptLs[i])
+            instLstAgg += instLst
+        instLstAgg = [ { **inst, "query": f"{rt} ({dicti[rt]})"} for inst in instLstAgg  ]
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
