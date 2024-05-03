@@ -382,6 +382,51 @@ def filtDown(rt,flt):
     instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
+def intersct(rtAgg,flAgg=''):
+    rtList = rtAgg.split(' ')
+    if len(rtList) > 1:
+        flList = flAgg.split(' ')
+        rtFlAgg = [ { rtList[i] : flList[i]} for i in range(len(rtList)) ]
+        # rtFlAgg = { **dicti for dict in rtFlList[1] }
+        # return rtFlAgg
+        instLstAgg = []
+        surahAyahAggSet = set()
+        for dicti in rtFlAgg:
+            instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
+            surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
+            if surahAyahAggSet == set([]):
+                surahAyahAggSet = set(surahAyahList)
+            else:
+                surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
+            instLstAgg += instLst
+        
+        instLstFlt = list(filter(
+            lambda x: x["surah:ayah"] in surahAyahAggSet,
+            instLstAgg
+        ))
+        instFiltDict = {}
+        for inst in instLstFlt:
+            surahAyah = inst["surah:ayah"]
+            if surahAyah not in instFiltDict.keys():
+                instFiltDict[surahAyah] = {
+                    "position": inst["position"],
+                    "word": inst["word"],
+                    "meaning": inst["meaning"],
+                    "ayah_link" : inst["ayah_link"],
+                    "query": f"{rtAgg} ({flAgg})"
+                }
+            else:
+                instFiltDict[surahAyah]["word"] = instFiltDict[surahAyah]["word"] + ' ' + inst["word"]
+                instFiltDict[surahAyah]["meaning"] = instFiltDict[surahAyah]["meaning"] + ' ' + inst["meaning"]
+
+        instFiltLst = [ {"surah:ayah":k, **v} for k, v in instFiltDict.items() ]
+        return instFiltLst
+    
+    elif len(rtList) == 1:
+        return filtDown(rtAgg,flAgg)
+    
+    else:
+        print("please provide at least one root/word")
 
 def aggregLsts(dicti,tafs):
     # lnkStyle = ' '
@@ -397,7 +442,8 @@ def aggregLsts(dicti,tafs):
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
     for rt in dicti.keys():
-        instLst = filtDown(rt,dicti[rt])
+        # instLst = filtDown(rt,dicti[rt])
+        instLst = intersct(rt,dicti[rt])
         instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
