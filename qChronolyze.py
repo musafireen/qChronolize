@@ -293,7 +293,7 @@ def dataGrabber(
         #   row.append(fld.get_text())
           
         # print(row)
-        pos = posSplit = row[0].split(' ')[0].strip('()')
+        pos = row[0].split(' ')[0].strip('()')
         # print(pos)
         if pos not in poss:
           # print(posSplit)
@@ -379,7 +379,7 @@ def filtDown(rt,flt):
     import re
     instLst = dataGrabber(rt,flt)
     instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(rt).lower()).findall(row["meaning"].lower())), instLst))
-    instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
+    # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
 def intersct(rtAgg,flAgg=''):
@@ -404,11 +404,11 @@ def intersct(rtAgg,flAgg=''):
             lambda x: x["surah:ayah"] in surahAyahAggSet,
             instLstAgg
         ))
-        instFiltDict = {}
+        instDictInc = {}
         for inst in instLstFlt:
             surahAyah = inst["surah:ayah"]
-            if surahAyah not in instFiltDict.keys():
-                instFiltDict[surahAyah] = {
+            if surahAyah not in instDictInc.keys():
+                instDictInc[surahAyah] = {
                     "position": inst["position"],
                     "word": inst["word"],
                     "meaning": inst["meaning"],
@@ -416,14 +416,16 @@ def intersct(rtAgg,flAgg=''):
                     "query": f"{rtAgg} ({flAgg})"
                 }
             else:
-                instFiltDict[surahAyah]["word"] = instFiltDict[surahAyah]["word"] + ' ' + inst["word"]
-                instFiltDict[surahAyah]["meaning"] = instFiltDict[surahAyah]["meaning"] + ' ' + inst["meaning"]
+                instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
+                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
 
-        instFiltLst = [ {"surah:ayah":k, **v} for k, v in instFiltDict.items() ]
-        return instFiltLst
+        instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
+        return instLstInc
     
     elif len(rtList) == 1:
-        return filtDown(rtAgg,flAgg)
+        instLstFlt = filtDown(rtAgg,flAgg)
+        instLstInc = [ { **rec, "query": f"{rtAgg} ({flAgg})" } for rec in instLstFlt ]
+        return instLstInc
     
     else:
         print("please provide at least one root/word")
