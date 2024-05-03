@@ -449,8 +449,9 @@ def aggregLsts(dicti,tafs):
         flOptLs = dicti[rt].split('/')
         for i in range(len(rtOptLs)):
             instLst = intersct(rtOptLs[i],flOptLs[i])
+            if len(rtOptLs) > 1:
+                instLst = [ { **inst, "query": f"{rt} ({dicti[rt]})"} for inst in instLst  ]
             instLstAgg += instLst
-        instLstAgg = [ { **inst, "query": f"{rt} ({dicti[rt]})"} for inst in instLstAgg  ]
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
