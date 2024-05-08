@@ -7,6 +7,7 @@ def qChronoMd(dicti,flnm,tafs):
     alreadyRefed = []
     for rt in dicti.keys():
         instLst = filtDown(rt,dicti[rt])
+        instLst = [ { **row , "query" : f"{rt} ({dicti[rt]})"} for row in instLst ]
         instLstAgg += instLst
     # instLstAgg = [ { 
     #     **row, 

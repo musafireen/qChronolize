@@ -378,7 +378,7 @@ def getColMap(dicti):
 def filtDown(rt,flt):
     import re
     instLst = dataGrabber(rt,flt)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(rt).lower()).findall(row["meaning"].lower())), instLst))
+    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(rt)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
