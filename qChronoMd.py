@@ -1,14 +1,16 @@
-from qChronolyze import filtDown, getSorter
+# from qChronolyze import filtDown, getSorter
+from qChronolyze import aggregLsts, getSorter
 
 def qChronoMd(dicti,flnm,tafs):
     mdFile = f'data/compare/{flnm}.md'
-    instLstAgg = []
+    # instLstAgg = []
     queriesLeft = { f'{k} ({v})' for k,v in dicti.items() }
     alreadyRefed = []
-    for rt in dicti.keys():
-        instLst = filtDown(rt,dicti[rt])
-        instLst = [ { **row , "query" : f"{rt} ({dicti[rt]})"} for row in instLst ]
-        instLstAgg += instLst
+    instLstAgg = aggregLsts(dicti,tafs)
+    # for rt in dicti.keys():
+    #     instLst = filtDown(rt,dicti[rt])
+    #     instLst = [ { **row , "query" : f"{rt} ({dicti[rt]})"} for row in instLst ]
+    #     instLstAgg += instLst
     # instLstAgg = [ { 
     #     **row, 
     #     "ayah_link": f"<a style='color:rgb(50,50,200)' href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"

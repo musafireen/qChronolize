@@ -276,7 +276,7 @@ def dataGrabber(
       if len(tblAgg) > 0:
         # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
         if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-          if rt.lower() != 'adam' and rt != 'A^Edam':
+          if rt.lower() != 'adam' and rt != 'A^dam':
             # print("no results")
             tblAgg = []
 
