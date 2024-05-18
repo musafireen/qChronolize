@@ -521,21 +521,25 @@ def plotDf(df,colMap,sorter):
     df.reset_index(inplace=True)
     fig = px.scatter(
         df,
-        x='surah:ayah',
-    #  y='ayah_link',
-        y='index',
+        # x='surah:ayah',
+        x='query',
+        y='surah:ayah',
+        # y='ayah_link',
+        # y='index',
+        color='query',
         hover_data={
         'ayah_link':True,
         'query': False, 
         'surah:ayah': False,
         'index': False
         },
-        color='query',
     #  color_continuous_scale=["green","yellow","orange","red"],
         # color_discrete_map=colMap,
-        height=((len(df))*7)+200,
+        # height=((len(df))*7)+200,
+        width=((len(df["query"].unique()))*7)+600,
         # height=1200,
-        width=(len(sorter))/8+500,
+        # width=(len(sorter))/8+500,
+        height=(len(sorter))/8+600,
     )
 
     # fig = make_subplots(
@@ -548,6 +552,7 @@ def plotDf(df,colMap,sorter):
     #  hovermode=False,
         clickmode='event+select',
         hoverdistance=-1,
+        # hovermode='x',
         hoverlabel=dict(
            font=dict(
               size=15,
@@ -577,16 +582,16 @@ def plotDf(df,colMap,sorter):
     #           ),
     #           secondary_y=True
     #       )
-    fig.update_xaxes(
+    fig.update_yaxes(
         categoryorder='array',
         categoryarray=sorter,
         range=[0,len(sorter)],
         title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
     )
-    fig.update_yaxes(
+    fig.update_xaxes(
     #  showticklabels=False,
     #  range=[0,len(df)],
-        title=''
+        title='query'
     )
     fig.show()
 
