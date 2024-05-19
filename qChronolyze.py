@@ -517,8 +517,19 @@ def plotDf(df,colMap,sorter):
     # from plotly.subplots import make_subplots
     # from plotly.offline import iplot, init_notebook_mode
     # init_notebook_mode()
+
+    ay_ln = df.groupby(['surah:ayah', 'query']).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    pos = df.groupby(['surah:ayah', 'query']).apply(lambda group: ','.join(group['position'])).reset_index()
+
+    df = df.drop_duplicates(subset=['surah:ayah', 'query'], keep="first").reset_index(drop=True)
+
+    df["position"] = pos[0]
+    df["ayah_link"] = ay_ln[0]
+    
     df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
     df.reset_index(inplace=True)
+
+
     fig = px.scatter(
         df,
         # x='surah:ayah',
@@ -536,7 +547,7 @@ def plotDf(df,colMap,sorter):
     #  color_continuous_scale=["green","yellow","orange","red"],
         # color_discrete_map=colMap,
         # height=((len(df))*7)+200,
-        width=((len(df["query"].unique()))*7)+600,
+        width=((len(df["query"].unique()))*20)+600,
         # height=1200,
         # width=(len(sorter))/8+500,
         height=(len(sorter))/8+600,
