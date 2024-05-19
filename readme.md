@@ -5,9 +5,9 @@
 Try on google <a href="https://colab.research.google.com/drive/1Su624t2FdQdWnnZTdl1_pz2bH7DujU2G?usp=sharing" target="_blank">Colab<a>
 
 
-<a href="https://ibb.co/p0YPPRr"><img src="https://i.ibb.co/p0YPPRr/vlcsnap-2024-04-23-21h03m12s122.png" alt="vlcsnap-2024-04-23-21h03m12s122" border="0"></a> <a href="https://ibb.co/5khCqsD"><img src="https://i.ibb.co/5khCqsD/vlcsnap-2024-04-23-21h03m40s994.png" alt="vlcsnap-2024-04-23-21h03m40s994" border="0"></a>  
+<a href="https://ibb.co/Sf77XH1"><img src="https://i.ibb.co/Sf77XH1/Screenshot-294.png" alt="Screenshot-294" border="0"></a> <a href="https://ibb.co/z8ctvq6"><img src="https://i.ibb.co/z8ctvq6/Screenshot-295.png" alt="Screenshot-295" border="0"></a>       
 
-<a href="https://ibb.co/jMMVvx0"><img src="https://i.ibb.co/jMMVvx0/vlcsnap-2024-04-23-21h02m44s809.png" alt="vlcsnap-2024-04-23-21h02m44s809" border="0"></a> <a href="https://ibb.co/vZjz4ZZ"><img src="https://i.ibb.co/vZjz4ZZ/vlcsnap-2024-04-23-21h02m52s708.png" alt="vlcsnap-2024-04-23-21h02m52s708" border="0"></a>
+<a href="https://ibb.co/W0YVHjT"><img src="https://i.ibb.co/W0YVHjT/idols.png" alt="idols" border="0"></a> <a href="https://ibb.co/vZjz4ZZ"><img src="https://i.ibb.co/vZjz4ZZ/vlcsnap-2024-04-23-21h02m52s708.png" alt="vlcsnap-2024-04-23-21h02m52s708" border="0"></a>
 
 1) Shows at what point in the composition of Quran particular words and concepts were introduced according to traditional account
 2) Visualizes relative frequency of multiple words, or frequency of single word in different periods
