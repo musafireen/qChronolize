@@ -301,7 +301,8 @@ def dataGrabber(
           # print(posSplit)
           instLst.append({
               "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-              "position": int(posSplit[2]), 
+            #   "position": int(posSplit[2]), 
+              "position": posSplit[2], 
               "word": row[0].split(' ')[1], 
               "meaning": row[1],
               "ayah_link": row[2]
