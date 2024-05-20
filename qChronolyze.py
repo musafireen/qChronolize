@@ -519,8 +519,8 @@ def plotDf(df,colMap,sorter):
     # from plotly.offline import iplot, init_notebook_mode
     # init_notebook_mode()
 
-    ay_ln = df.groupby(['surah:ayah', 'query']).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
-    pos = df.groupby(['surah:ayah', 'query']).apply(lambda group: ','.join(group['position'])).reset_index()
+    ay_ln = df.groupby(['surah:ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    pos = df.groupby(['surah:ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
 
     df = df.drop_duplicates(subset=['surah:ayah', 'query'], keep="first").reset_index(drop=True)
 
@@ -564,7 +564,7 @@ def plotDf(df,colMap,sorter):
     #  hovermode=False,
         clickmode='event+select',
         hoverdistance=-1,
-        # hovermode='x',
+        hovermode='y',
         hoverlabel=dict(
            font=dict(
               size=15,
