@@ -564,7 +564,7 @@ def plotDf(df,colMap,sorter):
     #  hovermode=False,
         clickmode='event+select',
         hoverdistance=-1,
-        hovermode='y',
+        # hovermode='y',
         hoverlabel=dict(
            font=dict(
               size=15,
