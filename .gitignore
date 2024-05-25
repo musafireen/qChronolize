@@ -7,3 +7,4 @@ data/ref/*
 data/compare/*
 !data/ref/QsortedRukued.md
 *.png
+dev3.ipynb
