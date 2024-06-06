@@ -2,7 +2,7 @@ cnf.txt
 __pycache__
 *.txt
 !requirements.txt
-dev.ipynb
+dev*.ipynb
 data/ref/*
 data/compare/*
 !data/ref/QsortedRukued.md
