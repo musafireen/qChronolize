@@ -551,7 +551,7 @@ def plotDf(df,colMap,sorter):
         width=((len(df["query"].unique()))*20)+600,
         # height=1200,
         # width=(len(sorter))/8+500,
-        height=(len(sorter))/8+600,
+        height=(len(sorter))/8+100+10*max([len(s) for s in df["query"].unique()]),
     )
 
     # fig = make_subplots(
