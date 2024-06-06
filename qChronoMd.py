@@ -30,7 +30,7 @@ def qChronoMd(dicti,flnm,tafs):
                 f.write(
                     f'\n# Q:{rec["surah:ayah"]}\n'
                     + f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
-                    + f'\n![[QsortedRukued#{rec["surah:ayah"]}]]\n'
+                    + f'\n![[Qrsed#{rec["surah:ayah"]}]]\n'
                 )
             alreadyRefed.append(rec["surah:ayah"])
         if rec["query"] in queriesLeft:
