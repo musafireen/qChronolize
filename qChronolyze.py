@@ -175,6 +175,32 @@ def getSorter():
     return sorter
 
 
+def lnkSel(rt):
+      if '%20' in rt:
+            
+            rtSpl = rt.rsplit('%20',1)
+            if '%3A' in rtSpl[1]:
+                  frm = rtSpl[1].split('%3A')[0]
+                  if frm in ['root', 'lem', 'stem']:
+                        rt = rtSpl[1].split('%3A')[1]
+                        links = [
+                              f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
+                        ]
+                  else:
+                        print('\nError: unsupported string')
+            else:
+                  print('\nError: unsupported string')
+      else:
+            links = [
+                  "https://corpus.quran.com/qurandictionary.jsp?q=",
+                  "https://corpus.quran.com/search.jsp?q=root%3A",
+                  "https://corpus.quran.com/search.jsp?q=lem%3A",
+                  "https://corpus.quran.com/search.jsp?q=stem%3A",
+                  "https://corpus.quran.com/search.jsp?q=",
+            ]
+
+      return links, rt
+
 
 def dataGrabber(
     rt,
@@ -204,13 +230,7 @@ def dataGrabber(
 
     return tblsRet
 
-  links = [
-      "https://corpus.quran.com/qurandictionary.jsp?q=",
-      "https://corpus.quran.com/search.jsp?q=root%3A",
-      "https://corpus.quran.com/search.jsp?q=lem%3A",
-      "https://corpus.quran.com/search.jsp?q=stem%3A",
-      "https://corpus.quran.com/search.jsp?q=",
-      ]
+  links, rt = lnkSel(rt)
 
   poss = set()
   tblCumul = []
