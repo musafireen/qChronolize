@@ -238,25 +238,26 @@ def dataGrabber(
   flnm = re.sub('([A-Z])','\\1?', rt)
 
   propDat = False
-  import os
-  if f'{flnm}.tsv' in os.listdir(f'data/roots/'):
-    print(f"file found for {rt}")
-    try:
-      with open(f'data/roots/{flnm}.tsv') as f:
-        print(f"loading data/roots/{flnm}.tsv")
-        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-      #   tmpDat = json.loads(f.read())
-      # if type(tmpDat) == type([]):
-      #   if len(tmpDat) > 0:
-      #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
-      #       propDat = True    
-      #       instLst = tmpDat
-      #       print(f"instLst loaded from 'data/roots/")
-      #   instLst = tmpDat
-        print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
-        propDat = True
-    except:
-      propDat = False
+  if len(links) != 1:
+    import os
+    if f'{flnm}.tsv' in os.listdir(f'data/roots/'):
+        print(f"file found for {rt}")
+        try:
+            with open(f'data/roots/{flnm}.tsv') as f:
+                print(f"loading data/roots/{flnm}.tsv")
+                instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+            #   tmpDat = json.loads(f.read())
+            # if type(tmpDat) == type([]):
+            #   if len(tmpDat) > 0:
+            #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
+            #       propDat = True    
+            #       instLst = tmpDat
+            #       print(f"instLst loaded from 'data/roots/")
+            #   instLst = tmpDat
+                print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
+                propDat = True
+        except:
+            propDat = False
   if not propDat:
     print(f"proper data not found for {rt}")
     tblAgg = []
@@ -338,19 +339,19 @@ def dataGrabber(
     #     json.dumps(instLst)
     #   )
     list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
-
-    with open(f'data/roots/{flnm}.tsv', 'x') as f:
-      print(f"writing {rt} to 'data/roots/{flnm}.tsv'")
-      writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-      writer.writeheader()
-      for datum in instLst:
-        writer.writerow({
-          list_header[0] : datum['surah:ayah'],
-          list_header[1] : datum['position'],
-          list_header[2] : datum['word'],
-          list_header[3] : datum['meaning'],
-          list_header[4] : datum['ayah_link'],
-        })
+    if len(links) != 1:
+        with open(f'data/roots/{flnm}.tsv', 'x') as f:
+            print(f"writing {rt} to 'data/roots/{flnm}.tsv'")
+            writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+            writer.writeheader()
+            for datum in instLst:
+                writer.writerow({
+                list_header[0] : datum['surah:ayah'],
+                list_header[1] : datum['position'],
+                list_header[2] : datum['word'],
+                list_header[3] : datum['meaning'],
+                list_header[4] : datum['ayah_link'],
+                })
     
     
     # print(len(instLst))
