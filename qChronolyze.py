@@ -667,8 +667,8 @@ def sortchron(dicti={},refLng='',pres=''):
     instLstAgg = aggregLsts(dicti,tafs)
 
     import pandas as pd
-    df['position'] = df['position'].astype('int')
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
+    df['position'] = df['position'].astype('int')
     df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
     df.sort_values(["surah:ayah","position"],inplace=True)
     df.reset_index(drop=True,inplace=True)
