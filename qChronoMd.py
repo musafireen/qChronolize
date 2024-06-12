@@ -4,7 +4,7 @@ from qChronolyze import aggregLsts, getSorter
 def qChronoMd(dicti,flnm,tafs):
     mdFile = f'data/compare/{flnm}.md'
     # instLstAgg = []
-    queriesLeft = { f'{k} ({v})' for k,v in dicti.items() }
+    queriesLeft = { f'{list(item.keys())[0]} ({list(item.values())[0]})' for item in dicti }
     alreadyRefed = []
     instLstAgg = aggregLsts(dicti,tafs)
     # for rt in dicti.keys():
