@@ -391,7 +391,9 @@ def getColMap(dicti):
       # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
     #   rd = int(p[idx-1])
     #   radialDist = (rd - lwrLmt) if (rd - lwrLmt) < (uprLmt - rd) else (uprLmt - rd)
-      colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+    #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+      pair = dicti[idx-1]
+      colMap[f"{list(pair.keys())[0]} ({list(pair.values())[0]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
     #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({rd},{gn},{bl})' 
     #   print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
@@ -465,12 +467,16 @@ def aggregLsts(dicti,tafs):
     lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
-    for rt in dicti.keys():
+    # for rt in dicti.keys():
+    for rtFlt in dicti:
+        rt = list(rtFlt.keys())[0]
+        flt = list(rtFlt.values())[0]
         # instLst = filtDown(rt,dicti[rt])
         # instLst = intersct(rt,dicti[rt])
         # instLstAgg += instLst
         rtOptLs = rt.split('/')
-        flOptLs = dicti[rt].split('/')
+        # flOptLs = dicti[rt].split('/')
+        flOptLs = flt.split('/')
         for i in range(len(rtOptLs)):
             instLst = intersct(rtOptLs[i],flOptLs[i])
             if len(rtOptLs) > 1:
@@ -630,12 +636,19 @@ def plotDf(df,colMap,sorter):
 
 
 
-def sortchron(dicti={},refLng='',pres=''):
+def sortchron(
+        # dicti={},
+        dicti=[],
+        refLng='',pres=''
+    ):
 
-    if type(dicti) != type({}):
+    # if type(dicti) != type({}):
+    if type(dicti) != type([]):
         print("Invalid root-filter key value pairs")
-        dicti={}
-    if dicti=={}:
+        # dicti={}
+        dicti=[]
+    # if dicti=={}:
+    if dicti==[]:
         finished=False
         while finished==False:
             inpLs=str(input(
@@ -654,10 +667,12 @@ def sortchron(dicti={},refLng='',pres=''):
               for obj in inpLs:
                 pair = obj.strip().split('::')
                 if len(pair) == 2:
-                  dicti[pair[0]]=pair[1]
+                #   dicti[pair[0]]=pair[1]
+                  dicti.append({pair[0]:pair[1]})
                   finished=True
                 if len(pair) == 1:
-                  dicti[pair[0]]=''
+                #   dicti[pair[0]]=''
+                  dicti.append({pair[0]:''})
                   finished=True
 
     pres = confPres(pres=pres)
@@ -671,6 +686,7 @@ def sortchron(dicti={},refLng='',pres=''):
     df['position'] = df['position'].astype('int')
     df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
     df.sort_values(["surah:ayah","position"],inplace=True)
+    df['position'] = df['position'].astype('str')
     df.reset_index(drop=True,inplace=True)
     # df.reset_index(inplace=True)
 
