@@ -480,7 +480,7 @@ def aggregLsts(dicti,tafs):
         for i in range(len(rtOptLs)):
             instLst = intersct(rtOptLs[i],flOptLs[i])
             if len(rtOptLs) > 1:
-                instLst = [ { **inst, "query": f"{rt} ({dicti[rt]})"} for inst in instLst  ]
+                instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
             instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
