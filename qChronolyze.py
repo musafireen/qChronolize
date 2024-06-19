@@ -414,11 +414,11 @@ def intersct(rtAgg,flAgg=''):
         # rtFlAgg = { **dicti for dict in rtFlList[1] }
         # return rtFlAgg
         instLstAgg = []
-        surahAyahAggSet = set()
+        surahAyahAggSet = set([None])
         for dicti in rtFlAgg:
             instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
             surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
-            if surahAyahAggSet == set([]):
+            if surahAyahAggSet == set([None]):
                 surahAyahAggSet = set(surahAyahList)
             else:
                 surahAyahAggSet = surahAyahAggSet.intersection(set(surahAyahList))
