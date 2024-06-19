@@ -433,7 +433,7 @@ def intersct(rtAgg,flAgg=''):
         ))
         instDictInc = {}
 
-        print('\ninstLstFlt:', instLstFlt)
+        # print('\ninstLstFlt:', instLstFlt)
 
         for inst in instLstFlt:
             surahAyah = inst["surah:ayah"]
