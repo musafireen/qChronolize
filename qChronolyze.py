@@ -421,14 +421,20 @@ def intersct(rtAgg,flAgg=''):
             if surahAyahAggSet == set([]):
                 surahAyahAggSet = set(surahAyahList)
             else:
-                surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
+                surahAyahAggSet = surahAyahAggSet.intersection(set(surahAyahList))
+            # print(f'\nafter {list(dicti.keys())[0]} SUrahAyahAggSet:\n', surahAyahAggSet)
             instLstAgg += instLst
+
+            # print(f'\nAfter {list(dicti.keys())[0]}, instLstAgg:', instLstAgg)
         
         instLstFlt = list(filter(
             lambda x: x["surah:ayah"] in surahAyahAggSet,
             instLstAgg
         ))
         instDictInc = {}
+
+        print('\ninstLstFlt:', instLstFlt)
+
         for inst in instLstFlt:
             surahAyah = inst["surah:ayah"]
             if surahAyah not in instDictInc.keys():
@@ -442,6 +448,8 @@ def intersct(rtAgg,flAgg=''):
             else:
                 instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
                 instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+            
+            # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
 
         instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
         return instLstInc
