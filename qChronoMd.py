@@ -48,72 +48,75 @@ def qChronoMd(dicti,flnm,tafs):
 
     # print('\nrepDic before checking md: ', repDic, '\n')
 
-    import re
+    import os
 
-    with open(mdFile) as f:
-        strn = f.read()
+    if os.path.isfile(mdFile):
+        import re
 
-    rep = re.compile(
-            '\n#\s*(?:Q\:){0,1}(\d{1,}\:\d{1,})(.*?(?=\n#|$))(?:(\n##\s{1,}.*?(?=\n#\s{1,}|$))){0,1}',
-            re.DOTALL
-        ).findall(
+        with open(mdFile) as f:
+            strn = f.read()
 
-        strn
-    )
+        rep = re.compile(
+                '\n#\s*(?:Q\:){0,1}(\d{1,}\:\d{1,})(.*?(?=\n#|$))(?:(\n##\s{1,}.*?(?=\n#\s{1,}|$))){0,1}',
+                re.DOTALL
+            ).findall(
+
+            strn
+        )
 
 
-    # print(len(rep))
+        # print(len(rep))
 
-    for setty in rep:
-        if setty[0] not in repDic:
-            repDic[setty[0]] = { 
-                'string' : setty[1] , 
-                'queries': {
-                     quer[0]: quer[1]
-                    
-                    
-                    # quer
-                    for quer in re.compile(
-                        '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
-                        re.DOTALL,
-                    ).findall(
-                        setty[2] 
-                    )
+        for setty in rep:
+            if setty[0] not in repDic:
+                repDic[setty[0]] = { 
+                    'string' : setty[1] , 
+                    'queries': {
+                        quer[0]: quer[1]
+                        
+                        
+                        # quer
+                        for quer in re.compile(
+                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                            re.DOTALL,
+                        ).findall(
+                            setty[2] 
+                        )
+                    }
+                        if len(setty) > 2 else {}
+                    # 'queries': [
+                    #     {
+                    #         'query': quer[0],
+                    #         'postquery': quer[1],
+                        
+                    #     }
+                    #     # quer
+                    #     for quer in re.compile(
+                    #         '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                    #         re.DOTALL,
+                    #     ).findall(
+                    #         setty[2] 
+                    #     )
+                    # ]
+                    #     if len(setty) > 2 else None 
                 }
-                    if len(setty) > 2 else {}
-                # 'queries': [
-                #     {
-                #         'query': quer[0],
-                #         'postquery': quer[1],
+            else:
+                print(f'\nVerse string before: {repDic[setty[0]]}')
+                for quer in re.compile(
+                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                            re.DOTALL,
+                        ).findall(
+                            setty[2] 
+                        ):
+                    repDic[setty[0]]['string'] = setty[1]
+                    repDic[setty[0]]['queries'][quer[0]] = quer[1]
+                    # repDic[setty[0]]['queries'].append({
+                    #         'query': quer[0],
+                    #         'postquery': quer[1],
+                        
+                    #     })
                     
-                #     }
-                #     # quer
-                #     for quer in re.compile(
-                #         '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
-                #         re.DOTALL,
-                #     ).findall(
-                #         setty[2] 
-                #     )
-                # ]
-                #     if len(setty) > 2 else None 
-            }
-        else:
-           print(f'\nVerse string before: {repDic[setty[0]]}')
-           for quer in re.compile(
-                        '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
-                        re.DOTALL,
-                    ).findall(
-                        setty[2] 
-                    ):
-                repDic[setty[0]]['string'] = setty[1]
-                repDic[setty[0]]['queries'][quer[0]] = quer[1]
-                # repDic[setty[0]]['queries'].append({
-                #         'query': quer[0],
-                #         'postquery': quer[1],
-                    
-                #     })
-                
-           print(f'\nVerse string after: {repDic[setty[0]]}')
+                print(f'\nVerse string after: {repDic[setty[0]]}')
         
 
     # print('\nrepDic after checking md: ', repDic, '\n')
@@ -144,7 +147,7 @@ def qChronoMd(dicti,flnm,tafs):
                 newStr += newStrUp
                 queriesLeft.remove(q)
 
-    with open(mdFile, 'w') as f:
+    with open(mdFile, 'w+') as f:
         f.write(newStr)
         
 
