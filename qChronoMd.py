@@ -4,7 +4,7 @@ from qChronolyze import aggregLsts, getSorter
 def qChronoMd(dicti,flnm,tafs):
     mdFile = f'data/compare/{flnm}.md'
     # instLstAgg = []
-    queriesLeft = { f'{list(item.keys())[0]} ({list(item.values())[0]})' for item in dicti }
+    
     alreadyRefed = []
     instLstAgg = aggregLsts(dicti,tafs)
 
@@ -18,11 +18,11 @@ def qChronoMd(dicti,flnm,tafs):
     sortedRecs = df.to_dict(orient='records')
 
 
-    repDic = {}
+    newDic = {}
 
     for rec in sortedRecs:
-        if rec["surah:ayah"] not in repDic.keys():
-            repDic[rec["surah:ayah"]] = {
+        if rec["surah:ayah"] not in newDic.keys():
+            newDic[rec["surah:ayah"]] = {
                 'string': f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
                             + f'\n![[Qrsed#{rec["surah:ayah"]}]]\n',
                 # 'queries': [
@@ -32,21 +32,21 @@ def qChronoMd(dicti,flnm,tafs):
                 #     }
                 # ]
                 'queries': {
-                    rec["query"]: ''
+                    rec["query"]: '\n\n'
                 }
             }
         else:
-            # repDic[rec["surah:ayah"]]["queries"].append(
+            # newDic[rec["surah:ayah"]]["queries"].append(
             #     {
             #         'query': rec["query"], 
             #         'postquery': '',
             #     }
             # )
-            repDic[rec["surah:ayah"]]["queries"][rec["query"]] = ''
+            newDic[rec["surah:ayah"]]["queries"][rec["query"]] = '\n\n'
 
 
 
-    # print('\nrepDic before checking md: ', repDic, '\n')
+    # print('\nnewDic before checking md: ', newDic, '\n')
 
     import os
 
@@ -56,7 +56,7 @@ def qChronoMd(dicti,flnm,tafs):
         with open(mdFile) as f:
             strn = f.read()
 
-        rep = re.compile(
+        olds = re.compile(
                 '\n#\s*(?:Q\:){0,1}(\d{1,}\:\d{1,})(.*?(?=\n#|$))(?:(\n##\s{1,}.*?(?=\n#\s{1,}|$))){0,1}',
                 re.DOTALL
             ).findall(
@@ -67,23 +67,36 @@ def qChronoMd(dicti,flnm,tafs):
 
         # print(len(rep))
 
-        for setty in rep:
-            if setty[0] not in repDic:
-                repDic[setty[0]] = { 
-                    'string' : setty[1] , 
+        oldSurAyLs = [x[0] for x in olds]
+
+        # print(f'\nold surAy list: {oldSurAyLs}\n\nnew surAy list: {newDic.keys()}\n')
+
+        j = 0
+        for nk in newDic.keys():
+            if nk not in oldSurAyLs:
+                j+=1
+                print(f'new not in old {j}: {nk}')
+        
+        i = 0
+
+        for old in olds:
+
+            if old[0] not in newDic.keys():
+                newDic[old[0]] = { 
+                    'string' : old[1] , 
                     'queries': {
                         quer[0]: quer[1]
                         
                         
                         # quer
                         for quer in re.compile(
-                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
                             re.DOTALL,
                         ).findall(
-                            setty[2] 
+                            old[2] 
                         )
                     }
-                        if len(setty) > 2 else {}
+                        if len(old) > 2 else {}
                     # 'queries': [
                     #     {
                     #         'query': quer[0],
@@ -95,57 +108,81 @@ def qChronoMd(dicti,flnm,tafs):
                     #         '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
                     #         re.DOTALL,
                     #     ).findall(
-                    #         setty[2] 
+                    #         old[2] 
                     #     )
                     # ]
-                    #     if len(setty) > 2 else None 
+                    #     if len(old) > 2 else None 
                 }
+
+                i+=1
+                print(f'\nold not in new {i}: {old[0]}')
+
             else:
-                print(f'\nVerse string before: {repDic[setty[0]]}')
+                newDic[old[0]]['string'] = old[1]
+                bef = dict(newDic[old[0]])
                 for quer in re.compile(
-                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
                             re.DOTALL,
                         ).findall(
-                            setty[2] 
+                            old[2] 
                         ):
-                    repDic[setty[0]]['string'] = setty[1]
-                    repDic[setty[0]]['queries'][quer[0]] = quer[1]
-                    # repDic[setty[0]]['queries'].append({
+                    newDic[old[0]]['queries'][quer[0]] = quer[1]
+                    # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
                         
                     #     })
-                    
-                print(f'\nVerse string after: {repDic[setty[0]]}')
+                if bef != newDic[old[0]]:
+                    print(f'\nVerse string before reading: {bef}')
+                    print(f'\nVerse string after reading: {newDic[old[0]]}')
         
 
-    # print('\nrepDic after checking md: ', repDic, '\n')
-    # print(repDic)
+    # print('\nnewDic after checking md: ', newDic, '\n')
+    # print(newDic)
 
-    sorterIdxs = [sorter.index(suray) for suray in repDic.keys()]
+    sorterIdxs = [sorter.index(suray) for suray in newDic.keys()]
+
+    sorterIdxs.sort()
 
     surAyOrdered = [sorter[idx] for idx in sorterIdxs]
+
     
     newStr = ''
 
-    for surAy in surAyOrdered:       
-        newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsed#{surAy}]]\n'
+    print(f"\nNumber of ayahs: {len(surAyOrdered)}")
+
+    queriesLeft = set()
+    for surAy in surAyOrdered:
+        for q in newDic[surAy]['queries'].keys():
+            queriesLeft.add(q)
+
+    for surAy in surAyOrdered:
+        if surAy == '68:2':
+            print(f'\nnew string: {newDic[surAy]}\n')
+        # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsed#{surAy}]]\n'
+        # qpq = newDic[surAy]['queries'].items()
+        newStrUp =   f'\n\n# Q:{surAy}' + newDic[surAy]['string']
 
         newStr += newStrUp
 
-        alreadyRefed.append(rec["surah:ayah"])
-        # for query in repDic[surAy]['queries']:
+        # alreadyRefed.append(rec["surah:ayah"])
+        alreadyRefed.append(surAy)
+        # for query in newDic[surAy]['queries']:
         #     if query['query'] in queriesLeft:
         #         print(f'\nquery left at {surAy} : {query["query"]}')
         #         newStrUp = f'\n## {query["query"]}\n' + query['postquery']
         #         newStr += newStrUp
         #         queriesLeft.remove(query["query"])
-        for q, pq in repDic[surAy]['queries'].items():
+
+        
+
+        for q, pq in newDic[surAy]['queries'].items():
             if q in queriesLeft:
                 print(f'\nquery left at {surAy} : {q}')
-                newStrUp = f'\n## {q}\n' + pq
+                newStrUp = f'\n## {q}' + pq
                 newStr += newStrUp
                 queriesLeft.remove(q)
+                
 
     with open(mdFile, 'w+') as f:
         f.write(newStr)
