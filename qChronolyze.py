@@ -392,8 +392,10 @@ def getColMap(dicti):
     #   rd = int(p[idx-1])
     #   radialDist = (rd - lwrLmt) if (rd - lwrLmt) < (uprLmt - rd) else (uprLmt - rd)
     #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
-      pair = dicti[idx-1]
-      colMap[f"{list(pair.keys())[0]} ({list(pair.values())[0]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+    #   pair = dicti[idx-1]
+    #   colMap[f"{list(pair.keys())[0]} ({list(pair.values())[0]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+      quer = dicti[idx-1]
+      colMap[quer] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
     #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({rd},{gn},{bl})' 
     #   print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
@@ -410,13 +412,17 @@ def intersct(rtAgg,flAgg=''):
     rtList = rtAgg.split(' ')
     if len(rtList) > 1:
         flList = flAgg.split(' ')
-        rtFlAgg = [ { rtList[i] : flList[i]} for i in range(len(rtList)) ]
+        rtFlAgg = [ { rtList[i].split('/')[j] : flList[i].split('/')[j] for j in range( len(rtList[i].split('/')) ) } for i in range(len(rtList)) ]
+        # rtFlAgg = [ { rtList[i] : flList[i]} for i in range(len(rtList)) ]
         # rtFlAgg = { **dicti for dict in rtFlList[1] }
         # return rtFlAgg
         instLstAgg = []
         surahAyahAggSet = set([None])
         for dicti in rtFlAgg:
-            instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
+            instLst = []
+            for i in range(len(dicti)):
+                instLst += filtDown(list(dicti.keys())[i],list(dicti.values())[i])
+            # instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
             surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
             if surahAyahAggSet == set([None]):
                 surahAyahAggSet = set(surahAyahList)
@@ -431,33 +437,37 @@ def intersct(rtAgg,flAgg=''):
             lambda x: x["surah:ayah"] in surahAyahAggSet,
             instLstAgg
         ))
-        instDictInc = {}
 
-        # print('\ninstLstFlt:', instLstFlt)
+        return instLstFlt
 
-        for inst in instLstFlt:
-            surahAyah = inst["surah:ayah"]
-            if surahAyah not in instDictInc.keys():
-                instDictInc[surahAyah] = {
-                    "position": inst["position"],
-                    "word": inst["word"],
-                    "meaning": inst["meaning"],
-                    "ayah_link" : inst["ayah_link"],
-                    "query": f"{rtAgg} ({flAgg})"
-                }
-            else:
-                instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
-                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+        # instDictInc = {}
+
+        # # print('\ninstLstFlt:', instLstFlt)
+
+        # for inst in instLstFlt:
+        #     surahAyah = inst["surah:ayah"]
+        #     if surahAyah not in instDictInc.keys():
+        #         instDictInc[surahAyah] = {
+        #             "position": inst["position"],
+        #             "word": inst["word"],
+        #             "meaning": inst["meaning"],
+        #             "ayah_link" : inst["ayah_link"],
+        #             "query": f"{rtAgg} ({flAgg})"
+        #         }
+        #     else:
+        #         instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
+        #         instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
             
-            # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
+        #     # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
 
-        instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
-        return instLstInc
+        # instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
+        # return instLstInc
     
     elif len(rtList) == 1:
         instLstFlt = filtDown(rtAgg,flAgg)
-        instLstInc = [ { **rec, "query": f"{rtAgg} ({flAgg})" } for rec in instLstFlt ]
-        return instLstInc
+        # instLstInc = [ { **rec, "query": f"{rtAgg} ({flAgg})" } for rec in instLstFlt ]
+        # return instLstInc
+        return instLstFlt
     
     else:
         print("please provide at least one root/word")
@@ -476,20 +486,60 @@ def aggregLsts(dicti,tafs):
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
     # for rt in dicti.keys():
-    for rtFlt in dicti:
-        rt = list(rtFlt.keys())[0]
-        flt = list(rtFlt.values())[0]
-        # instLst = filtDown(rt,dicti[rt])
-        # instLst = intersct(rt,dicti[rt])
-        # instLstAgg += instLst
-        rtOptLs = rt.split('/')
-        # flOptLs = dicti[rt].split('/')
-        flOptLs = flt.split('/')
-        for i in range(len(rtOptLs)):
-            instLst = intersct(rtOptLs[i],flOptLs[i])
-            if len(rtOptLs) > 1:
-                instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
-            instLstAgg += instLst
+    for optDict in dicti:
+        # instLst = []
+        # for rt, flt in optDict.items():
+        #     instLst += intersct(rt,flt)
+        instLstFlt = []
+        for rt, flt in optDict.items():
+            instLstFlt += intersct(rt,flt)
+
+        instDictInc = {}
+
+        # print('\ninstLstFlt:', instLstFlt)
+
+        for inst in instLstFlt:
+            surahAyah = inst["surah:ayah"]
+            if surahAyah not in instDictInc.keys():
+                instDictInc[surahAyah] = inst
+                # instDictInc[surahAyah] = {
+                #     "position": inst["position"],
+                #     "word": inst["word"],
+                #     "meaning": inst["meaning"],
+                #     "ayah_link" : inst["ayah_link"],
+                # }
+            else:
+                instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
+                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+            
+            # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
+
+        instLst = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
+
+        # if len(optDict) > 1:
+            # instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
+        quer = " / ".join(list(map( lambda x : x[0] + f' ({str(x[1])})' ,  list(optDict.items()) )))
+        instLst = [ 
+            { 
+                **inst, 
+                "query": quer   
+            } for inst in instLst  
+        ]
+        instLstAgg += instLst
+    # for rtFlt in dicti:
+    #     rt = list(rtFlt.keys())[0]
+    #     flt = list(rtFlt.values())[0]
+    #     # instLst = filtDown(rt,dicti[rt])
+    #     # instLst = intersct(rt,dicti[rt])
+    #     # instLstAgg += instLst
+    #     rtOptLs = rt.split('/')
+    #     # flOptLs = dicti[rt].split('/')
+    #     flOptLs = flt.split('/')
+    #     for i in range(len(rtOptLs)):
+    #         instLst = intersct(rtOptLs[i],flOptLs[i])
+    #         if len(rtOptLs) > 1:
+    #             instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
+    #         instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
@@ -661,33 +711,56 @@ def sortchron(
         while finished==False:
             inpLs=str(input(
                 """
-                Enter comma-separated list of
-                '::' double colon-separated pairs of
-                word/root and meaning-filter regex like:
+                separate every root word/root/combination and corresponding meaning-filter with ::
 
-                \'$Tn::devil,rwH::(?:spirit|soul)\'
+                \'EiysaY::Isa\n\'
 
-                or \'sHr,jnn::jinn\n\'
+                meaning filters are optional, you can use
+
+                \'EiysaY\n\'
+
+                separate every word and its meaning filters within a combination with a space like:
+                
+                \'Aibon maroyam::son Mary\n\'
+                
+                separate every alternative word/root and corresponding meaning filter with single slash \'/\' and its meaning filters within a combination with a space like:
+                
+                \'Aibon/wld maroyam::son/ Mary\n\'
+
+                separate every optional pair of root and meaning-filter with \'//\'
+                
+                \'EiysaY::Isa//Aibon maroyam::son Mary\n\'
+
+                separate every single pair/options of pair to be distinguished with a comma \',\' like:
+
+                \'$Tn::devil//jnn::jinn,rwH::spirit\n\'
+                
+                you can use regex in meaning filter
+
+                \'$Tn::devil,rwH::(?:spirit|soul)\n\'
+
                 """
                 )
             ).split(',')
             if type(inpLs) == type([]) and len(inpLs) >= 1:
               for obj in inpLs:
-                pair = obj.strip().split('::')
-                if len(pair) == 2:
-                #   dicti[pair[0]]=pair[1]
-                  dicti.append({pair[0]:pair[1]})
-                  finished=True
-                if len(pair) == 1:
-                #   dicti[pair[0]]=''
-                  dicti.append({pair[0]:''})
-                  finished=True
+                optDict = {}
+                for opt in obj.split('//'):
+                    pair = opt.strip().split('::')
+                    if len(pair) == 2:
+                    #   dicti[pair[0]]=pair[1]
+                        optDict[pair[0]] = pair[1]
+                    if len(pair) == 1:
+                    #   dicti[pair[0]]=''
+                        optDict[pair[0]] = ''
+                dicti.append(optDict)
+                finished=True
 
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
     sorter = getSorter()
-    colMap = getColMap(dicti)
     instLstAgg = aggregLsts(dicti,tafs)
+    # colMap = getColMap(dicti)
 
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
@@ -697,6 +770,8 @@ def sortchron(
     df['position'] = df['position'].astype('str')
     df.reset_index(drop=True,inplace=True)
     # df.reset_index(inplace=True)
+    
+    colMap = getColMap(df["query"].unique())
 
     if pres == "table":
         return tabular(df,colMap,sorter)
