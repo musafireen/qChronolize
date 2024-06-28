@@ -175,28 +175,57 @@ def getSorter():
     return sorter
 
 
-def lnkSel(rt):
-      if '%20' in rt:
-            
-            rtSpl = rt.rsplit('%20',1)
-            if '%3A' in rtSpl[1]:
-                  frm = rtSpl[1].split('%3A')[0]
-                  if frm in ['root', 'lem', 'stem']:
-                        rt = rtSpl[1].split('%3A')[1]
-                        links = [
-                              f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
-                        ]
-                  else:
-                        print('\nError: unsupported string')
-            else:
+def lnkSel(rt,flt):
+      if '%3A' in rt:
+            try:
+                import re
+
+
+                grm = re.compile(r'root|lem|stem(?=%3A)').findall(rt)[0]
+                rt = re.compile(f'(?<={grm}%3A).*(?=$|%)').findall(rt)[0]
+
+                srchStr = f'{frm}%3A'
+                if grm != '':
+                    
+                    frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
+                    pos = re.compile(r'(?<=pos%3A).*?(?=%)').findall(rt)
+
+                    if len(frm)>0:
+                        srchStr = f'({frm[0]})%20' + srchStr
+
+                    if len(pos)>0:
+                        srchStr = f'pos%3A{pos[0]}%20' + srchStr
+
+                    links = [
+                        f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
+                    ]
+            except:
                   print('\nError: unsupported string')
+    #   if '%20' in rt:
+    #         rtSpl = rt.rsplit('%20',1)
+    #         if '%3A' in rtSpl[1]:
+    #               frm = rtSpl[1].split('%3A')[0]
+    #               if frm in ['root', 'lem', 'stem']:
+    #                     rt = rtSpl[1].split('%3A')[1]
+    #                     links = [
+    #                           f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
+    #                     ]
+    #               else:
+    #                     print('\nError: unsupported string')
+    #         else:
+    #               print('\nError: unsupported string')
+      elif rt == '':
+          links = [
+              "https://corpus.quran.com/search.jsp?q=",
+          ]  
+          rt = flt
       else:
             links = [
                   "https://corpus.quran.com/qurandictionary.jsp?q=",
                   "https://corpus.quran.com/search.jsp?q=root%3A",
                   "https://corpus.quran.com/search.jsp?q=lem%3A",
                   "https://corpus.quran.com/search.jsp?q=stem%3A",
-                  "https://corpus.quran.com/search.jsp?q=",
+                #   "https://corpus.quran.com/search.jsp?q=",
             ]
 
       return links, rt
@@ -230,7 +259,7 @@ def dataGrabber(
 
     return tblsRet
 
-  links, rt = lnkSel(rt)
+  links, rt = lnkSel(rt,flt)
 
   poss = set()
   tblCumul = []
@@ -404,11 +433,26 @@ def getColMap(dicti):
 def filtDown(rt,flt):
     import re
     instLst = dataGrabber(rt,flt)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(rt)).findall(row["meaning"])), instLst))
+    if rt == '':
+        flt = f'(?<![a-z]){str(flt).lower()}(?=$|\s|,|\?|s\s|es\s|s$|es$)'
+    else:
+        flt = str(flt).lower()
+    instLstFiltered =  list(filter( 
+        lambda row : 
+            len(re.compile(flt).findall(row["meaning"].lower())) > 0 
+            # or len(re.compile(str(rt)).findall(row["meaning"])) > 0
+            , 
+            instLst
+        )
+    )
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
 def intersct(rtAgg,flAgg=''):
+    multilinear = False
+    if rtAgg.startswith('0'):
+        rtAgg = rtAgg.lstrip('0')
+        multilinear = True
     rtList = rtAgg.split(' ')
     if len(rtList) > 1:
         flList = flAgg.split(' ')
@@ -427,7 +471,30 @@ def intersct(rtAgg,flAgg=''):
             if surahAyahAggSet == set([None]):
                 surahAyahAggSet = set(surahAyahList)
             else:
-                surahAyahAggSet = surahAyahAggSet.intersection(set(surahAyahList))
+                if not multilinear:
+                    surahAyahAggSet = surahAyahAggSet.intersection(set(surahAyahList))
+                else:
+                    import re
+                    for surAy in surahAyahAggSet:
+                        print(f'\nsurAy: {surAy}\n')
+                        sur = re.compile('^.*:').search(surAy)[0]
+                        ay = re.compile('(?<=:).*$').search(surAy)[0]
+                        leastDiff = None
+                        closestAy = None
+                        for surAyNew in surahAyahList:
+                            if surAyNew.startswith(sur):
+                                print(f'\nsur, surAyNew: {sur} {surAyNew}\n')
+                                AyNew = re.compile(f'(?<=^{sur}).*(?=$)').search(surAyNew)[0]
+                                diff = abs(int(AyNew)-int(ay))
+                                if leastDiff == None:
+                                    leastDiff = diff
+                                else:
+                                    if diff < leastDiff:
+                                        leastDiff = diff
+                                        closestAy = sur+ AyNew
+                        if closestAy != None:
+                            # surahAyahAggSet = surahAyahAggSet.union(set(surahAyahList))
+                            surahAyahAggSet = surahAyahAggSet.add(closestAy)
             # print(f'\nafter {list(dicti.keys())[0]} SUrahAyahAggSet:\n', surahAyahAggSet)
             instLstAgg += instLst
 
@@ -711,7 +778,7 @@ def sortchron(
         while finished==False:
             inpLs=str(input(
                 """
-                separate every root word/root/combination and corresponding meaning-filter with ::
+                separate every root buckwalter transliteration (word/lemma/stem/root) form/aggregates and corresponding English meaning-filter with ::
 
                 \'EiysaY::Isa\n\'
 
@@ -719,7 +786,7 @@ def sortchron(
 
                 \'EiysaY\n\'
 
-                separate every word and its meaning filters within a combination with a space like:
+                For each aggregate, separate every Buckwalter form/meaning filters within a combination with a space like:
                 
                 \'Aibon maroyam::son Mary\n\'
                 
@@ -738,6 +805,19 @@ def sortchron(
                 you can use regex in meaning filter
 
                 \'$Tn::devil,rwH::(?:spirit|soul)\n\'
+
+                for aggregates, instead of only listing ayahs containing all included forms, 
+                if you want to show closest ayahs with included forms,
+                add 0 at the beginning of the buckwalter like
+
+                \'0<iboliys jin~:: \n\'
+
+                Although it's not recommended, 
+                you can also use only English meaning without buckwalter form like following
+
+                \' ::son Maryam\n\'
+
+                But do not forget use spaces between each form in aggregate.
 
                 """
                 )
