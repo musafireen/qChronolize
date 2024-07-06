@@ -175,217 +175,264 @@ def getSorter():
     return sorter
 
 
-def lnkSel(rt,flt):
-      if '%3A' in rt:
-            try:
-                import re
+def querSel(rt,flt):
+    direcLnkDic = {
+        'root': {
+            'lnks'  : [
+                "https://corpus.quran.com/qurandictionary.jsp?q=",
+                "https://corpus.quran.com/search.jsp?q=root:",
+            ],
+            'direc' : 'data/roots/',
+        },
+        'lem': {
+            'lnks'  : [
+                "https://corpus.quran.com/qurandictionary.jsp?q=",
+                "https://corpus.quran.com/search.jsp?q=lem:",
+            ],
+            'direc' : 'data/lems/',
+        },
+        'stem': {
+            'lnks'  : [
+                "https://corpus.quran.com/search.jsp?q=stem:",
+            ],
+            'direc' : 'data/stems/',
+        },
+    }
+
+    posDic = {
+        'ADJ': 'Adjective',
+        'N': 'Noun',
+        'PN': 'Proper noun',
+        'V': 'Verb',
+        'IMPN': 'Imperative verbal noun',
+        'PRON': 'Personal pronoun',
+        'DEM': 'Demonstrative pronoun',
+    }
+    
+    flnm = re.sub('([A-Z])','\\1?', rt)
+    if ':' in rt:
+        try:
+            import re
 
 
-                grm = re.compile(r'root|lem|stem(?=%3A)').findall(rt)[0]
-                rt = re.compile(f'(?<={grm}%3A).*(?=$|%)').findall(rt)[0]
+            grm = re.compile(r'root|lem|stem(?=:)').findall(rt)[0]
+            rt = re.compile(f'(?<={grm}:).*(?=$|%)').findall(rt)[0]
 
-                srchStr = f'{frm}%3A'
-                if grm != '':
-                    
-                    frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
-                    pos = re.compile(r'(?<=pos%3A).*?(?=%)').findall(rt)
+            srchStr = f'{frm}:'
+            if grm != '':
+                direcs = [f'data/{grm}s/']
+                frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
+                pos = re.compile(r'(?<=pos\:).*?(?=%)').findall(rt)
 
-                    if len(frm)>0:
-                        srchStr = f'({frm[0]})%20' + srchStr
+                if len(frm)>0:
+                    srchStr = f'({frm[0]})%20' + srchStr
 
-                    if len(pos)>0:
-                        srchStr = f'pos%3A{pos[0]}%20' + srchStr
+                if len(pos)>0:
+                    srchStr = f'pos:{pos[0]}%20' + srchStr
 
-                    links = [
-                        f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
-                    ]
-            except:
-                  print('\nError: unsupported string')
+                direcLnkDic = {
+                    grm: {
+                        links : [
+                            f"qurandictionary.jsp?q=",
+                            f"https://corpus.quran.com/search.jsp?q={srchStr}",
+                        ],
+                    }
+                }
+        except:
+            print('\nError: unsupported string')
     #   if '%20' in rt:
     #         rtSpl = rt.rsplit('%20',1)
-    #         if '%3A' in rtSpl[1]:
-    #               frm = rtSpl[1].split('%3A')[0]
+    #         if ':' in rtSpl[1]:
+    #               frm = rtSpl[1].split(':')[0]
     #               if frm in ['root', 'lem', 'stem']:
-    #                     rt = rtSpl[1].split('%3A')[1]
+    #                     rt = rtSpl[1].split(':')[1]
     #                     links = [
-    #                           f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}%3A"
+    #                           f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}:"
     #                     ]
     #               else:
     #                     print('\nError: unsupported string')
     #         else:
     #               print('\nError: unsupported string')
-      elif rt == '':
-          links = [
-              "https://corpus.quran.com/search.jsp?q=",
-          ]  
-          rt = flt
-      else:
-            links = [
-                  "https://corpus.quran.com/qurandictionary.jsp?q=",
-                  "https://corpus.quran.com/search.jsp?q=root%3A",
-                  "https://corpus.quran.com/search.jsp?q=lem%3A",
-                  "https://corpus.quran.com/search.jsp?q=stem%3A",
-                #   "https://corpus.quran.com/search.jsp?q=",
-            ]
+    elif rt == '':
+        links = [
+            "https://corpus.quran.com/search.jsp?q=",
+        ]  
+        rt = flt
+        direcs = [f'data/eng/',]
+        flnm = flt
+    else:
+        links = [
+            "https://corpus.quran.com/qurandictionary.jsp?q=",
+            "https://corpus.quran.com/search.jsp?q=root:",
+            "https://corpus.quran.com/search.jsp?q=lem:",
+            "https://corpus.quran.com/search.jsp?q=stem:",
+            # "https://corpus.quran.com/search.jsp?q=",
+        ]
+    
 
-      return links, rt
+
+    return links, rt, flnm, direcs
 
 
 def dataGrabber(
-    rt,
-    flt=''
-  ):
+        rt,
+        flt=''
+    ):
 
-  '''Grabs data from corpus.quran.com & formats them'''
+    '''Grabs data from corpus.quran.com & formats them'''
 
-  flt=str(flt).lower()
-  import requests
-  # import html2text
-  from bs4 import BeautifulSoup
-  import re
-  import json
-  import csv
+    flt=str(flt).lower()
+    import requests
+    # import html2text
+    from bs4 import BeautifulSoup
+    import re
+    import json
+    import csv
 
-  def getTbl(grabhtmlPara):
-    soup = BeautifulSoup(
-      grabhtmlPara,
-      'lxml' 
-    )
+    def getTbl(grabhtmlPara):
+        soup = BeautifulSoup(
+            grabhtmlPara,
+            'lxml' 
+        )
 
-    tblsRet = soup.find_all(
-      "table",
-      {"class":"taf"}
-    )
+        tblsRet = soup.find_all(
+            "table",
+            {"class":"taf"}
+        )
 
-    return tblsRet
+        return tblsRet
 
-  links, rt = lnkSel(rt,flt)
-
-  poss = set()
-  tblCumul = []
-  instLst=[]
-  flnm = re.sub('([A-Z])','\\1?', rt)
-
-  propDat = False
-  if len(links) != 1:
-    import os
-    if f'{flnm}.tsv' in os.listdir(f'data/roots/'):
-        print(f"file found for {rt}")
-        try:
-            with open(f'data/roots/{flnm}.tsv') as f:
-                print(f"loading data/roots/{flnm}.tsv")
-                instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-            #   tmpDat = json.loads(f.read())
-            # if type(tmpDat) == type([]):
-            #   if len(tmpDat) > 0:
-            #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
-            #       propDat = True    
-            #       instLst = tmpDat
-            #       print(f"instLst loaded from 'data/roots/")
-            #   instLst = tmpDat
-                print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
-                propDat = True
-        except:
-            propDat = False
-  if not propDat:
-    print(f"proper data not found for {rt}")
-    tblAgg = []
-    for lnk in links:
-      if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
-        grabhtml = requests.get(f"{lnk}{rt}").text
-        tbls = getTbl(grabhtml)
-      else:
-        pgs = []
-        grabhtml = requests.get(f"{lnk}{rt}").text
-        tbls = getTbl(grabhtml)
-        if '>\nResults <b>' in grabhtml:
-          matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
-          if len(matches) > 0:
-            pgFlt = int(matches[0])/50
-            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-            # print(f"page count in {lnk} is: {pgCount}")
-            # print(type(pgCount), pgCount)
-            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-          for pg in pgs:
-            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
-            tbls += getTbl(grabhtml)
-            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-            # grabhtml += grabhtmlNew
-            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-
-      # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-      # print(f"{tbls}\n")
-
-      for tbl in tbls:
-        # print(tbl)
-        tblAgg += tbl
-
-      # print(len(tblAgg))
-
-      if len(tblAgg) > 0:
-        # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-        if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-          if rt.lower() != 'adam' and rt != 'A^dam':
-            # print("no results")
-            tblAgg = []
-
-      # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
-      # print(tblAgg)
-
-      tblCumul += tblAgg
-      # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
-
-      for rw in tblCumul:
-        row = [ fld.get_text() for fld in rw.find_all("td") ]
-        # row = []
-        # for fld in rw:
-        #   row.append(fld.get_text())
-          
-        # print(row)
-        pos = row[0].split(' ')[0].strip('()')
-        # print(pos)
-        if pos not in poss:
-          # print(posSplit)
-          posSplit = pos.split(':')
-          # print(posSplit)
-          instLst.append({
-              "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-            #   "position": int(posSplit[2]), 
-              "position": posSplit[2], 
-              "word": row[0].split(' ')[1], 
-              "meaning": row[1],
-              "ayah_link": row[2]
-          })
-          
-          poss.add(pos)
-
-      # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+    rtOrig = rt
     
-    # with open(f'data/roots/{rt}', 'w') as f:
-    #   print("writing to data/roots")
-    #   f.write(
-    #     json.dumps(instLst)
-    #   )
-    list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
+    links, rt, flnm, direcs = querSel(rt,flt)
+
+    poss = set()
+    tblCumul = []
+    instLst=[]
+
+    propDat = False
     if len(links) != 1:
-        with open(f'data/roots/{flnm}.tsv', 'x') as f:
-            print(f"writing {rt} to 'data/roots/{flnm}.tsv'")
-            writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-            writer.writeheader()
-            for datum in instLst:
-                writer.writerow({
-                list_header[0] : datum['surah:ayah'],
-                list_header[1] : datum['position'],
-                list_header[2] : datum['word'],
-                list_header[3] : datum['meaning'],
-                list_header[4] : datum['ayah_link'],
-                })
+        import os
+        for direc in direcs:
+            if f'{flnm}.tsv' in os.listdir(direc):
+                print(f"file found for {rt}")
+                try:
+                    with open(f'data/roots/{flnm}.tsv') as f:
+                        print(f"loading data/roots/{flnm}.tsv")
+                        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+                    #   tmpDat = json.loads(f.read())
+                    # if type(tmpDat) == type([]):
+                    #   if len(tmpDat) > 0:
+                    #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
+                    #       propDat = True    
+                    #       instLst = tmpDat
+                    #       print(f"instLst loaded from 'data/roots/")
+                    #   instLst = tmpDat
+                        print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
+                        propDat = True
+                except:
+                    propDat = False
+    if not propDat:
+        print(f"proper data not found for {rt}")
+        tblAgg = []
+        for lnk in links:
+            if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
+                grabhtml = requests.get(f"{lnk}{rt}").text
+                tbls = getTbl(grabhtml)
     
     
-    # print(len(instLst))
+        else:
+            pgs = []
+            grabhtml = requests.get(f"{lnk}{rt}").text
+            tbls = getTbl(grabhtml)
+            if '>\nResults <b>' in grabhtml:
+                matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
+                if len(matches) > 0:
+                    pgFlt = int(matches[0])/50
+                    pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
+                    # print(f"page count in {lnk} is: {pgCount}")
+                    # print(type(pgCount), pgCount)
+                    pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
 
-  return instLst
+                for pg in pgs:
+                    grabhtml = requests.get(f"{lnk}{rt}{pg}").text
+                    tbls += getTbl(grabhtml)
+                    # print(f"length of grabhtml is: {len(grabhtmlNew)}")
+                    # grabhtml += grabhtmlNew
+                    # print(f"length of grabhtml after adding is: {len(grabhtml)}")
+
+        # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
+        # print(f"{tbls}\n")
+
+        for tbl in tbls:
+            # print(tbl)
+            tblAgg += tbl
+
+        # print(len(tblAgg))
+
+        if len(tblAgg) > 0:
+            # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
+            if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
+                if rt.lower() != 'adam' and rt != 'A^dam':
+                    # print("no results")
+                    tblAgg = []
+
+        # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
+        # print(tblAgg)
+
+        tblCumul += tblAgg
+        # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
+
+        for rw in tblCumul:
+            row = [ fld.get_text() for fld in rw.find_all("td") ]
+            # row = []
+            # for fld in rw:
+            #   row.append(fld.get_text())
+          
+            # print(row)
+            pos = row[0].split(' ')[0].strip('()')
+            # print(pos)
+            if pos not in poss:
+                # print(posSplit)
+                posSplit = pos.split(':')
+                # print(posSplit)
+                instLst.append({
+                    "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
+                    #   "position": int(posSplit[2]), 
+                    "position": posSplit[2], 
+                    "word": row[0].split(' ')[1], 
+                    "meaning": row[1],
+                    "ayah_link": row[2]
+                })
+          
+                poss.add(pos)
+
+        # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+    
+        # with open(f'data/roots/{rt}', 'w') as f:
+        #   print("writing to data/roots")
+        #   f.write(
+        #     json.dumps(instLst)
+        #   )
+        list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
+        if len(links) != 1:
+            with open(f'data/roots/{flnm}.tsv', 'x') as f:
+                print(f"writing {rt} to '{direc}{flnm}.tsv'")
+                writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+                writer.writeheader()
+                for datum in instLst:
+                    writer.writerow({
+                        list_header[0] : datum['surah:ayah'],
+                        list_header[1] : datum['position'],
+                        list_header[2] : datum['word'],
+                        list_header[3] : datum['meaning'],
+                        list_header[4] : datum['ayah_link'],
+                    })
+    
+    
+        # print(len(instLst))
+
+    return instLst
 
     # import pandas as pd
 
@@ -412,21 +459,21 @@ def getColMap(dicti):
     uprLmt = 250
     p = np.linspace(lwrLmt,uprLmt,num=leng)
     for idx in range(1,leng+1):
-      # n1=rand.randn()
-      # n2=rand.randn()
-      # i1=rand.randint(0,50)
-      # i2=rand.randint(0,50)
-      # clr=f"rgb({50+(100/leng)*idx})"
-      # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
-    #   rd = int(p[idx-1])
-    #   radialDist = (rd - lwrLmt) if (rd - lwrLmt) < (uprLmt - rd) else (uprLmt - rd)
-    #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
-    #   pair = dicti[idx-1]
-    #   colMap[f"{list(pair.keys())[0]} ({list(pair.values())[0]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
-      quer = dicti[idx-1]
-      colMap[quer] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
-    #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({rd},{gn},{bl})' 
-    #   print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
+        # n1=rand.randn()
+        # n2=rand.randn()
+        # i1=rand.randint(0,50)
+        # i2=rand.randint(0,50)
+        # clr=f"rgb({50+(100/leng)*idx})"
+        # colMap[df["query"].unique()[idx]] = f"rgb({clr},{clr},{clr})" 
+        #   rd = int(p[idx-1])
+        #   radialDist = (rd - lwrLmt) if (rd - lwrLmt) < (uprLmt - rd) else (uprLmt - rd)
+        #   colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+        #   pair = dicti[idx-1]
+        #   colMap[f"{list(pair.keys())[0]} ({list(pair.values())[0]})"] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+        quer = dicti[idx-1]
+        colMap[quer] = f'rgb({int(p[idx-1])},{int(p[-idx]-30)},20)' 
+        # colMap[f"{list(dicti.keys())[idx-1]} ({list(dicti.values())[idx-1]})"] = f'rgb({rd},{gn},{bl})' 
+        # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
 
@@ -445,7 +492,33 @@ def filtDown(rt,flt):
             instLst
         )
     )
-    # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
+
+    # if flt == '':
+    #     def long_substr(listy):
+    #         import re
+    #         subStrDic = {}
+    #         for sentence in listy:
+    #             for word in re.compile('(?<![a-z])[a-z]*(?=\s|es|s|\'|$)').findall(sentence):
+    #                 # print(word)
+    #                 if word not in subStrDic.keys():
+    #                     subStrDic[word] = 1
+    #                 else:
+    #                     subStrDic[word] = subStrDic[word] + 1
+    #         longestLength = 0
+    #         longest = ''
+
+    #         for k,v in subStrDic.items():
+    #             if v > longestLength:
+    #                 longestLength = v
+    #                 longest = k
+            
+    #         return longest
+
+    #     meaningLs = [row["meaning"].lower() for row in instLstFiltered]
+
+    #     flt = long_substr(meaningLs)
+    
+    # return instLstFiltered, flt
     return instLstFiltered
 
 def intersct(rtAgg,flAgg=''):
@@ -466,6 +539,8 @@ def intersct(rtAgg,flAgg=''):
             instLst = []
             for i in range(len(dicti)):
                 instLst += filtDown(list(dicti.keys())[i],list(dicti.values())[i])
+                # instLstRet, flt = filtDown(list(dicti.keys())[i],list(dicti.values())[i])
+                # instLst += instLstRet
             # instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
             surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
             if surahAyahAggSet == set([None]):
