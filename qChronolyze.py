@@ -824,9 +824,12 @@ def sortchron(
             ).split(',')
             if type(inpLs) == type([]) and len(inpLs) >= 1:
               for obj in inpLs:
+                # print(f'\nobj: \'{obj}\'\n')
                 optDict = {}
                 for opt in obj.split('//'):
-                    pair = opt.strip().split('::')
+                    # pair = opt.strip().split('::')
+                    pair = opt.split('::')
+                    # print(f'\npair: {pair}\n')
                     if len(pair) == 2:
                     #   dicti[pair[0]]=pair[1]
                         optDict[pair[0]] = pair[1]
@@ -835,6 +838,7 @@ def sortchron(
                         optDict[pair[0]] = ''
                 dicti.append(optDict)
                 finished=True
+            # print(f'\ndicti: {dicti}\n')
 
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
