@@ -176,67 +176,55 @@ def getSorter():
 
 
 def querSel(rt,flt):
-    direcLnkDic = {
-        'root': {
-            'lnks'  : [
-                "https://corpus.quran.com/qurandictionary.jsp?q=",
-                "https://corpus.quran.com/search.jsp?q=root:",
-            ],
-            'direc' : 'data/roots/',
-        },
-        'lem': {
-            'lnks'  : [
-                "https://corpus.quran.com/qurandictionary.jsp?q=",
-                "https://corpus.quran.com/search.jsp?q=lem:",
-            ],
-            'direc' : 'data/lems/',
-        },
-        'stem': {
-            'lnks'  : [
-                "https://corpus.quran.com/search.jsp?q=stem:",
-            ],
-            'direc' : 'data/stems/',
-        },
-    }
-
-    posDic = {
-        'ADJ': 'Adjective',
-        'N': 'Noun',
-        'PN': 'Proper noun',
-        'V': 'Verb',
-        'IMPN': 'Imperative verbal noun',
-        'PRON': 'Personal pronoun',
-        'DEM': 'Demonstrative pronoun',
-    }
     
+    frm = None
+    ptSp = None
+
+    import re
+
     flnm = re.sub('([A-Z])','\\1?', rt)
     if ':' in rt:
         try:
-            import re
-
-
+            # import re
+            
+            # rtOrig = rt
             grm = re.compile(r'root|lem|stem(?=:)').findall(rt)[0]
-            rt = re.compile(f'(?<={grm}:).*(?=$|%)').findall(rt)[0]
 
             srchStr = f'{frm}:'
             if grm != '':
-                direcs = [f'data/{grm}s/']
+                # direc = [f'data/{grm}s/']
                 frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
-                pos = re.compile(r'(?<=pos\:).*?(?=%)').findall(rt)
+                ptSp = re.compile(r'(?<=pos\:).*?(?=%)').findall(rt)
+                rt = re.compile(f'(?<={grm}:).*(?=$|%)').findall(rt)[0]
+                flnm = re.sub('([A-Z])','\\1?', rt)
+
+                # print(f'grm frm ptSp: {frm} {ptSp} {grm}')
 
                 if len(frm)>0:
                     srchStr = f'({frm[0]})%20' + srchStr
+                    frm = frm[0]
+                else:
+                    frm = None
 
-                if len(pos)>0:
-                    srchStr = f'pos:{pos[0]}%20' + srchStr
+                if len(ptSp)>0:
+                    srchStr = f'pos:{ptSp[0]}%20' + srchStr
+                    ptSp = ptSp[0]
+                else:
+                    ptSp = None
 
                 direcLnkDic = {
-                    grm: {
-                        links : [
-                            f"qurandictionary.jsp?q=",
-                            f"https://corpus.quran.com/search.jsp?q={srchStr}",
-                        ],
-                    }
+                    # 'grms' : {
+                        grm: {
+                            'lnks' : [
+                                f"https://corpus.quran.com/qurandictionary.jsp?q=",
+                                # f"https://corpus.quran.com/search.jsp?q={srchStr}",
+                                f"https://corpus.quran.com/search.jsp?q={grm}:"                           
+                            ],
+                            'direc': f'data/{grm}s/',
+                        },
+                    # },
+                    # 'form': frm,
+                    # 'p-o-s': pos,
                 }
         except:
             print('\nError: unsupported string')
@@ -254,24 +242,66 @@ def querSel(rt,flt):
     #         else:
     #               print('\nError: unsupported string')
     elif rt == '':
-        links = [
-            "https://corpus.quran.com/search.jsp?q=",
-        ]  
+        # links = [
+        #     "https://corpus.quran.com/search.jsp?q=",
+        # ]  
         rt = flt
-        direcs = [f'data/eng/',]
+        # direcs = [f'data/eng/',]
         flnm = flt
+        direcLnkDic = {
+            # 'grms': {                
+                'eng': {
+                    "lnks": [
+                        "https://corpus.quran.com/search.jsp?q="
+                    ],
+                    "direc": 'data/eng/'
+                },
+            # },
+        }
     else:
-        links = [
-            "https://corpus.quran.com/qurandictionary.jsp?q=",
-            "https://corpus.quran.com/search.jsp?q=root:",
-            "https://corpus.quran.com/search.jsp?q=lem:",
-            "https://corpus.quran.com/search.jsp?q=stem:",
-            # "https://corpus.quran.com/search.jsp?q=",
-        ]
-    
+        if 'a' in rt or 'i' in rt or 'u' in rt:
+            direcLnkDic = {
+                # 'grms': {
+                    'qdict': {
+                        'lnks'  : [
+                            "https://corpus.quran.com/qurandictionary.jsp?q=",
+                        ],
+                        'direc' : 'data/lems/',
+                    },
+                    'lem': {
+                        'lnks'  : [
+                            "https://corpus.quran.com/search.jsp?q=lem:",
+                        ],
+                        'direc' : 'data/lems/',
+                    },
+                    'stem': {
+                        'lnks'  : [
+                            "https://corpus.quran.com/search.jsp?q=stem:",
+                        ],
+                        'direc' : 'data/stems/',
+                    },
+                # },
+            }
+        else:
+            direcLnkDic = {
+                # 'grms': {
+                    'qdict': {
+                        'lnks'  : [
+                            "https://corpus.quran.com/qurandictionary.jsp?q=",
+                        ],
+                        'direc' : 'data/roots/',
+                    },
+                    'root': {
+                        'lnks'  : [
+                            "https://corpus.quran.com/search.jsp?q=root:",
+                        ],
+                        'direc' : 'data/roots/',
+                    },
+                # },
+            }
 
-
-    return links, rt, flnm, direcs
+    # return links, rt, flnm, direcs
+    return direcLnkDic, rt, flnm, frm, ptSp
 
 
 def dataGrabber(
@@ -304,133 +334,271 @@ def dataGrabber(
 
     rtOrig = rt
     
-    links, rt, flnm, direcs = querSel(rt,flt)
+    direcLnkDic, rt, flnm, frmReq, ptSpReq = querSel(rt,flt)
 
-    poss = set()
+    # poss = set()
     tblCumul = []
-    instLst=[]
+    # instLst=[]
+    instDct={}
 
     propDat = False
-    if len(links) != 1:
-        import os
-        for direc in direcs:
+    # if len(links) != 1:
+    import os
+    for k, direcLnk in direcLnkDic.items():
+        try:
+            # for direc in direcs:
+            direc = direcLnk["direc"]
             if f'{flnm}.tsv' in os.listdir(direc):
                 print(f"file found for {rt}")
-                try:
-                    with open(f'data/roots/{flnm}.tsv') as f:
-                        print(f"loading data/roots/{flnm}.tsv")
-                        instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-                    #   tmpDat = json.loads(f.read())
-                    # if type(tmpDat) == type([]):
-                    #   if len(tmpDat) > 0:
-                    #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
-                    #       propDat = True    
-                    #       instLst = tmpDat
-                    #       print(f"instLst loaded from 'data/roots/")
-                    #   instLst = tmpDat
-                        print(f"Successfully loaded data from 'dat/roots/{flnm}.tsv'")
-                        propDat = True
-                except:
-                    propDat = False
+                with open(f'{direc}{flnm}.tsv') as f:
+                    print(f"loading {direc}{flnm}.tsv")
+                    instDict = csv.DictReader(f, delimiter='\t')
+                    # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+                    for row in instDict:
+                        surAyPos = f'{row["surah:ayah"]}:{row["position"]}'
+                        if surAyPos in instDct:
+                            if row["form"] != '':
+                                instDct[surAyPos]["form"] = row["form"]
+                            if row["p-o-s"] != '':
+                                instDct[surAyPos]["p-o-s"] = row["p-o-s"]
+                        else:
+                            instDct[surAyPos] = row
+                    # instDctNew = { f'{row["surah:ayah"]}:{row["position"]}': {**row, row[""]} }
+                    # instDct = {**instDct, **instDctNew}
+                #   tmpDat = json.loads(f.read())
+                # if type(tmpDat) == type([]):
+                #   if len(tmpDat) > 0:
+                #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
+                #       propDat = True    
+                #       instLst = tmpDat
+                #       print(f"instLst loaded from 'data/roots/")
+                #   instLst = tmpDat
+                    print(f"Successfully loaded data from '{direc}{flnm}.tsv'")
+                    propDat = True
+        except:
+            propDat = False
+
     if not propDat:
+        # tblAgg = []
         print(f"proper data not found for {rt}")
-        tblAgg = []
-        for lnk in links:
-            if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
-                grabhtml = requests.get(f"{lnk}{rt}").text
-                tbls = getTbl(grabhtml)
+
+        def tblUp(tblCumul,tblAgg,instDct,frm='',ptSp=''):
+            # for tbl in tbls:
+            #     # print(tbl)
+            #     tblAgg += tbl
+
+            # print(len(tblAgg))
+            
+            # print(f"number of instances of {rt} in {lnk} before Adam filter: {len(tblAgg)}")
+
+            if len(tblAgg) > 0:
+            # if len(tbls) > 0:
+                # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
+                # print(tblAgg[0].find_all('td')[1])
+                if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
+                # if 'adam' in tbls[0].find_all('td')[1].get_text().lower():
+                    if rt.lower() != 'adam' and rt != 'A^dam':
+                        # print("no results")
+                        tblAgg = []
+                        # tbls = []
+
+            # print(f"number of instances of {rt} in {lnk} after Adam filter: {len(tblAgg)}")
+            # print(tblAgg)
+
+            tblCumul += tblAgg
+            # tblCumul += tbls
+
+            # print("length of tblCumul: ", len(tblCumul))
+            # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
+
+            for rw in tblCumul:
+                row = [ fld.get_text() for fld in rw.find_all("td") ]
+                # row = []
+                # for fld in rw:
+                #   row.append(fld.get_text())
+            
+                # print(row)
+                pos = row[0].split(' ')[0].strip('()')
+                # print(pos)
+                if pos not in instDct:
+                    # print(posSplit)
+                    posSplit = pos.split(':')
+                    # print(posSplit)
+                    # instLst.append({
+                    instDct[pos] = {
+                            "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
+                            #   "position": int(posSplit[2]), 
+                            "position": posSplit[2], 
+                            "word": row[0].split(' ')[1], 
+                            "meaning": row[1],
+                            "form": frm,
+                            "p-o-s": ptSp,
+                            "ayah_link": row[2]
+                        }
+                    # })
+            
+                    # poss.add(pos)
+                else:
+                    if instDct[pos]["form"] == '' and frm != '':
+                        instDct[pos]["form"] = frm
+                    if instDct[pos]["p-o-s"] == '' and ptSp != '':
+                        instDct[pos]["p-o-s"] = ptSp
+
+                # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+                
+            # print(len(tblCumul), len(instDct))
+
+            return tblCumul, instDct
+
+        # for lnk in links:
+        for k, direcLnk in direcLnkDic.items():
+            lnks = direcLnk["lnks"]
+            direc = direcLnk["direc"]
+            for lnk in lnks:
+                # print('\ngetting for link: ', lnk, '\n')
+                if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
+                    grabhtml = requests.get(f"{lnk}{rt}").text
+                    # print(type(grabhtml))
+
+                    import re
+
+                    headTbls = re.findall('(<h4 class="dxe">.*?(?=<h4))',grabhtml,re.DOTALL)
+
+                    # print(len(headTbls))
+
+                    for headTbl in headTbls:
+                        tblAgg = []
+                        soup = BeautifulSoup(
+                            headTbl,
+                            'lxml',
+                            # 'html.parser',
+                        )
+                        head4 = soup.find_all(
+                            "h4",
+                            {"class":"dxe"}
+                        )[0]
+
+                        # if len(tblsRet) > 0:
+                            # print(len(tblsRet) > 0)
+                            # print(len(tblsRet))
+                            # if len(tblsRet) == len(head4s):
+                            # print(len(tblsRet) == len(head4s))
+                        # for i in range(len(head4s)):
+                            # print(head4s[i].text)
+
+                        grm = head4.text.split('-')[0]
+                        tempForms = re.findall('\(form (.*?)\)', grm)
+                        if len(tempForms) == 0:
+                            tempForm = ''
+                        else:
+                            # print(tempForms[0])
+                            tempForm = tempForms[0]
+                        tempPtSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', grm)
+                        if len(tempPtSps) == 0:
+                            tempPtSp = ''
+                        else:
+                            # print(tempPtSps[0])
+                            tempPtSp = tempPtSps[0]
+
+                        if tempForm == '':
+                            if tempPtSp != '':
+                                tempForm = 'I'
+                        # print(
+                        #     # grm, 
+                        #     tempForm, 
+                        #     tempPtSp
+                        # )
+
+                        tbls = soup.find_all(
+                            "table",
+                            {"class":"taf"}
+                        )
+
+                        # tblAgg = [ tbl for tbl in tbls ]
+
+                        # print(tblsRet)
+                        for tbl in tbls:
+                            tblAgg += tbl
+                        # print("tblAgg length", len(tblAgg))
+                        tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,tempForm,tempPtSp)
     
     
-        else:
-            pgs = []
-            grabhtml = requests.get(f"{lnk}{rt}").text
-            tbls = getTbl(grabhtml)
-            if '>\nResults <b>' in grabhtml:
-                matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
-                if len(matches) > 0:
-                    pgFlt = int(matches[0])/50
-                    pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-                    # print(f"page count in {lnk} is: {pgCount}")
-                    # print(type(pgCount), pgCount)
-                    pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-                for pg in pgs:
-                    grabhtml = requests.get(f"{lnk}{rt}{pg}").text
-                    tbls += getTbl(grabhtml)
-                    # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-                    # grabhtml += grabhtmlNew
-                    # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-
-        # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-        # print(f"{tbls}\n")
-
-        for tbl in tbls:
-            # print(tbl)
-            tblAgg += tbl
-
-        # print(len(tblAgg))
-
-        if len(tblAgg) > 0:
-            # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-            if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-                if rt.lower() != 'adam' and rt != 'A^dam':
-                    # print("no results")
+                else:
+                    pgs = []
                     tblAgg = []
+                    grabhtml = requests.get(f"{lnk}{rt}").text
+                    tbls = getTbl(grabhtml)
+                    if '>\nResults <b>' in grabhtml:
+                        matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
+                        if len(matches) > 0:
+                            pgFlt = int(matches[0])/50
+                            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
+                            # print(f"page count in {lnk} is: {pgCount}")
+                            # print(type(pgCount), pgCount)
+                            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
 
-        # print(f"number of instances of {rt} in {lnk}: {len(tblAgg)}")
-        # print(tblAgg)
+                        for pg in pgs:
+                            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
+                            tbls += getTbl(grabhtml)
+                            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
+                            # grabhtml += grabhtmlNew
+                            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
+                        
+                    for tbl in tbls:
+                        tblAgg += tbl
+                        
+                    # print("length of tblAgg: ", len(tblAgg))
+                    
+                    tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct)
 
-        tblCumul += tblAgg
-        # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
+                # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
+                # print(f"{tbls}\n")
 
-        for rw in tblCumul:
-            row = [ fld.get_text() for fld in rw.find_all("td") ]
-            # row = []
-            # for fld in rw:
-            #   row.append(fld.get_text())
-          
-            # print(row)
-            pos = row[0].split(' ')[0].strip('()')
-            # print(pos)
-            if pos not in poss:
-                # print(posSplit)
-                posSplit = pos.split(':')
-                # print(posSplit)
-                instLst.append({
-                    "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-                    #   "position": int(posSplit[2]), 
-                    "position": posSplit[2], 
-                    "word": row[0].split(' ')[1], 
-                    "meaning": row[1],
-                    "ayah_link": row[2]
-                })
-          
-                poss.add(pos)
 
-        # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
-    
         # with open(f'data/roots/{rt}', 'w') as f:
         #   print("writing to data/roots")
         #   f.write(
         #     json.dumps(instLst)
         #   )
-        list_header = ['surah:ayah', 'position', 'word', 'meaning', 'ayah_link']
-        if len(links) != 1:
-            with open(f'data/roots/{flnm}.tsv', 'x') as f:
-                print(f"writing {rt} to '{direc}{flnm}.tsv'")
-                writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-                writer.writeheader()
-                for datum in instLst:
-                    writer.writerow({
-                        list_header[0] : datum['surah:ayah'],
-                        list_header[1] : datum['position'],
-                        list_header[2] : datum['word'],
-                        list_header[3] : datum['meaning'],
-                        list_header[4] : datum['ayah_link'],
-                    })
+        list_header = ['surah:ayah', 'position', 'word', 'meaning', 'form', 'p-o-s', 'ayah_link']
+        # if len(links) != 1:
+        with open(f'{direc}{flnm}.tsv', 'x') as f:
+            print(f"writing {rt} to '{direc}{flnm}.tsv'")
+            writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+            writer.writeheader()
+            # for datum in instLst:
+            for k, datum in instDct.items():
+                writer.writerow({
+                    list_header[0] : datum['surah:ayah'],
+                    list_header[1] : datum['position'],
+                    list_header[2] : datum['word'],
+                    list_header[3] : datum['meaning'],
+                    list_header[4] : datum['form'],
+                    list_header[5] : datum['p-o-s'],
+                    list_header[6] : datum['ayah_link'],
+                })
+
+    posDic = {
+        'ADJ': 'Adjective',
+        'N': 'Noun',
+        'PN': 'Proper noun',
+        'V': 'Verb',
+        'IMPN': 'Imperative verbal noun',
+        'PRON': 'Personal pronoun',
+        'DEM': 'Demonstrative pronoun',
+        '': '',
+    }
     
-    
+    # print(frmReq, ptSpReq)
         # print(len(instLst))
+    instLst = [datum for datum in instDct.values()]
+    if frmReq != None:
+        # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
+        instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
+    if ptSpReq != None:
+        # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
+        instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
+        
 
     return instLst
 
