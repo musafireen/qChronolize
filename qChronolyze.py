@@ -188,17 +188,17 @@ def querSel(rt,flt):
             # import re
             
             # rtOrig = rt
-            grm = re.compile(r'root|lem|stem(?=:)').findall(rt)[0]
+            strTyp = re.compile(r'root|lem|stem(?=:)').findall(rt)[0]
 
             srchStr = f'{frm}:'
-            if grm != '':
-                # direc = [f'data/{grm}s/']
+            if strTyp != '':
+                # direc = [f'data/{strTyp}s/']
                 frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
                 ptSp = re.compile(r'(?<=pos\:).*?(?=%)').findall(rt)
-                rt = re.compile(f'(?<={grm}:).*(?=$|%)').findall(rt)[0]
+                rt = re.compile(f'(?<={strTyp}:).*(?=$|%)').findall(rt)[0]
                 flnm = re.sub('([A-Z])','\\1?', rt)
 
-                # print(f'grm frm ptSp: {frm} {ptSp} {grm}')
+                # print(f'strTyp frm ptSp: {frm} {ptSp} {strTyp}')
 
                 if len(frm)>0:
                     srchStr = f'({frm[0]})%20' + srchStr
@@ -213,14 +213,14 @@ def querSel(rt,flt):
                     ptSp = None
 
                 direcLnkDic = {
-                    # 'grms' : {
-                        grm: {
+                    # 'strTyps' : {
+                        strTyp: {
                             'lnks' : [
                                 f"https://corpus.quran.com/qurandictionary.jsp?q=",
                                 # f"https://corpus.quran.com/search.jsp?q={srchStr}",
-                                f"https://corpus.quran.com/search.jsp?q={grm}:"                           
+                                f"https://corpus.quran.com/search.jsp?q={strTyp}:"                           
                             ],
-                            'direc': f'data/{grm}s/',
+                            'direc': f'data/{strTyp}s/',
                         },
                     # },
                     # 'form': frm,
@@ -249,7 +249,7 @@ def querSel(rt,flt):
         # direcs = [f'data/eng/',]
         flnm = flt
         direcLnkDic = {
-            # 'grms': {                
+            # 'strTyps': {                
                 'eng': {
                     "lnks": [
                         "https://corpus.quran.com/search.jsp?q="
@@ -261,7 +261,7 @@ def querSel(rt,flt):
     else:
         if 'a' in rt or 'i' in rt or 'u' in rt:
             direcLnkDic = {
-                # 'grms': {
+                # 'strTyps': {
                     'qdict': {
                         'lnks'  : [
                             "https://corpus.quran.com/qurandictionary.jsp?q=",
@@ -284,7 +284,7 @@ def querSel(rt,flt):
             }
         else:
             direcLnkDic = {
-                # 'grms': {
+                # 'strTyps': {
                     'qdict': {
                         'lnks'  : [
                             "https://corpus.quran.com/qurandictionary.jsp?q=",
@@ -486,14 +486,14 @@ def dataGrabber(
                         # for i in range(len(head4s)):
                             # print(head4s[i].text)
 
-                        grm = head4.text.split('-')[0]
-                        tempForms = re.findall('\(form (.*?)\)', grm)
+                        strTyp = head4.text.split('-')[0]
+                        tempForms = re.findall('\(form (.*?)\)', strTyp)
                         if len(tempForms) == 0:
                             tempForm = ''
                         else:
                             # print(tempForms[0])
                             tempForm = tempForms[0]
-                        tempPtSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', grm)
+                        tempPtSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', strTyp)
                         if len(tempPtSps) == 0:
                             tempPtSp = ''
                         else:
@@ -504,7 +504,7 @@ def dataGrabber(
                             if tempPtSp != '':
                                 tempForm = 'I'
                         # print(
-                        #     # grm, 
+                        #     # strTyp, 
                         #     tempForm, 
                         #     tempPtSp
                         # )
