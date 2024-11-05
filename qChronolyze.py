@@ -803,10 +803,7 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
             print(comb)
             strL = comb["strL"]
             lblParts += [' + '.join([ 
-                ' '.join([
-                    strObj["stri"],
-                    strObj["flt"]
-                ]) for 
+                f'{strObj["stri"]} ({strObj["flt"]})' for 
                 strObj 
                 in strL
             ])]
