@@ -479,6 +479,163 @@ def fileGet(stri,filepath):
         
         return instDct
 
+def webGet(stri,lnks,filepath,poSp,frm):
+    # import html2text
+    # import json
+    import requests
+    from bs4 import BeautifulSoup
+    import re
+
+    def getTbl(grabhtmlPara):
+        soup = BeautifulSoup(
+            grabhtmlPara,
+            'lxml' 
+        )
+
+        tblsRet = soup.find_all(
+            "table",
+            {"class":"taf"}
+        )
+
+        return tblsRet
+
+
+    # poss = set()
+    instDct={}
+    tblCumul = []
+    # tblAgg = []
+    print(f"proper data not found for {stri}")
+
+
+    for lnk in lnks:
+        print('\ngetting for link: ', lnk, '\n')
+        if lnk == f'https://corpus.quran.com/qurandictionary.jsp?q={stri}':
+            grabhtml = requests.get(lnk).text
+            # print(type(grabhtml))
+
+            import re
+
+            headTbls = re.findall('(<h4 class="dxe">.*?(?=<h4))',grabhtml,re.DOTALL)
+
+            # print(len(headTbls))
+
+            for headTbl in headTbls:
+                tblAgg = []
+                soup = BeautifulSoup(
+                    headTbl,
+                    'lxml',
+                    # 'html.parser',
+                )
+                head4 = soup.find_all(
+                    "h4",
+                    {"class":"dxe"}
+                )[0]
+
+                # if len(tblsRet) > 0:
+                    # print(len(tblsRet) > 0)
+                    # print(len(tblsRet))
+                    # if len(tblsRet) == len(head4s):
+                    # print(len(tblsRet) == len(head4s))
+                # for i in range(len(head4s)):
+                    # print(head4s[i].text)
+
+                tblGrm = head4.text.split('-')[0]
+                tblForms = re.findall('\(form (.*?)\)', tblGrm)
+                if len(tblForms) == 0:
+                    tblForm = 'All'
+                else:
+                    # print(tempForms[0])
+                    tblForm = tblForms[0]
+                tblPoSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', tblGrm)
+                if len(tblPoSps) == 0:
+                    tblPoSp = 'All'
+                else:
+                    # print(tempPtSps[0])
+                    tblPoSp = tblPoSps[0]
+
+                if tblForm == 'All':
+                    if tblPoSp != 'All':
+                        tblForm = 'I'
+                print(
+                    # grm, 
+                    tblForm, 
+                    tblPoSp
+                )
+
+                tbls = soup.find_all(
+                    "table",
+                    {"class":"taf"}
+                )
+
+                # tblAgg = [ tbl for tbl in tbls ]
+
+                # print(tblsRet)
+                for tbl in tbls:
+                    if tblPoSp == poSp and tblForm == frm:
+                        tblAgg += tbl
+                print("tblAgg length", len(tblAgg))
+                tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,
+                                        #  tempForm,tempPtSp
+                                        stri,lnk
+                                            )
+
+
+        else:
+            pgs = []
+            tblAgg = []
+            grabhtml = requests.get(f"{lnk}").text
+            tbls = getTbl(grabhtml)
+            if 'Results' in grabhtml:
+                matches = re.findall(">[\n\s]*Results[\s\n]*<b>\d*</b>[\s\n]*to[\s\n]*<b>\d*</b>[\s\n]*of[\s\n]*<b>(\d*)</b>", grabhtml, re.DOTALL)
+                print('\nmatches: ', matches)
+                if len(matches) > 0:
+                    pgFlt = int(matches[0])/50
+                    pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
+                    # print(f"page count in {lnk} is: {pgCount}")
+                    # print(type(pgCount), pgCount)
+                    pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
+
+                for pg in pgs:
+                    print(f'\nin pg {pg}')
+                    grabhtml = requests.get(f"{lnk}{pg}").text
+                    tbls += getTbl(grabhtml)
+                    # print(f"length of grabhtml is: {len(grabhtmlNew)}")
+                    # grabhtml += grabhtmlNew
+                    # print(f"length of grabhtml after adding is: {len(grabhtml)}")
+                
+            for tbl in tbls:
+                tblAgg += tbl
+                
+            print("length of tblAgg: ", len(tblAgg))
+            
+            tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,stri,lnk)
+
+        # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
+        # print(f"{tbls}\n")
+
+
+    list_header = ['surah:ayah', 'position', 'string', 'meaning', 'form', 'p-o-s', 'ayah_link']
+    print(f"writing {stri} to '{filepath}'")
+    with open(f'{filepath}', 'x') as f:
+        # print(f"writing {stri} to '{filepath}'")
+        import csv
+        writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
+        writer.writeheader()
+        # for datum in instLst:
+        for k, datum in instDct.items():
+            writer.writerow({
+                list_header[0] : datum['surah:ayah'],
+                list_header[1] : datum['position'],
+                list_header[2] : datum['string'],
+                list_header[3] : datum['meaning'],
+                # list_header[4] : datum['form'],
+                # list_header[5] : datum['p-o-s'],
+                list_header[6] : datum['ayah_link'],
+            })
+    
+    return instDct
+
+
 def dataGrabber(
         strObj
     ):
@@ -515,7 +672,7 @@ def dataGrabber(
         if strTyp !='All':
             mainLnk += f"{strTyp}:"
         if strTyp == 'All':
-            for strTy in ['lem','stem','room']:
+            for strTy in ['lem','stem','root']:
                 lnks.append(
                     f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
                 )
@@ -640,22 +797,24 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
     instLstAgg = []
     for optSt in qL:
         print(optSt)
-        lbl = ''
+        lblParts = []
+        optStInsts = []
         for comb in optSt:
             print(comb)
             strL = comb["strL"]
-            lbl += ' / '.join([ 
+            lblParts += [' + '.join([ 
                 ' '.join([
                     strObj["stri"],
                     strObj["flt"]
                 ]) for 
                 strObj 
                 in strL
-            ])
-            instLst = intersct(comb)
-                
-            instLst = [ { **inst, "query": lbl } for inst in instLst  ]
-            instLstAgg += instLst
+            ])]
+            combInstLst = intersct(comb)
+            optStInsts += combInstLst
+        lbl = ' / '.join(lblParts)
+        instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
+        instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
@@ -669,7 +828,8 @@ class strObjClass:
     # parentIdx = 1
     striSt = ''
     fltSt=''
-    strTypSt='root'
+    # strTypSt='root'
+    strTypSt='All'
     frmSt='All'
     poSpSt='All'
     inpLngSt="arabic"
@@ -722,11 +882,12 @@ class strObWdgCl:
     # idx = 0
     # parentIdx = 1
     strngs = []
-    strTypSt = "root"
-    frmSt = "All"
-    poSpSt = "All"
-    inpLngSt = "arabic"
-    inpSchSt = "buckwalterScheme"
+    # strTypSt = "root"
+    strTypSt = strObjClass.strTypSt
+    frmSt = strObjClass.frmSt
+    poSpSt = strObjClass.poSpSt
+    inpLngSt = strObjClass.inpLngSt
+    inpSchSt = strObjClass.inpSchSt
 
     def update_language_scheme_options(self,*args):
         # print(self.inpLngW.value)
@@ -893,7 +1054,7 @@ class optStWdgCl:
 
     # Function to remove this specific group of widgets
     def delOptStM(self,button):
-        if len(self.combs) > 1:
+        if len(self.optSts) > 1:
             if self.optSt_container in self.optSts:
                 self.optSts.remove(self.optSt_container)
                 self.container.children = [w for w in self.container.children if w != self.optSt_container]
@@ -1097,10 +1258,10 @@ def sortchron(
         pres='',
         refLng='',
     ):
-    instLstAgg = aggregLsts(qL,tafs)
     sorter = getSorter()
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
+    instLstAgg = aggregLsts(qL,tafs)
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
     df['position'] = df['position'].astype('int')
@@ -1111,15 +1272,19 @@ def sortchron(
     # df.reset_index(inplace=True)
     
     colMap = getColMap(df["query"].unique())
-
+    display()
     if pres == "table":
         return tabular(df,colMap,sorter)
     if pres == "plot":
         plotDf(df,colMap,sorter)
+    qL = []
+
+    from IPython import get_ipython 
+    get_ipython().magic('reset -sf')
 
 
-def finish_query_f(button):
-    global qL
+def finish_query_f(button,qL=qL,pres='',refLng=''):
+    # global qL
     for k in range(len(container.children)-1,-1,-1):
         optStC = container.children[k].children[1]
         optSt = []
@@ -1155,20 +1320,23 @@ def finish_query_f(button):
                 if len(combObj["strL"]) > 0:
                     optSt.append(combObj)
             if len(optSt) > 0:
+                print(qL)
                 qL.append(optSt)
                 # qL.append(combObj.__dict__)
         # dg = aggregLsts(qL)
         # sortchron(dg)
-        sortchron(qL,)
+        sortchron(qL,pres,refLng)
         
         # return dg
 
 
 def intctv(
-    # qL
+    qL=qL,
+    pres='',refLng=''
     ):
+    from functools import partial
     finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
-    finish_query_B.on_click(finish_query_f)
+    finish_query_B.on_click(partial(finish_query_f,qL=qL,pres=pres,refLng=refLng))
     # Container to hold all groups of widgets
     # Initialize the first group of widgets
     optStWdgCl(
@@ -1180,12 +1348,13 @@ def intctv(
 
 def querize(
         # qL
+        qL=qL,
         pres='',
         # tafs='ar-tafsir-al-tabari',
         refLng='',
     ):
     # if type(dicti) != type({}):
-    global qL
+    # global qL
     if type(qL) != type([]):
         print("Invalid root-filter key value pairs")
         # dicti={}
@@ -1195,10 +1364,9 @@ def querize(
     #     finished=False
     #     # while finished==False:
     # if finished==False:
-        intctv()
+        intctv(qL,pres,refLng)
     else:
 
         # colMap = getColMap(dicti)
         sortchron(qL,pres,refLng)
-
 
