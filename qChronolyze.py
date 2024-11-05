@@ -1,3 +1,71 @@
+import ipywidgets as widg
+from ipywidgets import interactive as intct
+from IPython.display import display
+
+qL = []
+container = widg.VBox(
+    # layout=widgets.Layout(
+    #             width="600px",       # Set the width to control the horizontal space
+    #             overflow_x="scroll",  # Enable horizontal scrolling if content overflows
+    #             border="1px solid black"  # Optional: add a border to make the scroll area visible
+    #         )   
+)
+
+# List to track widget groups
+combs = []
+
+strTypD = {
+    "root": "root",
+    "stem": "stem",
+    "lemma": "lem",
+    "english": "eng",
+    "All": "All"
+}
+
+strTypL = list(strTypD.keys())
+
+frmL = ["All","i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii",]
+
+poSpD = {
+    'All': 'All',
+    'Adjective': 'ADJ',
+    'Noun': 'N',
+    'Proper noun': 'PN',
+    'Verb': 'V',
+    'Imperative verbal noun': 'IMPN',
+    'Personal pronoun': 'PRON',
+    'Demonstrative pronoun': 'DEM',
+}
+
+poSpL = list(poSpD.keys())
+
+lngD = {
+    "arabic": "arb",
+    "english": "eng",
+    "bengali": "bng"
+}
+
+lngL = list(lngD.keys())
+
+lng2InpSchD = {
+    "arabic": [
+        "buckwalterScheme",
+        "arabic_Scheme"
+    ],
+    "bengali": [
+        "bengali_Scheme"
+    ],
+    "english": [
+        "english_Scheme"
+    ]
+}
+inpLngSchD = {
+    "buckwalterScheme": "bkwSch",
+    "arabic_Scheme": "arbSch",
+    "bengali_Scheme": "bngSch",
+    "english_Scheme": "engSch",
+}
+
 def confPres(pres):
     '''Sets configuration'''
     presDict={'1':'table','2':'plot'}
@@ -79,8 +147,6 @@ def confLng(refLng):
 
     tafsDict={"arabic":"ar-tafsir-al-tabari","bengali":"bn-tafseer-ibn-e-kaseer","english":"en-tafisr-ibn-kathir"}
     return tafsDict[refLng]
-
-
 
 def getSorter():
     
@@ -174,451 +240,6 @@ def getSorter():
     
     return sorter
 
-
-def querSel(rt,flt):
-    
-    frm = None
-    ptSp = None
-
-    import re
-
-    flnm = re.sub('([A-Z])','\\1?', rt)
-    if ':' in rt:
-        try:
-            # import re
-            
-            # rtOrig = rt
-            strTyp = re.compile(r'root|lem|stem(?=:)').findall(rt)[0]
-
-            srchStr = f'{frm}:'
-            if strTyp != '':
-                # direc = [f'data/{strTyp}s/']
-                frm = re.compile(r'(?<=\().*?(?=\))').findall(rt)
-                ptSp = re.compile(r'(?<=pos\:).*?(?=%)').findall(rt)
-                rt = re.compile(f'(?<={strTyp}:).*(?=$|%)').findall(rt)[0]
-                flnm = re.sub('([A-Z])','\\1?', rt)
-
-                # print(f'strTyp frm ptSp: {frm} {ptSp} {strTyp}')
-
-                if len(frm)>0:
-                    srchStr = f'({frm[0]})%20' + srchStr
-                    frm = frm[0]
-                else:
-                    frm = None
-
-                if len(ptSp)>0:
-                    srchStr = f'pos:{ptSp[0]}%20' + srchStr
-                    ptSp = ptSp[0]
-                else:
-                    ptSp = None
-
-                direcLnkDic = {
-                    # 'strTyps' : {
-                        strTyp: {
-                            'lnks' : [
-                                f"https://corpus.quran.com/qurandictionary.jsp?q=",
-                                # f"https://corpus.quran.com/search.jsp?q={srchStr}",
-                                f"https://corpus.quran.com/search.jsp?q={strTyp}:"                           
-                            ],
-                            'direc': f'data/{strTyp}s/',
-                        },
-                    # },
-                    # 'form': frm,
-                    # 'p-o-s': pos,
-                }
-        except:
-            print('\nError: unsupported string')
-    #   if '%20' in rt:
-    #         rtSpl = rt.rsplit('%20',1)
-    #         if ':' in rtSpl[1]:
-    #               frm = rtSpl[1].split(':')[0]
-    #               if frm in ['root', 'lem', 'stem']:
-    #                     rt = rtSpl[1].split(':')[1]
-    #                     links = [
-    #                           f"https://corpus.quran.com/search.jsp?q={rtSpl[0]}%20{frm}:"
-    #                     ]
-    #               else:
-    #                     print('\nError: unsupported string')
-    #         else:
-    #               print('\nError: unsupported string')
-    elif rt == '':
-        # links = [
-        #     "https://corpus.quran.com/search.jsp?q=",
-        # ]  
-        rt = flt
-        # direcs = [f'data/eng/',]
-        flnm = flt
-        direcLnkDic = {
-            # 'strTyps': {                
-                'eng': {
-                    "lnks": [
-                        "https://corpus.quran.com/search.jsp?q="
-                    ],
-                    "direc": 'data/eng/'
-                },
-            # },
-        }
-    else:
-        if 'a' in rt or 'i' in rt or 'u' in rt:
-            direcLnkDic = {
-                # 'strTyps': {
-                    'qdict': {
-                        'lnks'  : [
-                            "https://corpus.quran.com/qurandictionary.jsp?q=",
-                        ],
-                        'direc' : 'data/lems/',
-                    },
-                    'lem': {
-                        'lnks'  : [
-                            "https://corpus.quran.com/search.jsp?q=lem:",
-                        ],
-                        'direc' : 'data/lems/',
-                    },
-                    'stem': {
-                        'lnks'  : [
-                            "https://corpus.quran.com/search.jsp?q=stem:",
-                        ],
-                        'direc' : 'data/stems/',
-                    },
-                # },
-            }
-        else:
-            direcLnkDic = {
-                # 'strTyps': {
-                    'qdict': {
-                        'lnks'  : [
-                            "https://corpus.quran.com/qurandictionary.jsp?q=",
-                        ],
-                        'direc' : 'data/roots/',
-                    },
-                    'root': {
-                        'lnks'  : [
-                            "https://corpus.quran.com/search.jsp?q=root:",
-                        ],
-                        'direc' : 'data/roots/',
-                    },
-                # },
-            }
-
-    # return links, rt, flnm, direcs
-    return direcLnkDic, rt, flnm, frm, ptSp
-
-
-def dataGrabber(
-        rt,
-        flt=''
-    ):
-
-    '''Grabs data from corpus.quran.com & formats them'''
-
-    flt=str(flt).lower()
-    import requests
-    # import html2text
-    from bs4 import BeautifulSoup
-    import re
-    import json
-    import csv
-
-    def getTbl(grabhtmlPara):
-        soup = BeautifulSoup(
-            grabhtmlPara,
-            'lxml' 
-        )
-
-        tblsRet = soup.find_all(
-            "table",
-            {"class":"taf"}
-        )
-
-        return tblsRet
-
-    rtOrig = rt
-    
-    direcLnkDic, rt, flnm, frmReq, ptSpReq = querSel(rt,flt)
-
-    # poss = set()
-    tblCumul = []
-    # instLst=[]
-    instDct={}
-
-    propDat = False
-    # if len(links) != 1:
-    import os
-    for k, direcLnk in direcLnkDic.items():
-        try:
-            # for direc in direcs:
-            direc = direcLnk["direc"]
-            if f'{flnm}.tsv' in os.listdir(direc):
-                print(f"file found for {rt}")
-                with open(f'{direc}{flnm}.tsv') as f:
-                    print(f"loading {direc}{flnm}.tsv")
-                    instDict = csv.DictReader(f, delimiter='\t')
-                    # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-                    for row in instDict:
-                        surAyPos = f'{row["surah:ayah"]}:{row["position"]}'
-                        if surAyPos in instDct:
-                            if row["form"] != '':
-                                instDct[surAyPos]["form"] = row["form"]
-                            if row["p-o-s"] != '':
-                                instDct[surAyPos]["p-o-s"] = row["p-o-s"]
-                        else:
-                            instDct[surAyPos] = row
-                    # instDctNew = { f'{row["surah:ayah"]}:{row["position"]}': {**row, row[""]} }
-                    # instDct = {**instDct, **instDctNew}
-                #   tmpDat = json.loads(f.read())
-                # if type(tmpDat) == type([]):
-                #   if len(tmpDat) > 0:
-                #     if tmpDat[0] == tmpDat["surah:ayah","position","word","meaning","ayah_link"]:
-                #       propDat = True    
-                #       instLst = tmpDat
-                #       print(f"instLst loaded from 'data/roots/")
-                #   instLst = tmpDat
-                    print(f"Successfully loaded data from '{direc}{flnm}.tsv'")
-                    propDat = True
-        except:
-            propDat = False
-
-    if not propDat:
-        # tblAgg = []
-        print(f"proper data not found for {rt}")
-
-        def tblUp(tblCumul,tblAgg,instDct,frm='',ptSp=''):
-            # for tbl in tbls:
-            #     # print(tbl)
-            #     tblAgg += tbl
-
-            # print(len(tblAgg))
-            
-            # print(f"number of instances of {rt} in {lnk} before Adam filter: {len(tblAgg)}")
-
-            if len(tblAgg) > 0:
-            # if len(tbls) > 0:
-                # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-                # print(tblAgg[0].find_all('td')[1])
-                if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-                # if 'adam' in tbls[0].find_all('td')[1].get_text().lower():
-                    if rt.lower() != 'adam' and rt != 'A^dam':
-                        # print("no results")
-                        tblAgg = []
-                        # tbls = []
-
-            # print(f"number of instances of {rt} in {lnk} after Adam filter: {len(tblAgg)}")
-            # print(tblAgg)
-
-            tblCumul += tblAgg
-            # tblCumul += tbls
-
-            # print("length of tblCumul: ", len(tblCumul))
-            # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
-
-            for rw in tblCumul:
-                row = [ fld.get_text() for fld in rw.find_all("td") ]
-                # row = []
-                # for fld in rw:
-                #   row.append(fld.get_text())
-            
-                # print(row)
-                pos = row[0].split(' ')[0].strip('()')
-                # print(pos)
-                if pos not in instDct:
-                    # print(posSplit)
-                    posSplit = pos.split(':')
-                    # print(posSplit)
-                    # instLst.append({
-                    instDct[pos] = {
-                            "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-                            #   "position": int(posSplit[2]), 
-                            "position": posSplit[2], 
-                            "word": row[0].split(' ')[1], 
-                            "meaning": row[1],
-                            "form": frm,
-                            "p-o-s": ptSp,
-                            "ayah_link": row[2]
-                        }
-                    # })
-            
-                    # poss.add(pos)
-                else:
-                    if instDct[pos]["form"] == '' and frm != '':
-                        instDct[pos]["form"] = frm
-                    if instDct[pos]["p-o-s"] == '' and ptSp != '':
-                        instDct[pos]["p-o-s"] = ptSp
-
-                # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
-                
-            # print(len(tblCumul), len(instDct))
-
-            return tblCumul, instDct
-
-        # for lnk in links:
-        for k, direcLnk in direcLnkDic.items():
-            lnks = direcLnk["lnks"]
-            direc = direcLnk["direc"]
-            for lnk in lnks:
-                # print('\ngetting for link: ', lnk, '\n')
-                if lnk == 'https://corpus.quran.com/qurandictionary.jsp?q=':
-                    grabhtml = requests.get(f"{lnk}{rt}").text
-                    # print(type(grabhtml))
-
-                    import re
-
-                    headTbls = re.findall('(<h4 class="dxe">.*?(?=<h4))',grabhtml,re.DOTALL)
-
-                    # print(len(headTbls))
-
-                    for headTbl in headTbls:
-                        tblAgg = []
-                        soup = BeautifulSoup(
-                            headTbl,
-                            'lxml',
-                            # 'html.parser',
-                        )
-                        head4 = soup.find_all(
-                            "h4",
-                            {"class":"dxe"}
-                        )[0]
-
-                        # if len(tblsRet) > 0:
-                            # print(len(tblsRet) > 0)
-                            # print(len(tblsRet))
-                            # if len(tblsRet) == len(head4s):
-                            # print(len(tblsRet) == len(head4s))
-                        # for i in range(len(head4s)):
-                            # print(head4s[i].text)
-
-                        strTyp = head4.text.split('-')[0]
-                        tempForms = re.findall('\(form (.*?)\)', strTyp)
-                        if len(tempForms) == 0:
-                            tempForm = ''
-                        else:
-                            # print(tempForms[0])
-                            tempForm = tempForms[0]
-                        tempPtSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', strTyp)
-                        if len(tempPtSps) == 0:
-                            tempPtSp = ''
-                        else:
-                            # print(tempPtSps[0])
-                            tempPtSp = tempPtSps[0]
-
-                        if tempForm == '':
-                            if tempPtSp != '':
-                                tempForm = 'I'
-                        # print(
-                        #     # strTyp, 
-                        #     tempForm, 
-                        #     tempPtSp
-                        # )
-
-                        tbls = soup.find_all(
-                            "table",
-                            {"class":"taf"}
-                        )
-
-                        # tblAgg = [ tbl for tbl in tbls ]
-
-                        # print(tblsRet)
-                        for tbl in tbls:
-                            tblAgg += tbl
-                        # print("tblAgg length", len(tblAgg))
-                        tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,tempForm,tempPtSp)
-    
-    
-                else:
-                    pgs = []
-                    tblAgg = []
-                    grabhtml = requests.get(f"{lnk}{rt}").text
-                    tbls = getTbl(grabhtml)
-                    if '>\nResults <b>' in grabhtml:
-                        matches = re.findall(">\nResults <b>\d*</b> to <b>\d*</b> of <b>(\d*)</b>", grabhtml)
-                        if len(matches) > 0:
-                            pgFlt = int(matches[0])/50
-                            pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-                            # print(f"page count in {lnk} is: {pgCount}")
-                            # print(type(pgCount), pgCount)
-                            pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-                        for pg in pgs:
-                            grabhtml = requests.get(f"{lnk}{rt}{pg}").text
-                            tbls += getTbl(grabhtml)
-                            # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-                            # grabhtml += grabhtmlNew
-                            # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-                        
-                    for tbl in tbls:
-                        tblAgg += tbl
-                        
-                    # print("length of tblAgg: ", len(tblAgg))
-                    
-                    tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct)
-
-                # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-                # print(f"{tbls}\n")
-
-
-        # with open(f'data/roots/{rt}', 'w') as f:
-        #   print("writing to data/roots")
-        #   f.write(
-        #     json.dumps(instLst)
-        #   )
-        list_header = ['surah:ayah', 'position', 'word', 'meaning', 'form', 'p-o-s', 'ayah_link']
-        # if len(links) != 1:
-        with open(f'{direc}{flnm}.tsv', 'x') as f:
-            print(f"writing {rt} to '{direc}{flnm}.tsv'")
-            writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-            writer.writeheader()
-            # for datum in instLst:
-            for k, datum in instDct.items():
-                writer.writerow({
-                    list_header[0] : datum['surah:ayah'],
-                    list_header[1] : datum['position'],
-                    list_header[2] : datum['word'],
-                    list_header[3] : datum['meaning'],
-                    list_header[4] : datum['form'],
-                    list_header[5] : datum['p-o-s'],
-                    list_header[6] : datum['ayah_link'],
-                })
-
-    posDic = {
-        'ADJ': 'Adjective',
-        'N': 'Noun',
-        'PN': 'Proper noun',
-        'V': 'Verb',
-        'IMPN': 'Imperative verbal noun',
-        'PRON': 'Personal pronoun',
-        'DEM': 'Demonstrative pronoun',
-        '': '',
-    }
-    
-    # print(frmReq, ptSpReq)
-        # print(len(instLst))
-    instLst = [datum for datum in instDct.values()]
-    if frmReq != None:
-        # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
-        instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
-    if ptSpReq != None:
-        # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
-        instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
-        
-
-    return instLst
-
-    # import pandas as pd
-
-    # pd.set_option('display.max_rows', None)
-    # pd.set_option('display.max_colwidth', None)
-
-    # df = pd.DataFrame(columns = ["surah:ayah","position","word","meaning","ayah_link"])
-    # df = pd.concat([df,pd.DataFrame.from_records(data)],
-    #                 axis=0
-    #                 )
-    # df = df.drop_duplicates(['surah:ayah','position'])
-    # # df = df.drop(['position'], axis=1)
-    # df = df[df['meaning'].str.contains(flt, case=False)]
-    # df["query"] = f'{rt} ({flt})'
-
-    # return df.sort_values(["surah:ayah","position"])
-
-
 def getColMap(dicti):
     import numpy as np
     colMap = {}
@@ -644,145 +265,367 @@ def getColMap(dicti):
         # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
+def rtTrns(rt,inpLng,inpLngSch):
+    lngSts = {
+        "arb": "arbSch",
+        "eng": "engSch",
+        "bng": "bngSch"
+    }
 
-def filtDown(rt,flt):
-    import re
-    instLst = dataGrabber(rt,flt)
-    if rt == '':
-        flt = f'(?<![a-z]){str(flt).lower()}(?=$|\s|,|\?|s\s|es\s|s$|es$)'
+    bkwSch2arbSch = {
+        "'": "ء",
+        ">": "أ",
+        "&": "ؤ",
+        "<": "إ",
+        "}": "ئ",
+        "A": "ا",
+        "b": "ب",
+        "p": "ة",
+        "t": "ت",
+        "v": "ث",
+        "j": "ج",
+        "H": "ح",
+        "x": "خ",
+        "d": "د",
+        "*": "ذ",
+        "r": "ر",
+        "z": "ز",
+        "s": "س",
+        "$": "ش",
+        "S": "ص",
+        "D": "ض",
+        "T": "ط",
+        "Z": "ظ",
+        "E": "ع",
+        "g": "غ",
+        "_": "ـ",
+        "f": "ف",
+        "q": "ق",
+        "k": "ك",
+        "l": "ل",
+        "m": "م",
+        "n": "ن",
+        "h": "ه",
+        "w": "و",
+        "Y": "ى",
+        "y": "ي",
+        "F": "ي",
+        "N": "ٌ",
+        "K": "ٍ",
+        "a": "َ",
+        "u": "ُ",
+        "i": "ِ",
+        "~": "ّ",
+        "o": "ْ",
+        "^": "ٓ",
+        "#": "ٔ",
+        "`": "ٰ",
+        "{": "ٱ",
+        ":": "ۜ",
+        "@": "۟",
+        '"': "۠",
+        "[": "ۢ",
+        ";": "ۣ",
+        ",": "ۥ",
+        ".": "ۦ",
+        "!": "ۨ",
+        "-": "۪",
+        "+": "۫",
+        "%": "۬",
+        "]": "ۭ",
+    }
+    iasSch2arbSch = {
+
+    }
+
+    chrOut = {
+        "arb": {
+            "bkwSch": bkwSch2arbSch,
+            "iasSch": iasSch2arbSch,
+        },
+        "eng": {
+            "engSch": None
+        },
+        "bng": {
+            "bngSc": None
+        },
+    }
+
+    chrTrnsTbl = chrOut[inpLng][inpLngSch]
+    rtTrns = ''
+    if chrTrnsTbl != None:
+        for chr in rt:
+            chrTrns = chrTrnsTbl[chr]
+            rtTrns += chrTrns
+            # print("language schema is present\ncharacter transform: ", chrTrns)
     else:
-        flt = str(flt).lower()
-    instLstFiltered =  list(filter( 
-        lambda row : 
-            len(re.compile(flt).findall(row["meaning"].lower())) > 0 
-            # or len(re.compile(str(rt)).findall(row["meaning"])) > 0
-            , 
-            instLst
-        )
-    )
-
-    # if flt == '':
-    #     def long_substr(listy):
-    #         import re
-    #         subStrDic = {}
-    #         for sentence in listy:
-    #             for word in re.compile('(?<![a-z])[a-z]*(?=\s|es|s|\'|$)').findall(sentence):
-    #                 # print(word)
-    #                 if word not in subStrDic.keys():
-    #                     subStrDic[word] = 1
-    #                 else:
-    #                     subStrDic[word] = subStrDic[word] + 1
-    #         longestLength = 0
-    #         longest = ''
-
-    #         for k,v in subStrDic.items():
-    #             if v > longestLength:
-    #                 longestLength = v
-    #                 longest = k
-            
-    #         return longest
-
-    #     meaningLs = [row["meaning"].lower() for row in instLstFiltered]
-
-    #     flt = long_substr(meaningLs)
+        rtTrns = rt
     
-    # return instLstFiltered, flt
+    return rtTrns
+
+def filecheck(filepath):
+    import os
+    BASE_DIR = os.getcwd()
+    dirc = os.path.join(BASE_DIR,filepath)
+    subdircL = filepath.split(os.sep)
+    try:
+        subdircL.remove('')
+    except:
+        pass
+    doesPathExist = ''
+    try:
+        for supDirc in subdircL[:-1]:
+            doesPathExist = os.path.join(doesPathExist,supDirc)
+            if not os.path.exists(os.path.join(BASE_DIR,doesPathExist)):
+                os.makedirs(os.path.join(BASE_DIR,doesPathExist))
+                if os.path.exists(doesPathExist):
+                    pass
+        return os.path.isfile(os.path.join(BASE_DIR,filepath))
+    except:
+        pass
+
+def tblUp(tblCumul,tblAgg,instDct,stri,lnk
+            #   frm='',ptSp=''
+                ):
+        # for tbl in tbls:
+        #     # print(tbl)
+        #     tblAgg += tbl
+
+        # print(len(tblAgg))
+        
+        print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
+
+        if len(tblAgg) > 0:
+        # if len(tbls) > 0:
+            # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
+            print(tblAgg[0].find_all('td')[1])
+            if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
+            # if 'adam' in tbls[0].find_all('td')[1].get_text().lower():
+                if stri.lower() != 'adam' and stri != 'A^dam':
+                    # print("no results")
+                    tblAgg = []
+                    # tbls = []
+
+        print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
+        # print(tblAgg)
+
+        tblCumul += tblAgg
+        # tblCumul += tbls
+
+        print("length of tblCumul: ", len(tblCumul))
+        # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
+
+        for rw in tblCumul:
+            row = [ fld.get_text() for fld in rw.find_all("td") ]
+            # row = []
+            # for fld in rw:
+            #   row.append(fld.get_text())
+        
+            # print(row)
+            pos = row[0].split(' ')[0].strip('()')
+            # print(pos)
+            if pos not in instDct:
+                # print(posSplit)
+                posSplit = pos.split(':')
+                # print(posSplit)
+                # instLst.append({
+                instDct[pos] = {
+                        "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
+                        #   "position": int(posSplit[2]), 
+                        "position": posSplit[2], 
+                        "string": row[0].split(' ')[1], 
+                        "meaning": row[1],
+                        # "form": frm,
+                        # "p-o-s": ptSp,
+                        "ayah_link": row[2]
+                    }
+                # })
+        
+                # poss.add(pos)
+            else:
+                # if instDct[pos]["form"] == '' and frm != '':
+                #     instDct[pos]["form"] = frm
+                # if instDct[pos]["p-o-s"] == '' and ptSp != '':
+                #     instDct[pos]["p-o-s"] = ptSp
+                pass
+
+            # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
+            
+        print(len(tblCumul), len(instDct))
+        # print(tblAgg)
+
+        return tblCumul, instDct
+
+def fileGet(stri,filepath):
+        import csv
+        print(f"file found for {stri}")
+        instDct = {}
+        try:
+            with open(filepath) as f:
+                # print(f"loading {filepath}")
+                instTbl = csv.DictReader(f, delimiter='\t')
+                # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
+                for row in instTbl:
+                    surAyPos = f'{row["surah:ayah"]}:{row["position"]}'
+
+                    instDct[surAyPos] = row
+
+                print(f"Successfully loaded data from '{filepath}: lenght {len(instDct)}'")
+                # propDat = True
+        except:
+            # propDat = False
+            instDct = {}
+            print(f"couldn't load data from '{filepath}': lenght {len(instDct)}")
+        
+        return instDct
+
+def dataGrabber(
+        strObj
+    ):
+
+    '''Grabs data from corpus.quran.com & formats them'''
+
+    flt = str(strObj["flt"]).lower()
+    strTyp = strTypD[strObj["strTyp"]]
+    frm = strObj["frm"]
+    poSp = poSpD[strObj["poSp"]]
+    inpLng = lngD[strObj["inpLng"]]
+    inpSch = inpLngSchD[strObj["inpSch"]]
+    stri = strObj["stri"]
+    filename = rtTrns(strObj["stri"],inpLng,inpSch)
+
+
+    if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
+        strTyp = "root"
+
+    mainLnk = "https://corpus.quran.com/search.jsp?q="
+    isArabic = strTyp != 'eng' and stri !='' and inpLng == 'arb'
+
+    if not isArabic:
+        if flt != '' and stri =='':
+            stri = str(flt).lower()
+            flt = ''
+    lnks = []
+    if isArabic:
+        filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
+        if poSp != "All":
+            mainLnk += f"pos:{stri} "
+        if frm != "All":
+            mainLnk += f"({frm}) "
+        if strTyp !='All':
+            mainLnk += f"{strTyp}:"
+        if strTyp == 'All':
+            for strTy in ['lem','stem','room']:
+                lnks.append(
+                    f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
+                )
+            # lnks = [
+            #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
+            #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
+            #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
+            # ]
+        # lnks = [mainLnk]
+        mainLnk += stri
+        lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
+    else:
+        # lnks = [mainLnk]
+        filepath = f'data/cache/nonarb/{stri}.tsv'
+        mainLnk += stri
+    lnks = [*lnks,mainLnk]
+    
+    # instLst=[]
+
+    fileFound = filecheck(filepath)
+    # if len(links) != 1:
+    # import os
+    # for k, direcLnk in direcLnkDic.items():
+        # propDat, 
+    instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
+        # for lnk in lnks:
+
+    # posDic = {
+    #     'ADJ': 'Adjective',
+    #     'N': 'Noun',
+    #     'PN': 'Proper noun',
+    #     'V': 'Verb',
+    #     'IMPN': 'Imperative verbal noun',
+    #     'PRON': 'Personal pronoun',
+    #     'DEM': 'Demonstrative pronoun',
+    #     '': '',
+    # }
+    
+    # print(frmReq, ptSpReq)
+        # print(len(instLst))
+    instLst = [datum for datum in instDct.values()]
+    # if frmReq != None:
+    #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
+    #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
+    # if ptSpReq != None:
+    #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
+    #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
+        
+
+    return instLst
+
+def filtDown(strObj):
+    stri = strObj["stri"]
+    flt = strObj["flt"]
+    import re
+    instLst = dataGrabber(strObj)
+    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
+    # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
-def intersct(rtAgg,flAgg=''):
-    multilinear = False
-    if rtAgg.startswith('0'):
-        rtAgg = rtAgg.lstrip('0')
-        multilinear = True
-    rtList = rtAgg.split(' ')
-    if len(rtList) > 1:
-        flList = flAgg.split(' ')
-        rtFlAgg = [ { rtList[i].split('/')[j] : flList[i].split('/')[j] for j in range( len(rtList[i].split('/')) ) } for i in range(len(rtList)) ]
-        # rtFlAgg = [ { rtList[i] : flList[i]} for i in range(len(rtList)) ]
-        # rtFlAgg = { **dicti for dict in rtFlList[1] }
-        # return rtFlAgg
+def intersct(comb):
+    strL = comb["strL"]
+    if len(strL) > 0:
         instLstAgg = []
-        surahAyahAggSet = set([None])
-        for dicti in rtFlAgg:
-            instLst = []
-            for i in range(len(dicti)):
-                instLst += filtDown(list(dicti.keys())[i],list(dicti.values())[i])
-                # instLstRet, flt = filtDown(list(dicti.keys())[i],list(dicti.values())[i])
-                # instLst += instLstRet
-            # instLst = filtDown(list(dicti.keys())[0],list(dicti.values())[0])
+        surahAyahAggSet = set()
+        for i in range(len(strL)):
+            strObj = strL[i]
+            instLst = filtDown(strObj)
             surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
-            if surahAyahAggSet == set([None]):
+            if i == 0:
+            # if surahAyahAggSet == set([]):
                 surahAyahAggSet = set(surahAyahList)
             else:
-                if not multilinear:
-                    surahAyahAggSet = surahAyahAggSet.intersection(set(surahAyahList))
-                else:
-                    import re
-                    for surAy in surahAyahAggSet:
-                        print(f'\nsurAy: {surAy}\n')
-                        sur = re.compile('^.*:').search(surAy)[0]
-                        ay = re.compile('(?<=:).*$').search(surAy)[0]
-                        leastDiff = None
-                        closestAy = None
-                        for surAyNew in surahAyahList:
-                            if surAyNew.startswith(sur):
-                                print(f'\nsur, surAyNew: {sur} {surAyNew}\n')
-                                AyNew = re.compile(f'(?<=^{sur}).*(?=$)').search(surAyNew)[0]
-                                diff = abs(int(AyNew)-int(ay))
-                                if leastDiff == None:
-                                    leastDiff = diff
-                                else:
-                                    if diff < leastDiff:
-                                        leastDiff = diff
-                                        closestAy = sur+ AyNew
-                        if closestAy != None:
-                            # surahAyahAggSet = surahAyahAggSet.union(set(surahAyahList))
-                            surahAyahAggSet = surahAyahAggSet.add(closestAy)
-            # print(f'\nafter {list(dicti.keys())[0]} SUrahAyahAggSet:\n', surahAyahAggSet)
+                surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
             instLstAgg += instLst
-
-            # print(f'\nAfter {list(dicti.keys())[0]}, instLstAgg:', instLstAgg)
         
         instLstFlt = list(filter(
             lambda x: x["surah:ayah"] in surahAyahAggSet,
             instLstAgg
         ))
+        instDictInc = {}
+        for inst in instLstFlt:
+            surahAyah = inst["surah:ayah"]
+            if surahAyah not in instDictInc.keys():
+                instDictInc[surahAyah] = {
+                    "position": inst["position"],
+                    "string": inst["string"],
+                    "meaning": inst["meaning"],
+                    "ayah_link" : inst["ayah_link"],
+                    # "query": 
+                    # f"{rtAgg} ({flAgg})"
+                    # stri_flt_int_lb
+                }
+            else:
+                instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
+                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
 
-        return instLstFlt
-
-        # instDictInc = {}
-
-        # # print('\ninstLstFlt:', instLstFlt)
-
-        # for inst in instLstFlt:
-        #     surahAyah = inst["surah:ayah"]
-        #     if surahAyah not in instDictInc.keys():
-        #         instDictInc[surahAyah] = {
-        #             "position": inst["position"],
-        #             "word": inst["word"],
-        #             "meaning": inst["meaning"],
-        #             "ayah_link" : inst["ayah_link"],
-        #             "query": f"{rtAgg} ({flAgg})"
-        #         }
-        #     else:
-        #         instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
-        #         instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
-            
-        #     # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
-
-        # instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
-        # return instLstInc
+        instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
+        return instLstInc
     
-    elif len(rtList) == 1:
-        instLstFlt = filtDown(rtAgg,flAgg)
-        # instLstInc = [ { **rec, "query": f"{rtAgg} ({flAgg})" } for rec in instLstFlt ]
-        # return instLstInc
-        return instLstFlt
+    # elif len(strL) == 1:
+    #     instLstFlt = filtDown(strL[0])
+    #     instLstInc = [ { **rec, "query": f"{stri_flt_int_lb})" } for rec in instLstFlt ]
+    #     return instLstInc
     
     else:
         print("please provide at least one root/word")
 
-def aggregLsts(dicti,tafs):
+
+def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
     # lnkStyle = ' '
     fontSize = '18'
     fontCol = 'rgb(0,0,150)'
@@ -795,61 +638,24 @@ def aggregLsts(dicti,tafs):
     lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
-    # for rt in dicti.keys():
-    for optDict in dicti:
-        # instLst = []
-        # for rt, flt in optDict.items():
-        #     instLst += intersct(rt,flt)
-        instLstFlt = []
-        for rt, flt in optDict.items():
-            instLstFlt += intersct(rt,flt)
-
-        instDictInc = {}
-
-        # print('\ninstLstFlt:', instLstFlt)
-
-        for inst in instLstFlt:
-            surahAyah = inst["surah:ayah"]
-            if surahAyah not in instDictInc.keys():
-                instDictInc[surahAyah] = inst
-                # instDictInc[surahAyah] = {
-                #     "position": inst["position"],
-                #     "word": inst["word"],
-                #     "meaning": inst["meaning"],
-                #     "ayah_link" : inst["ayah_link"],
-                # }
-            else:
-                instDictInc[surahAyah]["word"] = instDictInc[surahAyah]["word"] + ' ' + inst["word"]
-                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
-            
-            # print('\ninstDictInc[surahAyah]["word"]:\n', instDictInc[surahAyah]["word"])
-
-        instLst = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
-
-        # if len(optDict) > 1:
-            # instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
-        quer = " / ".join(list(map( lambda x : x[0] + f' ({str(x[1])})' ,  list(optDict.items()) )))
-        instLst = [ 
-            { 
-                **inst, 
-                "query": quer   
-            } for inst in instLst  
-        ]
-        instLstAgg += instLst
-    # for rtFlt in dicti:
-    #     rt = list(rtFlt.keys())[0]
-    #     flt = list(rtFlt.values())[0]
-    #     # instLst = filtDown(rt,dicti[rt])
-    #     # instLst = intersct(rt,dicti[rt])
-    #     # instLstAgg += instLst
-    #     rtOptLs = rt.split('/')
-    #     # flOptLs = dicti[rt].split('/')
-    #     flOptLs = flt.split('/')
-    #     for i in range(len(rtOptLs)):
-    #         instLst = intersct(rtOptLs[i],flOptLs[i])
-    #         if len(rtOptLs) > 1:
-    #             instLst = [ { **inst, "query": f"{rt} ({flt})"} for inst in instLst  ]
-    #         instLstAgg += instLst
+    for optSt in qL:
+        print(optSt)
+        lbl = ''
+        for comb in optSt:
+            print(comb)
+            strL = comb["strL"]
+            lbl += ' / '.join([ 
+                ' '.join([
+                    strObj["stri"],
+                    strObj["flt"]
+                ]) for 
+                strObj 
+                in strL
+            ])
+            instLst = intersct(comb)
+                
+            instLst = [ { **inst, "query": lbl } for inst in instLst  ]
+            instLstAgg += instLst
     instLstAgg = [ { 
         **row, 
         "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
@@ -857,6 +663,288 @@ def aggregLsts(dicti,tafs):
         } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
+
+class strObjClass:
+    # idx = 0
+    # parentIdx = 1
+    striSt = ''
+    fltSt=''
+    strTypSt='root'
+    frmSt='All'
+    poSpSt='All'
+    inpLngSt="arabic"
+    inpSchSt="buckwalter_Scheme"
+
+
+    def __init__(self,                
+                stri = striSt,
+                flt = fltSt,
+                strTyp = strTypSt,
+                frm = frmSt,
+                poSp = poSpSt,
+                inpLng = inpLngSt,
+                inpSch = inpSchSt ,
+                #  strSt=strObjStClass()
+                #  **kwargs
+                ):
+        
+        self.stri = stri
+        self.flt = flt
+        self.strTyp = strTyp
+        self.frm = frm
+        self.poSp = poSp
+        self.inpLng = inpLng
+        self.inpSch = inpSch
+        self.strObj = {
+            "stri": stri,
+            "flt": flt,
+            "strTyp": strTyp,
+            "frm": frm,
+            "poSp": poSp,
+            "inpLng": inpLng,
+            "inpSch": inpSch,
+        }
+
+
+class combClass:
+    strLSt = []
+    vrsLsSt = 0
+    def __init__(self,strL=strLSt,vrsDis=vrsLsSt):
+      # print(combsLsA)
+      self.vrsDis = vrsDis
+      self.strL = strL
+      for strObj in strL:
+          self.strL.append(strObjClass(strObj))
+
+
+class strObWdgCl:
+    # global fulWdgD
+    # idx = 0
+    # parentIdx = 1
+    strngs = []
+    strTypSt = "root"
+    frmSt = "All"
+    poSpSt = "All"
+    inpLngSt = "arabic"
+    inpSchSt = "buckwalterScheme"
+
+    def update_language_scheme_options(self,*args):
+        # print(self.inpLngW.value)
+        self.inpSchW.options=lng2InpSchD[self.inpLngW.value]
+        self.inpSchW.value=lng2InpSchD[self.inpLngW.value][0]
+    
+    # def entStrObjM(self,*args):
+    def entStrObjM(self,button,
+                #    strngs,comb_container
+                   ):
+        strObWdgCl.strTypSt=self.strTypeW.value
+        strObWdgCl.frmSt=self.frmW.value
+        strObWdgCl.poSpSt=self.poSpW.value
+        strObWdgCl.inpLngSt=self.inpLngW.value
+        strObWdgCl.inpSchSt=self.inpSchW.value
+
+        strObWdgCl(
+            self.parentComb
+                                 )
+
+    def delStrObjM(self,button,
+                   ):
+        if len(self.parentComb.strngs) > 1:
+            if self.strContainer in self.parentComb.strngs:
+                self.parentComb.strngs.remove(self.strContainer)
+                self.parentComb.comb_container.children = [w for w in self.parentComb.comb_container.children if w != self.strContainer]
+
+    def __init__(self,
+                 parentComb,
+                ):
+
+        self.parentComb = parentComb
+
+        self.striW = widg.Text(description=f"String_Object")
+        self.fltW = widg.Text(description=f"Translation_filter")
+        self.strTypeW = widg.Dropdown(options=strTypL, value=self.strTypSt,description=f"String_type")
+        self.poSpW = widg.Dropdown(options=poSpL, value=self.poSpSt,description=f"Part_of_speech")
+        self.frmW = widg.Dropdown(options=frmL, value=self.frmSt,description=f"Form")
+        self.inpLngW = widg.Dropdown(options=lngL, value=self.inpLngSt,description=f"Input_language")
+        self.inpSchW = widg.Dropdown(description=f"Input_scheme")
+        self.entStrObjB = widg.Button(description=f"Enter String Object")
+        self.delStrObjB = widg.Button(description=f"Delete String Object")
+        self.entStrObjB.on_click(self.entStrObjM)
+        self.delStrObjB.on_click(self.delStrObjM)
+        self.inpLngW.observe(self.update_language_scheme_options)
+        self.update_language_scheme_options(self)
+
+        self.strContainer = widg.VBox(
+            [
+                self.striW,
+                self.fltW,
+                self.strTypeW,
+                self.poSpW,
+                self.frmW,
+                self.inpLngW,
+                self.inpSchW,
+                self.entStrObjB,
+                self.delStrObjB
+            ]
+        )
+
+        parentComb.strngs.append(self.strContainer)
+
+        parentComb.comb_container.children = [parentComb.comb_container.children[0], self.strContainer, *parentComb.comb_container.children[1:]]
+
+        parentComb.comb_container.layout=widg.Layout(
+            max_width="800px",       # Set the width to control the horizontal space
+            # max_height="800px",       # Set the width to control the horizontal space
+            # width="500px",       # Set the width to control the horizontal space
+            # height="200px",       # Set the width to control the horizontal space
+            # overflow="scroll",  # Enable horizontal scrolling if content overflows
+            border="1px solid black",  # Optional: add a border to make the scroll area visible
+            # display="flex",
+            # flex_flow='row',
+            overflow='scroll hidden'
+        )
+
+
+class combWdgCl:
+        # Function to add a new group of widgets
+    def entCombM(self,button):
+        # new_group_id = len(combs) + 1
+        # new_group = 
+        print(len(self.opt_container.children[1].children))
+        combWdgCl(
+            # new_group_id
+            self.combs,
+            self.opt_container
+            )
+        print(len(self.opt_container.children[1].children))
+        
+        # self.combs.append(new_group)
+        # self.container.children = list(self.container.children) + [new_group]
+
+    # Function to remove this specific group of widgets
+    def delCombM(self,button):
+        if len(self.combs) > 1:
+            if self.comb_container in self.combs:
+                self.combs.remove(self.comb_container)
+                self.opt_container.children[1].children = [w for w in self.opt_container.children[1].children if w != self.comb_container]
+    # Function to create a new group of widgets with its own Add and Remove buttons
+    def __init__(self,
+            # comb_id
+                 combs,
+                 opt_container
+            ):
+        # Widgets for the group (e.g., Text and Slider)
+
+        self.combs = combs
+        self.opt_container = opt_container
+        # print(len(self.container.children))
+
+        self.vrsDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
+        self.entCombB = widg.Button(description="Enter Combination of String Objects")
+        self.entCombB.on_click(self.entCombM)
+        self.delCombB = widg.Button(description="Delete Combination of String Objects")
+        self.delCombB.on_click(self.delCombM)
+
+        self.comb_container = widg.HBox(
+            [
+                widg.VBox(
+                    [
+                        self.vrsDistW,
+                        widg.HBox([self.entCombB, self.delCombB]),
+                    ],
+                    # layout = widgets.Layout(
+                    #     width="200px"
+                    # )
+                )
+            ],
+                # layout=widgets.Layout(
+                #     width="500px",       # Set the width to control the horizontal space
+                #     overflow_x="scroll",  # Enable horizontal scrolling if content overflows
+                #     border="1px solid black"  # Optional: add a border to make the scroll area visible
+                # )   
+        )
+
+        # strngs_container = widgets.HBox()
+
+        self.strngs = []
+
+        strObWdgCl(self)
+
+        # strngs_container.children = [initial_strng]
+
+        # strngs.append(initial_strng)
+
+        self.combs.append(self.comb_container)
+        self.opt_container.children[1].children = [self.comb_container,*self.opt_container.children[1].children,]
+
+class optStWdgCl:
+        # Function to add a new group of widgets
+    def entOptStM(self,button):
+        # new_group_id = len(combs) + 1
+        # new_group = 
+        print(len(self.container.children))
+        optStWdgCl(
+            # new_group_id
+            self.optSts,
+            self.container
+            )
+        print(len(self.container.children))
+        
+
+    # Function to remove this specific group of widgets
+    def delOptStM(self,button):
+        if len(self.combs) > 1:
+            if self.optSt_container in self.optSts:
+                self.optSts.remove(self.optSt_container)
+                self.container.children = [w for w in self.container.children if w != self.optSt_container]
+    # Function to create a new group of widgets with its own Add and Remove buttons
+    def __init__(self,
+            # comb_id
+                 optSts,
+                 container
+            ):
+        # Widgets for the group (e.g., Text and Slider)
+
+        self.optSts = optSts
+        self.container = container
+        # print(len(self.container.children))
+
+        # self.vrsDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
+        self.entOptStB = widg.Button(description="Enter Option of String Objects")
+        self.entOptStB.on_click(self.entOptStM)
+        self.delOptStB = widg.Button(description="Delete Option of String Objects")
+        self.delOptStB.on_click(self.delOptStM)
+
+        self.optSt_container = widg.VBox(
+            [
+                widg.HBox(
+                    
+                        [self.entOptStB, self.delOptStB],
+                    
+                    # layout = widgets.Layout(
+                    #     width="200px"
+                    # )
+                ),
+                widg.HBox([])
+            ],
+                # layout=widgets.Layout(
+                #     width="500px",       # Set the width to control the horizontal space
+                #     overflow_x="scroll",  # Enable horizontal scrolling if content overflows
+                #     border="1px solid black"  # Optional: add a border to make the scroll area visible
+                # )
+        )
+
+        # strngs_container = widgets.HBox()
+
+        self.combs = []
+
+        combWdgCl(
+            self.combs,
+            self.optSt_container
+        )
+
+        self.optSts.append(self.optSt_container)
+        self.container.children = [self.optSt_container,*self.container.children,]
 
 
 def tabular(df,colMap,sorter):
@@ -904,7 +992,6 @@ def tabular(df,colMap,sorter):
             colo , axis=1
         ).to_html(render_links=True,escape=False,index=False)
     )
-
 
 
 def plotDf(df,colMap,sorter):
@@ -1003,92 +1090,17 @@ def plotDf(df,colMap,sorter):
     fig.show()
 
 
-
 def sortchron(
         # dicti={},
-        dicti=[],
-        refLng='',pres=''
+        # qL=[],
+        qL,
+        pres='',
+        refLng='',
     ):
-
-    # if type(dicti) != type({}):
-    if type(dicti) != type([]):
-        print("Invalid root-filter key value pairs")
-        # dicti={}
-        dicti=[]
-    # if dicti=={}:
-    if dicti==[]:
-        finished=False
-        while finished==False:
-            inpLs=str(input(
-                """
-                separate every root buckwalter transliteration (word/lemma/stem/root) form/aggregates and corresponding English meaning-filter with ::
-
-                \'EiysaY::Isa\n\'
-
-                meaning filters are optional, you can use
-
-                \'EiysaY\n\'
-
-                For each aggregate, separate every Buckwalter form/meaning filters within a combination with a space like:
-                
-                \'Aibon maroyam::son Mary\n\'
-                
-                separate every alternative word/root and corresponding meaning filter with single slash \'/\' and its meaning filters within a combination with a space like:
-                
-                \'Aibon/wld maroyam::son/ Mary\n\'
-
-                separate every optional pair of root and meaning-filter with \'//\'
-                
-                \'EiysaY::Isa//Aibon maroyam::son Mary\n\'
-
-                separate every single pair/options of pair to be distinguished with a comma \',\' like:
-
-                \'$Tn::devil//jnn::jinn,rwH::spirit\n\'
-                
-                you can use regex in meaning filter
-
-                \'$Tn::devil,rwH::(?:spirit|soul)\n\'
-
-                for aggregates, instead of only listing ayahs containing all included forms, 
-                if you want to show closest ayahs with included forms,
-                add 0 at the beginning of the buckwalter like
-
-                \'0<iboliys jin~:: \n\'
-
-                Although it's not recommended, 
-                you can also use only English meaning without buckwalter form like following
-
-                \' ::son Maryam\n\'
-
-                But do not forget use spaces between each form in aggregate.
-
-                """
-                )
-            ).split(',')
-            if type(inpLs) == type([]) and len(inpLs) >= 1:
-              for obj in inpLs:
-                # print(f'\nobj: \'{obj}\'\n')
-                optDict = {}
-                for opt in obj.split('//'):
-                    # pair = opt.strip().split('::')
-                    pair = opt.split('::')
-                    # print(f'\npair: {pair}\n')
-                    if len(pair) == 2:
-                    #   dicti[pair[0]]=pair[1]
-                        optDict[pair[0]] = pair[1]
-                    if len(pair) == 1:
-                    #   dicti[pair[0]]=''
-                        optDict[pair[0]] = ''
-                dicti.append(optDict)
-                finished=True
-            # print(f'\ndicti: {dicti}\n')
-
+    instLstAgg = aggregLsts(qL,tafs)
+    sorter = getSorter()
     pres = confPres(pres=pres)
     tafs = confLng(refLng=refLng)
-    sorter = getSorter()
-    instLstAgg = aggregLsts(dicti,tafs)
-    # colMap = getColMap(dicti)
-
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
     df['position'] = df['position'].astype('int')
@@ -1104,3 +1116,89 @@ def sortchron(
         return tabular(df,colMap,sorter)
     if pres == "plot":
         plotDf(df,colMap,sorter)
+
+
+def finish_query_f(button):
+    global qL
+    for k in range(len(container.children)-1,-1,-1):
+        optStC = container.children[k].children[1]
+        optSt = []
+        for l in range(len(optStC.children)-1,-1,-1):
+            combC = optStC.children[l]
+            if not len(combC.children) < 2:
+                vrsDisFld = combC.children[0].children[0]
+                print(vrsDisFld.description, vrsDisFld.value)
+                # combObj = combClass()
+                combObj = {"strL":[],"vrsDis":vrsDisFld.value}
+                for i in range(len(combC.children)-1,0,-1):
+                    strCs = combC.children[i]
+                # for strObj in comb.children:
+                    # print('\n', strCs)
+                    strCFlds = strCs.children
+                    # print(strCFlds)
+                    strAtts = ["stri","flt","strTyp","poSp","frm","inpLng","inpSch"]
+                    # if True:
+                    # strD = strObjClass()
+                    strD = {}
+                    if strCFlds[0].value != '' or strCFlds[1].value != '':
+                        for j in range(7):
+                            fld = strCFlds[j]
+                            # print(fld.description, fld.value)
+                            # print(strD[strAtts[j]], fld.value)
+                            # strD.strObj[strAtts[j]] = fld.value
+                            strD[strAtts[j]] = fld.value
+                        # print(strD)
+                        # print(strD.strObj)
+                        # combObj.strL.append(strD.strObj)
+                        combObj["strL"].append(strD)
+                # if len(combObj.strL) > 0:
+                if len(combObj["strL"]) > 0:
+                    optSt.append(combObj)
+            if len(optSt) > 0:
+                qL.append(optSt)
+                # qL.append(combObj.__dict__)
+        # dg = aggregLsts(qL)
+        # sortchron(dg)
+        sortchron(qL,)
+        
+        # return dg
+
+
+def intctv(
+    # qL
+    ):
+    finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
+    finish_query_B.on_click(finish_query_f)
+    # Container to hold all groups of widgets
+    # Initialize the first group of widgets
+    optStWdgCl(
+        # 1
+        combs,
+        container
+        )
+    display(finish_query_B,container,)
+
+def querize(
+        # qL
+        pres='',
+        # tafs='ar-tafsir-al-tabari',
+        refLng='',
+    ):
+    # if type(dicti) != type({}):
+    global qL
+    if type(qL) != type([]):
+        print("Invalid root-filter key value pairs")
+        # dicti={}
+        qL=[]
+    # if dicti=={}:
+    if qL==[]:
+    #     finished=False
+    #     # while finished==False:
+    # if finished==False:
+        intctv()
+    else:
+
+        # colMap = getColMap(dicti)
+        sortchron(qL,pres,refLng)
+
+
