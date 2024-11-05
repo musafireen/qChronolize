@@ -652,8 +652,8 @@ def dataGrabber(
     filename = rtTrns(strObj["stri"],inpLng,inpSch)
 
 
-    if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
-        strTyp = "root"
+    # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
+    #     strTyp = "root"
 
     mainLnk = "https://corpus.quran.com/search.jsp?q="
     isArabic = strTyp != 'eng' and stri !='' and inpLng == 'arb'
