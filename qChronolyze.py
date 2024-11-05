@@ -49,7 +49,7 @@ lngL = list(lngD.keys())
 
 lng2InpSchD = {
     "arabic": [
-        "buckwalterScheme",
+        "buckwalter_Scheme",
         "arabic_Scheme"
     ],
     "bengali": [
@@ -60,7 +60,7 @@ lng2InpSchD = {
     ]
 }
 inpLngSchD = {
-    "buckwalterScheme": "bkwSch",
+    "buckwalter_Scheme": "bkwSch",
     "arabic_Scheme": "arbSch",
     "bengali_Scheme": "bngSch",
     "english_Scheme": "engSch",
@@ -614,7 +614,9 @@ def webGet(stri,lnks,filepath,poSp,frm):
         # print(f"{tbls}\n")
 
 
-    list_header = ['surah:ayah', 'position', 'string', 'meaning', 'form', 'p-o-s', 'ayah_link']
+    list_header = ['surah:ayah', 'position', 'string', 'meaning', 'ayah_link'
+                #    'form', 'p-o-s', 
+        ]
     print(f"writing {stri} to '{filepath}'")
     with open(f'{filepath}', 'x') as f:
         # print(f"writing {stri} to '{filepath}'")
@@ -628,9 +630,9 @@ def webGet(stri,lnks,filepath,poSp,frm):
                 list_header[1] : datum['position'],
                 list_header[2] : datum['string'],
                 list_header[3] : datum['meaning'],
+                list_header[4] : datum['ayah_link'],
                 # list_header[4] : datum['form'],
                 # list_header[5] : datum['p-o-s'],
-                list_header[6] : datum['ayah_link'],
             })
     
     return instDct
@@ -865,13 +867,26 @@ class strObjClass:
 
 class combClass:
     strLSt = []
-    vrsLsSt = 0
-    def __init__(self,strL=strLSt,vrsDis=vrsLsSt):
+    vrsDisSt = 0
+    combObjSt = {
+        "strL": [],
+        "vrsDis": 0,
+    }
+    def __init__(self,strL=strLSt,vrsDis=vrsDisSt):
       # print(combsLsA)
       self.vrsDis = vrsDis
-      self.strL = strL
-      for strObj in strL:
-          self.strL.append(strObjClass(strObj))
+      # print(strL)
+      # for strObj in [{"stri":"EiysaY"}]:
+      #     print(strObjClass(strObj).strObj)
+    #   print([strObjClass(**strObj).strObj for strObj in strL ])
+      self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
+    #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
+      # for strObj in strL:
+      #     self.strL.append(strObjClass(strObj))
+      self.combObj = {
+          "strL": self.strL,
+          "vrsDis": self.vrsDis,
+      }
 
 
 class strObWdgCl:
@@ -965,6 +980,8 @@ class strObWdgCl:
 
 class combWdgCl:
         # Function to add a new group of widgets
+    vrsDisSt = combClass.vrsDisSt
+    strLSt = combClass.strLSt
     def entCombM(self,button):
         # new_group_id = len(combs) + 1
         # new_group = 
@@ -1146,9 +1163,12 @@ def tabular(df,colMap,sorter):
             + 'opacity: 1;' 
         ] * len(s)
     
-    return HTML(df.style.apply(
-            colo , axis=1
-        ).to_html(render_links=True,escape=False,index=False)
+    display(
+        HTML(df.style.apply(
+                colo , axis=1
+            ).to_html(render_links=True,escape=False,index=False)
+        )
+
     )
 
 
@@ -1269,15 +1289,15 @@ def sortchron(
     # df.reset_index(inplace=True)
     
     colMap = getColMap(df["query"].unique())
-    display()
+    # display()
     if pres == "table":
         return tabular(df,colMap,sorter)
     if pres == "plot":
         plotDf(df,colMap,sorter)
-    qL = []
+    # qL = []
 
-    from IPython import get_ipython 
-    get_ipython().magic('reset -sf')
+    # from IPython import get_ipython 
+    # get_ipython().magic('reset -sf')
 
 
 def finish_query_f(button,qL=qL,pres='',refLng=''):
@@ -1363,7 +1383,10 @@ def querize(
     # if finished==False:
         intctv(qL,pres,refLng)
     else:
-
+        qL = [
+            [combClass(**comb).combObj for comb in optLs]
+            for optLs in qL
+        ]
         # colMap = getColMap(dicti)
         sortchron(qL,pres,refLng)
 
