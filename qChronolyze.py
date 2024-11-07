@@ -269,7 +269,10 @@ def rtTrns(rt,inpLng,inpLngSch):
     rtTrns = ''
     if chrTrnsTbl != None:
         for chr in rt:
-            chrTrns = chrTrnsTbl[chr]
+            if chr in chrTrnsTbl.keys():
+                chrTrns = chrTrnsTbl[chr]
+            else:
+                chrTrns = chr
             rtTrns += chrTrns
             # print("language schema is present\ncharacter transform: ", chrTrns)
     else:
@@ -561,7 +564,7 @@ def dataGrabber(
     flt = str(strObj["flt"]).lower()
     strTyp = strTypD[strObj["strTyp"]]
     frm = strObj["frm"]
-    poSp = poSpD[strObj["poSp"]]
+    poSp = strObj["poSp"] if strObj["poSp"] in poSpD.values() else poSpD[strObj["poSp"]]
     inpLng = lngD[strObj["inpLng"]]
     inpSch = inpLngSchD[strObj["inpSch"]]
     stri = strObj["stri"]
@@ -1197,7 +1200,7 @@ def sortchron(
     tafs = tafsDict[refLng]
     instLstAgg = aggregLsts(qL,tafs)
     import pandas as pd
-    df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
+    df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","string","meaning","ayah_link","query"])
     df['position'] = df['position'].astype('int')
     df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
     df.sort_values(["surah:ayah","position"],inplace=True)
