@@ -1,18 +1,14 @@
 import ipywidgets as widg
 from ipywidgets import interactive as intct
-from IPython.display import display
-
-qL = []
-container = widg.VBox(
-    # layout=widgets.Layout(
-    #             width="600px",       # Set the width to control the horizontal space
-    #             overflow_x="scroll",  # Enable horizontal scrolling if content overflows
-    #             border="1px solid black"  # Optional: add a border to make the scroll area visible
-    #         )   
-)
+from IPython.display import display, clear_output
 
 # List to track widget groups
-combs = []
+
+presD={'1':'table','2':'plot'}
+
+refLngD={'1':'arabic','2':'bengali','3':'english'}
+
+tafsDict={"arabic":"ar-tafsir-al-tabari","bengali":"bn-tafseer-ibn-e-kaseer","english":"en-tafisr-ibn-kathir"}
 
 strTypD = {
     "root": "root",
@@ -65,88 +61,6 @@ inpLngSchD = {
     "bengali_Scheme": "bngSch",
     "english_Scheme": "engSch",
 }
-
-def confPres(pres):
-    '''Sets configuration'''
-    presDict={'1':'table','2':'plot'}
-    if pres not in presDict.values():
-      if pres in presDict.keys():
-        pres=presDict[pres]
-      else:
-        if pres=='' or pres=='None':
-            print('No presentation style provided')
-        else:
-            print('Invalid presentation style:', pres)
-        pres=''
-
-        import os
-        import re
-
-        if not os.path.isfile('./cnf.txt'):
-          with open('./cnf.txt', 'w') as f:
-              f.write(f, '')
-        with open('./cnf.txt') as f:
-            txt = f.read()
-        for m in re.compile('(?<=presentation\=).*?(?=$|\n)').findall(txt):
-            pres+=m
-        if len(pres) > 1:
-            print(pres, 'found in cnf.txt')
-        while pres not in presDict.values():
-            print(f'{pres} not valid presentation style')
-            pres = str(input(
-               'Please provide presentation style:\n1 for table \n2 for plot (default)'+ 
-               '\n\n(You can change later from \'cnf.txt\')'
-               )).lower() or 'plot'
-            if pres == '' or pres == 'None':
-               pres = '2'
-            if pres in presDict.keys() or pres in presDict.values():
-              if pres in presDict.keys():
-                pres = presDict[pres]
-              import re
-              import functools
-              newTxt = re.compile(r'(?=^|\n)presentation\=.*(?=\n|$)').sub('',txt) + f'presentation={pres}\n'
-              with open('./cnf.txt','w') as f:
-                    f.write(newTxt)
-    print(f'{pres} style choosen for presentation.')
-    return pres
-
-def confLng(refLng):
-    lngDict={'1':'arabic','2':'bengali','3':'english'}
-    if refLng not in lngDict.values():
-      if refLng in lngDict.keys():
-          refLng=lngDict[refLng]
-      else:
-        if refLng=='' or refLng=='None':
-            print('No tafsir language provided')
-        else:
-            print('Invalid tafsir language:', refLng)
-        refLng=''
-        import re
-        with open('./cnf.txt') as f:
-            txt = f.read()
-        for m in re.compile('(?<=refLng\=).*(?=$|\n)').findall(txt):
-            refLng+=m
-        if len(refLng) > 0:
-            print(refLng, 'found in cnf.txt')
-        while refLng not in lngDict.values():
-            print('no valid tafsir language!')
-            refLng = str(input(
-               'Please choose tafsir language:\n1 for Arabic \n2 for Bengali \n3 for English (default) '+
-               '\n\n(You can change later from \'cnf.txt\')'
-               )).lower()
-            if refLng == '' or refLng == 'None':
-               refLng = '3'
-            if refLng in lngDict.values() or refLng in lngDict.keys():
-              if refLng in lngDict.keys():
-                refLng=lngDict[refLng]
-              import re
-              newTxt = re.compile(r'(?=^|\n)refLng\=.*(?=\n|$)').sub('',txt) + f'refLng={refLng}\n'
-              with open('./cnf.txt','w') as f:
-                  f.write(newTxt)
-    print(f'{refLng} language choosen for reference.')
-
-    tafsDict={"arabic":"ar-tafsir-al-tabari","bengali":"bn-tafseer-ibn-e-kaseer","english":"en-tafisr-ibn-kathir"}
-    return tafsDict[refLng]
 
 def getSorter():
     
@@ -873,6 +787,7 @@ class combClass:
         "vrsDis": 0,
     }
     def __init__(self,strL=strLSt,vrsDis=vrsDisSt):
+    #   global strObjClass
       # print(combsLsA)
       self.vrsDis = vrsDis
       # print(strL)
@@ -1162,7 +1077,7 @@ def tabular(df,colMap,sorter):
             + 'color: black;'
             + 'opacity: 1;' 
         ] * len(s)
-    
+    clear_output()
     display(
         HTML(df.style.apply(
                 colo , axis=1
@@ -1265,6 +1180,7 @@ def plotDf(df,colMap,sorter):
     #  range=[0,len(df)],
         title='query'
     )
+    clear_output()
     fig.show()
 
 
@@ -1272,12 +1188,13 @@ def sortchron(
         # dicti={},
         # qL=[],
         qL,
-        pres='',
-        refLng='',
+        pres='plot',
+        refLng='english',
     ):
     sorter = getSorter()
-    pres = confPres(pres=pres)
-    tafs = confLng(refLng=refLng)
+    # pres = confPres(pres=pres)
+    # tafs = confLng(refLng=refLng)
+    tafs = tafsDict[refLng]
     instLstAgg = aggregLsts(qL,tafs)
     import pandas as pd
     df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","word","meaning","ayah_link","query"])
@@ -1300,7 +1217,7 @@ def sortchron(
     # get_ipython().magic('reset -sf')
 
 
-def finish_query_f(button,qL=qL,pres='',refLng=''):
+def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english'):
     # global qL
     for k in range(len(container.children)-1,-1,-1):
         optStC = container.children[k].children[1]
@@ -1348,12 +1265,20 @@ def finish_query_f(button,qL=qL,pres='',refLng=''):
 
 
 def intctv(
-    qL=qL,
+    qL=[],
     pres='',refLng=''
     ):
+    container = widg.VBox(
+        # layout=widgets.Layout(
+        #             width="600px",       # Set the width to control the horizontal space
+        #             overflow_x="scroll",  # Enable horizontal scrolling if content overflows
+        #             border="1px solid black"  # Optional: add a border to make the scroll area visible
+        #         )   
+    )
+    combs = []
     from functools import partial
     finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
-    finish_query_B.on_click(partial(finish_query_f,qL=qL,pres=pres,refLng=refLng))
+    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,pres=pres,refLng=refLng))
     # Container to hold all groups of widgets
     # Initialize the first group of widgets
     optStWdgCl(
@@ -1361,32 +1286,83 @@ def intctv(
         combs,
         container
         )
+    clear_output()
     display(finish_query_B,container,)
+
+def confFcheck(pres='plot',refLng='english'):
+    if pres not in presD.values():
+      if str(pres) in presD.keys():
+        pres=presD[pres]
+      else:
+        presFound = False
+        with open("./cnf.json") as f:
+            import json
+            confD = json.loads(f.read())
+            print(confD)
+            if 'pres' in confD.keys():
+                print('pres found in cnf.txt', pres)
+                if confD['pres'] in presD.values():
+                    pres = confD['pres']
+                    presFound = True
+        if not presFound:
+            print('pres not found in cnf.txt')
+            pres = "plot"
+    if refLng not in refLngD.values():
+      if str(refLng) in refLng.keys():
+        refLng=refLngD[refLng]
+      else:
+        refLngFound = False
+        with open("./cnf.json") as f:
+            import json
+            confD = json.loads(f.read())
+            print(confD)
+            if 'refLng' in confD.keys():
+                print('refLng found in cnf.txt', refLng)
+                if confD['refLng'] in presD.values():
+                    refLng = confD['refLng']
+                    refLngFound = True
+        if not refLngFound:
+            refLng = "english"
+    return pres, refLng
 
 def querize(
         # qL
-        qL=qL,
-        pres='',
+        qL=[],
+        # qL=[],
+        pres='plot',
         # tafs='ar-tafsir-al-tabari',
-        refLng='',
+        refLng='english',
     ):
-    # if type(dicti) != type({}):
-    # global qL
-    if type(qL) != type([]):
-        print("Invalid root-filter key value pairs")
-        # dicti={}
-        qL=[]
-    # if dicti=={}:
-    if qL==[]:
-    #     finished=False
-    #     # while finished==False:
-    # if finished==False:
-        intctv(qL,pres,refLng)
-    else:
-        qL = [
-            [combClass(**comb).combObj for comb in optLs]
-            for optLs in qL
-        ]
-        # colMap = getColMap(dicti)
-        sortchron(qL,pres,refLng)
-
+    global presD
+    global refLngD
+    pres, refLng = confFcheck(pres,refLng)
+    presW = widg.Dropdown(description="Presentation style",options=presD.values(),value=pres)
+    refLngW = widg.Dropdown(description="Tafsir Language",options=refLngD.values(),value=refLng)
+    def submConf(button,qL=qL,pres=presW.value,refLng=refLngW.value):
+        clear_output()
+        with open('./cnf.txt', 'w+') as f:
+            import json
+            f.write(json.dumps({"pres":pres,"refLng":refLng}))
+        if type(qL) != type([]):
+            print("Invalid root-filter key value pairs")
+            # dicti={}
+            qL=[]
+        # if dicti=={}:
+        if qL==[]:
+        #     finished=False
+        #     # while finished==False:
+        # if finished==False:
+            intctv(qL,pres,refLng)
+        else:
+            qL = [
+                [combClass(**comb).combObj for comb in optLs]
+                for optLs in qL
+            ]
+            # colMap = getColMap(dicti)
+            sortchron(qL,pres,refLng)
+    confSetB = widg.Button(description='Enter configuration')
+    from functools import partial
+    confSetB.on_click(partial(submConf,qL=qL,pres=presW.value,refLng=refLngW.value))
+    confCont = widg.VBox([presW,refLngW,confSetB])
+    clear_output()
+    display(confCont)
