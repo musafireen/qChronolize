@@ -301,6 +301,17 @@ def filecheck(filepath):
     except:
         pass
 
+
+class row2DictCl:
+    def __init__(self,surah_ayah='',position='',string='',meaning='',ayah_link='',query=''):
+        self.surah_ayah = surah_ayah
+        self.position = position
+        self.string = string
+        self.meaning = meaning
+        self.ayah_link = ayah_link
+        self.query = query
+
+
 def tblUp(tblCumul,tblAgg,instDct,stri,lnk
             #   frm='',ptSp=''
                 ):
@@ -346,17 +357,24 @@ def tblUp(tblCumul,tblAgg,instDct,stri,lnk
                 posSplit = pos.split(':')
                 # print(posSplit)
                 # instLst.append({
-                instDct[pos] = {
-                        "surah:ayah": f'{posSplit[0]}:{posSplit[1]}',
-                        #   "position": int(posSplit[2]), 
-                        "position": posSplit[2], 
-                        "string": row[0].split(' ')[1], 
-                        "meaning": row[1],
-                        # "form": frm,
-                        # "p-o-s": ptSp,
-                        "ayah_link": row[2]
-                    }
-                # })
+                instDct[pos] = row2DictCl(
+                    f'{posSplit[0]}:{posSplit[1]}', 
+                    posSplit[2], 
+                    row[0].split(' ')[1], 
+                    row[1], 
+                    row[2], 
+                )
+                # instDct[pos] = {
+                #         "surah_ayah": f'{posSplit[0]}:{posSplit[1]}',
+                #         #   "position": int(posSplit[2]), 
+                #         "position": posSplit[2], 
+                #         "string": row[0].split(' ')[1], 
+                #         "meaning": row[1],
+                #         # "form": frm,
+                #         # "p-o-s": ptSp,
+                #         "ayah_link": row[2]
+                #     }
+                # # })
         
                 # poss.add(pos)
             else:
@@ -383,9 +401,13 @@ def fileGet(stri,filepath):
                 instTbl = csv.DictReader(f, delimiter='\t')
                 # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
                 for row in instTbl:
-                    surAyPos = f'{row["surah:ayah"]}:{row["position"]}'
+                    surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
+                    # print('for ', surAyPos)
+                    # surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
 
-                    instDct[surAyPos] = row
+                    # instDct[surAyPos] = row
+                    instDct[surAyPos] = row2DictCl(**row)
+                    # print(instDct[surAyPos].__dict__)
 
                 print(f"Successfully loaded data from '{filepath}: lenght {len(instDct)}'")
                 # propDat = True
@@ -531,7 +553,7 @@ def webGet(stri,lnks,filepath,poSp,frm):
         # print(f"{tbls}\n")
 
 
-    list_header = ['surah:ayah', 'position', 'string', 'meaning', 'ayah_link'
+    list_header = ['surah_ayah', 'position', 'string', 'meaning', 'ayah_link'
                 #    'form', 'p-o-s', 
         ]
     print(f"writing {stri} to '{filepath}'")
@@ -541,13 +563,19 @@ def webGet(stri,lnks,filepath,poSp,frm):
         writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
         writer.writeheader()
         # for datum in instLst:
-        for k, datum in instDct.items():
+        # for k, datum in instDct.items():
+        for datum in instDct.values():
             writer.writerow({
-                list_header[0] : datum['surah:ayah'],
-                list_header[1] : datum['position'],
-                list_header[2] : datum['string'],
-                list_header[3] : datum['meaning'],
-                list_header[4] : datum['ayah_link'],
+                # list_header[0] : datum['surah_ayah'],
+                # list_header[1] : datum['position'],
+                # list_header[2] : datum['string'],
+                # list_header[3] : datum['meaning'],
+                # list_header[4] : datum['ayah_link'],
+                list_header[0] : datum.surah_ayah,
+                list_header[1] : datum.position,
+                list_header[2] : datum.string,
+                list_header[3] : datum.meaning,
+                list_header[4] : datum.ayah_link,
                 # list_header[4] : datum['form'],
                 # list_header[5] : datum['p-o-s'],
             })
@@ -561,14 +589,23 @@ def dataGrabber(
 
     '''Grabs data from corpus.quran.com & formats them'''
 
-    flt = str(strObj["flt"]).lower()
-    strTyp = strTypD[strObj["strTyp"]]
-    frm = strObj["frm"]
-    poSp = strObj["poSp"] if strObj["poSp"] in poSpD.values() else poSpD[strObj["poSp"]]
-    inpLng = lngD[strObj["inpLng"]]
-    inpSch = inpLngSchD[strObj["inpSch"]]
-    stri = strObj["stri"]
-    filename = rtTrns(strObj["stri"],inpLng,inpSch)
+    flt = str(strObj.flt).lower()
+    frm = strObj.frm
+    strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
+    poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
+    inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
+    inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
+    stri = strObj.stri
+    filename = rtTrns(stri,inpLng,inpSch)
+
+    # flt = str(strObj["flt"]).lower()
+    # strTyp = strTypD[strObj["strTyp"]]
+    # frm = strObj["frm"]
+    # poSp = strObj["poSp"] if strObj["poSp"] in poSpD.values() else poSpD[strObj["poSp"]]
+    # inpLng = lngD[strObj["inpLng"]]
+    # inpSch = inpLngSchD[strObj["inpSch"]]
+    # stri = strObj["stri"]
+    # filename = rtTrns(strObj["stri"],inpLng,inpSch)
 
 
     # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
@@ -644,23 +681,28 @@ def dataGrabber(
     return instLst
 
 def filtDown(strObj):
-    stri = strObj["stri"]
-    flt = strObj["flt"]
+    stri = strObj.stri
+    flt = strObj.flt
+    # stri = strObj["stri"]
+    # flt = strObj["flt"]
     import re
     instLst = dataGrabber(strObj)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
+    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
+    # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
 def intersct(comb):
-    strL = comb["strL"]
+    # strL = comb["strL"]
+    strL = comb.strL
     if len(strL) > 0:
         instLstAgg = []
         surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            surahAyahList = [ inst["surah:ayah"] for inst in instLst ]
+            surahAyahList = [ inst.surah_ayah for inst in instLst ]
+            # surahAyahList = [ inst["surah_ayah"] for inst in instLst ]
             if i == 0:
             # if surahAyahAggSet == set([]):
                 surahAyahAggSet = set(surahAyahList)
@@ -669,27 +711,33 @@ def intersct(comb):
             instLstAgg += instLst
         
         instLstFlt = list(filter(
-            lambda x: x["surah:ayah"] in surahAyahAggSet,
+            # lambda x: x["surah_ayah"] in surahAyahAggSet,
+            lambda x: x.surah_ayah in surahAyahAggSet,
             instLstAgg
         ))
         instDictInc = {}
         for inst in instLstFlt:
-            surahAyah = inst["surah:ayah"]
+            # surahAyah = inst["surah_ayah"]
+            surahAyah = inst.surah_ayah
             if surahAyah not in instDictInc.keys():
-                instDictInc[surahAyah] = {
-                    "position": inst["position"],
-                    "string": inst["string"],
-                    "meaning": inst["meaning"],
-                    "ayah_link" : inst["ayah_link"],
-                    # "query": 
-                    # f"{rtAgg} ({flAgg})"
-                    # stri_flt_int_lb
-                }
+                instDictInc[surahAyah] = inst
+                # instDictInc[surahAyah] = {
+                #     "position": inst["position"],
+                #     "string": inst["string"],
+                #     "meaning": inst["meaning"],
+                #     "ayah_link" : inst["ayah_link"],
+                #     # "query": 
+                #     # f"{rtAgg} ({flAgg})"
+                #     # stri_flt_int_lb
+                # }
             else:
-                instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
-                instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+                # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
+                # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+                instDictInc[surahAyah].string = instDictInc[surahAyah].string + ' ' + inst.string
+                instDictInc[surahAyah].meaning = instDictInc[surahAyah].meaning + ' ' + inst.meaning
 
-        instLstInc = [ {"surah:ayah":k, **v } for k, v in instDictInc.items() ]
+        # instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
+        instLstInc = [ v for v in instDictInc.values() ]
         return instLstInc
     
     # elif len(strL) == 1:
@@ -720,22 +768,35 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
         optStInsts = []
         for comb in optSt:
             print(comb)
-            strL = comb["strL"]
+            strL = comb.strL
+            # strL = comb["strL"]
             lblParts += [' + '.join([ 
-                f'{strObj["stri"]} ({strObj["flt"]})' for 
+                f'{strObj.stri} ({strObj.flt})' for 
+                # f'{strObj["stri"]} ({strObj["flt"]})' for 
                 strObj 
                 in strL
             ])]
             combInstLst = intersct(comb)
             optStInsts += combInstLst
         lbl = ' / '.join(lblParts)
-        instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
-        instLstAgg += instLst
-    instLstAgg = [ { 
-        **row, 
-        "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
-        # "ayah_link": f"<a href='https://quran.com/{row['surah:ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
-        } for row in instLstAgg ]
+        # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
+        for inst in optStInsts:
+            inst.query = lbl
+        instLstAgg += optStInsts
+        # instLstAgg += instLst
+    for row in instLstAgg:
+        row.ayah_link= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
+        # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+    # instLstAgg = [ { 
+    #     **row, 
+    #     "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+    #     # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+    #     } for row in instLstAgg ]
+    # instLstAgg = [ { 
+    #     **row.__dict__, 
+    #     "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
+    #     # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
+    #     } for row in instLstAgg ]
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
@@ -771,15 +832,15 @@ class strObjClass:
         self.poSp = poSp
         self.inpLng = inpLng
         self.inpSch = inpSch
-        self.strObj = {
-            "stri": stri,
-            "flt": flt,
-            "strTyp": strTyp,
-            "frm": frm,
-            "poSp": poSp,
-            "inpLng": inpLng,
-            "inpSch": inpSch,
-        }
+        # self.strObj = {
+        #     "stri": stri,
+        #     "flt": flt,
+        #     "strTyp": strTyp,
+        #     "frm": frm,
+        #     "poSp": poSp,
+        #     "inpLng": inpLng,
+        #     "inpSch": inpSch,
+        # }
 
 
 class combClass:
@@ -797,14 +858,15 @@ class combClass:
       # for strObj in [{"stri":"EiysaY"}]:
       #     print(strObjClass(strObj).strObj)
     #   print([strObjClass(**strObj).strObj for strObj in strL ])
-      self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
+    #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
+      self.strL = [ strObjClass(**strObj) for strObj in strL  ]
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
       # for strObj in strL:
       #     self.strL.append(strObjClass(strObj))
-      self.combObj = {
-          "strL": self.strL,
-          "vrsDis": self.vrsDis,
-      }
+    #   self.combObj = {
+    #       "strL": self.strL,
+    #       "vrsDis": self.vrsDis,
+    #   }
 
 
 class strObWdgCl:
@@ -1065,7 +1127,8 @@ def tabular(df,colMap,sorter):
         map(
             lambda x: compareDict[x],
             # df["surah"]
-            df["surah:ayah"]
+            df["surah_ayah"]
+            # df["surah_ayah"]
             )
         )
     )
@@ -1097,36 +1160,44 @@ def plotDf(df,colMap,sorter):
     # from plotly.offline import iplot, init_notebook_mode
     # init_notebook_mode()
 
-    ay_ln = df.groupby(['surah:ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
-    pos = df.groupby(['surah:ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
+    # ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    # pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
 
-    df = df.drop_duplicates(subset=['surah:ayah', 'query'], keep="first").reset_index(drop=True)
+    # df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
+    ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
+
+    df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
 
     df["position"] = pos[0]
     df["ayah_link"] = ay_ln[0]
     
-    df["ayah_link"] = list(df["surah:ayah"]) + df["ayah_link"]
+    df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
+    # df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
     df.reset_index(inplace=True)
 
-
+    # width=((len(df["query"].unique()))*20)+600
+    # print(width,len(df["query"].unique()), df["query"].unique())
     fig = px.scatter(
         df,
-        # x='surah:ayah',
+        # x='surah_ayah',
         x='query',
-        y='surah:ayah',
+        # y='surah_ayah',
+        y='surah_ayah',
         # y='ayah_link',
         # y='index',
         color='query',
         hover_data={
         'ayah_link':True,
         'query': False, 
-        'surah:ayah': False,
+        'surah_ayah': False,
+        # 'surah_ayah': False,
         'index': False
         },
     #  color_continuous_scale=["green","yellow","orange","red"],
         # color_discrete_map=colMap,
         # height=((len(df))*7)+200,
-        width=((len(df["query"].unique()))*20)+600,
+        # width=((len(df["query"].unique()))*30)+500,
         # height=1200,
         # width=(len(sorter))/8+500,
         height=(len(sorter))/8+500+8*max([len(s) for s in df["query"].unique()]),
@@ -1137,7 +1208,6 @@ def plotDf(df,colMap,sorter):
     # )
 
     # # fig.layout=go.Layout(clickmode='event+select')
-    
     fig.update_layout(
     #  hovermode=False,
         clickmode='event+select',
@@ -1151,7 +1221,8 @@ def plotDf(df,colMap,sorter):
             # font_size=15,
             # font_color='rgb(0,0,0)',
             bgcolor = 'rgb(220,220,250)'
-        )
+        ),
+        # xaxis=dict(dtick=1),
     #  itemclick='toggle'
     )
 
@@ -1161,7 +1232,7 @@ def plotDf(df,colMap,sorter):
     #       fig.add_trace(
     #           go.Scatter(
     #               y=tbl.ayah_link,
-    #               x=tbl['surah:ayah'],
+    #               x=tbl['surah_ayah'],
     #               name=rt +  f' ({dicti[rt]})' if dicti[rt] != None or dicti[rt] != '' else '',
     #               mode='markers',
     #               # customdata=dataGrabber(tafs,rt,dicti[rt]).ayah_link,
@@ -1172,17 +1243,29 @@ def plotDf(df,colMap,sorter):
     #           ),
     #           secondary_y=True
     #       )
+    
+    fig.update_traces(
+        hovertemplate=
+        "query: %{x}<br>"
+        "%{customdata[0]}"
+        "<extra></extra>"
+    )
+
     fig.update_yaxes(
         categoryorder='array',
         categoryarray=sorter,
         range=[0,len(sorter)],
-        title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
+        title=" (earlier)   -->  'Surah_Ayah' (Chronologically Ordered)  -->   (latter)"
+        # title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
     )
     fig.update_xaxes(
     #  showticklabels=False,
     #  range=[0,len(df)],
-        title='query'
+        title='query',
+        dtick=1,
+        tickangle=30
     )
+
     clear_output()
     fig.show()
 
@@ -1200,10 +1283,16 @@ def sortchron(
     tafs = tafsDict[refLng]
     instLstAgg = aggregLsts(qL,tafs)
     import pandas as pd
-    df = pd.DataFrame(instLstAgg,columns = ["surah:ayah","position","string","meaning","ayah_link","query"])
+    # clear_output()
+    # print([obj.__dict__ for obj in instLstAgg])
+    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    # df = pd.DataFrame(instLstAgg,columns = ["surahayah","position","string","meaning","ayah_link","query"])
     df['position'] = df['position'].astype('int')
-    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah:ayah","position"],inplace=True)
+    # df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
+    # df.sort_values(["surah_ayah","position"],inplace=True)
+    df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
+    df.sort_values(["surah_ayah","position"],inplace=True)
+    # df.sort_values(["surah_ayah","position"],inplace=True)
     df['position'] = df['position'].astype('str')
     df.reset_index(drop=True,inplace=True)
     # df.reset_index(inplace=True)
@@ -1231,7 +1320,9 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                 vrsDisFld = combC.children[0].children[0]
                 print(vrsDisFld.description, vrsDisFld.value)
                 # combObj = combClass()
-                combObj = {"strL":[],"vrsDis":vrsDisFld.value}
+                combClass.vrsDisSt = vrsDisFld
+                combClass.strLSt = []
+                # combObj = {"strL":[],"vrsDis":vrsDisFld.value}
                 for i in range(len(combC.children)-1,0,-1):
                     strCs = combC.children[i]
                 # for strObj in comb.children:
@@ -1243,19 +1334,30 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                     # strD = strObjClass()
                     strD = {}
                     if strCFlds[0].value != '' or strCFlds[1].value != '':
-                        for j in range(7):
-                            fld = strCFlds[j]
-                            # print(fld.description, fld.value)
-                            # print(strD[strAtts[j]], fld.value)
-                            # strD.strObj[strAtts[j]] = fld.value
-                            strD[strAtts[j]] = fld.value
+                        # for j in range(7):
+                        #     fld = strCFlds[j]
+                        #     # print(fld.description, fld.value)
+                        #     # print(strD[strAtts[j]], fld.value)
+                        #     # strD.strObj[strAtts[j]] = fld.value
+                        #     strD[strAtts[j]] = fld.value
                         # print(strD)
                         # print(strD.strObj)
                         # combObj.strL.append(strD.strObj)
-                        combObj["strL"].append(strD)
-                # if len(combObj.strL) > 0:
-                if len(combObj["strL"]) > 0:
-                    optSt.append(combObj)
+                        # combObj["strL"].append(strD)
+                        combClass.strLSt.append(
+                            strObjClass(
+                                stri=strCFlds[0],
+                                flt=strCFlds[1],
+                                strTyp=strCFlds[2],
+                                poSp=strCFlds[3],
+                                frm=strCFlds[4],
+                                inpLng=strCFlds[5],
+                                inpSch=strCFlds[6],
+                            )
+                        )
+                # if len(combObj["strL"]) > 0:
+                if len(combClass.strLSt) > 0:
+                    optSt.append(combClass())
             if len(optSt) > 0:
                 print(qL)
                 qL.append(optSt)
@@ -1358,7 +1460,8 @@ def querize(
             intctv(qL,pres,refLng)
         else:
             qL = [
-                [combClass(**comb).combObj for comb in optLs]
+                # [combClass(**comb).combObj for comb in optLs]
+                [combClass(**comb) for comb in optLs]
                 for optLs in qL
             ]
             # colMap = getColMap(dicti)
