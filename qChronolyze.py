@@ -1472,7 +1472,7 @@ def confFcheck(pres='plot',refLng='english'):
             print('pres not found in cnf.txt')
             pres = "plot"
     if refLng not in refLngD.values():
-      if str(refLng) in refLng.keys():
+      if str(refLng) in refLngD.keys():
         refLng=refLngD[refLng]
       else:
         refLngFound = False
