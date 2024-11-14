@@ -683,6 +683,7 @@ def dataGrabber(
 def filtDown(strObj):
     stri = strObj.stri
     flt = strObj.flt
+    print(f"for string: {stri}")
     # stri = strObj["stri"]
     # flt = strObj["flt"]
     import re
@@ -695,6 +696,7 @@ def filtDown(strObj):
 def intersct(comb):
     # strL = comb["strL"]
     strL = comb.strL
+    print(f"strL: {strL}")
     if len(strL) > 0:
         instLstAgg = []
         surahAyahAggSet = set()
@@ -747,6 +749,7 @@ def intersct(comb):
     
     else:
         print("please provide at least one root/word")
+        return []
 
 
 def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
@@ -766,6 +769,7 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
         print(optSt)
         lblParts = []
         optStInsts = []
+        print(f"optStInsts before comb: {optStInsts}")
         for comb in optSt:
             print(comb)
             strL = comb.strL
@@ -776,13 +780,16 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
                 strObj 
                 in strL
             ])]
+            print(f"optStInsts after comb: {optStInsts}")
             combInstLst = intersct(comb)
-            optStInsts += combInstLst
+            # optStInsts += combInstLst
+            optStInsts = [*optStInsts,*combInstLst]
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
         for inst in optStInsts:
             inst.query = lbl
-        instLstAgg += optStInsts
+        # instLstAgg += optStInsts
+        instLstAgg = [*instLstAgg,*optStInsts]
         # instLstAgg += instLst
     for row in instLstAgg:
         row.ayah_link= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
@@ -825,6 +832,16 @@ class strObjClass:
                 #  **kwargs
                 ):
         
+        print(
+            "args in str init: ",
+            stri,
+            flt,
+            strTyp,
+            frm,
+            poSp,
+            inpLng,
+            inpSch,
+        )
         self.stri = stri
         self.flt = flt
         self.strTyp = strTyp
@@ -841,25 +858,50 @@ class strObjClass:
         #     "inpLng": inpLng,
         #     "inpSch": inpSch,
         # }
+        print(
+            "props set in str init: ",
+            self.stri,
+            self.flt,
+            self.strTyp,
+            self.frm,
+            self.poSp,
+            self.inpLng,
+            self.inpSch,
+        )
+        print(
+            self.stri,
+            self.flt,
+            self.strTyp,
+            self.frm,
+            self.poSp,
+            self.inpLng,
+            self.inpSch,
+        )
 
 
 class combClass:
     strLSt = []
     vrsDisSt = 0
-    combObjSt = {
-        "strL": [],
-        "vrsDis": 0,
-    }
+    # combObjSt = {
+    #     "strL": [],
+    #     "vrsDis": 0,
+    # }
     def __init__(self,strL=strLSt,vrsDis=vrsDisSt):
     #   global strObjClass
       # print(combsLsA)
+      strL = self.strLSt if (strL==[] or strL==None) else strL
+      vrsDis = self.vrsDisSt
       self.vrsDis = vrsDis
       # print(strL)
       # for strObj in [{"stri":"EiysaY"}]:
       #     print(strObjClass(strObj).strObj)
     #   print([strObjClass(**strObj).strObj for strObj in strL ])
+      print(f"strLSt in comb init: {self.strLSt}")
+      print(f"strL in comb init: {strL}")
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
+    #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
+      print(f"strL in comb after str obj: {self.strL}")
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
       # for strObj in strL:
       #     self.strL.append(strObjClass(strObj))
@@ -1281,6 +1323,7 @@ def sortchron(
     # pres = confPres(pres=pres)
     # tafs = confLng(refLng=refLng)
     tafs = tafsDict[refLng]
+    print(f"qL in sortchron: {qL}")
     instLstAgg = aggregLsts(qL,tafs)
     import pandas as pd
     # clear_output()
@@ -1333,7 +1376,8 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                     # if True:
                     # strD = strObjClass()
                     strD = {}
-                    if strCFlds[0].value != '' or strCFlds[1].value != '':
+                    # if strCFlds[0].value != '' or strCFlds[1].value != '':
+                    if strCFlds[0].value != '':
                         # for j in range(7):
                         #     fld = strCFlds[j]
                         #     # print(fld.description, fld.value)
@@ -1345,27 +1389,42 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                         # combObj.strL.append(strD.strObj)
                         # combObj["strL"].append(strD)
                         combClass.strLSt.append(
-                            strObjClass(
-                                stri=strCFlds[0],
-                                flt=strCFlds[1],
-                                strTyp=strCFlds[2],
-                                poSp=strCFlds[3],
-                                frm=strCFlds[4],
-                                inpLng=strCFlds[5],
-                                inpSch=strCFlds[6],
-                            )
+                            # strObjClass(
+                            #     stri=strCFlds[0].value,
+                            #     flt=strCFlds[1].value,
+                            #     strTyp=strCFlds[2].value,
+                            #     poSp=strCFlds[3].value,
+                            #     frm=strCFlds[4].value,
+                            #     inpLng=strCFlds[5].value,
+                            #     inpSch=strCFlds[6].value,
+                            # )
+                            {
+                                "stri" :strCFlds[0].value,
+                                "flt":strCFlds[1].value,
+                                "strTyp":strCFlds[2].value,
+                                "poSp":strCFlds[3].value,
+                                "frm":strCFlds[4].value,
+                                "inpLng":strCFlds[5].value,
+                                "inpSch":strCFlds[6].value,
+                            }
                         )
+                        print(f"combClass.strLSt: {combClass.strLSt}")
                 # if len(combObj["strL"]) > 0:
                 if len(combClass.strLSt) > 0:
+                    print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
+                    print(f"optSt before appending comb:{optSt}")
                     optSt.append(combClass())
+                    print(f"comb.strL appended to optSt: {optSt[-1].strL}")
+                    print(f"optSt after appending comb:{optSt}")
             if len(optSt) > 0:
-                print(qL)
+                print(f"qL before appending optSt:{qL}")
                 qL.append(optSt)
+                print(f"qL after appending optSt:{qL}")
                 # qL.append(combObj.__dict__)
         # dg = aggregLsts(qL)
         # sortchron(dg)
-        sortchron(qL,pres,refLng)
-        
+        sortchron(qL,pres=pres,refLng=refLng)
+        # return qL
         # return dg
 
 
@@ -1391,7 +1450,7 @@ def intctv(
         combs,
         container
         )
-    clear_output()
+    # clear_output()
     display(finish_query_B,container,)
 
 def confFcheck(pres='plot',refLng='english'):
@@ -1457,8 +1516,10 @@ def querize(
         #     finished=False
         #     # while finished==False:
         # if finished==False:
+            print("interactive")
             intctv(qL,pres,refLng)
         else:
+            print("not interactive")
             qL = [
                 # [combClass(**comb).combObj for comb in optLs]
                 [combClass(**comb) for comb in optLs]
