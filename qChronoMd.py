@@ -1,10 +1,14 @@
 # from qChronolyze import filtDown, getSorter
-from qChronolyze import aggregLsts, getSorter
+import ipywidgets as widg
+from ipywidgets import interactive as intct
+from IPython.display import display, clear_output
+from qChronolyze import refLngD, tafsDict
+from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
-def qChronoMd(dicti,flnm,tafs):
+def qChronoMd(dicti,flnm,refLng):
     mdFile = f'data/compare/{flnm}.md'
     # instLstAgg = []
-    
+    tafs = tafsDict[refLng]
     alreadyRefed = []
     instLstAgg = aggregLsts(dicti,tafs)
 
@@ -12,8 +16,10 @@ def qChronoMd(dicti,flnm,tafs):
 
     df = pd.DataFrame(instLstAgg)
     sorter = getSorter()
-    df['surah:ayah'] = pd.Categorical(df['surah:ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah:ayah","position"],inplace=True)
+    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    # df['position'] = df['position'].astype('int')
+    df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
+    df.sort_values(["surah_ayah","position"],inplace=True)
     # df.reset_index(drop=True,inplace=True)
     sortedRecs = df.to_dict(orient='records')
 
@@ -21,10 +27,10 @@ def qChronoMd(dicti,flnm,tafs):
     newDic = {}
 
     for rec in sortedRecs:
-        if rec["surah:ayah"] not in newDic.keys():
-            newDic[rec["surah:ayah"]] = {
-                'string': f'\n[Q.{rec["surah:ayah"]}](https://quran.com/{rec["surah:ayah"]}/tafsirs/{tafs})\n'
-                            + f'\n![[Qrsd#{rec["surah:ayah"]}]]\n',
+        if rec["surah_ayah"] not in newDic.keys():
+            newDic[rec["surah_ayah"]] = {
+                'string': f'\n[Q.{rec["surah_ayah"]}](https://quran.com/{rec["surah_ayah"]}/tafsirs/{tafs})\n'
+                            + f'\n![[Qrsd#{rec["surah_ayah"]}]]\n',
                 # 'queries': [
                 #     {
                 #         'query': rec["query"],
@@ -36,13 +42,13 @@ def qChronoMd(dicti,flnm,tafs):
                 }
             }
         else:
-            # newDic[rec["surah:ayah"]]["queries"].append(
+            # newDic[rec["surah_ayah"]]["queries"].append(
             #     {
             #         'query': rec["query"], 
             #         'postquery': '',
             #     }
             # )
-            newDic[rec["surah:ayah"]]["queries"][rec["query"]] = '\n\n'
+            newDic[rec["surah_ayah"]]["queries"][rec["query"]] = '\n\n'
 
 
 
@@ -165,7 +171,7 @@ def qChronoMd(dicti,flnm,tafs):
 
         newStr += newStrUp
 
-        # alreadyRefed.append(rec["surah:ayah"])
+        # alreadyRefed.append(rec["surah_ayah"])
         alreadyRefed.append(surAy)
         # for query in newDic[surAy]['queries']:
         #     if query['query'] in queriesLeft:
@@ -180,11 +186,159 @@ def qChronoMd(dicti,flnm,tafs):
             if q in queriesLeft:
                 print(f'\nquery left at {surAy} : {q}')
                 newStrUp = f'\n## {q}' + pq
-                newStr += newStrUp
                 queriesLeft.remove(q)
+            else:
+                newStrUp = f'\n## >>> {q}' + pq
+            newStr += newStrUp
                 
 
     with open(mdFile, 'w+') as f:
         f.write(newStr)
-        
 
+
+def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='md'):
+    # global qL
+    for k in range(len(container.children)-1,-1,-1):
+        optStC = container.children[k].children[1]
+        optSt = []
+        for l in range(len(optStC.children)-1,-1,-1):
+            combC = optStC.children[l]
+            if not len(combC.children) < 2:
+                vrsDisFld = combC.children[0].children[0]
+                print(vrsDisFld.description, vrsDisFld.value)
+                # combObj = combClass()
+                combClass.vrsDisSt = vrsDisFld
+                combClass.strLSt = []
+                # combObj = {"strL":[],"vrsDis":vrsDisFld.value}
+                for i in range(len(combC.children)-1,0,-1):
+                    strCs = combC.children[i]
+                # for strObj in comb.children:
+                    # print('\n', strCs)
+                    strCFlds = strCs.children
+                    # print(strCFlds)
+                    strAtts = ["stri","flt","strTyp","poSp","frm","inpLng","inpSch"]
+                    # if True:
+                    # strD = strObjClass()
+                    strD = {}
+                    # if strCFlds[0].value != '' or strCFlds[1].value != '':
+                    if strCFlds[0].value != '':
+                        # for j in range(7):
+                        #     fld = strCFlds[j]
+                        #     # print(fld.description, fld.value)
+                        #     # print(strD[strAtts[j]], fld.value)
+                        #     # strD.strObj[strAtts[j]] = fld.value
+                        #     strD[strAtts[j]] = fld.value
+                        # print(strD)
+                        # print(strD.strObj)
+                        # combObj.strL.append(strD.strObj)
+                        # combObj["strL"].append(strD)
+                        combClass.strLSt.append(
+                            # strObjClass(
+                            #     stri=strCFlds[0].value,
+                            #     flt=strCFlds[1].value,
+                            #     strTyp=strCFlds[2].value,
+                            #     poSp=strCFlds[3].value,
+                            #     frm=strCFlds[4].value,
+                            #     inpLng=strCFlds[5].value,
+                            #     inpSch=strCFlds[6].value,
+                            # )
+                            {
+                                "stri" :strCFlds[0].value,
+                                "flt":strCFlds[1].value,
+                                "strTyp":strCFlds[2].value,
+                                "poSp":strCFlds[3].value,
+                                "frm":strCFlds[4].value,
+                                "inpLng":strCFlds[5].value,
+                                "inpSch":strCFlds[6].value,
+                            }
+                        )
+                        print(f"combClass.strLSt: {combClass.strLSt}")
+                # if len(combObj["strL"]) > 0:
+                if len(combClass.strLSt) > 0:
+                    print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
+                    print(f"optSt before appending comb:{optSt}")
+                    optSt.append(combClass())
+                    print(f"comb.strL appended to optSt: {optSt[-1].strL}")
+                    print(f"optSt after appending comb:{optSt}")
+            if len(optSt) > 0:
+                print(f"qL before appending optSt:{qL}")
+                qL.append(optSt)
+                print(f"qL after appending optSt:{qL}")
+                # qL.append(combObj.__dict__)
+        # dg = aggregLsts(qL)
+        # sortchron(dg)
+        qChronoMd(qL,refLng=refLng,flnm=flnm)
+        # return qL
+        # return dg
+
+
+def intctv(
+    qL=[],
+    pres='',refLng='',flnm='md'
+    ):
+    container = widg.VBox(
+        # layout=widgets.Layout(
+        #             width="600px",       # Set the width to control the horizontal space
+        #             overflow_x="scroll",  # Enable horizontal scrolling if content overflows
+        #             border="1px solid black"  # Optional: add a border to make the scroll area visible
+        #         )   
+    )
+    combs = []
+    from functools import partial
+    finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
+    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,flnm=flnm,refLng=refLng))
+    # Container to hold all groups of widgets
+    # Initialize the first group of widgets
+    optStWdgCl(
+        # 1
+        combs,
+        container
+        )
+    # clear_output()
+    display(finish_query_B,container,)
+
+
+def querizeMd(
+        # qL
+        qL=[],
+        # qL=[],
+        # tafs='ar-tafsir-al-tabari',
+        flnm='md',
+        refLng='english',
+    ):
+    global tafsDict
+    global refLngD
+    pres, refLng = confFcheck("None",refLng)
+    flNmW = widg.Text(description="Output file name",value=flnm)
+    refLngW = widg.Dropdown(description="Tafsir Language",options=refLngD.values(),value=refLng)
+    def submConf(button,qL=qL,flnm=flNmW.value,refLng=refLngW.value):
+        clear_output()
+        with open('./cnf.txt', 'w+') as f:
+            import json
+            f.write(json.dumps({"pres":pres,"refLng":refLng}))
+        if type(qL) != type([]):
+            print("Invalid root-filter key value pairs")
+            # dicti={}
+            qL=[]
+        # if dicti=={}:
+        if qL==[]:
+        #     finished=False
+        #     # while finished==False:
+        # if finished==False:
+            print("interactive")
+            intctv(qL,flnm,refLng)
+        else:
+            print("not interactive")
+            qL = [
+                # [combClass(**comb).combObj for comb in optLs]
+                [combClass(**comb) for comb in optLs]
+                for optLs in qL
+            ]
+            # colMap = getColMap(dicti)
+            qChronoMd(qL,flnm,refLng)
+    confSetB = widg.Button(description='Enter configuration')
+    from functools import partial
+    confSetB.on_click(partial(submConf,qL=qL,flnm=flNmW.value,refLng=refLngW.value))
+    confCont = widg.VBox([refLngW,flNmW,confSetB])
+    clear_output()
+    display(confCont)
