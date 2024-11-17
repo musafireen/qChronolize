@@ -30,7 +30,7 @@ def qChronoMd(dicti,flnm,refLng):
         if rec["surah_ayah"] not in newDic.keys():
             newDic[rec["surah_ayah"]] = {
                 'string': f'\n[Q.{rec["surah_ayah"]}](https://quran.com/{rec["surah_ayah"]}/tafsirs/{tafs})\n'
-                            + f'\n![[Qrsd#{rec["surah_ayah"]}]]\n',
+                            + f'\n![[Qrsi#{rec["surah_ayah"]}]]\n',
                 # 'queries': [
                 #     {
                 #         'query': rec["query"],
@@ -165,7 +165,7 @@ def qChronoMd(dicti,flnm,refLng):
     for surAy in surAyOrdered:
         if surAy == '68:2':
             print(f'\nnew string: {newDic[surAy]}\n')
-        # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsd#{surAy}]]\n'
+        # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsi#{surAy}]]\n'
         # qpq = newDic[surAy]['queries'].items()
         newStrUp =   f'\n\n# Q:{surAy}' + newDic[surAy]['string']
 
