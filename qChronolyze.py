@@ -696,25 +696,58 @@ def filtDown(strObj):
 def intersct(comb):
     # strL = comb["strL"]
     strL = comb.strL
+    wrdDis = comb.wrdDis
     print(f"strL: {strL}")
     if len(strL) > 0:
+        if wrdDis > 0:
+            import json
+            with open("posSerDict.json") as f:
+                posSerDict = json.loads(f.read())
         instLstAgg = []
         surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            surahAyahList = [ inst.surah_ayah for inst in instLst ]
             # surahAyahList = [ inst["surah_ayah"] for inst in instLst ]
-            if i == 0:
-            # if surahAyahAggSet == set([]):
-                surahAyahAggSet = set(surahAyahList)
+            print("\nwrdDis: ", wrdDis, "\n")
+            # print("\ninstLst: ", [inst.__dict__ for inst in instLst])
+            if wrdDis == 0:
+                surahAyahList = [ inst.surah_ayah for inst in instLst ]
+                if i == 0:
+                    surahAyahAggSet = set(surahAyahList)
+                else:
+                    surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
             else:
-                surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
+                surahAyahPosList = [ f"{inst.surah_ayah}:{str(inst.position)}" for inst in instLst ]
+                if i == 0:
+                    surahAyahAggSet = set(surahAyahPosList)
+                else:
+                    surAyahPosClosestLs = []
+                    surahAyahAggSet2 = surahAyahAggSet.copy()
+                    for surAyahPos in surahAyahAggSet2:
+                        minDistSoFar = 0
+                        surAyahPosClosest = None
+                        for surAyaPosNew in surahAyahPosList:
+                            print(type(surAyaPosNew), surAyaPosNew)
+                            wrdDisNow = abs(posSerDict[surAyaPosNew] - posSerDict[surAyahPos])
+                            if wrdDisNow <= wrdDis:
+                                if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
+                                    surAyahPosClosest = surAyaPosNew
+                        if surAyahPosClosest != None:
+                            surAyahPosClosestLs.append(surAyahPosClosest)
+                        else:
+                            surahAyahAggSet.remove(surAyahPos)
+                    surahAyahAggSet = surahAyahAggSet.union(surAyahPosClosestLs)
+                # print("\nsurahAyahAggSet: ", surahAyahAggSet)
+            
+            # if wrdDis > 0:
+            #     surahAyahAggSet = [":".join(surahAyahAgg.split(":")[0:2]) for surahAyahAgg in surahAyahAggSet]
+
             instLstAgg += instLst
         
         instLstFlt = list(filter(
             # lambda x: x["surah_ayah"] in surahAyahAggSet,
-            lambda x: x.surah_ayah in surahAyahAggSet,
+            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == 0 else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
             instLstAgg
         ))
         instDictInc = {}
@@ -881,17 +914,17 @@ class strObjClass:
 
 class combClass:
     strLSt = []
-    vrsDisSt = 0
+    wrdDisSt = 0
     # combObjSt = {
     #     "strL": [],
-    #     "vrsDis": 0,
+    #     "wrdDis": 0,
     # }
-    def __init__(self,strL=strLSt,vrsDis=vrsDisSt):
+    def __init__(self,strL=strLSt,wrdDis=wrdDisSt):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
-      vrsDis = self.vrsDisSt
-      self.vrsDis = vrsDis
+      wrdDis = self.wrdDisSt if (wrdDis == 0 or wrdDis == None) else wrdDis
+      self.wrdDis = wrdDis
       # print(strL)
       # for strObj in [{"stri":"EiysaY"}]:
       #     print(strObjClass(strObj).strObj)
@@ -907,7 +940,7 @@ class combClass:
       #     self.strL.append(strObjClass(strObj))
     #   self.combObj = {
     #       "strL": self.strL,
-    #       "vrsDis": self.vrsDis,
+    #       "wrdDis": self.wrdDis,
     #   }
 
 
@@ -1002,7 +1035,7 @@ class strObWdgCl:
 
 class combWdgCl:
         # Function to add a new group of widgets
-    vrsDisSt = combClass.vrsDisSt
+    wrdDisSt = combClass.wrdDisSt
     strLSt = combClass.strLSt
     def entCombM(self,button):
         # new_group_id = len(combs) + 1
@@ -1036,7 +1069,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.vrsDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
+        self.wrdDistW = widg.IntText(min=0,max=82011,value=self.wrdDisSt, description=f"Word Distance")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
         self.delCombB = widg.Button(description="Delete Combination of String Objects")
@@ -1046,7 +1079,7 @@ class combWdgCl:
             [
                 widg.VBox(
                     [
-                        self.vrsDistW,
+                        self.wrdDistW,
                         widg.HBox([self.entCombB, self.delCombB]),
                     ],
                     # layout = widgets.Layout(
@@ -1106,7 +1139,7 @@ class optStWdgCl:
         self.container = container
         # print(len(self.container.children))
 
-        # self.vrsDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
+        # self.wrdDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
         self.entOptStB = widg.Button(description="Enter Option of String Objects")
         self.entOptStB.on_click(self.entOptStM)
         self.delOptStB = widg.Button(description="Delete Option of String Objects")
@@ -1360,12 +1393,12 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
         for l in range(len(optStC.children)-1,-1,-1):
             combC = optStC.children[l]
             if not len(combC.children) < 2:
-                vrsDisFld = combC.children[0].children[0]
-                print(vrsDisFld.description, vrsDisFld.value)
+                wrdDisFld = combC.children[0].children[0]
+                print(wrdDisFld.description, wrdDisFld.value)
                 # combObj = combClass()
-                combClass.vrsDisSt = vrsDisFld
+                combClass.wrdDisSt = wrdDisFld.value
                 combClass.strLSt = []
-                # combObj = {"strL":[],"vrsDis":vrsDisFld.value}
+                # combObj = {"strL":[],"wrdDis":wrdDisFld.value}
                 for i in range(len(combC.children)-1,0,-1):
                     strCs = combC.children[i]
                 # for strObj in comb.children:
