@@ -694,10 +694,8 @@ def filtDown(strObj):
     return instLstFiltered
 
 def intersct(comb):
-    # strL = comb["strL"]
     strL = comb.strL
     wrdDis = comb.wrdDis
-    print(f"strL: {strL}")
     if len(strL) > 0:
         if wrdDis > 0:
             import json
@@ -708,9 +706,6 @@ def intersct(comb):
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            # surahAyahList = [ inst["surah_ayah"] for inst in instLst ]
-            print("\nwrdDis: ", wrdDis, "\n")
-            # print("\ninstLst: ", [inst.__dict__ for inst in instLst])
             if wrdDis == 0:
                 surahAyahList = [ inst.surah_ayah for inst in instLst ]
                 if i == 0:
@@ -728,7 +723,6 @@ def intersct(comb):
                         minDistSoFar = 0
                         surAyahPosClosest = None
                         for surAyaPosNew in surahAyahPosList:
-                            print(type(surAyaPosNew), surAyaPosNew)
                             wrdDisNow = abs(posSerDict[surAyaPosNew] - posSerDict[surAyahPos])
                             if wrdDisNow <= wrdDis:
                                 if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
@@ -738,10 +732,6 @@ def intersct(comb):
                         else:
                             surahAyahAggSet.remove(surAyahPos)
                     surahAyahAggSet = surahAyahAggSet.union(surAyahPosClosestLs)
-                # print("\nsurahAyahAggSet: ", surahAyahAggSet)
-            
-            # if wrdDis > 0:
-            #     surahAyahAggSet = [":".join(surahAyahAgg.split(":")[0:2]) for surahAyahAgg in surahAyahAggSet]
 
             instLstAgg += instLst
         
