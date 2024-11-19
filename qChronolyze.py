@@ -4,6 +4,69 @@ from IPython.display import display, clear_output
 
 # List to track widget groups
 
+bkwSch2arbSch = {
+    "'": "ء",
+    ">": "أ",
+    "&": "ؤ",
+    "<": "إ",
+    "}": "ئ",
+    "A": "ا",
+    "b": "ب",
+    "p": "ة",
+    "t": "ت",
+    "v": "ث",
+    "j": "ج",
+    "H": "ح",
+    "x": "خ",
+    "d": "د",
+    "*": "ذ",
+    "r": "ر",
+    "z": "ز",
+    "s": "س",
+    "$": "ش",
+    "S": "ص",
+    "D": "ض",
+    "T": "ط",
+    "Z": "ظ",
+    "E": "ع",
+    "g": "غ",
+    "_": "ـ",
+    "f": "ف",
+    "q": "ق",
+    "k": "ك",
+    "l": "ل",
+    "m": "م",
+    "n": "ن",
+    "h": "ه",
+    "w": "و",
+    "Y": "ى",
+    "y": "ي",
+    "F": "ي",
+    "N": "ٌ",
+    "K": "ٍ",
+    "a": "َ",
+    "u": "ُ",
+    "i": "ِ",
+    "~": "ّ",
+    "o": "ْ",
+    "^": "ٓ",
+    "#": "ٔ",
+    "`": "ٰ",
+    "{": "ٱ",
+    ":": "ۜ",
+    "@": "۟",
+    '"': "۠",
+    "[": "ۢ",
+    ";": "ۣ",
+    ",": "ۥ",
+    ".": "ۦ",
+    "!": "ۨ",
+    "-": "۪",
+    "+": "۫",
+    "%": "۬",
+    "]": "ۭ",
+}
+
 presD={'1':'table','2':'plot'}
 
 refLngD={'1':'arabic','2':'bengali','3':'english'}
@@ -179,7 +242,7 @@ def getColMap(dicti):
         # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
-def rtTrns(rt,inpLng,inpLngSch):
+def rtTrns(rt,inpLng,inpSch,outSch=None):
     lngSts = {
         "arb": "arbSch",
         "eng": "engSch",
@@ -252,10 +315,18 @@ def rtTrns(rt,inpLng,inpLngSch):
 
     }
 
+    lngDefOutLs = {
+        "arb": "arbSch"
+    }
+
     chrOut = {
         "arb": {
-            "bkwSch": bkwSch2arbSch,
-            "iasSch": iasSch2arbSch,
+            "bkwSch": {
+                "arbSch": bkwSch2arbSch,
+            },
+            "iasSch": {
+                "arbSch": iasSch2arbSch,
+            },
         },
         "eng": {
             "engSch": None
@@ -265,9 +336,12 @@ def rtTrns(rt,inpLng,inpLngSch):
         },
     }
 
-    chrTrnsTbl = chrOut[inpLng][inpLngSch]
+    if outSch == None:
+        chrTrnsTbl = chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
+    else:
+        chrTrnsTbl = chrOut[inpLng][inpSch][outSch]
     rtTrns = ''
-    if chrTrnsTbl != None:
+    if (chrTrnsTbl != None) or (inpSch == outSch):
         for chr in rt:
             if chr in chrTrnsTbl.keys():
                 chrTrns = chrTrnsTbl[chr]
@@ -775,7 +849,11 @@ def intersct(comb):
         return []
 
 
-def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
+def aggregLsts(
+        qL,
+        tafs="ar-tafsir-al-tabari",
+        # qyArLegSch=lng2InpSchD["arabic"][1]
+    ):
     # lnkStyle = ' '
     fontSize = '18'
     fontCol = 'rgb(0,0,150)'
@@ -797,12 +875,13 @@ def aggregLsts(qL,tafs="ar-tafsir-al-tabari"):
             print(comb)
             strL = comb.strL
             # strL = comb["strL"]
-            lblParts += [' + '.join([ 
-                f'{strObj.stri} ({strObj.flt})' for 
-                # f'{strObj["stri"]} ({strObj["flt"]})' for 
-                strObj 
-                in strL
-            ])]
+            lblParts += [comb.lbl]
+            # lblParts += [' + '.join([ 
+            #     f'{rtTrns(strObj.stri,lngD[strObj.inpLng],inpLngSchD[strObj.inpSch],inpLngSchD[qyArLegSch])} ({strObj.flt})' for 
+            #     # f'{strObj["stri"]} ({strObj["flt"]})' for 
+            #     strObj 
+            #     in strL
+            # ])]
             print(f"optStInsts after comb: {optStInsts}")
             combInstLst = intersct(comb)
             # optStInsts += combInstLst
@@ -909,7 +988,7 @@ class combClass:
     #     "strL": [],
     #     "wrdDis": 0,
     # }
-    def __init__(self,strL=strLSt,wrdDis=wrdDisSt):
+    def __init__(self,strL=strLSt,wrdDis=wrdDisSt,qyArLegSch=lng2InpSchD["arabic"][1],lbl=''):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
@@ -919,12 +998,23 @@ class combClass:
       # for strObj in [{"stri":"EiysaY"}]:
       #     print(strObjClass(strObj).strObj)
     #   print([strObjClass(**strObj).strObj for strObj in strL ])
-      print(f"strLSt in comb init: {self.strLSt}")
-      print(f"strL in comb init: {strL}")
+    #   print(f"strLSt in comb init: {self.strLSt}")
+    #   print(f"strL in comb init: {strL}")
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
-      print(f"strL in comb after str obj: {self.strL}")
+      self.lbl = lbl if lbl != '' else ' '.join([ 
+                rtTrns(strObj.stri,lngD[strObj.inpLng],inpLngSchD[strObj.inpSch],inpLngSchD[qyArLegSch]) for 
+                # f'{strObj["stri"]} ({strObj["flt"]})' for 
+                strObj 
+                in self.strL
+            ]) + " (" + ' '.join([ 
+                strObj.flt for 
+                # f'{strObj["stri"]} ({strObj["flt"]})' for 
+                strObj 
+                in self.strL
+            ]) + ")"
+    #   print(f"strL in comb after str obj: {self.strL}")
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
       # for strObj in strL:
       #     self.strL.append(strObjClass(strObj))
@@ -1060,6 +1150,7 @@ class combWdgCl:
         # print(len(self.container.children))
 
         self.wrdDistW = widg.IntText(min=0,max=82011,value=self.wrdDisSt, description=f"Word Distance")
+        self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
         self.delCombB = widg.Button(description="Delete Combination of String Objects")
@@ -1070,6 +1161,7 @@ class combWdgCl:
                 widg.VBox(
                     [
                         self.wrdDistW,
+                        self.qyLblW,
                         widg.HBox([self.entCombB, self.delCombB]),
                     ],
                     # layout = widgets.Layout(
@@ -1243,6 +1335,15 @@ def plotDf(df,colMap,sorter):
 
     # width=((len(df["query"].unique()))*20)+600
     # print(width,len(df["query"].unique()), df["query"].unique())
+    
+    isArabic=df.loc[1,"query"][0] in bkwSch2arbSch.values()
+    max_leg_width=len(max(df["query"].unique(),key=len))
+    legend_size=12 if not isArabic else 14
+    xtick_size=12 if not isArabic else 14
+    datapoint_width=20
+    datapoint_height=8
+    tick_angle=45
+    import math
     fig = px.scatter(
         df,
         # x='surah_ayah',
@@ -1262,10 +1363,12 @@ def plotDf(df,colMap,sorter):
     #  color_continuous_scale=["green","yellow","orange","red"],
         # color_discrete_map=colMap,
         # height=((len(df))*7)+200,
-        # width=((len(df["query"].unique()))*30)+500,
+        width=((len(df["query"].unique()))*datapoint_width) + 
+            max_leg_width*legend_size + 
+            300,
         # height=1200,
         # width=(len(sorter))/8+500,
-        height=(len(sorter))/8+500+8*max([len(s) for s in df["query"].unique()]),
+        height=(len(sorter))/datapoint_height+max_leg_width*xtick_size*math.sin(tick_angle)+500,
     )
 
     # fig = make_subplots(
@@ -1275,6 +1378,7 @@ def plotDf(df,colMap,sorter):
     # # fig.layout=go.Layout(clickmode='event+select')
     fig.update_layout(
     #  hovermode=False,
+        legend=dict(font=dict(size=legend_size)),
         clickmode='event+select',
         hoverdistance=-1,
         # hovermode='y',
@@ -1328,7 +1432,8 @@ def plotDf(df,colMap,sorter):
     #  range=[0,len(df)],
         title='query',
         dtick=1,
-        tickangle=30
+        tickangle=tick_angle,
+        tickfont=dict(size=xtick_size)
     )
 
     clear_output()
@@ -1341,6 +1446,7 @@ def sortchron(
         qL,
         pres='plot',
         refLng='english',
+        # qyArLegSch=lng2InpSchD["arabic"][1]
     ):
     sorter = getSorter()
     # pres = confPres(pres=pres)
@@ -1375,7 +1481,7 @@ def sortchron(
     # get_ipython().magic('reset -sf')
 
 
-def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english'):
+def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english',qyArLegSch=lng2InpSchD["arabic"][1]):
     # global qL
     for k in range(len(container.children)-1,-1,-1):
         optStC = container.children[k].children[1]
@@ -1384,7 +1490,8 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
             combC = optStC.children[l]
             if not len(combC.children) < 2:
                 wrdDisFld = combC.children[0].children[0]
-                print(wrdDisFld.description, wrdDisFld.value)
+                qyLblFld = combC.children[0].children[1]
+                # print(wrdDisFld.description, wrdDisFld.value)
                 # combObj = combClass()
                 combClass.wrdDisSt = wrdDisFld.value
                 combClass.strLSt = []
@@ -1436,7 +1543,7 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                 if len(combClass.strLSt) > 0:
                     print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
                     print(f"optSt before appending comb:{optSt}")
-                    optSt.append(combClass())
+                    optSt.append(combClass(lbl=qyLblFld.value,qyArLegSch=qyArLegSch))
                     print(f"comb.strL appended to optSt: {optSt[-1].strL}")
                     print(f"optSt after appending comb:{optSt}")
             if len(optSt) > 0:
@@ -1453,7 +1560,7 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
 
 def intctv(
     qL=[],
-    pres='',refLng=''
+    pres='',refLng='',qyArLegSch=lng2InpSchD["arabic"][1]
     ):
     container = widg.VBox(
         # layout=widgets.Layout(
@@ -1465,7 +1572,7 @@ def intctv(
     combs = []
     from functools import partial
     finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
-    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,pres=pres,refLng=refLng))
+    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,pres=pres,refLng=refLng,qyArLegSch=qyArLegSch))
     # Container to hold all groups of widgets
     # Initialize the first group of widgets
     optStWdgCl(
@@ -1519,13 +1626,15 @@ def querize(
         pres='plot',
         # tafs='ar-tafsir-al-tabari',
         refLng='english',
+        qyArLegSch=lng2InpSchD["arabic"][1],
     ):
     global presD
     global refLngD
     pres, refLng = confFcheck(pres,refLng)
     presW = widg.Dropdown(description="Presentation style",options=presD.values(),value=pres)
     refLngW = widg.Dropdown(description="Tafsir Language",options=refLngD.values(),value=refLng)
-    def submConf(button,qL=qL,pres=presW.value,refLng=refLngW.value):
+    qyArLegSchW = widg.Dropdown(description="Arabic Legend Scheme",options=lng2InpSchD["arabic"],value=qyArLegSch)
+    def submConf(button,qL=qL,pres=presW.value,refLng=refLngW.value,qyArLegSch=qyArLegSchW.value):
         clear_output()
         with open('./cnf.txt', 'w+') as f:
             import json
@@ -1540,19 +1649,19 @@ def querize(
         #     # while finished==False:
         # if finished==False:
             print("interactive")
-            intctv(qL,pres,refLng)
+            intctv(qL,pres,refLng,qyArLegSch)
         else:
             print("not interactive")
             qL = [
                 # [combClass(**comb).combObj for comb in optLs]
-                [combClass(**comb) for comb in optLs]
+                [combClass(**comb,qyArLegSch=qyArLegSch) for comb in optLs]
                 for optLs in qL
             ]
             # colMap = getColMap(dicti)
             sortchron(qL,pres,refLng)
     confSetB = widg.Button(description='Enter configuration')
     from functools import partial
-    confSetB.on_click(partial(submConf,qL=qL,pres=presW.value,refLng=refLngW.value))
-    confCont = widg.VBox([presW,refLngW,confSetB])
+    confSetB.on_click(partial(submConf,qL=qL,pres=presW.value,refLng=refLngW.value,qyArLegSch=qyArLegSchW.value))
+    confCont = widg.VBox([presW,refLngW,qyArLegSchW,confSetB])
     clear_output()
     display(confCont)
