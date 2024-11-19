@@ -2,14 +2,18 @@
 import ipywidgets as widg
 from ipywidgets import interactive as intct
 from IPython.display import display, clear_output
-from qChronolyze import refLngD, tafsDict
+from qChronolyze import refLngD, tafsDict, lng2InpSchD
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
-def qChronoMd(dicti,flnm,refLng):
+def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     mdFile = f'data/compare/{flnm}.md'
     # instLstAgg = []
     tafs = tafsDict[refLng]
     alreadyRefed = []
+    dicti = [
+        [combClass(**comb,qyArLegSch=qyArLegSch) for comb in optLs]
+        for optLs in dicti
+    ]
     instLstAgg = aggregLsts(dicti,tafs)
 
     import pandas as pd
@@ -196,7 +200,7 @@ def qChronoMd(dicti,flnm,refLng):
         f.write(newStr)
 
 
-def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='md'):
+def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='md',qyArLegSch=lng2InpSchD["arabic"][1]):
     # global qL
     for k in range(len(container.children)-1,-1,-1):
         optStC = container.children[k].children[1]
@@ -205,7 +209,8 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='m
             combC = optStC.children[l]
             if not len(combC.children) < 2:
                 vrsDisFld = combC.children[0].children[0]
-                print(vrsDisFld.description, vrsDisFld.value)
+                qyLblFld = combC.children[0].children[1]
+                # print(vrsDisFld.description, vrsDisFld.value)
                 # combObj = combClass()
                 combClass.vrsDisSt = vrsDisFld
                 combClass.strLSt = []
@@ -257,7 +262,7 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='m
                 if len(combClass.strLSt) > 0:
                     print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
                     print(f"optSt before appending comb:{optSt}")
-                    optSt.append(combClass())
+                    optSt.append(combClass(lbl=qyLblFld.value,qyArLegSch=qyArLegSch))
                     print(f"comb.strL appended to optSt: {optSt[-1].strL}")
                     print(f"optSt after appending comb:{optSt}")
             if len(optSt) > 0:
@@ -274,7 +279,7 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],refLng='english',flnm='m
 
 def intctv(
     qL=[],
-    pres='',refLng='',flnm='md'
+    pres='',refLng='',flnm='md',qyArLegSch=lng2InpSchD["arabic"][1]
     ):
     container = widg.VBox(
         # layout=widgets.Layout(
@@ -286,7 +291,7 @@ def intctv(
     combs = []
     from functools import partial
     finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
-    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,flnm=flnm,refLng=refLng))
+    finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,flnm=flnm,refLng=refLng,qyArLegSch=qyArLegSch))
     # Container to hold all groups of widgets
     # Initialize the first group of widgets
     optStWdgCl(
@@ -305,14 +310,19 @@ def querizeMd(
         # tafs='ar-tafsir-al-tabari',
         flnm='md',
         refLng='english',
+        qyArLegSch=lng2InpSchD["arabic"][1]
     ):
     global tafsDict
     global refLngD
     pres, refLng = confFcheck("None",refLng)
     flNmW = widg.Text(description="Output file name",value=flnm)
     refLngW = widg.Dropdown(description="Tafsir Language",options=refLngD.values(),value=refLng)
-    def submConf(button,qL=qL,flnm=flNmW.value,refLng=refLngW.value):
+    qyArLegSchW = widg.Dropdown(description="Arabic Legend Scheme",options=lng2InpSchD["arabic"],value=qyArLegSch)
+    def submConf(button,qL=qL,flNmW=flNmW,refLngW=refLngW,qyArLegSchW=qyArLegSchW):
         clear_output()
+        flnm = flNmW.value
+        refLng=refLngW.value
+        qyArLegSch = qyArLegSchW.value
         with open('./cnf.txt', 'w+') as f:
             import json
             f.write(json.dumps({"pres":pres,"refLng":refLng}))
@@ -326,19 +336,19 @@ def querizeMd(
         #     # while finished==False:
         # if finished==False:
             print("interactive")
-            intctv(qL,flnm,refLng)
+            intctv(qL,flnm,refLng,qyArLegSch=qyArLegSch)
         else:
             print("not interactive")
             qL = [
                 # [combClass(**comb).combObj for comb in optLs]
-                [combClass(**comb) for comb in optLs]
+                [combClass(**comb,qyArLegSch=qyArLegSch) for comb in optLs]
                 for optLs in qL
             ]
             # colMap = getColMap(dicti)
             qChronoMd(qL,flnm,refLng)
     confSetB = widg.Button(description='Enter configuration')
     from functools import partial
-    confSetB.on_click(partial(submConf,qL=qL,flnm=flNmW.value,refLng=refLngW.value))
-    confCont = widg.VBox([refLngW,flNmW,confSetB])
+    confSetB.on_click(partial(submConf,qL=qL,flnmW=flNmW,refLngW=refLngW,qyArLegSchW=qyArLegSchW))
+    confCont = widg.VBox([refLngW,flNmW,qyArLegSchW,confSetB])
     clear_output()
     display(confCont)
