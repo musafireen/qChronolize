@@ -268,19 +268,23 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
             },
         },
         "eng": {
-            "engSch": None
+            "engSch": {
+                "engSch": None,
+            },
+            
         },
         "bng": {
-            "bngSc": None
+            "bngSc": {
+                "bngSc":None
+            }
         },
     }
 
-    if outSch == None:
-        chrTrnsTbl = chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
-    else:
-        chrTrnsTbl = chrOut[inpLng][inpSch][outSch]
+
+    chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
     rtTrns = ''
-    if (chrTrnsTbl != None) or (inpSch == outSch):
+    print("\n",inpSch,outSch,"\n")
+    if (chrTrnsTbl != None):
         for chr in rt:
             if chr in chrTrnsTbl.keys():
                 chrTrns = chrTrnsTbl[chr]
@@ -927,7 +931,7 @@ class combClass:
     #     "strL": [],
     #     "wrdDis": 0,
     # }
-    def __init__(self,strL=strLSt,wrdDis=wrdDisSt,qyArLegSch=lng2InpSchD["arabic"][1],lbl=''):
+    def __init__(self,strL=strLSt,wrdDis=wrdDisSt,qyArLegSch=None,lbl=''):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
@@ -941,11 +945,17 @@ class combClass:
     #   print(f"strL in comb init: {strL}")
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
+      qyArLegSch = lng2InpSchD["arabic"][1] if qyArLegSch == None else qyArLegSch
+      print("qyArLegSch is ",qyArLegSch)
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
       self.lbl = lbl if lbl != '' else ' '.join([ 
-                rtTrns(strObj.stri,lngD[strObj.inpLng],inpLngSchD[strObj.inpSch],inpLngSchD[qyArLegSch]) for 
+                rtTrns(
+                    strObj.stri,
+                    lngD[strObj.inpLng],
+                    inpLngSchD[strObj.inpSch],
+                    outSch=inpLngSchD[qyArLegSch]
                 # f'{strObj["stri"]} ({strObj["flt"]})' for 
-                strObj 
+                ) for strObj 
                 in self.strL
             ]) + " (" + ' '.join([ 
                 strObj.flt for 
@@ -1275,7 +1285,7 @@ def plotDf(df,colMap,sorter):
     # width=((len(df["query"].unique()))*20)+600
     # print(width,len(df["query"].unique()), df["query"].unique())
     
-    isArabic=df.loc[1,"query"][0] in bkwSch2arbSch.values()
+    isArabic=df.loc[0,"query"][0] in bkwSch2arbSch.values()
     max_leg_width=len(max(df["query"].unique(),key=len))
     legend_size=12 if not isArabic else 14
     xtick_size=12 if not isArabic else 14
@@ -1422,6 +1432,7 @@ def sortchron(
 
 def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english',qyArLegSch=lng2InpSchD["arabic"][1]):
     # global qL
+    print("qyArLegSch in finished query is ",qyArLegSch)
     for k in range(len(container.children)-1,-1,-1):
         optStC = container.children[k].children[1]
         optSt = []
@@ -1573,7 +1584,10 @@ def querize(
     presW = widg.Dropdown(description="Presentation style",options=presD.values(),value=pres)
     refLngW = widg.Dropdown(description="Tafsir Language",options=refLngD.values(),value=refLng)
     qyArLegSchW = widg.Dropdown(description="Arabic Legend Scheme",options=lng2InpSchD["arabic"],value=qyArLegSch)
-    def submConf(button,qL=qL,pres=presW.value,refLng=refLngW.value,qyArLegSch=qyArLegSchW.value):
+    def submConf(button,qL=qL,presW=presW,refLngW=refLngW,qyArLegSchW=qyArLegSchW):
+        pres = presW.value
+        refLng = refLngW.value
+        qyArLegSch = qyArLegSchW.value
         clear_output()
         with open('./cnf.txt', 'w+') as f:
             import json
@@ -1600,7 +1614,7 @@ def querize(
             sortchron(qL,pres,refLng)
     confSetB = widg.Button(description='Enter configuration')
     from functools import partial
-    confSetB.on_click(partial(submConf,qL=qL,pres=presW.value,refLng=refLngW.value,qyArLegSch=qyArLegSchW.value))
+    confSetB.on_click(partial(submConf,qL=qL,presW=presW,refLngW=refLngW,qyArLegSchW=qyArLegSchW))
     confCont = widg.VBox([presW,refLngW,qyArLegSchW,confSetB])
     clear_output()
     display(confCont)
