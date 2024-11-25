@@ -304,7 +304,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
     rtTrns = ''
-    print("\n",inpSch,outSch,"\n")
+    # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
         for chr in rt:
             if chr in chrTrnsTbl.keys():
@@ -359,7 +359,7 @@ def tblUp(tblCumul,tblAgg,instDct,stri,lnk
 
         # print(len(tblAgg))
         
-        print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
+        # print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
 
         if len(tblAgg) > 0:
         # if len(tbls) > 0:
@@ -372,7 +372,7 @@ def tblUp(tblCumul,tblAgg,instDct,stri,lnk
                     tblAgg = []
                     # tbls = []
 
-        print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
+        # print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
         # print(tblAgg)
 
         tblCumul += tblAgg
@@ -564,7 +564,7 @@ def webGet(stri,lnks,filepath,poSp,frm):
             tbls = getTbl(grabhtml)
             if 'Results' in grabhtml:
                 matches = re.findall(">[\n\s]*Results[\s\n]*<b>\d*</b>[\s\n]*to[\s\n]*<b>\d*</b>[\s\n]*of[\s\n]*<b>(\d*)</b>", grabhtml, re.DOTALL)
-                print('\nmatches: ', matches)
+                # print('\nmatches: ', matches)
                 if len(matches) > 0:
                     pgFlt = int(matches[0])/50
                     pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
@@ -629,9 +629,12 @@ def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
         if flt != '' and stri =='':
             stri = str(flt).lower()
             flt = ''
-    strTyps = [strTypA] if strTyp != "All" else arStrTypD.values()
-    frms = [frmA] if strTyp != "All" else arFrmL
-    poSps = [poSpA] if strTyp != "All" else arPoSpD.values()
+    # strTyps = [strTypA] if strTypA != "All" else arStrTypD.values()
+    # frms = [frmA] if frmA != "All" else arFrmL
+    # poSps = [poSpA] if poSpA != "All" else arPoSpD.values()
+    strTyps = [strTypA]
+    frms = [frmA]
+    poSps = [poSpA]
     lnkPths = []
     for strTyp in strTyps:
         for frm in frms:
@@ -663,10 +666,10 @@ def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
                     filepath = f'data/cache/nonarb/{stri}.json'
                     mainLnk += stri
                 lnks = [*lnks,mainLnk]
-                lnkPths.append(
+                lnkPths.append((
                     filepath,
                     lnks
-                )
+                ))
     return lnkPths
     
 
@@ -701,7 +704,7 @@ def dataGrabber(
     # instLst=[]
     instLst = []
     lnkPths = lnkPthsGet(stri,inpLng,filename,strTyp,frm,poSp)
-    
+
     for filepath, lnks in lnkPths:
         fileFound = filecheck(filepath)
         # if len(links) != 1:
