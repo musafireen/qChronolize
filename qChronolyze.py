@@ -73,20 +73,36 @@ refLngD={'1':'arabic','2':'bengali','3':'english'}
 
 tafsDict={"arabic":"ar-tafsir-al-tabari","bengali":"bn-tafseer-ibn-e-kaseer","english":"en-tafisr-ibn-kathir"}
 
-strTypD = {
+arStrTypD = {
     "root": "root",
     "stem": "stem",
     "lemma": "lem",
+    # "english": "eng",
+    # "All": "All"
+}
+strTypD = {
+    # "root": "root",
+    # "stem": "stem",
+    # "lemma": "lem",
+    **arStrTypD,
     "english": "eng",
     "All": "All"
 }
 
 strTypL = list(strTypD.keys())
 
-frmL = ["All","i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii",]
+arFrmL = [
+    # "All",
+    "i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii",
+]
 
-poSpD = {
-    'All': 'All',
+frmL = [
+    "All",
+    *arFrmL,
+]
+
+arPoSpD = {
+    # 'All': 'All',
     'Adjective': 'ADJ',
     'Noun': 'N',
     'Proper noun': 'PN',
@@ -94,6 +110,11 @@ poSpD = {
     'Imperative verbal noun': 'IMPN',
     'Personal pronoun': 'PRON',
     'Demonstrative pronoun': 'DEM',
+}
+
+poSpD = {
+    "All": "All",
+    **arPoSpD,
 }
 
 poSpL = list(poSpD.keys())
@@ -600,6 +621,55 @@ def webGet(stri,lnks,filepath,poSp,frm):
     return instDct
 
 
+def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
+    mainLnk = "https://corpus.quran.com/search.jsp?q="
+    isArabic = strTypA != 'eng' and stri !='' and inpLng == 'arb'
+
+    if not isArabic:
+        if flt != '' and stri =='':
+            stri = str(flt).lower()
+            flt = ''
+    strTyps = [strTypA] if strTyp != "All" else arStrTypD.values()
+    frms = [frmA] if strTyp != "All" else arFrmL
+    poSps = [poSpA] if strTyp != "All" else arPoSpD.values()
+    lnkPths = []
+    for strTyp in strTyps:
+        for frm in frms:
+            for poSp in poSps:
+                lnks = []
+                if isArabic:
+                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.json'
+                    if poSp != "All":
+                        mainLnk += f"pos:{stri} "
+                    if frm != "All":
+                        mainLnk += f"({frm}) "
+                    if strTyp !='All':
+                        mainLnk += f"{strTyp}:"
+                    if strTyp == 'All':
+                        for strTy in ['lem','stem','root']:
+                            lnks.append(
+                                f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
+                            )
+                        # lnks = [
+                        #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
+                        #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
+                        #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
+                        # ]
+                    # lnks = [mainLnk]
+                    mainLnk += stri
+                    lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
+                else:
+                    # lnks = [mainLnk]
+                    filepath = f'data/cache/nonarb/{stri}.json'
+                    mainLnk += stri
+                lnks = [*lnks,mainLnk]
+                lnkPths.append(
+                    filepath,
+                    lnks
+                )
+    return lnkPths
+    
+
 def dataGrabber(
         strObj
     ):
@@ -627,72 +697,40 @@ def dataGrabber(
 
     # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
     #     strTyp = "root"
-
-    mainLnk = "https://corpus.quran.com/search.jsp?q="
-    isArabic = strTyp != 'eng' and stri !='' and inpLng == 'arb'
-
-    if not isArabic:
-        if flt != '' and stri =='':
-            stri = str(flt).lower()
-            flt = ''
-    lnks = []
-    if isArabic:
-        filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
-        if poSp != "All":
-            mainLnk += f"pos:{stri} "
-        if frm != "All":
-            mainLnk += f"({frm}) "
-        if strTyp !='All':
-            mainLnk += f"{strTyp}:"
-        if strTyp == 'All':
-            for strTy in ['lem','stem','root']:
-                lnks.append(
-                    f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
-                )
-            # lnks = [
-            #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
-            #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
-            #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
-            # ]
-        # lnks = [mainLnk]
-        mainLnk += stri
-        lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
-    else:
-        # lnks = [mainLnk]
-        filepath = f'data/cache/nonarb/{stri}.tsv'
-        mainLnk += stri
-    lnks = [*lnks,mainLnk]
     
     # instLst=[]
-
-    fileFound = filecheck(filepath)
-    # if len(links) != 1:
-    # import os
-    # for k, direcLnk in direcLnkDic.items():
-        # propDat, 
-    instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
-        # for lnk in lnks:
-
-    # posDic = {
-    #     'ADJ': 'Adjective',
-    #     'N': 'Noun',
-    #     'PN': 'Proper noun',
-    #     'V': 'Verb',
-    #     'IMPN': 'Imperative verbal noun',
-    #     'PRON': 'Personal pronoun',
-    #     'DEM': 'Demonstrative pronoun',
-    #     '': '',
-    # }
+    instLst = []
+    lnkPths = lnkPthsGet(stri,inpLng,filename,strTyp,frm,poSp)
     
-    # print(frmReq, ptSpReq)
-        # print(len(instLst))
-    instLst = [datum for datum in instDct.values()]
-    # if frmReq != None:
-    #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
-    #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
-    # if ptSpReq != None:
-    #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
-    #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
+    for filepath, lnks in lnkPths:
+        fileFound = filecheck(filepath)
+        # if len(links) != 1:
+        # import os
+        # for k, direcLnk in direcLnkDic.items():
+            # propDat, 
+        instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
+            # for lnk in lnks:
+
+        # posDic = {
+        #     'ADJ': 'Adjective',
+        #     'N': 'Noun',
+        #     'PN': 'Proper noun',
+        #     'V': 'Verb',
+        #     'IMPN': 'Imperative verbal noun',
+        #     'PRON': 'Personal pronoun',
+        #     'DEM': 'Demonstrative pronoun',
+        #     '': '',
+        # }
+        
+        # print(frmReq, ptSpReq)
+            # print(len(instLst))
+        instLst += [datum for datum in instDct.values()]
+        # if frmReq != None:
+        #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
+        #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
+        # if ptSpReq != None:
+        #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
+        #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
         
 
     return instLst
