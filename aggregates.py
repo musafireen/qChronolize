@@ -168,6 +168,282 @@ angels = [
   ],
 ]
 
+jinn = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+            ],
+
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+            ],
+
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                    "flt": "(?:[Ss]nake|[Rr]eptile|[Vv]iper)",
+                },
+            ],
+
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                    "flt": "^((?![Ss]nake|[Rr]eptile|[Vv]iper).)*$",
+                },
+            ],
+
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jnn",
+                    # "strTyp": "lem",
+                },
+                {
+                    "stri": "khn", 
+                    # "strTyp": "root",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Eiforiyt", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "qariyn", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "*rr", 
+                    "strTyp": "root",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$Tn", 
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "majonuwn",
+                    "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jnn",
+                    "strTyp": "root",
+                    "poSp": "V",
+                    # "frm": "ii",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jnn",
+                    "strTyp": "root",
+                    "flt": "(?:[Pp]aradise|[Gg]arden|[Hh]eaven)",
+                    "poSp": "N",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jnn",
+                    "strTyp": "root",
+                    "flt": "^((?![Pp]aradise|[Gg]arden|[Hh]eaven|[Mm]ad|[Cc]raz|[Dd]emon|[Dd]evil|[Jj]inn).)*$",
+                    "poSp": "N",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "Ew*", 
+                },
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 25
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wly", 
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$rk", 
+                    "strTyp": "root",
+                    "poSp": "N",
+                    # "frm": "i",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Ebd", 
+                },
+            ],
+            "wrdDis": 1
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "nsb", 
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
 evil_spirits = [
         [
     {
@@ -1069,12 +1345,12 @@ shirk = [
     *idols,
     # *heavenlies,
     # *shirk2,
-    # *rituals,
-    # *evil_spirits,
+    *rituals,
+    *evil_spirits,
 
         [
     {
-      "wrdDis": 0,
+      "wrdDis": 1,
       "strL": [
         { "stri": "Alh", "flt": "(?:^((?!Allah).)*$)",},
         { "stri": "dwn", "flt": "(?:other|esides|exclud|Us|instead)",},

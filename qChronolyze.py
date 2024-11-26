@@ -146,6 +146,8 @@ inpLngSchD = {
     "english_Scheme": "engSch",
 }
 
+sameVrsIndicator = 82012
+
 def getSorter():
     
     
@@ -641,9 +643,9 @@ def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
             for poSp in poSps:
                 lnks = []
                 if isArabic:
-                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.json'
+                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
                     if poSp != "All":
-                        mainLnk += f"pos:{stri} "
+                        mainLnk += f"pos:{poSp} "
                     if frm != "All":
                         mainLnk += f"({frm}) "
                     if strTyp !='All':
@@ -764,7 +766,8 @@ def intersct(comb):
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            if wrdDis == 0:
+            # if wrdDis == 0:
+            if wrdDis == sameVrsIndicator:
                 surahAyahList = [ inst.surah_ayah for inst in instLst ]
                 if i == 0:
                     surahAyahAggSet = set(surahAyahList)
@@ -785,6 +788,7 @@ def intersct(comb):
                             if wrdDisNow <= wrdDis:
                                 if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
                                     surAyahPosClosest = surAyaPosNew
+                                    minDistSoFar = wrdDisNow
                         if surAyahPosClosest != None:
                             surAyahPosClosestLs.append(surAyahPosClosest)
                         else:
@@ -795,7 +799,7 @@ def intersct(comb):
         
         instLstFlt = list(filter(
             # lambda x: x["surah_ayah"] in surahAyahAggSet,
-            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == 0 else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
+            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == sameVrsIndicator else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
             instLstAgg
         ))
         instDictInc = {}
@@ -909,32 +913,39 @@ class strObjClass:
     def __init__(self,                
                 stri = striSt,
                 flt = fltSt,
-                strTyp = strTypSt,
-                frm = frmSt,
-                poSp = poSpSt,
-                inpLng = inpLngSt,
-                inpSch = inpSchSt ,
+                strTyp = None,
+                frm = None,
+                poSp = None,
+                inpLng = None,
+                inpSch = None ,
+                # stri = striSt,
+                # flt = fltSt,
+                # strTyp = strTypSt,
+                # frm = frmSt,
+                # poSp = poSpSt,
+                # inpLng = inpLngSt,
+                # inpSch = inpSchSt ,
                 #  strSt=strObjStClass()
                 #  **kwargs
                 ):
         
         print(
             "args in str init: ",
-            stri,
-            flt,
-            strTyp,
-            frm,
-            poSp,
-            inpLng,
-            inpSch,
+            "stri: ", stri,
+            "flt:", flt,
+            "strTyp:", strTyp,
+            "frm:", frm,
+            "poSp:", poSp,
+            "inpLng:", inpLng,
+            "inpSch:", inpSch,
         )
         self.stri = stri
         self.flt = flt
-        self.strTyp = strTyp
-        self.frm = frm
-        self.poSp = poSp
-        self.inpLng = inpLng
-        self.inpSch = inpSch
+        self.strTyp = strTyp if strTyp != None else self.strTypSt
+        self.frm = frm if frm != None else self.frmSt
+        self.poSp = poSp if poSp != None else self.poSpSt
+        self.inpLng = inpLng if inpLng != None else self.inpLngSt
+        self.inpSch = inpSch if inpSch != None else self.inpSchSt
         # self.strObj = {
         #     "stri": stri,
         #     "flt": flt,
@@ -946,37 +957,37 @@ class strObjClass:
         # }
         print(
             "props set in str init: ",
-            self.stri,
-            self.flt,
-            self.strTyp,
-            self.frm,
-            self.poSp,
-            self.inpLng,
-            self.inpSch,
+            "stri: ", self.stri,
+            "flt:",self.flt,
+            "strTyp:", self.strTyp,
+            "frm:", self.frm,
+            "poSp:", self.poSp,
+            "inpLng:", self.inpLng,
+            "inpSch:", self.inpSch,
         )
-        print(
-            self.stri,
-            self.flt,
-            self.strTyp,
-            self.frm,
-            self.poSp,
-            self.inpLng,
-            self.inpSch,
-        )
+        # print(
+        #     self.stri,
+        #     self.flt,
+        #     self.strTyp,
+        #     self.frm,
+        #     self.poSp,
+        #     self.inpLng,
+        #     self.inpSch,
+        # )
 
 
 class combClass:
     strLSt = []
-    wrdDisSt = 0
+    wrdDisSt = sameVrsIndicator
     # combObjSt = {
     #     "strL": [],
     #     "wrdDis": 0,
     # }
-    def __init__(self,strL=strLSt,wrdDis=wrdDisSt,qyArLegSch=None,lbl=''):
+    def __init__(self,strL=[],wrdDis=sameVrsIndicator,qyArLegSch=None,lbl=''):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
-      wrdDis = self.wrdDisSt if (wrdDis == 0 or wrdDis == None) else wrdDis
+      wrdDis = self.wrdDisSt if (wrdDis == sameVrsIndicator or wrdDis == None) else wrdDis
       self.wrdDis = wrdDis
       # print(strL)
       # for strObj in [{"stri":"EiysaY"}]:
@@ -1139,7 +1150,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=0,max=82011,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDistW = widg.IntText(min=0,max=82012,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
