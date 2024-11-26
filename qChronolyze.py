@@ -73,20 +73,36 @@ refLngD={'1':'arabic','2':'bengali','3':'english'}
 
 tafsDict={"arabic":"ar-tafsir-al-tabari","bengali":"bn-tafseer-ibn-e-kaseer","english":"en-tafisr-ibn-kathir"}
 
-strTypD = {
+arStrTypD = {
     "root": "root",
     "stem": "stem",
     "lemma": "lem",
+    # "english": "eng",
+    # "All": "All"
+}
+strTypD = {
+    # "root": "root",
+    # "stem": "stem",
+    # "lemma": "lem",
+    **arStrTypD,
     "english": "eng",
     "All": "All"
 }
 
 strTypL = list(strTypD.keys())
 
-frmL = ["All","i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii",]
+arFrmL = [
+    # "All",
+    "i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii",
+]
 
-poSpD = {
-    'All': 'All',
+frmL = [
+    "All",
+    *arFrmL,
+]
+
+arPoSpD = {
+    # 'All': 'All',
     'Adjective': 'ADJ',
     'Noun': 'N',
     'Proper noun': 'PN',
@@ -94,6 +110,11 @@ poSpD = {
     'Imperative verbal noun': 'IMPN',
     'Personal pronoun': 'PRON',
     'Demonstrative pronoun': 'DEM',
+}
+
+poSpD = {
+    "All": "All",
+    **arPoSpD,
 }
 
 poSpL = list(poSpD.keys())
@@ -124,6 +145,8 @@ inpLngSchD = {
     "bengali_Scheme": "bngSch",
     "english_Scheme": "engSch",
 }
+
+sameVrsIndicator = 82012
 
 def getSorter():
     
@@ -283,7 +306,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
     rtTrns = ''
-    print("\n",inpSch,outSch,"\n")
+    # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
         for chr in rt:
             if chr in chrTrnsTbl.keys():
@@ -338,7 +361,7 @@ def tblUp(tblCumul,tblAgg,instDct,stri,lnk
 
         # print(len(tblAgg))
         
-        print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
+        # print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
 
         if len(tblAgg) > 0:
         # if len(tbls) > 0:
@@ -351,7 +374,7 @@ def tblUp(tblCumul,tblAgg,instDct,stri,lnk
                     tblAgg = []
                     # tbls = []
 
-        print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
+        # print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
         # print(tblAgg)
 
         tblCumul += tblAgg
@@ -543,7 +566,7 @@ def webGet(stri,lnks,filepath,poSp,frm):
             tbls = getTbl(grabhtml)
             if 'Results' in grabhtml:
                 matches = re.findall(">[\n\s]*Results[\s\n]*<b>\d*</b>[\s\n]*to[\s\n]*<b>\d*</b>[\s\n]*of[\s\n]*<b>(\d*)</b>", grabhtml, re.DOTALL)
-                print('\nmatches: ', matches)
+                # print('\nmatches: ', matches)
                 if len(matches) > 0:
                     pgFlt = int(matches[0])/50
                     pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
@@ -600,6 +623,58 @@ def webGet(stri,lnks,filepath,poSp,frm):
     return instDct
 
 
+def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
+    mainLnk = "https://corpus.quran.com/search.jsp?q="
+    isArabic = strTypA != 'eng' and stri !='' and inpLng == 'arb'
+
+    if not isArabic:
+        if flt != '' and stri =='':
+            stri = str(flt).lower()
+            flt = ''
+    # strTyps = [strTypA] if strTypA != "All" else arStrTypD.values()
+    # frms = [frmA] if frmA != "All" else arFrmL
+    # poSps = [poSpA] if poSpA != "All" else arPoSpD.values()
+    strTyps = [strTypA]
+    frms = [frmA]
+    poSps = [poSpA]
+    lnkPths = []
+    for strTyp in strTyps:
+        for frm in frms:
+            for poSp in poSps:
+                lnks = []
+                if isArabic:
+                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
+                    if poSp != "All":
+                        mainLnk += f"pos:{poSp} "
+                    if frm != "All":
+                        mainLnk += f"({frm}) "
+                    if strTyp !='All':
+                        mainLnk += f"{strTyp}:"
+                    if strTyp == 'All':
+                        for strTy in ['lem','stem','root']:
+                            lnks.append(
+                                f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
+                            )
+                        # lnks = [
+                        #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
+                        #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
+                        #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
+                        # ]
+                    # lnks = [mainLnk]
+                    mainLnk += stri
+                    lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
+                else:
+                    # lnks = [mainLnk]
+                    filepath = f'data/cache/nonarb/{stri}.json'
+                    mainLnk += stri
+                lnks = [*lnks,mainLnk]
+                lnkPths.append((
+                    filepath,
+                    lnks
+                ))
+    return lnkPths
+    
+
 def dataGrabber(
         strObj
     ):
@@ -627,72 +702,40 @@ def dataGrabber(
 
     # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
     #     strTyp = "root"
-
-    mainLnk = "https://corpus.quran.com/search.jsp?q="
-    isArabic = strTyp != 'eng' and stri !='' and inpLng == 'arb'
-
-    if not isArabic:
-        if flt != '' and stri =='':
-            stri = str(flt).lower()
-            flt = ''
-    lnks = []
-    if isArabic:
-        filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
-        if poSp != "All":
-            mainLnk += f"pos:{stri} "
-        if frm != "All":
-            mainLnk += f"({frm}) "
-        if strTyp !='All':
-            mainLnk += f"{strTyp}:"
-        if strTyp == 'All':
-            for strTy in ['lem','stem','root']:
-                lnks.append(
-                    f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
-                )
-            # lnks = [
-            #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
-            #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
-            #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
-            # ]
-        # lnks = [mainLnk]
-        mainLnk += stri
-        lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
-    else:
-        # lnks = [mainLnk]
-        filepath = f'data/cache/nonarb/{stri}.tsv'
-        mainLnk += stri
-    lnks = [*lnks,mainLnk]
     
     # instLst=[]
+    instLst = []
+    lnkPths = lnkPthsGet(stri,inpLng,filename,strTyp,frm,poSp)
 
-    fileFound = filecheck(filepath)
-    # if len(links) != 1:
-    # import os
-    # for k, direcLnk in direcLnkDic.items():
-        # propDat, 
-    instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
-        # for lnk in lnks:
+    for filepath, lnks in lnkPths:
+        fileFound = filecheck(filepath)
+        # if len(links) != 1:
+        # import os
+        # for k, direcLnk in direcLnkDic.items():
+            # propDat, 
+        instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
+            # for lnk in lnks:
 
-    # posDic = {
-    #     'ADJ': 'Adjective',
-    #     'N': 'Noun',
-    #     'PN': 'Proper noun',
-    #     'V': 'Verb',
-    #     'IMPN': 'Imperative verbal noun',
-    #     'PRON': 'Personal pronoun',
-    #     'DEM': 'Demonstrative pronoun',
-    #     '': '',
-    # }
-    
-    # print(frmReq, ptSpReq)
-        # print(len(instLst))
-    instLst = [datum for datum in instDct.values()]
-    # if frmReq != None:
-    #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
-    #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
-    # if ptSpReq != None:
-    #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
-    #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
+        # posDic = {
+        #     'ADJ': 'Adjective',
+        #     'N': 'Noun',
+        #     'PN': 'Proper noun',
+        #     'V': 'Verb',
+        #     'IMPN': 'Imperative verbal noun',
+        #     'PRON': 'Personal pronoun',
+        #     'DEM': 'Demonstrative pronoun',
+        #     '': '',
+        # }
+        
+        # print(frmReq, ptSpReq)
+            # print(len(instLst))
+        instLst += [datum for datum in instDct.values()]
+        # if frmReq != None:
+        #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
+        #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
+        # if ptSpReq != None:
+        #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
+        #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
         
 
     return instLst
@@ -723,7 +766,8 @@ def intersct(comb):
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            if wrdDis == 0:
+            # if wrdDis == 0:
+            if wrdDis == sameVrsIndicator:
                 surahAyahList = [ inst.surah_ayah for inst in instLst ]
                 if i == 0:
                     surahAyahAggSet = set(surahAyahList)
@@ -744,6 +788,7 @@ def intersct(comb):
                             if wrdDisNow <= wrdDis:
                                 if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
                                     surAyahPosClosest = surAyaPosNew
+                                    minDistSoFar = wrdDisNow
                         if surAyahPosClosest != None:
                             surAyahPosClosestLs.append(surAyahPosClosest)
                         else:
@@ -754,7 +799,7 @@ def intersct(comb):
         
         instLstFlt = list(filter(
             # lambda x: x["surah_ayah"] in surahAyahAggSet,
-            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == 0 else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
+            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == sameVrsIndicator else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
             instLstAgg
         ))
         instDictInc = {}
@@ -868,32 +913,39 @@ class strObjClass:
     def __init__(self,                
                 stri = striSt,
                 flt = fltSt,
-                strTyp = strTypSt,
-                frm = frmSt,
-                poSp = poSpSt,
-                inpLng = inpLngSt,
-                inpSch = inpSchSt ,
+                strTyp = None,
+                frm = None,
+                poSp = None,
+                inpLng = None,
+                inpSch = None ,
+                # stri = striSt,
+                # flt = fltSt,
+                # strTyp = strTypSt,
+                # frm = frmSt,
+                # poSp = poSpSt,
+                # inpLng = inpLngSt,
+                # inpSch = inpSchSt ,
                 #  strSt=strObjStClass()
                 #  **kwargs
                 ):
         
         print(
             "args in str init: ",
-            stri,
-            flt,
-            strTyp,
-            frm,
-            poSp,
-            inpLng,
-            inpSch,
+            "stri: ", stri,
+            "flt:", flt,
+            "strTyp:", strTyp,
+            "frm:", frm,
+            "poSp:", poSp,
+            "inpLng:", inpLng,
+            "inpSch:", inpSch,
         )
         self.stri = stri
         self.flt = flt
-        self.strTyp = strTyp
-        self.frm = frm
-        self.poSp = poSp
-        self.inpLng = inpLng
-        self.inpSch = inpSch
+        self.strTyp = strTyp if strTyp != None else self.strTypSt
+        self.frm = frm if frm != None else self.frmSt
+        self.poSp = poSp if poSp != None else self.poSpSt
+        self.inpLng = inpLng if inpLng != None else self.inpLngSt
+        self.inpSch = inpSch if inpSch != None else self.inpSchSt
         # self.strObj = {
         #     "stri": stri,
         #     "flt": flt,
@@ -905,37 +957,37 @@ class strObjClass:
         # }
         print(
             "props set in str init: ",
-            self.stri,
-            self.flt,
-            self.strTyp,
-            self.frm,
-            self.poSp,
-            self.inpLng,
-            self.inpSch,
+            "stri: ", self.stri,
+            "flt:",self.flt,
+            "strTyp:", self.strTyp,
+            "frm:", self.frm,
+            "poSp:", self.poSp,
+            "inpLng:", self.inpLng,
+            "inpSch:", self.inpSch,
         )
-        print(
-            self.stri,
-            self.flt,
-            self.strTyp,
-            self.frm,
-            self.poSp,
-            self.inpLng,
-            self.inpSch,
-        )
+        # print(
+        #     self.stri,
+        #     self.flt,
+        #     self.strTyp,
+        #     self.frm,
+        #     self.poSp,
+        #     self.inpLng,
+        #     self.inpSch,
+        # )
 
 
 class combClass:
     strLSt = []
-    wrdDisSt = 0
+    wrdDisSt = sameVrsIndicator
     # combObjSt = {
     #     "strL": [],
     #     "wrdDis": 0,
     # }
-    def __init__(self,strL=strLSt,wrdDis=wrdDisSt,qyArLegSch=None,lbl=''):
+    def __init__(self,strL=[],wrdDis=sameVrsIndicator,qyArLegSch=None,lbl=''):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
-      wrdDis = self.wrdDisSt if (wrdDis == 0 or wrdDis == None) else wrdDis
+      wrdDis = self.wrdDisSt if (wrdDis == sameVrsIndicator or wrdDis == None) else wrdDis
       self.wrdDis = wrdDis
       # print(strL)
       # for strObj in [{"stri":"EiysaY"}]:
@@ -1098,7 +1150,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=0,max=82011,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDistW = widg.IntText(min=0,max=82012,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)

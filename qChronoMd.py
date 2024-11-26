@@ -30,6 +30,8 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     newDic = {}
 
+    frstAys = {}
+
     for rec in sortedRecs:
         if rec["surah_ayah"] not in newDic.keys():
             newDic[rec["surah_ayah"]] = {
@@ -67,7 +69,17 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
             strn = f.read()
 
         olds = re.compile(
-                '\n#\s*(?:Q\:){0,1}(\d{1,}\:\d{1,})(.*?(?=\n#|$))(?:(\n##\s{1,}.*?(?=\n#\s{1,}|$))){0,1}',
+                '\n#\s*'
+                +'(?:Q\:){0,1}'
+                +'(\d{1,}\:\d{1,})'
+                +'(.*?(?=\n#|$))'
+                # +'(?:'
+                +'(\n##\s{1,}.'
+                +'*?'
+                +'(?=\n#\s{1,}|$)'
+                # +')'
+                +'){0,1}'
+                ,
                 re.DOTALL
             ).findall(
 
@@ -90,61 +102,84 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         i = 0
 
         for old in olds:
-
-            if old[0] not in newDic.keys():
-                newDic[old[0]] = { 
-                    'string' : old[1] , 
-                    'queries': {
-                        quer[0]: quer[1]
-                        
-                        
-                        # quer
-                        for quer in re.compile(
-                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
-                            re.DOTALL,
-                        ).findall(
-                            old[2] 
-                        )
+            surAyOld = old[0]
+            primaryOld = old[1]
+            queriesOld = old[2]
+            if surAyOld not in newDic.keys():
+                secondaries = re.findall(
+                                '(\n##\s{1,}'
+                                +'.*?'
+                                +'(?=\n#|$)'
+                                +')',
+                                queriesOld,
+                                re.DOTALL,
+                            )
+                areQueries = len(
+                            "".join(
+                                secondaries
+                        ).replace('\n','').replace('\s','')
+                    ) > 0 
+                
+                if areQueries:
+                    print(f"for {surAyOld} secondaries: ", secondaries)
+                    newDic[surAyOld] = { 
+                        'string' : primaryOld , 
+                        'queries': {
+                            quer[0]: quer[1]
+                            
+                            
+                            # quer
+                            for quer in re.compile(
+                                '\n##\s{1,}'
+                                +'([^\n]{1,}(?=\n))'
+                                +'(.*?(?=\n#|$))'
+                                ,    
+                                re.DOTALL,
+                            ).findall(
+                                queriesOld 
+                            )
+                        }
+                            # how many queries
+                            if areQueries 
+                            else {}
+                        # 'queries': [
+                        #     {
+                        #         'query': quer[0],
+                        #         'postquery': quer[1],
+                            
+                        #     }
+                        #     # quer
+                        #     for quer in re.compile(
+                        #         '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
+                        #         re.DOTALL,
+                        #     ).findall(
+                        #         old[2] 
+                        #     )
+                        # ]
+                        #     if len(old) > 2 else None 
                     }
-                        if len(old) > 2 else {}
-                    # 'queries': [
-                    #     {
-                    #         'query': quer[0],
-                    #         'postquery': quer[1],
-                        
-                    #     }
-                    #     # quer
-                    #     for quer in re.compile(
-                    #         '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n))',    
-                    #         re.DOTALL,
-                    #     ).findall(
-                    #         old[2] 
-                    #     )
-                    # ]
-                    #     if len(old) > 2 else None 
-                }
 
-                i+=1
-                print(f'\nold not in new {i}: {old[0]}')
+                    i+=1
+                    print(f'\nold not in new {i}: {surAyOld}')
 
             else:
-                newDic[old[0]]['string'] = old[1]
-                bef = dict(newDic[old[0]])
+                newDic[surAyOld]['string'] = primaryOld
+                bef = dict(newDic[surAyOld])
                 for quer in re.compile(
                             '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
                             re.DOTALL,
                         ).findall(
-                            old[2] 
+                            queriesOld 
                         ):
-                    newDic[old[0]]['queries'][quer[0]] = quer[1]
+                    newDic[surAyOld]['queries'][quer[0]] = quer[1]
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
                         
                     #     })
-                if bef != newDic[old[0]]:
+                if bef != newDic[surAyOld]:
                     print(f'\nVerse string before reading: {bef}')
-                    print(f'\nVerse string after reading: {newDic[old[0]]}')
+                    print(f'\nVerse string after reading: {newDic[surAyOld]}')
         
 
     # print('\nnewDic after checking md: ', newDic, '\n')
@@ -167,8 +202,8 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
             queriesLeft.add(q)
 
     for surAy in surAyOrdered:
-        if surAy == '68:2':
-            print(f'\nnew string: {newDic[surAy]}\n')
+        # if surAy == '68:2':
+        #     print(f'\nnew string: {newDic[surAy]}\n')
         # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsi#{surAy}]]\n'
         # qpq = newDic[surAy]['queries'].items()
         newStrUp =   f'\n\n# Q:{surAy}' + newDic[surAy]['string']
@@ -187,12 +222,14 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         
 
         for q, pq in newDic[surAy]['queries'].items():
-            if q in queriesLeft:
-                print(f'\nquery left at {surAy} : {q}')
-                newStrUp = f'\n## {q}' + pq
-                queriesLeft.remove(q)
+            qReal = q.replace(">>> ","")
+            if qReal in queriesLeft:
+                print(f'\nquery left at {surAy} : {qReal}')
+                newStrUp = f'\n## {qReal}' + pq
+                frstAys[qReal] = surAy
+                queriesLeft.remove(qReal)
             else:
-                newStrUp = f'\n## >>> {q}' + pq
+                newStrUp = f'\n## >>> {qReal}' + pq + '\n' + f"[[#{frstAys[qReal]}]]"
             newStr += newStrUp
                 
 
