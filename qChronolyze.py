@@ -757,7 +757,7 @@ def intersct(comb):
     strL = comb.strL
     wrdDis = comb.wrdDis
     if len(strL) > 0:
-        if wrdDis > 0:
+        if wrdDis != sameVrsIndicator:
             import json
             with open("posSerDict.json") as f:
                 posSerDict = json.loads(f.read())
@@ -785,7 +785,7 @@ def intersct(comb):
                         surAyahPosClosest = None
                         for surAyaPosNew in surahAyahPosList:
                             wrdDisNow = abs(posSerDict[surAyaPosNew] - posSerDict[surAyahPos])
-                            if wrdDisNow <= wrdDis:
+                            if (wrdDisNow <= wrdDis and wrdDisNow != 0) or (wrdDis==0 and wrdDisNow==0):
                                 if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
                                     surAyahPosClosest = surAyaPosNew
                                     minDistSoFar = wrdDisNow

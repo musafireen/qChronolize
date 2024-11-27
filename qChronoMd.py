@@ -107,20 +107,20 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
             queriesOld = old[2]
             if surAyOld not in newDic.keys():
                 secondaries = re.findall(
-                                '(\n##\s{1,}'
-                                +'.*?'
-                                +'(?=\n#|$)'
+                                '((?<=\n)##\s{1,}[^\n]*\n*)'
+                                +'((?:\n*1st inst\: \[\[[^\n]*\]\]\n*){0,1})'
+                                +'(^(?!1st inst\:)[^#]'
+                                +'(?=\n#|$)*$'
                                 +')',
                                 queriesOld,
                                 re.DOTALL,
                             )
-                areQueries = len(
-                            "".join(
-                                secondaries
-                        ).replace('\n','').replace('\s','')
-                    ) > 0 
                 
-                if areQueries:
+                queryContents = "".join([queryCont[2].replace('\n','').replace('\s','') for queryCont in secondaries])
+
+                isQueryContent = len(queryContents) > 0 
+                
+                if isQueryContent:
                     print(f"for {surAyOld} secondaries: ", secondaries)
                     newDic[surAyOld] = { 
                         'string' : primaryOld , 
@@ -140,8 +140,8 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                             )
                         }
                             # how many queries
-                            if areQueries 
-                            else {}
+                            # if isQueryContent 
+                            # else {}
                         # 'queries': [
                         #     {
                         #         'query': quer[0],
@@ -206,9 +206,9 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         #     print(f'\nnew string: {newDic[surAy]}\n')
         # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsi#{surAy}]]\n'
         # qpq = newDic[surAy]['queries'].items()
-        newStrUp =   f'\n\n# Q:{surAy}' + newDic[surAy]['string']
+        newStr += f'\n# Q:{surAy}' + newDic[surAy]['string']
 
-        newStr += newStrUp
+        # newStr += newStrUp
 
         # alreadyRefed.append(rec["surah_ayah"])
         alreadyRefed.append(surAy)
@@ -222,14 +222,20 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         
 
         for q, pq in newDic[surAy]['queries'].items():
-            qReal = q.replace(">>> ","")
+            qReal = q.replace("~~~ ","")
             if qReal in queriesLeft:
                 print(f'\nquery left at {surAy} : {qReal}')
                 newStrUp = f'\n## {qReal}' + pq
                 frstAys[qReal] = surAy
                 queriesLeft.remove(qReal)
             else:
-                newStrUp = f'\n## >>> {qReal}' + pq + '\n' + f"[[#{frstAys[qReal]}]]"
+                qHd = f'\n## ~~~ {qReal}' 
+                qRef ='\n' + f"1st inst: [[#{frstAys[qReal]}]]" + pq
+                newStrUp = ''
+                if qHd not in q:
+                   newStrUp  += qHd
+                if qRef not in pq:
+                    newStrUp += qRef
             newStr += newStrUp
                 
 
