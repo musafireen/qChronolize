@@ -40,7 +40,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     vrSs = re.findall(
         "\n### (\d*:\d*)\s*\n{1,}"
-        +"(\[Q\.\d*\:\d*\]\(\[^\n]*\))\n{1,}"
+        # +"(\[Q\.\d*\:\d*\]\(\[^\n]*\))\n{1,}"
         +"([^#a-zA-Z]{1,})\n{1,}"
         +"([^#]*(?=\n#|$))", 
         qTxt, 
@@ -49,11 +49,13 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     vrsDict = { 
         ser: {
-            "lnk": Lnk,
+            # "lnk": Lnk,
             "arb": vrsArb,
             "eng": vrsEng,
         }
-        for ser, Lnk, vrsArb, vrsEng in vrSs 
+        for ser, 
+        # Lnk, 
+        vrsArb, vrsEng in vrSs 
     }
 
     for rec in sortedRecs:
