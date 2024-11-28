@@ -115,7 +115,7 @@ We too shall summon the guards of Hell.
 
 
 ### 96:19
-كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب ۩
+كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب 
 
 No, not at all. Never obey him. But prostrate yourself and become nigh (to your Lord).
 
@@ -135,7 +135,7 @@ No, not at all. Never obey him. But prostrate yourself and become nigh (to your 
 68.1-16
 
 ### 68:1
-نٓ ۚ وَٱلْقَلَمِ وَمَا يَسْطُرُونَ
+نٓ  وَٱلْقَلَمِ وَمَا يَسْطُرُونَ
 
 Nun. By the pen and what the scribes write.
 
@@ -273,7 +273,7 @@ that (in the Hereafter) you shall have all that you choose for yourselves?
 
 
 ### 68:39
-أَمْ لَكُمْ أَيْمَـٰنٌ عَلَيْنَا بَـٰلِغَةٌ إِلَىٰ يَوْمِ ٱلْقِيَـٰمَةِ ۙ إِنَّ لَكُمْ لَمَا تَحْكُمُونَ
+أَمْ لَكُمْ أَيْمَـٰنٌ عَلَيْنَا بَـٰلِغَةٌ إِلَىٰ يَوْمِ ٱلْقِيَـٰمَةِ  إِنَّ لَكُمْ لَمَا تَحْكُمُونَ
 
 Or have We sworn a covenant with you which We are bound to keep till the Day of Resurrection, (a covenant requiring that whatever you ordain for yourselves shall be yours)?
 
@@ -297,19 +297,19 @@ On the Day when the dreadful calamity will unfold, when people will be summoned 
 
 
 ### 68:43
-خَـٰشِعَةً أَبْصَـٰرُهُمْ تَرْهَقُهُمْ ذِلَّةٌ ۖ وَقَدْ كَانُوا۟ يُدْعَوْنَ إِلَى ٱلسُّجُودِ وَهُمْ سَـٰلِمُونَ
+خَـٰشِعَةً أَبْصَـٰرُهُمْ تَرْهَقُهُمْ ذِلَّةٌ  وَقَدْ كَانُوا۟ يُدْعَوْنَ إِلَى ٱلسُّجُودِ وَهُمْ سَـٰلِمُونَ
 
 Their eyes shall be downcast and ignominy shall overwhelm them. For when they were safe and sound, they were summoned to prostrate themselves, (and they refused).
 
 
 ### 68:44
-فَذَرْنِى وَمَن يُكَذِّبُ بِهَـٰذَا ٱلْحَدِيثِ ۖ سَنَسْتَدْرِجُهُم مِّنْ حَيْثُ لَا يَعْلَمُونَ
+فَذَرْنِى وَمَن يُكَذِّبُ بِهَـٰذَا ٱلْحَدِيثِ  سَنَسْتَدْرِجُهُم مِّنْ حَيْثُ لَا يَعْلَمُونَ
 
 So leave Me, (O Prophet), to deal with him who gives the lie to this Discourse. We shall draw them little by little (to their undoing) in a way that they will not know.
 
 
 ### 68:45
-وَأُمْلِى لَهُمْ ۚ إِنَّ كَيْدِى مَتِينٌ
+وَأُمْلِى لَهُمْ  إِنَّ كَيْدِى مَتِينٌ
 
 I am giving them a respite. Great is My scheme!
 
@@ -449,7 +449,7 @@ If you persist in disbelieving, how will you guard yourself against the (woe of 
 
 
 ### 73:18
-ٱلسَّمَآءُ مُنفَطِرٌۢ بِهِۦ ۚ كَانَ وَعْدُهُۥ مَفْعُولًا
+ٱلسَّمَآءُ مُنفَطِرٌۢ بِهِۦ  كَانَ وَعْدُهُۥ مَفْعُولًا
 
 the Day whose severity shall cause the heaven to split asunder? Allah's promise is ever bound to be fulfilled.
 
@@ -467,7 +467,7 @@ the Day whose severity shall cause the heaven to split asunder? Allah's promise 
 73.19-19
 
 ### 73:19
-إِنَّ هَـٰذِهِۦ تَذْكِرَةٌ ۖ فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا
+إِنَّ هَـٰذِهِۦ تَذْكِرَةٌ  فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا
 
 Indeed this is nothing but a Good Counsel; so let him who will take a way leading to his Lord.
 
@@ -576,7 +576,7 @@ and who still greedily desires that I should bestow upon him more.
 
 
 ### 74:16
-كَلَّآ ۖ إِنَّهُۥ كَانَ لِـَٔايَـٰتِنَا عَنِيدًا
+كَلَّآ  إِنَّهُۥ كَانَ لِـَٔايَـٰتِنَا عَنِيدًا
 
 By no means; he is stubbornly opposed to Our Signs.
 
@@ -677,7 +677,7 @@ Over it are nineteen keepers.
 
 
 ### 74:31
-وَمَا جَعَلْنَآ أَصْحَـٰبَ ٱلنَّارِ إِلَّا مَلَـٰٓئِكَةً ۙ وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةً لِّلَّذِينَ كَفَرُوا۟ لِيَسْتَيْقِنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَيَزْدَادَ ٱلَّذِينَ ءَامَنُوٓا۟ إِيمَـٰنًا ۙ وَلَا يَرْتَابَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَٱلْمُؤْمِنُونَ ۙ وَلِيَقُولَ ٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌ وَٱلْكَـٰفِرُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَـٰذَا مَثَلًا ۚ كَذَٰلِكَ يُضِلُّ ٱللَّهُ مَن يَشَآءُ وَيَهْدِى مَن يَشَآءُ ۚ وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ ۚ وَمَا هِىَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ
+وَمَا جَعَلْنَآ أَصْحَـٰبَ ٱلنَّارِ إِلَّا مَلَـٰٓئِكَةً  وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةً لِّلَّذِينَ كَفَرُوا۟ لِيَسْتَيْقِنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَيَزْدَادَ ٱلَّذِينَ ءَامَنُوٓا۟ إِيمَـٰنًا  وَلَا يَرْتَابَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَٱلْمُؤْمِنُونَ  وَلِيَقُولَ ٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌ وَٱلْكَـٰفِرُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَـٰذَا مَثَلًا  كَذَٰلِكَ يُضِلُّ ٱللَّهُ مَن يَشَآءُ وَيَهْدِى مَن يَشَآءُ  وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ  وَمَا هِىَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ
 
 We have appointed none but angels as the keepers of the Fire, and We have not made their number but as a trial for the unbelievers so that those who have been endowed with the Book will be convinced and the believers' faith will increase, and neither those who have been endowed with the Book nor the believers will fall into any doubt. As for those in whose hearts there is a sickness as well as the unbelievers, they will say: “What did Allah aim at by this strange parable?” Thus does Allah let whomsoever He pleases to go astray, and directs whomsoever He pleases to the Right Way. And none knows the hosts of your Lord but He. (And Hell has only been mentioned here) that people may take heed.
 
@@ -820,7 +820,7 @@ No indeed; each one of them desires that open letters be sent to each of them.
 
 
 ### 74:53
-كَلَّا ۖ بَل لَّا يَخَافُونَ ٱلْـَٔاخِرَةَ
+كَلَّا  بَل لَّا يَخَافُونَ ٱلْـَٔاخِرَةَ
 
 No indeed; the truth is that they have no fear of the Hereafter.
 
