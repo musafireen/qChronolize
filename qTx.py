@@ -44,7 +44,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     for rec in sortedRecs:
         surAy = rec["surah_ayah"]
-        pos = rec["position"]
+        pos = int(rec["position"])
         vrsTxt = vrsDict[surAy]
         vrsWrds = vrsTxt.split(" ")
         vrsTxtMod = " ".join(vrsWrds[:pos-1]) + "***" + vrsWrds[pos-1] + "***" + " ".join(vrsWrds[pos:])
