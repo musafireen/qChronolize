@@ -2,7 +2,7 @@
 import ipywidgets as widg
 from ipywidgets import interactive as intct
 from IPython.display import display, clear_output
-from qChronolyze import refLngD, lng2InpSchD
+from qChronolyze import refLngD, lng2InpSchD, tafsDict
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
 def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
@@ -11,7 +11,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     tafsDict = [
         ""
     ]
-    tafsDict={"arabic":"tfTb","bengali":"tfKthB","english":"tfKthE"}
+    # tafsDict={"arabic":"tfTb","bengali":"tfKthB","english":"tfKthE"}
     tafs = tafsDict[refLng]
     alreadyRefed = []
     dicti = [
@@ -36,7 +36,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     frstAys = {}
 
-    with open(f"data/ref/{tafs}.md") as f:
+    with open(f"data/ref/Qrsi.md") as f:
         tafOr = f.read()
 
     import re
