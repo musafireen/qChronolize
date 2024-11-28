@@ -7,10 +7,7 @@ from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
 def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     mdFile = f'data/compare/{flnm}.md'
-    # instLstAgg = []
-    tafsDict = [
-        ""
-    ]
+    # instLstAgg = []   
     # tafsDict={"arabic":"tfTb","bengali":"tfKthB","english":"tfKthE"}
     tafs = tafsDict[refLng]
     alreadyRefed = []
