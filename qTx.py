@@ -40,7 +40,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     vrSs = re.findall("\n# (\d*\s*\n)([^#]*(?=\n#|$))", tafOr, re.DOTALL)
 
-    vrsDict = { surVrsHds[int(ser)-1]: vrsTxt for ser, vrsTxt in vrSs }
+    vrsDict = { ser: vrsTxt for ser, vrsTxt in vrSs }
 
     for rec in sortedRecs:
         surAy = rec["surah_ayah"]
