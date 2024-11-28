@@ -38,7 +38,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     import re
 
-    vrSs = re.findall("\n# (\d*\s*\n)([^#]*(?=\n#|$))", tafOr, re.DOTALL)
+    vrSs = re.findall("\n# (\d*:\d*\s*\n)([^#]*(?=\n#|$))", tafOr, re.DOTALL)
 
     vrsDict = { ser: vrsTxt for ser, vrsTxt in vrSs }
 
