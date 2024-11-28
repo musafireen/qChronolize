@@ -34,24 +34,41 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     frstAys = {}
 
     with open(f"data/ref/Qrsi.md") as f:
-        tafOr = f.read()
+        qTxt = f.read()
 
     import re
 
-    vrSs = re.findall("\n### (\d*:\d*)\s*\n([^#]*(?=\n#|$))", tafOr, re.DOTALL)
+    vrSs = re.findall(
+        "\n### (\d*:\d*)\s*\n{1,}"
+        +"(\[Q\.\d*\:\d\*]\(\[^\n]*\))\n{1,}"
+        +"([^#a-zA-Z]{1,})\n{1,}"
+        +"([^#]*(?=\n#|$))", 
+        qTxt, 
+        re.DOTALL
+    )
 
-    vrsDict = { ser: vrsTxt for ser, vrsTxt in vrSs }
+    vrsDict = { 
+        ser: {
+            "lnk": Lnk,
+            "arb": vrsArb,
+            "eng": vrsEng,
+        }
+        for ser, Lnk, vrsArb, vrsEng in vrSs 
+    }
 
     for rec in sortedRecs:
         surAy = rec["surah_ayah"]
         pos = int(rec["position"])
-        vrsTxt = vrsDict[surAy]
-        vrsWrds = vrsTxt.split(" ")
-        vrsTxtMod = " ".join(vrsWrds[:pos-1]) + "***" + vrsWrds[pos-1] + "***" + " ".join(vrsWrds[pos:])
+        vrsRec = vrsDict[surAy]
+        vrsLnk = vrsRec["lnk"]
+        vrsArb = vrsRec["arb"]
+        vrsEng = vrsRec["eng"]
+        vrsWrds = vrsArb.split(" ")
+        vrsArbMod = " ".join(vrsWrds[:pos-1]) + "***" + vrsWrds[pos-1] + "***" + " ".join(vrsWrds[pos:])
         if surAy not in newDic.keys():
             newDic[rec["surah_ayah"]] = {
                 'string': f'\n[Q.{rec["surah_ayah"]}](https://quran.com/{surAy}/tafsirs/{tafs})\n'
-                            + f'\n{vrsDict[surAy]}\n',
+                            + f'\n{vrsArbMod}\n{vrsEng}\n',
                 # 'queries': [
                 #     {
                 #         'query': rec["query"],
