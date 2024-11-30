@@ -804,10 +804,22 @@ def intersct(comb):
         ))
         instDictInc = {}
         for inst in instLstFlt:
-            # surahAyah = inst["surah_ayah"]
+            surahAyah = inst.surah_ayah
+            curPos = inst.position
+            curStr = inst.string
+            curMean = inst.meaning
+            # curQuer = inst.query
             surahAyah = inst.surah_ayah
             if surahAyah not in instDictInc.keys():
-                instDictInc[surahAyah] = inst
+                # instDictInc[surahAyah] = inst
+                instDictInc[surahAyah] = {
+                    # **inst.__dict__,
+                    # "surah_ayah": surahAyah,
+                    "strings": [curStr],
+                    "meanings": [curMean],
+                    "positions" : [int(curPos)],
+                    # "query": curQuer
+                }
                 # instDictInc[surahAyah] = {
                 #     "position": inst["position"],
                 #     "string": inst["string"],
@@ -820,11 +832,13 @@ def intersct(comb):
             else:
                 # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
                 # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
-                instDictInc[surahAyah].string = instDictInc[surahAyah].string + ' ' + inst.string
-                instDictInc[surahAyah].meaning = instDictInc[surahAyah].meaning + ' ' + inst.meaning
+                instDictInc[surahAyah]["strings"].append(curStr)
+                instDictInc[surahAyah]["meanings"].append(curMean)
+                instDictInc[surahAyah]["positions"].append(curPos)
 
-        # instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
-        instLstInc = [ v for v in instDictInc.values() ]
+
+        instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
+        # instLstInc = [ v for v in instDictInc.values() ]
         return instLstInc
     
     # elif len(strL) == 1:
@@ -877,12 +891,12 @@ def aggregLsts(
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
         for inst in optStInsts:
-            inst.query = lbl
+            inst["query"] = lbl
         # instLstAgg += optStInsts
         instLstAgg = [*instLstAgg,*optStInsts]
         # instLstAgg += instLst
     for row in instLstAgg:
-        row.ayah_link= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
+        row["ayah_link"]= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
         # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
     # instLstAgg = [ { 
     #     **row, 
@@ -1458,7 +1472,7 @@ def sortchron(
     import pandas as pd
     # clear_output()
     # print([obj.__dict__ for obj in instLstAgg])
-    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    df = pd.DataFrame([obj for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
     # df = pd.DataFrame(instLstAgg,columns = ["surahayah","position","string","meaning","ayah_link","query"])
     df['position'] = df['position'].astype('int')
     # df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)

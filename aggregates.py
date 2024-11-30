@@ -1204,7 +1204,7 @@ heavenlies = [
       ],
     },
   ],
-  
+
 ]
 
 shirk2 = [
@@ -1423,7 +1423,8 @@ rituals = [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Hh]air)",},
+        { "stri": "ma$oEar", "strTyp": "lem", "flt": "",},
+        { "stri": "$Er", "strTyp": "root", "poSp":"V", "frm": "i", "flt": "(?:[Hh]air)",},
       ],
     },
   ],
@@ -1431,7 +1432,7 @@ rituals = [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Ss]ymbol|rite)",},
+        { "stri": "$aAEir", "strTyp": "lem", "flt": "(?:[Ss]ymbol|rite)",},
       ],
     },
   ],
@@ -1439,15 +1440,15 @@ rituals = [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Mm]onument)",},
+        { "stri": "$iEor", "strTyp": "lem", "flt": "(?:[Mm]onument)",},
       ],
     },
   ],
-        [
+            [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "$Er", "flt": "(?:perceive|aware|realize)",},
+        { "stri": "$Er", "flt": "[Ss]irius",},
       ],
     },
   ],
