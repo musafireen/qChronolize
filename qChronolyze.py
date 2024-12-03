@@ -336,6 +336,9 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
             "iasSch": {
                 "arbSch": iasSch2arbSch,
             },
+            "arbSch": {
+                "bkwSch": {v:k for k,v in bkwSch2arbSch.items()},
+            },
         },
         "eng": {
             "engSch": {
@@ -352,6 +355,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
 
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
+    print(chrTrnsTbl == chrOut["arb"]["bkwSch"]["arbSch"])
     rtTrns = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
