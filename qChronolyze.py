@@ -312,6 +312,16 @@ def getColMap(dicti):
         # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
+def remVwls(stri,schm="arbSch"):
+
+    if schm == "arbSch":
+        for chr in arbVwlsDict.values():
+            stri = stri.replace(chr,'')
+    if schm == "bkwSch":
+        for chr in arbVwlsDict.keys():
+            stri = stri.replace(chr,'')
+    return stri
+
 def rtTrns(rt,inpLng,inpSch,outSch=None):
     lngSts = {
         "arb": "arbSch",
