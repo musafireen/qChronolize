@@ -1,30 +1,27 @@
 Stem	Buckwalter	Part-of-speech
-أَنتَ	>anta	PRON
-أَنتُمْ	>antumo	PRON
-كَ	ka	PRON
-كُمْ	kumo	PRON
-هُوَ	huwa	PRON
-هُ	hu	PRON
-هِىَ	hiYa	PRON
-هَا	haA	PRON
-هُمْ	humo	PRON
-ىَ	Ya	PRON
-نَحْنُ	naHonu	PRON
-نَا	naA	PRON
-عٓسٓقٓ	E^s^q^	INL
-حمٓ	Hm^	INL
-الٓر	Al^r	INL
-الٓمٓ	Al^m^	INL
-نٓ	n^	INL
-قٓ	q^	INL
-صٓ	S^	INL
-يسٓ	ys^	INL
-طه	Th	INL
-طسٓمٓ	Ts^m^	INL
-يَاسِينَ	yaAsiyna	INL
-مَعَ	maEa	PRON
-إِذَا	<i*aA	PRON
-طس	Ts	PRON
-2:181:14	2:181:14	PRON
-8:6:10	8:6:10	PRON
-13:37:13	13:37:13	PRON
+أَنتَ	>anta	Personal pronoun
+أَنتُمْ	>antumo	Personal pronoun
+كَ	ka	Personal pronoun
+كُمْ	kumo	Personal pronoun
+هُوَ	huwa	Personal pronoun
+هُ	hu	Personal pronoun
+هِىَ	hiYa	Personal pronoun
+هَا	haA	Personal pronoun
+هُمْ	humo	Personal pronoun
+ىَ	Ya	Personal pronoun
+نَحْنُ	naHonu	Personal pronoun
+نَا	naA	Personal pronoun
+عٓسٓقٓ	E^s^q^	Quranic initials
+حمٓ	Hm^	Quranic initials
+الٓر	Al^r	Quranic initials
+الٓمٓ	Al^m^	Quranic initials
+نٓ	n^	Quranic initials
+قٓ	q^	Quranic initials
+صٓ	S^	Quranic initials
+يسٓ	ys^	Quranic initials
+طه	Th	Quranic initials
+طسٓمٓ	Ts^m^	Quranic initials
+يَاسِينَ	yaAsiyna	Quranic initials
+طس	Ts	Quranic initials
+مَعَ	maEa	Preposition
+إِذَا	<i*aA	Surprise particle
