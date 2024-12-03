@@ -694,7 +694,7 @@ def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
             for poSp in poSps:
                 lnks = []
                 if isArabic:
-                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
+                    filepath = f'data/cache/arb/{strTyp}/{filename}/{frm}/{poSp}.tsv'
                     if poSp != "All":
                         mainLnk += f"pos:{poSp} "
                     if frm != "All":
