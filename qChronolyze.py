@@ -195,7 +195,7 @@ inpLngSchD = {
 
 import csv
 import json
-flPth='data/surAyPosStrAdvWrdDict.tsv'
+flPth='data/surAyPosStrAdvWrdMD.tsv'
 list_header=["surah","ayah","position","word","strings_dictionary"]
 with open(flPth) as f:
     surAyPosStrAdvWrdMDRws = list(csv.DictReader(f, delimiter='\t'))
@@ -208,18 +208,18 @@ for surAyPosStrAdvWrd in surAyPosStrAdvWrdMDRws:
         surAyPosStrAdvWrdMD[sur] = {}
     if ay not in surAyPosStrAdvWrdMD[sur]:
         surAyPosStrAdvWrdMD[sur][ay] = {}
-    if pos not in surAyPosStrAdvWrdMD[sur][ay]:
-        surAyPosStrAdvWrdMD[sur][ay][pos] = {
-            # "wrd": posD[surAyPos],
-            # "striDLs": strDLs,
-            # "wrd": stri,
-            # "striDLs": posStrAdvDict[surAyPos],
-            "wrd": stri,
-            "mean": mean,
-            "striDLs": json.loads(strDLs),
-            # "striDLs": posStrAdvDict.get(surAyPos,['problematic pos']),
-            # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
-        }
+    # if pos not in surAyPosStrAdvWrdMD[sur][ay]:
+    surAyPosStrAdvWrdMD[sur][ay][pos] = {
+        # "wrd": posD[surAyPos],
+        # "striDLs": strDLs,
+        # "wrd": stri,
+        # "striDLs": posStrAdvDict[surAyPos],
+        "wrd": stri,
+        "mean": mean,
+        "striDLs": json.loads(strDLs),
+        # "striDLs": posStrAdvDict.get(surAyPos,['problematic pos']),
+        # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
+    }
 
 sameVrsIndicator = len(surAyPosStrAdvWrdMDRws) + 1
 
@@ -394,7 +394,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
     print(chrTrnsTbl == chrOut["arb"]["bkwSch"]["arbSch"])
-    rtTrns = ''
+    rtTrn = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
         for chr in rt:
@@ -402,12 +402,12 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
                 chrTrns = chrTrnsTbl[chr]
             else:
                 chrTrns = chr
-            rtTrns += chrTrns
+            rtTrn += chrTrns
             # print("language schema is present\ncharacter transform: ", chrTrns)
     else:
-        rtTrns = rt
+        rtTrn = rt
     
-    return rtTrns
+    return rtTrn
 
 def filecheck(filepath):
     import os
@@ -444,15 +444,28 @@ class row2DictCl:
     lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     def __init__(self,surah='',ayah='',positions=[],query='',tafs="ar-tafsir-al-tabari"):
-        surAy = ":".join([surah,ayah])
-        ayWrds = [ay["word"] for ay in [surAyPosStrAdvWrdMD[surah][ayah]] ]
-        ayTxt = " ".join( ayWrds )
-        self.surah = surah
-        self.ayah = ayah
+        # print(surah, ayah, positions)
+        ayWrds = [posD["wrd"] 
+                  for posD in surAyPosStrAdvWrdMD[surah][ayah].values()
+                  
+                ]
+        ayWrdsHgh = [
+            f"<b><i>{ayWrds[i]}</i></b>"
+            if i+1 in positions
+            else ayWrds[i]
+            for i in range(len(ayWrds))
+        ]
+        ayTxt = " ".join( ayWrdsHgh )
+
+        # surAy = ":".join([surah,ayah])
+        self.surah_ayah = ":".join([surah,ayah])
+        # self.surah = surah
+        # self.ayah = ayah
         self.positions = positions
-        self.strings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["word"] for pos in positions ]
-        self.meanings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["meaning"] for pos in positions]
-        self.ayah_link = f"<a {self.lnkStyle}href='https://quran.com/{surAy}/tafsirs/{tafs}'>{ayTxt}</a>"
+        # self.position_lowest = min([int(pos) for pos in positions])
+        self.strings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["wrd"] for pos in positions ]
+        self.meanings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["mean"] for pos in positions]
+        self.ayah_link = f"<a {self.lnkStyle}href='https://quran.com/{self.surah_ayah}/tafsirs/{tafs}'>{ayTxt}</a>"
         self.query = query
 
 
@@ -846,14 +859,16 @@ def dataGrabberBAK(
 
 
 def dataGrabber(strObj):
-    # flt = str(strObj.flt).lower()
+    flt = str(strObj.flt).lower()
     frm = strObj.frm
     strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
     poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
-    # inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
-    # inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
-    stri = strObj.stri
+    inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
+    inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
+    # stri = strObj.stri
+    stri = rtTrns(strObj.stri,inpLng,inpSch,)
     instLst = []
+    import re
     for sur, ayD in surAyPosStrAdvWrdMD.items():
         for ay, posD in ayD.items():
             inst = [sur,ay,[]]
@@ -867,35 +882,41 @@ def dataGrabber(strObj):
             # }
 
             for pos, wrdStrD in posD.items():
-                mean = wrdStrD["meaning"]
+                mean = wrdStrD["mean"]
                 
                 if strTyp == "stem":
-                    if remVwls(wrdStrD["word"]) in remVwls(stri):
+                    if remVwls(wrdStrD["wrd"]) in remVwls(stri):
                         if poSp == "All":
                             if frm == "All":
-                                inst[2].append(pos)
-                                inst[3].append(mean)
+                                if ( len(re.compile(str(flt)).findall(
+                                        wrdStrD["mean"].lower())
+                                ) > 0 
+                                    or len(re.compile(str(stri)).findall(
+                                        wrdStrD["mean"])
+                                )):
+                                    inst[2].append(pos)
+                                    inst[3].append(mean)
                     else:
                         for strD in wrdStrD["striDLs"]:
                             if remVwls(strD["stri"]) in remVwls(stri):
-                                if strD["poSp"] == "All" or strD["poSP"] == poSp:
+                                if strD["poSp"] == "All" or strD["poSp"] == poSp:
                                     if strD["frm"] == "All" or strD["frm"] == frm:
                                         inst[2].append(pos)
-                                        inst[3].append(mean)
+                                        # inst[3].append(mean)
                      
                 else:
                     for strD in wrdStrD["striDLs"]:
-                        if strD["str"] == stri:
+                        if strD["stri"] == stri:
                             if strD["strTyp"] == "All" or strD["strTyp"] == strTyp:
-                                if strD["poSp"] == "All" or strD["poSP"] == poSp:
+                                if strD["poSp"] == "All" or strD["poSp"] == poSp:
                                     if strD["frm"] == "All" or strD["frm"] == frm:
                                         inst[2].append(pos)
-                                        inst[3].append(mean)
+                                        # inst[3].append(mean)
             
             if len(inst[2]) > 0:
                 instLst.append(inst)
 
-
+    print("instLst in dataGrabber", instLst)
     return instLst
 
 def filtDown(strObj):
@@ -906,7 +927,18 @@ def filtDown(strObj):
     # flt = strObj["flt"]
     import re
     instLst = dataGrabber(strObj)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(surAyPosStrAdvWrdMD[row[0][1][2]]["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["meaning"])), instLst))
+    instLstFiltered =  list(
+        filter( 
+            lambda row : 
+            len(re.compile(str(flt).lower()).findall(
+                surAyPosStrAdvWrdMD[row[0][1][2]]["mean"].lower())
+            ) > 0 
+            or len(re.compile(str(stri)).findall(
+                surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["mean"])
+            ), 
+            instLst
+        )
+    )
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
@@ -922,12 +954,14 @@ def intersct(comb):
                 posSerDict = json.loads(f.read())
         # instLstAgg = []
         instLstFlt = []
-        surahAyahAggSet = set()
+        # surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
-            instLst = filtDown(strObj)
+            # instLst = filtDown(strObj)
+            instLst = dataGrabber(strObj)
             if i == 0:
-                instLstFlt.append(instLst)
+                # instLstFlt = [ *instLstFlt, *instLst ]
+                instLstFlt = instLst 
             else:
                 if wrdDis == sameVrsIndicator:
                     for newInst in instLst:
@@ -948,12 +982,21 @@ def intersct(comb):
                     j = 0
                     while j <len(instLstFlt):
                         oldInst = instLstFlt[j]
+                        newInstSurAyPos = [
+                            [sur,ay,pos]
+                            # ":".join([sur,ay,pos])
+                            for surAyPoss in instLst
+                            for sur, ay, poss in [surAyPoss]
+                            for pos in poss
+                        ]
                         closestNew = reduce(
                             lambda x : 
                             x if
                             abs(posSerDict[":".join(x)] - posSerDict[":".join(oldInst)]) <= 0
+                            # abs(posSerDict[":".join(x)] - posSerDict[":".join(oldInst)]) <= 0
                             else None,
-                            instLst
+                            newInstSurAyPos
+                            # instLst
                         )
 
                         if closestNew == None:
@@ -1048,13 +1091,14 @@ def aggregLsts(
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
         
+        print("optStInsts",optStInsts)
         # for inst in optStInsts:
         for i in range(len(optStInsts)):
-            optStInsts[i].append(lbl).append(tafs)
+            optStInsts[i] = [*optStInsts[i], lbl, tafs ]
             # inst["query"] = lbl
             # inst["query"] = lbl
         # instLstAgg += optStInsts
-        instLstAgg = [*instLstAgg,*row2DictCl(*optStInsts)]
+        instLstAgg = [*instLstAgg,*[row2DictCl(*optStInst) for optStInst in optStInsts ]]
         # instLstAgg = [*instLstAgg,*optStInsts]
         # instLstAgg += instLst
     # for row in instLstAgg:
@@ -1070,6 +1114,7 @@ def aggregLsts(
     #     "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
     #     # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
     #     } for row in instLstAgg ]
+    
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
@@ -1498,13 +1543,13 @@ def plotDf(df,colMap,sorter):
     # pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
 
     # df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
-    ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
-    pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
+    # ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    # pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['positions'])).reset_index()
 
     df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
 
-    df["position"] = pos[0]
-    df["ayah_link"] = ay_ln[0]
+    # df["positions"] = pos[0]
+    # df["ayah_link"] = ay_ln[0]
     
     df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
     # df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
@@ -1634,15 +1679,19 @@ def sortchron(
     import pandas as pd
     # clear_output()
     # print([obj.__dict__ for obj in instLstAgg])
-    df = pd.DataFrame([obj for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","positions","strings","meanings","ayah_link","query"])
     # df = pd.DataFrame(instLstAgg,columns = ["surahayah","position","string","meaning","ayah_link","query"])
-    df['position'] = df['position'].astype('int')
+    # df['positions'] = df['positions'].astype('int')
     # df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
     # df.sort_values(["surah_ayah","position"],inplace=True)
     df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah_ayah","position"],inplace=True)
+    df.sort_values(
+        ["surah_ayah","positions"],
+        key=lambda x: x.map(min) if x.name=='positions' else x,
+        inplace=True
+    )
     # df.sort_values(["surah_ayah","position"],inplace=True)
-    df['position'] = df['position'].astype('str')
+    # df['position'] = df['position'].astype('str')
     df.reset_index(drop=True,inplace=True)
     # df.reset_index(inplace=True)
     
