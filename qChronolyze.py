@@ -193,7 +193,35 @@ inpLngSchD = {
     "english_Scheme": "engSch",
 }
 
-sameVrsIndicator = 82012
+import csv
+import json
+flPth='data/surAyPosStrAdvWrdDict.tsv'
+list_header=["surah","ayah","position","word","strings_dictionary"]
+with open(flPth) as f:
+    surAyPosStrAdvWrdMDRws = list(csv.DictReader(f, delimiter='\t'))
+surAyPosStrAdvWrdMD = {
+}
+for surAyPosStrAdvWrd in surAyPosStrAdvWrdMDRws:
+    [sur, ay, pos, stri, mean, strDLs ] = surAyPosStrAdvWrd.values()
+    # [sur,ay,pos] = surAyPos.split(':')
+    if sur not in surAyPosStrAdvWrdMD:
+        surAyPosStrAdvWrdMD[sur] = {}
+    if ay not in surAyPosStrAdvWrdMD[sur]:
+        surAyPosStrAdvWrdMD[sur][ay] = {}
+    if pos not in surAyPosStrAdvWrdMD[sur][ay]:
+        surAyPosStrAdvWrdMD[sur][ay][pos] = {
+            # "wrd": posD[surAyPos],
+            # "striDLs": strDLs,
+            # "wrd": stri,
+            # "striDLs": posStrAdvDict[surAyPos],
+            "wrd": stri,
+            "mean": mean,
+            "striDLs": json.loads(strDLs),
+            # "striDLs": posStrAdvDict.get(surAyPos,['problematic pos']),
+            # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
+        }
+
+sameVrsIndicator = len(surAyPosStrAdvWrdMDRws) + 1
 
 def getSorter():
     
@@ -404,12 +432,27 @@ def filecheck(filepath):
 
 
 class row2DictCl:
-    def __init__(self,surah_ayah='',position='',string='',meaning='',ayah_link='',query=''):
-        self.surah_ayah = surah_ayah
-        self.position = position
-        self.string = string
-        self.meaning = meaning
-        self.ayah_link = ayah_link
+        # lnkStyle = ' '
+    fontSize = '18'
+    fontCol = 'rgb(0,0,150)'
+    shPx = str(int(fontSize)/100*0)
+    shCol = '#000000'
+    bgCol = 'rgb(220,220,250)'
+    txtShad = ''
+    # txtShad = f'text-shadow:{shPx}px {shPx}px 0 {shCol}, {shPx}px -{shPx}px 0 {shCol}, -{shPx}px -{shPx}px 0 {shCol}, -{shPx}px {shPx}px 0 {shCol};'
+    # lnkStyle = "style='background-color:rgb(250,250,250);font-size:30px;color:rgb(0,0,150);-webkit-text-stroke-width:5px;-webkit-text-stroke-color:white' "
+    lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
+    # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
+    def __init__(self,surah='',ayah='',positions=[],query='',tafs="ar-tafsir-al-tabari"):
+        surAy = ":".join([surah,ayah])
+        ayWrds = [ay["word"] for ay in [surAyPosStrAdvWrdMD[surah][ayah]] ]
+        ayTxt = " ".join( ayWrds )
+        self.surah = surah
+        self.ayah = ayah
+        self.positions = positions
+        self.strings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["word"] for pos in positions ]
+        self.meanings = [ surAyPosStrAdvWrdMD[surah][ayah][pos]["meaning"] for pos in positions]
+        self.ayah_link = f"<a {self.lnkStyle}href='https://quran.com/{surAy}/tafsirs/{tafs}'>{ayTxt}</a>"
         self.query = query
 
 
@@ -736,7 +779,7 @@ def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
     return lnkPths
     
 
-def dataGrabber(
+def dataGrabberBAK(
         strObj
     ):
 
@@ -801,6 +844,60 @@ def dataGrabber(
 
     return instLst
 
+
+def dataGrabber(strObj):
+    # flt = str(strObj.flt).lower()
+    frm = strObj.frm
+    strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
+    poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
+    # inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
+    # inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
+    stri = strObj.stri
+    instLst = []
+    for sur, ayD in surAyPosStrAdvWrdMD.items():
+        for ay, posD in ayD.items():
+            inst = [sur,ay,[]]
+            # inst = {
+            #     "surah": sur,
+            #     "ayah": ay,
+            #     "positions": [],
+            #     "strings": [],
+            #     "meanings": [],
+            #     "queries": [],
+            # }
+
+            for pos, wrdStrD in posD.items():
+                mean = wrdStrD["meaning"]
+                
+                if strTyp == "stem":
+                    if remVwls(wrdStrD["word"]) in remVwls(stri):
+                        if poSp == "All":
+                            if frm == "All":
+                                inst[2].append(pos)
+                                inst[3].append(mean)
+                    else:
+                        for strD in wrdStrD["striDLs"]:
+                            if remVwls(strD["stri"]) in remVwls(stri):
+                                if strD["poSp"] == "All" or strD["poSP"] == poSp:
+                                    if strD["frm"] == "All" or strD["frm"] == frm:
+                                        inst[2].append(pos)
+                                        inst[3].append(mean)
+                     
+                else:
+                    for strD in wrdStrD["striDLs"]:
+                        if strD["str"] == stri:
+                            if strD["strTyp"] == "All" or strD["strTyp"] == strTyp:
+                                if strD["poSp"] == "All" or strD["poSP"] == poSp:
+                                    if strD["frm"] == "All" or strD["frm"] == frm:
+                                        inst[2].append(pos)
+                                        inst[3].append(mean)
+            
+            if len(inst[2]) > 0:
+                instLst.append(inst)
+
+
+    return instLst
+
 def filtDown(strObj):
     stri = strObj.stri
     flt = strObj.flt
@@ -809,7 +906,8 @@ def filtDown(strObj):
     # flt = strObj["flt"]
     import re
     instLst = dataGrabber(strObj)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
+    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(surAyPosStrAdvWrdMD[row[0][1][2]]["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["meaning"])), instLst))
+    # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
@@ -822,85 +920,94 @@ def intersct(comb):
             import json
             with open("posSerDict.json") as f:
                 posSerDict = json.loads(f.read())
-        instLstAgg = []
+        # instLstAgg = []
+        instLstFlt = []
         surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
             instLst = filtDown(strObj)
-            # if wrdDis == 0:
-            if wrdDis == sameVrsIndicator:
-                surahAyahList = [ inst.surah_ayah for inst in instLst ]
-                if i == 0:
-                    surahAyahAggSet = set(surahAyahList)
-                else:
-                    surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
+            if i == 0:
+                instLstFlt.append(instLst)
             else:
-                surahAyahPosList = [ f"{inst.surah_ayah}:{str(inst.position)}" for inst in instLst ]
-                if i == 0:
-                    surahAyahAggSet = set(surahAyahPosList)
+                if wrdDis == sameVrsIndicator:
+                    for newInst in instLst:
+                        j = 0
+                        while j < len(instLstFlt):
+                            oldInst = instLstFlt[j]
+                            if newInst[:2] == oldInst[:2]:
+                                instLstFlt[j][2].append(newInst[2])
+                            else:
+                                instLstFlt.pop(j)
+                            j += 1
+                            
                 else:
-                    surAyahPosClosestLs = []
-                    surahAyahAggSet2 = surahAyahAggSet.copy()
-                    for surAyahPos in surahAyahAggSet2:
-                        minDistSoFar = 0
-                        surAyahPosClosest = None
-                        for surAyaPosNew in surahAyahPosList:
-                            wrdDisNow = abs(posSerDict[surAyaPosNew] - posSerDict[surAyahPos])
-                            if (wrdDisNow <= wrdDis and wrdDisNow != 0) or (wrdDis==0 and wrdDisNow==0):
-                                if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
-                                    surAyahPosClosest = surAyaPosNew
-                                    minDistSoFar = wrdDisNow
-                        if surAyahPosClosest != None:
-                            surAyahPosClosestLs.append(surAyahPosClosest)
+                    from functools import reduce
+                    
+                    # surAyahPosClosestLs = []
+                    # oldNewD = {}
+                    j = 0
+                    while j <len(instLstFlt):
+                        oldInst = instLstFlt[j]
+                        closestNew = reduce(
+                            lambda x : 
+                            x if
+                            abs(posSerDict[":".join(x)] - posSerDict[":".join(oldInst)]) <= 0
+                            else None,
+                            instLst
+                        )
+
+                        if closestNew == None:
+                            instLstFlt.pop(j)
                         else:
-                            surahAyahAggSet.remove(surAyahPos)
-                    surahAyahAggSet = surahAyahAggSet.union(surAyahPosClosestLs)
+                            surAyMatch = False
+                            for k in len(instLstFlt):
+                                if instLstFlt[k][:2] == closestNew[:2]:
+                                    surAyMatch = True
+                            if surAyMatch:
+                                instLstFlt[k][2].append(closestNew[2])
+                            else:
+                                instLstFlt.append(closestNew)
+                        j += 1
 
-            instLstAgg += instLst
-        
-        instLstFlt = list(filter(
-            # lambda x: x["surah_ayah"] in surahAyahAggSet,
-            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == sameVrsIndicator else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
-            instLstAgg
-        ))
-        instDictInc = {}
-        for inst in instLstFlt:
-            surahAyah = inst.surah_ayah
-            curPos = inst.position
-            curStr = inst.string
-            curMean = inst.meaning
-            # curQuer = inst.query
-            surahAyah = inst.surah_ayah
-            if surahAyah not in instDictInc.keys():
-                # instDictInc[surahAyah] = inst
-                instDictInc[surahAyah] = {
-                    # **inst.__dict__,
-                    # "surah_ayah": surahAyah,
-                    "strings": [curStr],
-                    "meanings": [curMean],
-                    "positions" : [int(curPos)],
-                    # "query": curQuer
-                }
-                # instDictInc[surahAyah] = {
-                #     "position": inst["position"],
-                #     "string": inst["string"],
-                #     "meaning": inst["meaning"],
-                #     "ayah_link" : inst["ayah_link"],
-                #     # "query": 
-                #     # f"{rtAgg} ({flAgg})"
-                #     # stri_flt_int_lb
-                # }
-            else:
-                # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
-                # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
-                instDictInc[surahAyah]["strings"].append(curStr)
-                instDictInc[surahAyah]["meanings"].append(curMean)
-                instDictInc[surahAyah]["positions"].append(curPos)
+        return instLstFlt
+    
+        # for inst in instLstFlt:
+        #     surahAyah = inst.surah_ayah
+        #     curPos = inst.position
+        #     curStr = inst.string
+        #     curMean = inst.meaning
+        #     # curQuer = inst.query
+        #     surahAyah = inst.surah_ayah
+        #     if surahAyah not in instDictInc.keys():
+        #         # instDictInc[surahAyah] = inst
+        #         instDictInc[surahAyah] = {
+        #             # **inst.__dict__,
+        #             # "surah_ayah": surahAyah,
+        #             "strings": [curStr],
+        #             "meanings": [curMean],
+        #             "positions" : [int(curPos)],
+        #             # "query": curQuer
+        #         }
+        #         # instDictInc[surahAyah] = {
+        #         #     "position": inst["position"],
+        #         #     "string": inst["string"],
+        #         #     "meaning": inst["meaning"],
+        #         #     "ayah_link" : inst["ayah_link"],
+        #         #     # "query": 
+        #         #     # f"{rtAgg} ({flAgg})"
+        #         #     # stri_flt_int_lb
+        #         # }
+        #     else:
+        #         # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
+        #         # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+        #         instDictInc[surahAyah]["strings"].append(curStr)
+        #         instDictInc[surahAyah]["meanings"].append(curMean)
+        #         instDictInc[surahAyah]["positions"].append(curPos)
 
 
-        instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
-        # instLstInc = [ v for v in instDictInc.values() ]
-        return instLstInc
+        # instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
+        # # instLstInc = [ v for v in instDictInc.values() ]
+        # return instLstInc
     
     # elif len(strL) == 1:
     #     instLstFlt = filtDown(strL[0])
@@ -917,17 +1024,6 @@ def aggregLsts(
         tafs="ar-tafsir-al-tabari",
         # qyArLegSch=lng2InpSchD["arabic"][1]
     ):
-    # lnkStyle = ' '
-    fontSize = '18'
-    fontCol = 'rgb(0,0,150)'
-    shPx = str(int(fontSize)/100*0)
-    shCol = '#000000'
-    bgCol = 'rgb(220,220,250)'
-    txtShad = ''
-    # txtShad = f'text-shadow:{shPx}px {shPx}px 0 {shCol}, {shPx}px -{shPx}px 0 {shCol}, -{shPx}px -{shPx}px 0 {shCol}, -{shPx}px {shPx}px 0 {shCol};'
-    # lnkStyle = "style='background-color:rgb(250,250,250);font-size:30px;color:rgb(0,0,150);-webkit-text-stroke-width:5px;-webkit-text-stroke-color:white' "
-    lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
-    # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
     for optSt in qL:
         print(optSt)
@@ -951,13 +1047,18 @@ def aggregLsts(
             optStInsts = [*optStInsts,*combInstLst]
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
-        for inst in optStInsts:
-            inst["query"] = lbl
+        
+        # for inst in optStInsts:
+        for i in range(len(optStInsts)):
+            optStInsts[i].append(lbl).append(tafs)
+            # inst["query"] = lbl
+            # inst["query"] = lbl
         # instLstAgg += optStInsts
-        instLstAgg = [*instLstAgg,*optStInsts]
+        instLstAgg = [*instLstAgg,*row2DictCl(*optStInsts)]
+        # instLstAgg = [*instLstAgg,*optStInsts]
         # instLstAgg += instLst
-    for row in instLstAgg:
-        row["ayah_link"]= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
+    # for row in instLstAgg:
+    #     row["ayah_link"]= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
         # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
     # instLstAgg = [ { 
     #     **row, 
@@ -1225,7 +1326,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=0,max=82012,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDistW = widg.IntText(min=0,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
