@@ -221,7 +221,9 @@ for surAyPosStrAdvWrd in surAyPosStrAdvWrdMDRws:
         # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
     }
 
-sameVrsIndicator = len(surAyPosStrAdvWrdMDRws) + 1
+wrdCount = len(surAyPosStrAdvWrdMDRws)
+
+sameVrsIndicator = wrdCount
 
 def getSorter():
     
@@ -887,41 +889,44 @@ def dataGrabber(strObj):
             # }
 
             for pos, wrdStrD in posD.items():
-                mean = wrdStrD["mean"]
+                # mean = wrdStrD["mean"]
                 
                 if strTyp == "stem":
                     if remVwls(wrdStrD["wrd"]) in remVwls(stri):
-                        if poSp == "All":
-                            if frm == "All":
+                        if strD["poSp"] == "All" or poSp == "All":
+                            if strD["frm"] == "All" or frm == "All":
                                 if ( len(re.compile(str(flt)).findall(
                                         wrdStrD["mean"].lower())
                                 ) > 0 
                                     or len(re.compile(str(stri)).findall(
                                         wrdStrD["mean"])
                                 )):
-                                    inst[2].append(pos)
-                                    inst[3].append(mean)
+                                    if pos not in inst[2]:
+                                        inst[2].append(pos)
+                                        # inst[3].append(mean)
                     else:
                         for strD in wrdStrD["striDLs"]:
                             if remVwls(strD["stri"]) in remVwls(stri):
-                                if strD["poSp"] == "All" or strD["poSp"] == poSp:
-                                    if strD["frm"] == "All" or strD["frm"] == frm:
-                                        inst[2].append(pos)
+                                if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+                                    if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+                                        if pos not in inst[2]:
+                                            inst[2].append(pos)
                                         # inst[3].append(mean)
                      
                 else:
                     for strD in wrdStrD["striDLs"]:
                         if strD["stri"] == stri:
-                            if strD["strTyp"] == "All" or strD["strTyp"] == strTyp:
-                                if strD["poSp"] == "All" or strD["poSp"] == poSp:
-                                    if strD["frm"] == "All" or strD["frm"] == frm:
-                                        inst[2].append(pos)
+                            if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                if strD["poSp"] == "All" or poSp == 'All' or strD["poSp"] == poSp:
+                                    if strD["frm"] == "All" or frm == 'All' or strD["frm"] == frm:
+                                        if pos not in inst[2]:
+                                            inst[2].append(pos)
                                         # inst[3].append(mean)
             
             if len(inst[2]) > 0:
                 instLst.append(inst)
 
-    print("instLst in dataGrabber", instLst)
+    # print("instLst in dataGrabber", instLst)
     return instLst
 
 def filtDown(strObj):
@@ -957,66 +962,235 @@ def intersct(comb):
             import json
             with open("posSerDict.json") as f:
                 posSerDict = json.loads(f.read())
-        # instLstAgg = []
         instLstFlt = []
         # surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
             # instLst = filtDown(strObj)
             instLst = dataGrabber(strObj)
+            # print('instLst at each:',)
+            # for inst in instLst:
+            #     print(inst)
             if i == 0:
                 # instLstFlt = [ *instLstFlt, *instLst ]
                 instLstFlt = instLst 
             else:
-                if wrdDis == sameVrsIndicator:
-                    for newInst in instLst:
-                        j = 0
-                        while j < len(instLstFlt):
-                            oldInst = instLstFlt[j]
-                            if newInst[:2] == oldInst[:2]:
-                                instLstFlt[j][2].append(newInst[2])
-                            else:
-                                instLstFlt.pop(j)
-                            j += 1
-                            
-                else:
-                    from functools import reduce
-                    
-                    # surAyahPosClosestLs = []
-                    # oldNewD = {}
-                    j = 0
-                    while j <len(instLstFlt):
-                        oldInst = instLstFlt[j]
-                        newInstSurAyPos = [
-                            [sur,ay,pos]
-                            # ":".join([sur,ay,pos])
-                            for surAyPoss in instLst
-                            for sur, ay, poss in [surAyPoss]
-                            for pos in poss
-                        ]
-                        closestNew = reduce(
-                            lambda x : 
-                            x if
-                            abs(posSerDict[":".join(x)] - posSerDict[":".join(oldInst)]) <= 0
-                            # abs(posSerDict[":".join(x)] - posSerDict[":".join(oldInst)]) <= 0
-                            else None,
-                            newInstSurAyPos
-                            # instLst
-                        )
+                instLstFltAyD = {
+                    ":".join([oldSur,oldSAy,oldPos]) : None
+                    # ":".join([oldSur,oldSAy]): {
+                    #     "old": oldPoss,
+                    #     "new": []
+                    # }
+                    for inst in instLstFlt
+                    for oldSur,oldSAy,oldPoss in [inst]
+                    for oldPos in oldPoss
+                }
+                # instLstFlt2 = instLstFlt.copy()
+                # j = 0
 
-                        if closestNew == None:
-                            instLstFlt.pop(j)
-                        else:
-                            surAyMatch = False
-                            for k in len(instLstFlt):
-                                if instLstFlt[k][:2] == closestNew[:2]:
-                                    surAyMatch = True
-                            if surAyMatch:
-                                instLstFlt[k][2].append(closestNew[2])
-                            else:
-                                instLstFlt.append(closestNew)
+
+                # while j < len(instLstFltAyD) and j > 0:
+                # for oldSurAy in instLstFltAyD.keys():
+                for oldSurAyPos in instLstFltAyD.keys():
+                    # oldSurAy = list(instLstFltAyD.keys())[j]
+                    oldSurAy = ":".join(oldSurAyPos.split(':')[:2])
+                    if wrdDis == sameVrsIndicator:
+                        for newInst in instLst:
+                            newSur,newAy,newPoss = newInst
+                            newSurAy = ":".join([newSur,newAy])
+                            for newPos in newPoss:
+                                if newSurAy == oldSurAy:
+                                    newSurAyPos = ":".join([newSur,newAy,newPos])
+                                    instLstFltAyD[oldSurAyPos]  = newSurAyPos
+                                    # instLstFltAyD[newSurAy]["new"].append(newPos)
+                        # if len(instLstFltAyD[oldSurAy]["new"]) == 0:
+                        #     print('deleting ', instLstFltAyD[oldSurAy])
+                        #     del instLstFltAyD[oldSurAy]
+                        #     j -= 0
+                        
+                    else:
+                        # oldPoss = instLstFltAyD[oldSurAy]["old"]
+                        # k = 0
+                        # while k < len(instLstFltAyD[oldSurAy]["old"]) and k > 0:
+                            # oldPos = oldPoss[k]
+                        # for oldPos in oldPoss:
+                            # for newPos in newPoss:
+                        validDistsD = {
+            
+                            # str(curDist): [newSurAy,newPos]
+                            str(curDist): newSurAyPos
+                            for newSurAyPoss in instLst
+                            for newSur, newAy, newPoss in [newSurAyPoss]
+                            for newPos in newPoss
+                            # if (newSurAy := ":".join([newSur,newAy]))
+                            # for oldPos in oldPoss
+                            if (newSurAyPos := ":".join([newSur,newAy,newPos]))
+                            if (curDist := abs(
+                                posSerDict[newSurAyPos] 
+                                - posSerDict[oldSurAyPos])
+                                # posSerDict[":".join([newSur,newAy,newPos])] 
+                                # - posSerDict[":".join([oldSurAy,oldPos])])
+                            )
+                            if curDist <= wrdDis
+                        }
+                        closestNew = None if len(validDistsD) == 0 else validDistsD[str(min([int(k) for k in validDistsD.keys()]))]
+                                # curDist = abs(
+                                #         posSerDict[":".join([newSurAy,newPos])] 
+                                #         - posSerDict[":".join([oldSurAy,oldPos])]
+                                # )
+                        if closestNew != None:
+                            instLstFltAyD[oldSurAyPos] = closestNew
+                            print(oldSurAyPos,closestNew)
+                                # closestNewSurAy = closestNew[0]
+                                # closestNewPos = closestNew[1]
+                                # if closestNewSurAy not in instLstFltAyD.keys():
+                                #     instLstFltAyD[closestNewSurAy] = {
+                                #         # "old": [],
+                                #         "new": []
+                                #     }
+                                # instLstFltAyD[closestNewSurAy]["new"].append(closestNewPos)
+                            # else:
+                            #     instLstFltAyD[oldSurAy]["old"].pop(k)
+                            #     k -= 0
+                            # k += 0
+                            # pass
+
+                        # if len(instLstFltAyD[oldSurAy]["old"]) == 0:
+                        #     print('deleting ', instLstFltAyD[oldSurAy])
+                        #     del instLstFltAyD[oldSurAy]
+                        #     j -= 0
+
+                    # j += 1
+                j = 0
+                while j < len(instLstFltAyD):
+                # for old, new in instLstFltAyD.items():
+                    old, new = list(instLstFltAyD.items())[j]
+                    if new == None:
+                        del instLstFltAyD[old]
+                    else:
                         j += 1
+                
+                # newInstFltLs = []
+                newInstD = {}
+                for new,old in instLstFltAyD.items():
+                    for surAyPos in [new,old]:
+                        if surAyPos != None:
+                            sur,ay,pos = surAyPos.split(':')
+                            surAy = ":".join([sur,ay])
+                            if surAy not in newInstD:
+                                newInstD[surAy] = [pos]
+                            else:
+                                newInstD[surAy].append(pos)
+                print(newInstD)
+                # newInstFltLs = [
+                instLstFlt = [
+                    [sur,ay,poss]
+                    for surAy, poss in newInstD.items()
+                    # if (sur,ay := surAy.split(':'))
+                    for sur,ay in [surAy.split(':')]
+                ]
+                # print(newInstFltLs)
 
+                # from functools import reduce
+                # newInstFltLs = [
+                #     [sur,Ay,poss]
+                #     for surAy, posD in instLstFltAyD.items()
+                #     for sur,Ay in [surAy.split(':')]
+                #     if (poss := reduce(
+                #         lambda x,y :
+                #         [*x,*y],
+                #         posD.values()
+                #     ))
+                # ]
+                # newInstFltLs = [   
+                #     [*surAy.split(':'),posDict["new"]]
+                #     for surAy, posDict in instLstFltAyD.items()
+                #     # if len(posDict["new"]) > 0
+                # ]
+                # for newInstFlt in newInstFltLs:
+                # for newInstFlt in newInstFltLs:
+                    # print(newInstFlt)
+                    # instLstFlt.append(newInstFlt)
+                    # j = 0
+                    # while j < len(instLstFlt2):
+                    #     oldInst = instLstFlt2[j]
+                    #     k = 0
+                    #     while k < len(instLstFlt2[j][2]):
+                    #         for newInst in instLst:
+                    #         # print('for', newInst)
+                    #             if newInst[:2] == oldInst[:2]:
+                    #                 print('newInst[:2] == oldInst[:2] at', j, newInst[:2], oldInst[:2])
+                    #                 instLstFlt[j][2].append(newInst[2])
+                    #             else:
+                    #                 # print('not newInst[:2] == oldInst[:2] at', j, newInst[:2], oldInst[:2])
+                    #         #################################################################
+                    #                 '''Might need to fix j pop while len if it acts up '''                            
+                    #         #################################################################                     
+                    #                 try:
+                    #                     instLstFlt[j][2] = []
+                    #                 except:
+                    #                     print('j',j)
+                    #                     try:
+                    #                         print('instLstFlt[j]',instLstFlt[j])
+
+                    #                     except:
+                    #                         print('len(instLstFlt): ',len(instLstFlt)  )
+                                        
+                    #             # instLstFlt.pop(j)
+                    #             # j -= 1
+                    #     j += 1
+                            
+                       
+                # else:
+                #     j = 0
+                #     while j <len(instLstFlt2):
+                #         oldInst = instLstFlt2[j]
+                #         k = 0
+                #         while k < len(instLstFlt2[j][2]):
+                #             oldPos = instLstFlt2[j][2][k]
+                #             print([*oldInst[:2],oldPos],[oldInst])
+                            # validDistsD = {
+                            #     str(curDist): [sur,ay,pos]
+                            #     for surAyPoss in instLst
+                            #     for sur, ay, poss in [surAyPoss]
+                            #     for pos in poss
+                            #     if (curDist := abs(
+                            #         posSerDict[":".join([sur,ay,pos])] 
+                            #         - posSerDict[":".join([*oldInst[:2],oldPos])])
+                            #     )
+                            #     if curDist <= wrdDis
+                            # }
+                #             closestNew = None if len(validDistsD) == 0 else validDistsD[str(min([int(k) for k in validDistsD.keys()]))]
+
+                #             if closestNew == None:
+                #                 if len(instLstFlt[j][2]) < 2:
+                #                     instLstFlt[j][2] = []
+                #                 else:
+                #                     instLstFlt[j][2][k] = None
+                #             else:
+                #                 if oldInst[:2] == closestNew[:2]:
+                #                     instLstFlt[j][2].append(closestNew[2])
+                #                 else:
+                #                     instLstFlt.append([*closestNew[:2],[closestNew[2]]])
+                #                     # j+= 1
+                #                     print('appended [*closestNew[:2],[closestNew[2]]] at j,', [*closestNew[:2],[closestNew[2]]], j)
+                #             k += 1
+                #         j += 1
+        
+        # instLstFlt = [
+        #     [
+        #         sur,ay,
+        #         [
+        #             pos for pos in poss
+        #             if pos != None
+        #         ]
+        #     ]
+        #     for inst in instLstFlt 
+        #     for sur, ay, poss in [inst]
+        #     # if len(inst)!= 0
+        # ]
+        # instLstFlt = [inst for inst in instLstFlt if len(inst[2])!= 0]
+        
         return instLstFlt
     
         # for inst in instLstFlt:
@@ -1096,7 +1270,7 @@ def aggregLsts(
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
         
-        print("optStInsts",optStInsts)
+        # print("optStInsts",optStInsts)
         # for inst in optStInsts:
         for i in range(len(optStInsts)):
             optStInsts[i] = [*optStInsts[i], lbl, tafs ]
@@ -1563,8 +1737,8 @@ def plotDf(df,colMap,sorter):
     # width=((len(df["query"].unique()))*20)+600
     # print(width,len(df["query"].unique()), df["query"].unique())
     
-    isArabic=df.loc[0,"query"][0] in bkwSch2arbSch.values()
-    max_leg_width=len(max(df["query"].unique(),key=len))
+    isArabic=False if len(df) == 0 else df.loc[0,"query"][0] in bkwSch2arbSch.values()
+    max_leg_width=False if len(df) == 0 else len(max(df["query"].unique(),key=len))
     legend_size=12 if not isArabic else 14
     xtick_size=12 if not isArabic else 14
     datapoint_width=20
