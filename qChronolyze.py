@@ -221,6 +221,10 @@ for surAyPosStrAdvWrd in surAyPosStrAdvWrdMDRws:
         # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
     }
 
+import json
+with open("posSerDict.json") as f:
+    posSerDict = json.loads(f.read())
+
 wrdCount = len(surAyPosStrAdvWrdMDRws)
 
 sameVrsIndicator = wrdCount
@@ -955,13 +959,14 @@ def filtDown(strObj):
     return instLstFiltered
 
 def intersct(comb):
+    global posSerDict
     strL = comb.strL
     wrdDis = comb.wrdDis
     if len(strL) > 0:
-        if wrdDis != sameVrsIndicator:
-            import json
-            with open("posSerDict.json") as f:
-                posSerDict = json.loads(f.read())
+        # if wrdDis != sameVrsIndicator:
+        #     import json
+        #     with open("posSerDict.json") as f:
+        #         posSerDict = json.loads(f.read())
         instLstFlt = []
         # surahAyahAggSet = set()
         for i in range(len(strL)):
@@ -1677,19 +1682,37 @@ def tabular(df,colMap,sorter):
     #     inplace=True
     # )
 
-    compareDict = {}
-    for i in range(len(sorter)):
-        compareDict[sorter[i]]=i
+    # compareDict = {}
+    # for i in range(len(sorter)):
+    #     compareDict[sorter[i]]=i
 
-    df.insert( 0, 'verses_before',    list(
-        map(
-            lambda x: compareDict[x],
-            # df["surah"]
-            df["surah_ayah"]
-            # df["surah_ayah"]
-            )
-        )
+    def words_before_f(row):
+        return posSerDict[row['surah_ayah'] +':'+ str( min([int(pos) for pos in row['positions']]) )]
+
+    # df['words_before'] = df.apply(words_before_f,axis=1)
+    df.insert( 
+        0, 
+        'words_before', 
+        value=df.apply(lambda row: words_before_f(row), axis=1 )
+        # list(
+        #     map(
+        #         lambda x: words_before_f(x),
+        #         # df["surah"]
+        #         df,
+        #         # df["surah_ayah"]
+        #         axis = 1
+        #         )
+        # )
     )
+    # df.insert( 0, 'verses_before',    list(
+    #     map(
+    #         lambda x: compareDict[x],
+    #         # df["surah"]
+    #         df["surah_ayah"]
+    #         # df["surah_ayah"]
+    #         )
+    #     )
+    # )
 
     from IPython.core.display import HTML
 
