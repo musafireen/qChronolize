@@ -4,67 +4,75 @@ from IPython.display import display, clear_output
 
 # List to track widget groups
 
+arbVwlsDict = {
+        "a": "َ",
+        "u": "ُ",
+        "i": "ِ",
+        "~": "ّ",
+        "o": "ْ",
+        "^": "ٓ",
+        "#": "ٔ",
+        "`": "ٰ",
+        "F": "ً",
+        "N": "ٌ",
+        "K": "ٍ",
+}
+
+arbConsD = {
+        "'": "ء",
+        ">": "أ",
+        "&": "ؤ",
+        "<": "إ",
+        "}": "ئ",
+        "A": "ا",
+        "b": "ب",
+        "p": "ة",
+        "t": "ت",
+        "v": "ث",
+        "j": "ج",
+        "H": "ح",
+        "x": "خ",
+        "d": "د",
+        "*": "ذ",
+        "r": "ر",
+        "z": "ز",
+        "s": "س",
+        "$": "ش",
+        "S": "ص",
+        "D": "ض",
+        "T": "ط",
+        "Z": "ظ",
+        "E": "ع",
+        "g": "غ",
+        "_": "ـ",
+        "f": "ف",
+        "q": "ق",
+        "k": "ك",
+        "l": "ل",
+        "m": "م",
+        "n": "ن",
+        "h": "ه",
+        "w": "و",
+        "Y": "ى",
+        "y": "ي",
+        "{": "ٱ",
+        # ":": "ۜ",
+        "@": "۟",
+        '"': "۠",
+        "[": "ۢ",
+        ";": "ۣ",
+        ",": "ۥ",
+        ".": "ۦ",
+        "!": "ۨ",
+        "-": "۪",
+        "+": "۫",
+        "%": "۬",
+        "]": "ۭ",
+    }
+
 bkwSch2arbSch = {
-    "'": "ء",
-    ">": "أ",
-    "&": "ؤ",
-    "<": "إ",
-    "}": "ئ",
-    "A": "ا",
-    "b": "ب",
-    "p": "ة",
-    "t": "ت",
-    "v": "ث",
-    "j": "ج",
-    "H": "ح",
-    "x": "خ",
-    "d": "د",
-    "*": "ذ",
-    "r": "ر",
-    "z": "ز",
-    "s": "س",
-    "$": "ش",
-    "S": "ص",
-    "D": "ض",
-    "T": "ط",
-    "Z": "ظ",
-    "E": "ع",
-    "g": "غ",
-    "_": "ـ",
-    "f": "ف",
-    "q": "ق",
-    "k": "ك",
-    "l": "ل",
-    "m": "م",
-    "n": "ن",
-    "h": "ه",
-    "w": "و",
-    "Y": "ى",
-    "y": "ي",
-    "F": "ي",
-    "N": "ٌ",
-    "K": "ٍ",
-    "a": "َ",
-    "u": "ُ",
-    "i": "ِ",
-    "~": "ّ",
-    "o": "ْ",
-    "^": "ٓ",
-    "#": "ٔ",
-    "`": "ٰ",
-    "{": "ٱ",
-    ":": "ۜ",
-    "@": "۟",
-    '"': "۠",
-    "[": "ۢ",
-    ";": "ۣ",
-    ",": "ۥ",
-    ".": "ۦ",
-    "!": "ۨ",
-    "-": "۪",
-    "+": "۫",
-    "%": "۬",
-    "]": "ۭ",
+    **arbVwlsDict,
+    **arbConsD,
 }
 
 presD={'1':'table','2':'plot'}
@@ -102,15 +110,54 @@ frmL = [
 ]
 
 arPoSpD = {
-    # 'All': 'All',
-    'Adjective': 'ADJ',
+    'All': 'All',
+    # '': 'All',
     'Noun': 'N',
     'Proper noun': 'PN',
-    'Verb': 'V',
+    'Adjective': 'ADJ',
     'Imperative verbal noun': 'IMPN',
+    'Verb': 'V',
     'Personal pronoun': 'PRON',
     'Demonstrative pronoun': 'DEM',
+    'Relative pronoun': 'REL',
+    'Time adverb': 'T',
+    'Location adverb': 'LOC',
+    "Preposition": "P", 
+    "Emphatic lām prefix": "EMPH", 
+    "Imperative lām prefix": "IMPV", 
+    "Purpose lām prefix": "PRP", 
+    "Coordinating conjunction": "CONJ", 
+    "Subordinating conjunction": "SUB", 
+    "Accusative particle": "ACC", 
+    "Amendment particle": "AMD", 
+    "Answer particle": "ANS", 
+    "Aversion particle": "AVR", 
+    "Particle of cause": "CAUS", 
+    "Particle of certainty": "CERT", 
+    "Circumstantial particle": "CIRC", 
+    "Comitative particle": "COM", 
+    "Conditional particle": "COND", 
+    "Equalization particle": "EQ", 
+    "Exhortation particle": "EXH", 
+    "Explanation particle": "EXL", 
+    "Exceptive particle": "EXP", 
+    "Future particle": "FUT", 
+    "Inceptive particle": "INC", 
+    "Particle of interpretation": "INT", 
+    "Interogative particle": "INTG", 
+    "Negative particle": "NEG", 
+    "Preventive particle": "PREV", 
+    "Prohibition particle": "PRO", 
+    "Resumption particle": "REM", 
+    "Restriction particle": "RES", 
+    "Retraction particle": "RET", 
+    "Result particle": "RSLT", 
+    "Supplemental particle": "SUP", 
+    "Surprise particle": "SUR", 
+    "Vocative particle": "VOC", 
+    "Quranic initials": "INL", 
 }
+
 
 poSpD = {
     "All": "All",
@@ -146,7 +193,21 @@ inpLngSchD = {
     "english_Scheme": "engSch",
 }
 
-sameVrsIndicator = 82012
+
+import json
+with open('data/surAyPosStrAdvWrdMD.json') as f:
+    surAyPosStrAdvWrdMD = json.loads(f.read())
+
+# with open("data/striSuAyPosWMD.json") as f:
+#     striSuAyPosWMD = json.loads(f.read())
+
+import json
+with open("posSerDict.json") as f:
+    posSerDict = json.loads(f.read())
+
+wrdCount = len(posSerDict)
+
+sameVrsIndicator = wrdCount
 
 def getSorter():
     
@@ -235,9 +296,28 @@ def getSorter():
                         sorter[i] = sa
                         i += 1
 
-        with open(f'sorter.json', 'w') as f:
+        with open(f'sorter.json', 'w+') as f:
             f.write(json.dumps(sorter))
-    
+
+        # with open(f'posDict.json') as f:
+        #     posDict = json.loads(f.read())
+
+        posSerDict = {
+
+        }
+
+        ser = 0
+        for i in range(len(sorter)):
+            surAy = sorter[i]
+            sur,ay = surAy.split(":")
+            posLs = list(surAyPosStrAdvWrdMD[sur][ay].keys())
+            for j in range(len(posLs)):
+                ser += 1
+                surAyPos = ":".join([sur,ay,posLs[j]])
+                posSerDict[surAyPos] = ser
+        with open(f'posSerDict.json', 'w+') as f:
+            f.write(json.dumps(posSerDict))
+
     return sorter
 
 def getColMap(dicti):
@@ -265,6 +345,16 @@ def getColMap(dicti):
         # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
+def remVwls(stri,schm="arbSch"):
+
+    if schm == "arbSch":
+        for chr in arbVwlsDict.values():
+            stri = stri.replace(chr,'')
+    if schm == "bkwSch":
+        for chr in arbVwlsDict.keys():
+            stri = stri.replace(chr,'')
+    return stri
+
 def rtTrns(rt,inpLng,inpSch,outSch=None):
     lngSts = {
         "arb": "arbSch",
@@ -289,6 +379,9 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
             "iasSch": {
                 "arbSch": iasSch2arbSch,
             },
+            "arbSch": {
+                "bkwSch": {v:k for k,v in bkwSch2arbSch.items()},
+            },
         },
         "eng": {
             "engSch": {
@@ -305,7 +398,8 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
 
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
-    rtTrns = ''
+    print(chrTrnsTbl == chrOut["arb"]["bkwSch"]["arbSch"])
+    rtTrn = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
         for chr in rt:
@@ -313,432 +407,139 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
                 chrTrns = chrTrnsTbl[chr]
             else:
                 chrTrns = chr
-            rtTrns += chrTrns
+            rtTrn += chrTrns
             # print("language schema is present\ncharacter transform: ", chrTrns)
     else:
-        rtTrns = rt
+        rtTrn = rt
     
-    return rtTrns
-
-def filecheck(filepath):
-    import os
-    BASE_DIR = os.getcwd()
-    dirc = os.path.join(BASE_DIR,filepath)
-    subdircL = filepath.split(os.sep)
-    try:
-        subdircL.remove('')
-    except:
-        pass
-    doesPathExist = ''
-    try:
-        for supDirc in subdircL[:-1]:
-            doesPathExist = os.path.join(doesPathExist,supDirc)
-            if not os.path.exists(os.path.join(BASE_DIR,doesPathExist)):
-                os.makedirs(os.path.join(BASE_DIR,doesPathExist))
-                if os.path.exists(doesPathExist):
-                    pass
-        return os.path.isfile(os.path.join(BASE_DIR,filepath))
-    except:
-        pass
+    return rtTrn
 
 
 class row2DictCl:
-    def __init__(self,surah_ayah='',position='',string='',meaning='',ayah_link='',query=''):
-        self.surah_ayah = surah_ayah
-        self.position = position
-        self.string = string
-        self.meaning = meaning
-        self.ayah_link = ayah_link
-        self.query = query
-
-
-def tblUp(tblCumul,tblAgg,instDct,stri,lnk
-            #   frm='',ptSp=''
-                ):
-        # for tbl in tbls:
-        #     # print(tbl)
-        #     tblAgg += tbl
-
-        # print(len(tblAgg))
-        
-        # print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
-
-        if len(tblAgg) > 0:
-        # if len(tbls) > 0:
-            # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-            print(tblAgg[0].find_all('td')[1])
-            if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-            # if 'adam' in tbls[0].find_all('td')[1].get_text().lower():
-                if stri.lower() != 'adam' and stri != 'A^dam':
-                    # print("no results")
-                    tblAgg = []
-                    # tbls = []
-
-        # print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
-        # print(tblAgg)
-
-        tblCumul += tblAgg
-        # tblCumul += tbls
-
-        print("length of tblCumul: ", len(tblCumul))
-        # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
-
-        for rw in tblCumul:
-            row = [ fld.get_text() for fld in rw.find_all("td") ]
-            # row = []
-            # for fld in rw:
-            #   row.append(fld.get_text())
-        
-            # print(row)
-            pos = row[0].split(' ')[0].strip('()')
-            # print(pos)
-            if pos not in instDct:
-                # print(posSplit)
-                posSplit = pos.split(':')
-                # print(posSplit)
-                # instLst.append({
-                instDct[pos] = row2DictCl(
-                    f'{posSplit[0]}:{posSplit[1]}', 
-                    posSplit[2], 
-                    row[0].split(' ')[1], 
-                    row[1], 
-                    row[2], 
-                )
-                # instDct[pos] = {
-                #         "surah_ayah": f'{posSplit[0]}:{posSplit[1]}',
-                #         #   "position": int(posSplit[2]), 
-                #         "position": posSplit[2], 
-                #         "string": row[0].split(' ')[1], 
-                #         "meaning": row[1],
-                #         # "form": frm,
-                #         # "p-o-s": ptSp,
-                #         "ayah_link": row[2]
-                #     }
-                # # })
-        
-                # poss.add(pos)
-            else:
-                # if instDct[pos]["form"] == '' and frm != '':
-                #     instDct[pos]["form"] = frm
-                # if instDct[pos]["p-o-s"] == '' and ptSp != '':
-                #     instDct[pos]["p-o-s"] = ptSp
-                pass
-
-            # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
-            
-        print(len(tblCumul), len(instDct))
-        # print(tblAgg)
-
-        return tblCumul, instDct
-
-def fileGet(stri,filepath):
-        import csv
-        print(f"file found for {stri}")
-        instDct = {}
-        try:
-            with open(filepath) as f:
-                # print(f"loading {filepath}")
-                instTbl = csv.DictReader(f, delimiter='\t')
-                # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-                for row in instTbl:
-                    surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
-                    # print('for ', surAyPos)
-                    # surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
-
-                    # instDct[surAyPos] = row
-                    instDct[surAyPos] = row2DictCl(**row)
-                    # print(instDct[surAyPos].__dict__)
-
-                print(f"Successfully loaded data from '{filepath}: lenght {len(instDct)}'")
-                # propDat = True
-        except:
-            # propDat = False
-            instDct = {}
-            print(f"couldn't load data from '{filepath}': lenght {len(instDct)}")
-        
-        return instDct
-
-def webGet(stri,lnks,filepath,poSp,frm):
-    # import html2text
-    # import json
-    import requests
-    from bs4 import BeautifulSoup
-    import re
-
-    def getTbl(grabhtmlPara):
-        soup = BeautifulSoup(
-            grabhtmlPara,
-            'lxml' 
-        )
-
-        tblsRet = soup.find_all(
-            "table",
-            {"class":"taf"}
-        )
-
-        return tblsRet
-
-
-    # poss = set()
-    instDct={}
-    tblCumul = []
-    # tblAgg = []
-    print(f"proper data not found for {stri}")
-
-
-    for lnk in lnks:
-        print('\ngetting for link: ', lnk, '\n')
-        if lnk == f'https://corpus.quran.com/qurandictionary.jsp?q={stri}':
-            grabhtml = requests.get(lnk).text
-            # print(type(grabhtml))
-
-            import re
-
-            headTbls = re.findall('(<h4 class="dxe">.*?(?=<h4))',grabhtml,re.DOTALL)
-
-            # print(len(headTbls))
-
-            for headTbl in headTbls:
-                tblAgg = []
-                soup = BeautifulSoup(
-                    headTbl,
-                    'lxml',
-                    # 'html.parser',
-                )
-                head4 = soup.find_all(
-                    "h4",
-                    {"class":"dxe"}
-                )[0]
-
-                # if len(tblsRet) > 0:
-                    # print(len(tblsRet) > 0)
-                    # print(len(tblsRet))
-                    # if len(tblsRet) == len(head4s):
-                    # print(len(tblsRet) == len(head4s))
-                # for i in range(len(head4s)):
-                    # print(head4s[i].text)
-
-                tblGrm = head4.text.split('-')[0]
-                tblForms = re.findall('\(form (.*?)\)', tblGrm)
-                if len(tblForms) == 0:
-                    tblForm = 'All'
-                else:
-                    # print(tempForms[0])
-                    tblForm = tblForms[0]
-                tblPoSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', tblGrm)
-                if len(tblPoSps) == 0:
-                    tblPoSp = 'All'
-                else:
-                    # print(tempPtSps[0])
-                    tblPoSp = tblPoSps[0]
-
-                if tblForm == 'All':
-                    if tblPoSp != 'All':
-                        tblForm = 'I'
-                print(
-                    # grm, 
-                    tblForm, 
-                    tblPoSp
-                )
-
-                tbls = soup.find_all(
-                    "table",
-                    {"class":"taf"}
-                )
-
-                # tblAgg = [ tbl for tbl in tbls ]
-
-                # print(tblsRet)
-                for tbl in tbls:
-                    if tblPoSp == poSp and tblForm == frm:
-                        tblAgg += tbl
-                print("tblAgg length", len(tblAgg))
-                tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,
-                                        #  tempForm,tempPtSp
-                                        stri,lnk
-                                            )
-
-
-        else:
-            pgs = []
-            tblAgg = []
-            grabhtml = requests.get(f"{lnk}").text
-            tbls = getTbl(grabhtml)
-            if 'Results' in grabhtml:
-                matches = re.findall(">[\n\s]*Results[\s\n]*<b>\d*</b>[\s\n]*to[\s\n]*<b>\d*</b>[\s\n]*of[\s\n]*<b>(\d*)</b>", grabhtml, re.DOTALL)
-                # print('\nmatches: ', matches)
-                if len(matches) > 0:
-                    pgFlt = int(matches[0])/50
-                    pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-                    # print(f"page count in {lnk} is: {pgCount}")
-                    # print(type(pgCount), pgCount)
-                    pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-                for pg in pgs:
-                    print(f'\nin pg {pg}')
-                    grabhtml = requests.get(f"{lnk}{pg}").text
-                    tbls += getTbl(grabhtml)
-                    # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-                    # grabhtml += grabhtmlNew
-                    # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-                
-            for tbl in tbls:
-                tblAgg += tbl
-                
-            print("length of tblAgg: ", len(tblAgg))
-            
-            tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,stri,lnk)
-
-        # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-        # print(f"{tbls}\n")
-
-
-    list_header = ['surah_ayah', 'position', 'string', 'meaning', 'ayah_link'
-                #    'form', 'p-o-s', 
+        # lnkStyle = ' '
+    fontSize = '18'
+    fontCol = 'rgb(0,0,150)'
+    shPx = str(int(fontSize)/100*0)
+    shCol = '#000000'
+    bgCol = 'rgb(220,220,250)'
+    txtShad = ''
+    # txtShad = f'text-shadow:{shPx}px {shPx}px 0 {shCol}, {shPx}px -{shPx}px 0 {shCol}, -{shPx}px -{shPx}px 0 {shCol}, -{shPx}px {shPx}px 0 {shCol};'
+    # lnkStyle = "style='background-color:rgb(250,250,250);font-size:30px;color:rgb(0,0,150);-webkit-text-stroke-width:5px;-webkit-text-stroke-color:white' "
+    lnkStyle = f" style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}'"
+    # lnkStyle = ''
+    # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
+    def __init__(self,surah='',ayah='',positions=[],query='',tafs="ar-tafsir-al-tabari"):
+        # print(surah, ayah, positions)
+        ayWrds = [posD["wrd"] 
+                  for posD in surAyPosStrAdvWrdMD[surah][ayah].values()
+                  
+                ]
+        positions = [int(pos) for pos in positions]
+        ayWrdsHgh = [
+            f"<b><i>{ayWrds[i]}</i></b>"
+            if i+1 in positions
+            else ayWrds[i]
+            for i in range(len(ayWrds))
         ]
-    print(f"writing {stri} to '{filepath}'")
-    with open(f'{filepath}', 'x') as f:
-        # print(f"writing {stri} to '{filepath}'")
-        import csv
-        writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-        writer.writeheader()
-        # for datum in instLst:
-        # for k, datum in instDct.items():
-        for datum in instDct.values():
-            writer.writerow({
-                # list_header[0] : datum['surah_ayah'],
-                # list_header[1] : datum['position'],
-                # list_header[2] : datum['string'],
-                # list_header[3] : datum['meaning'],
-                # list_header[4] : datum['ayah_link'],
-                list_header[0] : datum.surah_ayah,
-                list_header[1] : datum.position,
-                list_header[2] : datum.string,
-                list_header[3] : datum.meaning,
-                list_header[4] : datum.ayah_link,
-                # list_header[4] : datum['form'],
-                # list_header[5] : datum['p-o-s'],
-            })
-    
-    return instDct
+        txtLwLmt = max(0,min(positions)-4)
+        txtUpLmt = min(len(ayWrds),max(positions)+5)
+        ayTxt = " ".join( ayWrdsHgh[txtLwLmt:txtUpLmt] )
 
-
-def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
-    mainLnk = "https://corpus.quran.com/search.jsp?q="
-    isArabic = strTypA != 'eng' and stri !='' and inpLng == 'arb'
-
-    if not isArabic:
-        if flt != '' and stri =='':
-            stri = str(flt).lower()
-            flt = ''
-    # strTyps = [strTypA] if strTypA != "All" else arStrTypD.values()
-    # frms = [frmA] if frmA != "All" else arFrmL
-    # poSps = [poSpA] if poSpA != "All" else arPoSpD.values()
-    strTyps = [strTypA]
-    frms = [frmA]
-    poSps = [poSpA]
-    lnkPths = []
-    for strTyp in strTyps:
-        for frm in frms:
-            for poSp in poSps:
-                lnks = []
-                if isArabic:
-                    filepath = f'data/cache/arb/{filename}/{strTyp}/{frm}/{poSp}.tsv'
-                    if poSp != "All":
-                        mainLnk += f"pos:{poSp} "
-                    if frm != "All":
-                        mainLnk += f"({frm}) "
-                    if strTyp !='All':
-                        mainLnk += f"{strTyp}:"
-                    if strTyp == 'All':
-                        for strTy in ['lem','stem','root']:
-                            lnks.append(
-                                f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
-                            )
-                        # lnks = [
-                        #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
-                        #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
-                        #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
-                        # ]
-                    # lnks = [mainLnk]
-                    mainLnk += stri
-                    lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
-                else:
-                    # lnks = [mainLnk]
-                    filepath = f'data/cache/nonarb/{stri}.json'
-                    mainLnk += stri
-                lnks = [*lnks,mainLnk]
-                lnkPths.append((
-                    filepath,
-                    lnks
-                ))
-    return lnkPths
+        # surAy = ":".join([surah,ayah])
+        self.surah_ayah = ":".join([surah,ayah])
+        # self.surah = surah
+        # self.ayah = ayah
+        self.positions = positions
+        # self.position_lowest = min([int(pos) for pos in positions])
+        self.strings = [ surAyPosStrAdvWrdMD[surah][ayah][str(pos)]["wrd"] for pos in positions ]
+        self.meanings = [ surAyPosStrAdvWrdMD[surah][ayah][str(pos)]["mean"] for pos in positions]
+        self.ayah_link = f"<a{self.lnkStyle} href='https://quran.com/{self.surah_ayah}/tafsirs/{tafs}'>{ayTxt}</a>"
+        # self.ayah_link = f"<a{self.lnkStyle}>{ayTxt}</a> <a href='https://quran.com/{self.surah_ayah}/tafsirs/{tafs}'>Tafs</a>"
+        self.query = query
     
 
-def dataGrabber(
-        strObj
-    ):
-
-    '''Grabs data from corpus.quran.com & formats them'''
-
+def dataGrabber(strObj):
     flt = str(strObj.flt).lower()
     frm = strObj.frm
     strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
     poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
     inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
     inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
-    stri = strObj.stri
-    filename = rtTrns(stri,inpLng,inpSch)
+    stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
+    isNotRoot = True if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else False
 
-    # flt = str(strObj["flt"]).lower()
-    # strTyp = strTypD[strObj["strTyp"]]
-    # frm = strObj["frm"]
-    # poSp = strObj["poSp"] if strObj["poSp"] in poSpD.values() else poSpD[strObj["poSp"]]
-    # inpLng = lngD[strObj["inpLng"]]
-    # inpSch = inpLngSchD[strObj["inpSch"]]
-    # stri = strObj["stri"]
-    # filename = rtTrns(strObj["stri"],inpLng,inpSch)
+    print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
-
-    # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
-    #     strTyp = "root"
-    
-    # instLst=[]
     instLst = []
-    lnkPths = lnkPthsGet(stri,inpLng,filename,strTyp,frm,poSp)
+    import re
 
-    for filepath, lnks in lnkPths:
-        fileFound = filecheck(filepath)
-        # if len(links) != 1:
-        # import os
-        # for k, direcLnk in direcLnkDic.items():
-            # propDat, 
-        instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
-            # for lnk in lnks:
+    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
+        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+                if ( 
+                    len(
+                        re.compile(str(flt)).findall(
+                            wrdStrD["mean"].lower()
+                        )
+                    ) > 0 
+                    or len(
+                        re.compile(str(stri)).findall(
+                            wrdStrD["mean"].lower()
+                        ) 
+                    ) > 0 
+                ):
+                    if pos not in inst[2]:
+                        inst[2].append(pos)
+                    # inst[3].append(mean)
+                        
+    for sur, ayD in surAyPosStrAdvWrdMD.items():
+        for ay, posD in ayD.items():
+            # surAy = ":".join([sur,ay])
+            inst = [sur,ay,[]]
 
-        # posDic = {
-        #     'ADJ': 'Adjective',
-        #     'N': 'Noun',
-        #     'PN': 'Proper noun',
-        #     'V': 'Verb',
-        #     'IMPN': 'Imperative verbal noun',
-        #     'PRON': 'Personal pronoun',
-        #     'DEM': 'Demonstrative pronoun',
-        #     '': '',
-        # }
-        
-        # print(frmReq, ptSpReq)
-            # print(len(instLst))
-        instLst += [datum for datum in instDct.values()]
-        # if frmReq != None:
-        #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
-        #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
-        # if ptSpReq != None:
-        #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
-        #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
-        
+            for pos, wrdStrD in posD.items():
+                # mean = wrdStrD["mean"]
+                
+                if strTyp == "stem":
+                    for strD in wrdStrD["striDLs"]:
+
+                        if remVwls(strD["stri"]) in remVwls(stri):
+                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                            poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+
+                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
+                            if strD["poSp"] == "All" or poSp == "All":
+                                if strD["frm"] == "All" or frm == "All":
+                                    if ( 
+                                        len(
+                                            re.compile(str(flt)).findall(
+                                                wrdStrD["mean"].lower()
+                                            )
+                                        ) > 0 
+                                        or len(
+                                            re.compile(str(stri)).findall(
+                                                wrdStrD["mean"].lower()
+                                            ) 
+                                        ) > 0 
+                                    ):
+                                        if pos not in inst[2]:
+                                            inst[2].append(pos)
+                    
+                     
+                else:
+                    for strD in wrdStrD["striDLs"]:
+                        # print(strD["stri"],stri)
+                        if strD["stri"] == stri:
+                            if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                    poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+
+            
+            if len(inst[2]) > 0:
+                instLst.append(inst)
 
     return instLst
+
 
 def filtDown(strObj):
     stri = strObj.stri
@@ -747,85 +548,314 @@ def filtDown(strObj):
     # stri = strObj["stri"]
     # flt = strObj["flt"]
     import re
-    instLst = dataGrabber(strObj)
-    instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
+    # instLst = dataGrabber(strObj)
+    instD = dataGrabber(strObj)
+    instLstFiltered =  list(
+        filter( 
+            lambda row : 
+            len(re.compile(str(flt).lower()).findall(
+                surAyPosStrAdvWrdMD[row[0][1][2]]["mean"].lower())
+            ) > 0 
+            or len(re.compile(str(stri)).findall(
+                surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["mean"])
+            ), 
+            instD
+        )
+    )
+    # instLstFiltered =  list(
+    #     filter( 
+    #         lambda row : 
+    #         len(re.compile(str(flt).lower()).findall(
+    #             surAyPosStrAdvWrdMD[row[0][1][2]]["mean"].lower())
+    #         ) > 0 
+    #         or len(re.compile(str(stri)).findall(
+    #             surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["mean"])
+    #         ), 
+    #         instLst
+    #     )
+    # )
+    # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
     return instLstFiltered
 
 def intersct(comb):
+    global posSerDict
     strL = comb.strL
     wrdDis = comb.wrdDis
     if len(strL) > 0:
-        if wrdDis != sameVrsIndicator:
-            import json
-            with open("posSerDict.json") as f:
-                posSerDict = json.loads(f.read())
-        instLstAgg = []
-        surahAyahAggSet = set()
+        # if wrdDis != sameVrsIndicator:
+        #     import json
+        #     with open("posSerDict.json") as f:
+        #         posSerDict = json.loads(f.read())
+        instLstFlt = []
+        # surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
-            instLst = filtDown(strObj)
-            # if wrdDis == 0:
-            if wrdDis == sameVrsIndicator:
-                surahAyahList = [ inst.surah_ayah for inst in instLst ]
-                if i == 0:
-                    surahAyahAggSet = set(surahAyahList)
-                else:
-                    surahAyahAggSet = surahAyahAggSet.intersection(surahAyahList)
+            # instLst = filtDown(strObj)
+            instLst = dataGrabber(strObj)
+            # print('instLst at each:',)
+            # for inst in instLst:
+            #     print(inst)
+            if i == 0:
+                # instLstFlt = [ *instLstFlt, *instLst ]
+                instLstFlt = instLst 
             else:
-                surahAyahPosList = [ f"{inst.surah_ayah}:{str(inst.position)}" for inst in instLst ]
-                if i == 0:
-                    surahAyahAggSet = set(surahAyahPosList)
-                else:
-                    surAyahPosClosestLs = []
-                    surahAyahAggSet2 = surahAyahAggSet.copy()
-                    for surAyahPos in surahAyahAggSet2:
-                        minDistSoFar = 0
-                        surAyahPosClosest = None
-                        for surAyaPosNew in surahAyahPosList:
-                            wrdDisNow = abs(posSerDict[surAyaPosNew] - posSerDict[surAyahPos])
-                            if (wrdDisNow <= wrdDis and wrdDisNow != 0) or (wrdDis==0 and wrdDisNow==0):
-                                if (minDistSoFar == 0) or wrdDisNow < minDistSoFar:
-                                    surAyahPosClosest = surAyaPosNew
-                                    minDistSoFar = wrdDisNow
-                        if surAyahPosClosest != None:
-                            surAyahPosClosestLs.append(surAyahPosClosest)
-                        else:
-                            surahAyahAggSet.remove(surAyahPos)
-                    surahAyahAggSet = surahAyahAggSet.union(surAyahPosClosestLs)
+                instLstFltAyD = {
+                    ":".join([oldSur,oldSAy,oldPos]) : None
+                    # ":".join([oldSur,oldSAy]): {
+                    #     "old": oldPoss,
+                    #     "new": []
+                    # }
+                    for inst in instLstFlt
+                    for oldSur,oldSAy,oldPoss in [inst]
+                    for oldPos in oldPoss
+                }
+                # instLstFlt2 = instLstFlt.copy()
+                # j = 0
 
-            instLstAgg += instLst
+
+                # while j < len(instLstFltAyD) and j > 0:
+                # for oldSurAy in instLstFltAyD.keys():
+                for oldSurAyPos in instLstFltAyD.keys():
+                    # oldSurAy = list(instLstFltAyD.keys())[j]
+                    oldSurAy = ":".join(oldSurAyPos.split(':')[:2])
+                    if wrdDis == sameVrsIndicator:
+                        for newInst in instLst:
+                            newSur,newAy,newPoss = newInst
+                            newSurAy = ":".join([newSur,newAy])
+                            for newPos in newPoss:
+                                if newSurAy == oldSurAy:
+                                    newSurAyPos = ":".join([newSur,newAy,newPos])
+                                    instLstFltAyD[oldSurAyPos]  = newSurAyPos
+                                    # instLstFltAyD[newSurAy]["new"].append(newPos)
+                        # if len(instLstFltAyD[oldSurAy]["new"]) == 0:
+                        #     print('deleting ', instLstFltAyD[oldSurAy])
+                        #     del instLstFltAyD[oldSurAy]
+                        #     j -= 0
+                        
+                    else:
+                        # oldPoss = instLstFltAyD[oldSurAy]["old"]
+                        # k = 0
+                        # while k < len(instLstFltAyD[oldSurAy]["old"]) and k > 0:
+                            # oldPos = oldPoss[k]
+                        # for oldPos in oldPoss:
+                            # for newPos in newPoss:
+                        validDistsD = {
+            
+                            # str(curDist): [newSurAy,newPos]
+                            str(curDist): newSurAyPos
+                            for newSurAyPoss in instLst
+                            for newSur, newAy, newPoss in [newSurAyPoss]
+                            for newPos in newPoss
+                            # if (newSurAy := ":".join([newSur,newAy]))
+                            # for oldPos in oldPoss
+                            if (newSurAyPos := ":".join([newSur,newAy,newPos]))
+                            if (curDist := abs(
+                                posSerDict[newSurAyPos] 
+                                - posSerDict[oldSurAyPos])
+                                # posSerDict[":".join([newSur,newAy,newPos])] 
+                                # - posSerDict[":".join([oldSurAy,oldPos])])
+                            )
+                            if curDist <= wrdDis
+                        }
+                        closestNew = None if len(validDistsD) == 0 else validDistsD[str(min([int(k) for k in validDistsD.keys()]))]
+                                # curDist = abs(
+                                #         posSerDict[":".join([newSurAy,newPos])] 
+                                #         - posSerDict[":".join([oldSurAy,oldPos])]
+                                # )
+                        if closestNew != None:
+                            instLstFltAyD[oldSurAyPos] = closestNew
+                            print(oldSurAyPos,closestNew)
+                                # closestNewSurAy = closestNew[0]
+                                # closestNewPos = closestNew[1]
+                                # if closestNewSurAy not in instLstFltAyD.keys():
+                                #     instLstFltAyD[closestNewSurAy] = {
+                                #         # "old": [],
+                                #         "new": []
+                                #     }
+                                # instLstFltAyD[closestNewSurAy]["new"].append(closestNewPos)
+                            # else:
+                            #     instLstFltAyD[oldSurAy]["old"].pop(k)
+                            #     k -= 0
+                            # k += 0
+                            # pass
+
+                        # if len(instLstFltAyD[oldSurAy]["old"]) == 0:
+                        #     print('deleting ', instLstFltAyD[oldSurAy])
+                        #     del instLstFltAyD[oldSurAy]
+                        #     j -= 0
+
+                    # j += 1
+                j = 0
+                while j < len(instLstFltAyD):
+                # for old, new in instLstFltAyD.items():
+                    old, new = list(instLstFltAyD.items())[j]
+                    if new == None:
+                        del instLstFltAyD[old]
+                    else:
+                        j += 1
+                
+                # newInstFltLs = []
+                newInstD = {}
+                for new,old in instLstFltAyD.items():
+                    for surAyPos in [new,old]:
+                        if surAyPos != None:
+                            sur,ay,pos = surAyPos.split(':')
+                            surAy = ":".join([sur,ay])
+                            if surAy not in newInstD:
+                                newInstD[surAy] = [pos]
+                            else:
+                                newInstD[surAy].append(pos)
+                print(newInstD)
+                # newInstFltLs = [
+                instLstFlt = [
+                    [sur,ay,poss]
+                    for surAy, poss in newInstD.items()
+                    # if (sur,ay := surAy.split(':'))
+                    for sur,ay in [surAy.split(':')]
+                ]
+                # print(newInstFltLs)
+
+                # from functools import reduce
+                # newInstFltLs = [
+                #     [sur,Ay,poss]
+                #     for surAy, posD in instLstFltAyD.items()
+                #     for sur,Ay in [surAy.split(':')]
+                #     if (poss := reduce(
+                #         lambda x,y :
+                #         [*x,*y],
+                #         posD.values()
+                #     ))
+                # ]
+                # newInstFltLs = [   
+                #     [*surAy.split(':'),posDict["new"]]
+                #     for surAy, posDict in instLstFltAyD.items()
+                #     # if len(posDict["new"]) > 0
+                # ]
+                # for newInstFlt in newInstFltLs:
+                # for newInstFlt in newInstFltLs:
+                    # print(newInstFlt)
+                    # instLstFlt.append(newInstFlt)
+                    # j = 0
+                    # while j < len(instLstFlt2):
+                    #     oldInst = instLstFlt2[j]
+                    #     k = 0
+                    #     while k < len(instLstFlt2[j][2]):
+                    #         for newInst in instLst:
+                    #         # print('for', newInst)
+                    #             if newInst[:2] == oldInst[:2]:
+                    #                 print('newInst[:2] == oldInst[:2] at', j, newInst[:2], oldInst[:2])
+                    #                 instLstFlt[j][2].append(newInst[2])
+                    #             else:
+                    #                 # print('not newInst[:2] == oldInst[:2] at', j, newInst[:2], oldInst[:2])
+                    #         #################################################################
+                    #                 '''Might need to fix j pop while len if it acts up '''                            
+                    #         #################################################################                     
+                    #                 try:
+                    #                     instLstFlt[j][2] = []
+                    #                 except:
+                    #                     print('j',j)
+                    #                     try:
+                    #                         print('instLstFlt[j]',instLstFlt[j])
+
+                    #                     except:
+                    #                         print('len(instLstFlt): ',len(instLstFlt)  )
+                                        
+                    #             # instLstFlt.pop(j)
+                    #             # j -= 1
+                    #     j += 1
+                            
+                       
+                # else:
+                #     j = 0
+                #     while j <len(instLstFlt2):
+                #         oldInst = instLstFlt2[j]
+                #         k = 0
+                #         while k < len(instLstFlt2[j][2]):
+                #             oldPos = instLstFlt2[j][2][k]
+                #             print([*oldInst[:2],oldPos],[oldInst])
+                            # validDistsD = {
+                            #     str(curDist): [sur,ay,pos]
+                            #     for surAyPoss in instLst
+                            #     for sur, ay, poss in [surAyPoss]
+                            #     for pos in poss
+                            #     if (curDist := abs(
+                            #         posSerDict[":".join([sur,ay,pos])] 
+                            #         - posSerDict[":".join([*oldInst[:2],oldPos])])
+                            #     )
+                            #     if curDist <= wrdDis
+                            # }
+                #             closestNew = None if len(validDistsD) == 0 else validDistsD[str(min([int(k) for k in validDistsD.keys()]))]
+
+                #             if closestNew == None:
+                #                 if len(instLstFlt[j][2]) < 2:
+                #                     instLstFlt[j][2] = []
+                #                 else:
+                #                     instLstFlt[j][2][k] = None
+                #             else:
+                #                 if oldInst[:2] == closestNew[:2]:
+                #                     instLstFlt[j][2].append(closestNew[2])
+                #                 else:
+                #                     instLstFlt.append([*closestNew[:2],[closestNew[2]]])
+                #                     # j+= 1
+                #                     print('appended [*closestNew[:2],[closestNew[2]]] at j,', [*closestNew[:2],[closestNew[2]]], j)
+                #             k += 1
+                #         j += 1
         
-        instLstFlt = list(filter(
-            # lambda x: x["surah_ayah"] in surahAyahAggSet,
-            lambda x: x.surah_ayah in surahAyahAggSet if wrdDis == sameVrsIndicator else f"{x.surah_ayah}:{x.position}" in surahAyahAggSet,
-            instLstAgg
-        ))
-        instDictInc = {}
-        for inst in instLstFlt:
-            # surahAyah = inst["surah_ayah"]
-            surahAyah = inst.surah_ayah
-            if surahAyah not in instDictInc.keys():
-                instDictInc[surahAyah] = inst
-                # instDictInc[surahAyah] = {
-                #     "position": inst["position"],
-                #     "string": inst["string"],
-                #     "meaning": inst["meaning"],
-                #     "ayah_link" : inst["ayah_link"],
-                #     # "query": 
-                #     # f"{rtAgg} ({flAgg})"
-                #     # stri_flt_int_lb
-                # }
-            else:
-                # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
-                # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
-                instDictInc[surahAyah].string = instDictInc[surahAyah].string + ' ' + inst.string
-                instDictInc[surahAyah].meaning = instDictInc[surahAyah].meaning + ' ' + inst.meaning
+        # instLstFlt = [
+        #     [
+        #         sur,ay,
+        #         [
+        #             pos for pos in poss
+        #             if pos != None
+        #         ]
+        #     ]
+        #     for inst in instLstFlt 
+        #     for sur, ay, poss in [inst]
+        #     # if len(inst)!= 0
+        # ]
+        # instLstFlt = [inst for inst in instLstFlt if len(inst[2])!= 0]
+        
+        return instLstFlt
+    
+        # for inst in instLstFlt:
+        #     surahAyah = inst.surah_ayah
+        #     curPos = inst.position
+        #     curStr = inst.string
+        #     curMean = inst.meaning
+        #     # curQuer = inst.query
+        #     surahAyah = inst.surah_ayah
+        #     if surahAyah not in instDictInc.keys():
+        #         # instDictInc[surahAyah] = inst
+        #         instDictInc[surahAyah] = {
+        #             # **inst.__dict__,
+        #             # "surah_ayah": surahAyah,
+        #             "strings": [curStr],
+        #             "meanings": [curMean],
+        #             "positions" : [int(curPos)],
+        #             # "query": curQuer
+        #         }
+        #         # instDictInc[surahAyah] = {
+        #         #     "position": inst["position"],
+        #         #     "string": inst["string"],
+        #         #     "meaning": inst["meaning"],
+        #         #     "ayah_link" : inst["ayah_link"],
+        #         #     # "query": 
+        #         #     # f"{rtAgg} ({flAgg})"
+        #         #     # stri_flt_int_lb
+        #         # }
+        #     else:
+        #         # instDictInc[surahAyah]["string"] = instDictInc[surahAyah]["string"] + ' ' + inst["string"]
+        #         # instDictInc[surahAyah]["meaning"] = instDictInc[surahAyah]["meaning"] + ' ' + inst["meaning"]
+        #         instDictInc[surahAyah]["strings"].append(curStr)
+        #         instDictInc[surahAyah]["meanings"].append(curMean)
+        #         instDictInc[surahAyah]["positions"].append(curPos)
+
 
         # instLstInc = [ {"surah_ayah":k, **v } for k, v in instDictInc.items() ]
-        instLstInc = [ v for v in instDictInc.values() ]
-        return instLstInc
+        # # instLstInc = [ v for v in instDictInc.values() ]
+        # return instLstInc
     
     # elif len(strL) == 1:
     #     instLstFlt = filtDown(strL[0])
@@ -842,17 +872,6 @@ def aggregLsts(
         tafs="ar-tafsir-al-tabari",
         # qyArLegSch=lng2InpSchD["arabic"][1]
     ):
-    # lnkStyle = ' '
-    fontSize = '18'
-    fontCol = 'rgb(0,0,150)'
-    shPx = str(int(fontSize)/100*0)
-    shCol = '#000000'
-    bgCol = 'rgb(220,220,250)'
-    txtShad = ''
-    # txtShad = f'text-shadow:{shPx}px {shPx}px 0 {shCol}, {shPx}px -{shPx}px 0 {shCol}, -{shPx}px -{shPx}px 0 {shCol}, -{shPx}px {shPx}px 0 {shCol};'
-    # lnkStyle = "style='background-color:rgb(250,250,250);font-size:30px;color:rgb(0,0,150);-webkit-text-stroke-width:5px;-webkit-text-stroke-color:white' "
-    lnkStyle = f"style='background-color:{bgCol};font-size:{fontSize}px;color:{fontCol};{txtShad}' "
-    # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     instLstAgg = []
     for optSt in qL:
         print(optSt)
@@ -876,13 +895,19 @@ def aggregLsts(
             optStInsts = [*optStInsts,*combInstLst]
         lbl = ' / '.join(lblParts)
         # instLst = [ { **inst, "query": lbl } for inst in optStInsts  ]
-        for inst in optStInsts:
-            inst.query = lbl
+        
+        # print("optStInsts",optStInsts)
+        # for inst in optStInsts:
+        for i in range(len(optStInsts)):
+            optStInsts[i] = [*optStInsts[i], lbl, tafs ]
+            # inst["query"] = lbl
+            # inst["query"] = lbl
         # instLstAgg += optStInsts
-        instLstAgg = [*instLstAgg,*optStInsts]
+        instLstAgg = [*instLstAgg,*[row2DictCl(*optStInst) for optStInst in optStInsts ]]
+        # instLstAgg = [*instLstAgg,*optStInsts]
         # instLstAgg += instLst
-    for row in instLstAgg:
-        row.ayah_link= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
+    # for row in instLstAgg:
+    #     row["ayah_link"]= f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
         # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
     # instLstAgg = [ { 
     #     **row, 
@@ -894,6 +919,7 @@ def aggregLsts(
     #     "ayah_link": f"<a {lnkStyle}href='https://quran.com/{row.surah_ayah}/tafsirs/{tafs}'>{row.ayah_link}</a>"
     #     # "ayah_link": f"<a href='https://quran.com/{row['surah_ayah']}/tafsirs/{tafs}'>{row['ayah_link']}</a>"
     #     } for row in instLstAgg ]
+    
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
 
@@ -1150,7 +1176,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=0,max=82012,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDistW = widg.IntText(min=0,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
@@ -1277,19 +1303,38 @@ def tabular(df,colMap,sorter):
     #     inplace=True
     # )
 
-    compareDict = {}
-    for i in range(len(sorter)):
-        compareDict[sorter[i]]=i
+    # compareDict = {}
+    # for i in range(len(sorter)):
+    #     compareDict[sorter[i]]=i
 
-    df.insert( 0, 'verses_before',    list(
-        map(
-            lambda x: compareDict[x],
-            # df["surah"]
-            df["surah_ayah"]
-            # df["surah_ayah"]
-            )
-        )
+    def words_before_f(row):
+        return posSerDict[row['surah_ayah'] +':'+ str( min([int(pos) for pos in row['positions']]) )]
+
+    # df['words_before'] = df.apply(words_before_f,axis=1)
+    if len(df) > 0:
+        df.insert( 
+            0, 
+            'words_before', 
+            value=df.apply(lambda row: words_before_f(row), axis=1 )
+            # list(
+            #     map(
+            #         lambda x: words_before_f(x),
+            #         # df["surah"]
+            #         df,
+            #         # df["surah_ayah"]
+            #         axis = 1
+            #         )
+            # )
     )
+    # df.insert( 0, 'verses_before',    list(
+    #     map(
+    #         lambda x: compareDict[x],
+    #         # df["surah"]
+    #         df["surah_ayah"]
+    #         # df["surah_ayah"]
+    #         )
+    #     )
+    # )
 
     from IPython.core.display import HTML
 
@@ -1322,23 +1367,23 @@ def plotDf(df,colMap,sorter):
     # pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
 
     # df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
-    ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
-    pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['position'])).reset_index()
+    # ay_ln = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ' .. '.join(group['ayah_link'])).reset_index()
+    # pos = df.groupby(['surah_ayah', 'query'],observed=True).apply(lambda group: ','.join(group['positions'])).reset_index()
 
     df = df.drop_duplicates(subset=['surah_ayah', 'query'], keep="first").reset_index(drop=True)
 
-    df["position"] = pos[0]
-    df["ayah_link"] = ay_ln[0]
+    # df["positions"] = pos[0]
+    # df["ayah_link"] = ay_ln[0]
     
-    df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
+    # df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
     # df["ayah_link"] = list(df["surah_ayah"]) + df["ayah_link"]
     df.reset_index(inplace=True)
 
     # width=((len(df["query"].unique()))*20)+600
     # print(width,len(df["query"].unique()), df["query"].unique())
     
-    isArabic=df.loc[0,"query"][0] in bkwSch2arbSch.values()
-    max_leg_width=len(max(df["query"].unique(),key=len))
+    isArabic=False if len(df) == 0 else df.loc[0,"query"][0] in bkwSch2arbSch.values()
+    max_leg_width=False if len(df) == 0 else len(max(df["query"].unique(),key=len))
     legend_size=12 if not isArabic else 14
     xtick_size=12 if not isArabic else 14
     datapoint_width=20
@@ -1417,6 +1462,7 @@ def plotDf(df,colMap,sorter):
     fig.update_traces(
         hovertemplate=
         "query: %{x}<br>"
+        "surah_ayah: %{y}<br>"
         "%{customdata[0]}"
         "<extra></extra>"
     )
@@ -1458,15 +1504,19 @@ def sortchron(
     import pandas as pd
     # clear_output()
     # print([obj.__dict__ for obj in instLstAgg])
-    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","positions","strings","meanings","ayah_link","query"])
     # df = pd.DataFrame(instLstAgg,columns = ["surahayah","position","string","meaning","ayah_link","query"])
-    df['position'] = df['position'].astype('int')
+    # df['positions'] = df['positions'].astype('int')
     # df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
     # df.sort_values(["surah_ayah","position"],inplace=True)
     df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
-    df.sort_values(["surah_ayah","position"],inplace=True)
+    df.sort_values(
+        ["surah_ayah","positions"],
+        key=lambda x: x.map(min) if x.name=='positions' else x,
+        inplace=True
+    )
     # df.sort_values(["surah_ayah","position"],inplace=True)
-    df['position'] = df['position'].astype('str')
+    # df['position'] = df['position'].astype('str')
     df.reset_index(drop=True,inplace=True)
     # df.reset_index(inplace=True)
     
