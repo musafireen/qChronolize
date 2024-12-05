@@ -2,7 +2,7 @@
 import ipywidgets as widg
 from ipywidgets import interactive as intct
 from IPython.display import display, clear_output
-from qChronolyze import refLngD, lng2InpSchD, tafsDict
+from qChronolyze import refLngD, lng2InpSchD, tafsDict, surAyPosStrAdvWrdMD
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
 def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
@@ -60,13 +60,19 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     for rec in sortedRecs:
         surAy = rec["surah_ayah"]
-        pos = int(rec["position"])
+        sur,ay = surAy.split(":")
+        poss = rec["positions"]
+        # pos = int(rec["position"])
         vrsRec = vrsDict[surAy]
         # vrsLnk = vrsRec["lnk"]
-        vrsArb = vrsRec["arb"].strip("\n").strip(" ")
+        # vrsArb = vrsRec["arb"].strip("\n").strip(" ")
         vrsEng = vrsRec["eng"]
-        vrsWrds = vrsArb.split(" ")
-        vrsArbMod = " ".join(vrsWrds[:pos-1]) + "***" + vrsWrds[pos-1] + "***" + " ".join(vrsWrds[pos:])
+        # vrsWrds = vrsArb.split(" ")
+        vrsArbMod = " ".join([
+            posD["word"] if pos not in poss else f"***{posD["word"]}***"
+            for pos, posD in surAyPosStrAdvWrdMD[sur][ay].items()
+        ])
+        # vrsArbMod = " ".join(vrsWrds[:pos-1]) + "***" + vrsWrds[pos-1] + "***" + " ".join(vrsWrds[pos:])
         if surAy not in newDic.keys():
             newDic[rec["surah_ayah"]] = {
                 'string': f'\n[Q.{rec["surah_ayah"]}](https://quran.com/{surAy}/tafsirs/{tafs})\n'
