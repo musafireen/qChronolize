@@ -877,11 +877,38 @@ def dataGrabber(strObj):
     inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
     inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
     # stri = strObj.stri
-    stri = rtTrns(strObj.stri,inpLng,inpSch,)
+    stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
     instLst = []
+    # instD = {}
     import re
+
+    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
+        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+                if ( 
+                    len(
+                        re.compile(str(flt)).findall(
+                            wrdStrD["mean"].lower()
+                        )
+                    ) > 0 
+                    or len(
+                        re.compile(str(stri)).findall(
+                            wrdStrD["mean"].lower()
+                        ) 
+                    ) > 0 
+                ):
+                    # if surAy not in instD:
+                    #     instD[surAy] = [pos]
+                    # else:
+                    #     if pos not in instD[surAy]:
+                    #         instD[surAy].append(pos)
+                    if pos not in inst[2]:
+                        inst[2].append(pos)
+                    # inst[3].append(mean)
+                        
     for sur, ayD in surAyPosStrAdvWrdMD.items():
         for ay, posD in ayD.items():
+            # surAy = ":".join([sur,ay])
             inst = [sur,ay,[]]
             # inst = {
             #     "surah": sur,
@@ -896,42 +923,68 @@ def dataGrabber(strObj):
                 # mean = wrdStrD["mean"]
                 
                 if strTyp == "stem":
-                    if remVwls(wrdStrD["wrd"]) in remVwls(stri):
-                        if strD["poSp"] == "All" or poSp == "All":
-                            if strD["frm"] == "All" or frm == "All":
-                                if ( len(re.compile(str(flt)).findall(
-                                        wrdStrD["mean"].lower())
-                                ) > 0 
-                                    or len(re.compile(str(stri)).findall(
-                                        wrdStrD["mean"])
-                                )):
-                                    if pos not in inst[2]:
-                                        inst[2].append(pos)
-                                        # inst[3].append(mean)
-                    else:
-                        for strD in wrdStrD["striDLs"]:
-                            if remVwls(strD["stri"]) in remVwls(stri):
-                                if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
-                                    if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+                    for strD in wrdStrD["striDLs"]:
+
+                        if remVwls(strD["stri"]) in remVwls(stri):
+                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                            poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+
+                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
+                            if strD["poSp"] == "All" or poSp == "All":
+                                if strD["frm"] == "All" or frm == "All":
+                                    if ( 
+                                        len(
+                                            re.compile(str(flt)).findall(
+                                                wrdStrD["mean"].lower()
+                                            )
+                                        ) > 0 
+                                        or len(
+                                            re.compile(str(stri)).findall(
+                                                wrdStrD["mean"].lower()
+                                            ) 
+                                        ) > 0 
+                                    ):
                                         if pos not in inst[2]:
                                             inst[2].append(pos)
-                                        # inst[3].append(mean)
+                                            # inst[3].append(mean)
+                                        # if surAy not in instD:
+                                        #     instD[surAy] = [pos]
+                                        # else:
+                                        #     if pos not in instD[surAy]:
+                                        #         instD[surAy].append(pos)
+                    
                      
                 else:
                     for strD in wrdStrD["striDLs"]:
                         if strD["stri"] == stri:
                             if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                if strD["poSp"] == "All" or poSp == 'All' or strD["poSp"] == poSp:
-                                    if strD["frm"] == "All" or frm == 'All' or strD["frm"] == frm:
-                                        if pos not in inst[2]:
-                                            inst[2].append(pos)
-                                        # inst[3].append(mean)
+                                
+                                poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+                                # if strD["poSp"] == "All" or poSp == 'All' or strD["poSp"] == poSp:
+                                #     if strD["frm"] == "All" or frm == 'All' or strD["frm"] == frm:
+                                #         if ( len(
+                                #             re.compile(str(flt)).findall(
+                                #                 wrdStrD["mean"].lower()
+                                #             )> 0 
+                                #         )
+                                #             or len(re.compile(str(stri)).findall(
+                                #                 wrdStrD["mean"].lower()
+                                #             ) > 0 
+                                #         )):
+                                #             if surAy not in instD:
+                                #                 instD[surAy] = [pos]
+                                #             else:
+                                #                 instD[surAy].append(pos)
+                                            # if pos not in inst[2]:
+                                            #     inst[2].append(pos)
+                                            # inst[3].append(mean)
             
             if len(inst[2]) > 0:
                 instLst.append(inst)
 
     # print("instLst in dataGrabber", instLst)
     return instLst
+    # return instD
 
 def filtDown(strObj):
     stri = strObj.stri
@@ -940,7 +993,8 @@ def filtDown(strObj):
     # stri = strObj["stri"]
     # flt = strObj["flt"]
     import re
-    instLst = dataGrabber(strObj)
+    # instLst = dataGrabber(strObj)
+    instD = dataGrabber(strObj)
     instLstFiltered =  list(
         filter( 
             lambda row : 
@@ -950,9 +1004,21 @@ def filtDown(strObj):
             or len(re.compile(str(stri)).findall(
                 surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["mean"])
             ), 
-            instLst
+            instD
         )
     )
+    # instLstFiltered =  list(
+    #     filter( 
+    #         lambda row : 
+    #         len(re.compile(str(flt).lower()).findall(
+    #             surAyPosStrAdvWrdMD[row[0][1][2]]["mean"].lower())
+    #         ) > 0 
+    #         or len(re.compile(str(stri)).findall(
+    #             surAyPosStrAdvWrdMD[row[0]][row[1]][row[2]]["mean"])
+    #         ), 
+    #         instLst
+    #     )
+    # )
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row.meaning.lower())) > 0 or len(re.compile(str(stri)).findall(row.meaning)), instLst))
     # instLstFiltered =  list(filter( lambda row : len(re.compile(str(flt).lower()).findall(row["meaning"].lower())) > 0 or len(re.compile(str(stri)).findall(row["meaning"])), instLst))
     # instLstFiltered = [ { **row , "query" : f"{rt} ({flt})"} for row in instLstFiltered ]
@@ -1690,19 +1756,20 @@ def tabular(df,colMap,sorter):
         return posSerDict[row['surah_ayah'] +':'+ str( min([int(pos) for pos in row['positions']]) )]
 
     # df['words_before'] = df.apply(words_before_f,axis=1)
-    df.insert( 
-        0, 
-        'words_before', 
-        value=df.apply(lambda row: words_before_f(row), axis=1 )
-        # list(
-        #     map(
-        #         lambda x: words_before_f(x),
-        #         # df["surah"]
-        #         df,
-        #         # df["surah_ayah"]
-        #         axis = 1
-        #         )
-        # )
+    if len(df) > 0:
+        df.insert( 
+            0, 
+            'words_before', 
+            value=df.apply(lambda row: words_before_f(row), axis=1 )
+            # list(
+            #     map(
+            #         lambda x: words_before_f(x),
+            #         # df["surah"]
+            #         df,
+            #         # df["surah_ayah"]
+            #         axis = 1
+            #         )
+            # )
     )
     # df.insert( 0, 'verses_before',    list(
     #     map(
