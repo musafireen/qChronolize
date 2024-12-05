@@ -193,39 +193,15 @@ inpLngSchD = {
     "english_Scheme": "engSch",
 }
 
-import csv
 import json
-flPth='data/surAyPosStrAdvWrdMD.tsv'
-list_header=["surah","ayah","position","word","strings_dictionary"]
-with open(flPth) as f:
-    surAyPosStrAdvWrdMDRws = list(csv.DictReader(f, delimiter='\t'))
-surAyPosStrAdvWrdMD = {
-}
-for surAyPosStrAdvWrd in surAyPosStrAdvWrdMDRws:
-    [sur, ay, pos, stri, mean, strDLs ] = surAyPosStrAdvWrd.values()
-    # [sur,ay,pos] = surAyPos.split(':')
-    if sur not in surAyPosStrAdvWrdMD:
-        surAyPosStrAdvWrdMD[sur] = {}
-    if ay not in surAyPosStrAdvWrdMD[sur]:
-        surAyPosStrAdvWrdMD[sur][ay] = {}
-    # if pos not in surAyPosStrAdvWrdMD[sur][ay]:
-    surAyPosStrAdvWrdMD[sur][ay][pos] = {
-        # "wrd": posD[surAyPos],
-        # "striDLs": strDLs,
-        # "wrd": stri,
-        # "striDLs": posStrAdvDict[surAyPos],
-        "wrd": stri,
-        "mean": mean,
-        "striDLs": json.loads(strDLs),
-        # "striDLs": posStrAdvDict.get(surAyPos,['problematic pos']),
-        # "striDLs": posStrAdvDict.get(pos,['problematic pos']),
-    }
+with open("data/striSuAyPosWMD.json") as f:
+    striSuAyPosWMD = json.loads(f.read())
 
 import json
 with open("posSerDict.json") as f:
     posSerDict = json.loads(f.read())
 
-wrdCount = len(surAyPosStrAdvWrdMDRws)
+wrdCount = len(posSerDict)
 
 sameVrsIndicator = wrdCount
 
@@ -870,6 +846,7 @@ def dataGrabberBAK(
 
 
 def dataGrabber(strObj):
+    import re
     flt = str(strObj.flt).lower()
     frm = strObj.frm
     strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
@@ -878,13 +855,24 @@ def dataGrabber(strObj):
     inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
     # stri = strObj.stri
     stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
-    instLst = []
-    # instD = {}
-    import re
+    isRoot = False if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else True
+    
+    # print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
-    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
-        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
-            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+    instLst = []
+    instD = {}
+
+    # def insDMk(prev,ls,strArg,meanArg,instDArg={}):
+    def insDMk(prev,ls,instDArg={}):
+
+        def poSpMatch(posDL,instDArg2,):
+            for wrdStrD in posDL:
+                curStri = wrdStrD["wrd"]
+                curMean = wrdStrD["mean"]
+                surAyPos = wrdStrD["surAyPos"]
+                # print(surAyPos)
+                sur,ay,pos = surAyPos
+                surAy = ":".join([sur,ay])
                 if ( 
                     len(
                         re.compile(str(flt)).findall(
@@ -897,90 +885,71 @@ def dataGrabber(strObj):
                         ) 
                     ) > 0 
                 ):
-                    # if surAy not in instD:
-                    #     instD[surAy] = [pos]
-                    # else:
-                    #     if pos not in instD[surAy]:
-                    #         instD[surAy].append(pos)
-                    if pos not in inst[2]:
-                        inst[2].append(pos)
-                    # inst[3].append(mean)
-                        
-    for sur, ayD in surAyPosStrAdvWrdMD.items():
-        for ay, posD in ayD.items():
-            # surAy = ":".join([sur,ay])
-            inst = [sur,ay,[]]
-            # inst = {
-            #     "surah": sur,
-            #     "ayah": ay,
-            #     "positions": [],
-            #     "strings": [],
-            #     "meanings": [],
-            #     "queries": [],
-            # }
+                    if surAy not in instDArg2:
+                        instDArg2[surAy] = [pos]
+                    else:
+                        if pos not in instDArg2[surAy]:
+                            instDArg2[surAy].append(pos)
 
-            for pos, wrdStrD in posD.items():
-                # mean = wrdStrD["mean"]
-                
-                if strTyp == "stem":
-                    for strD in wrdStrD["striDLs"]:
+            # print(instDArg2)
+            return instDArg2
 
-                        if remVwls(strD["stri"]) in remVwls(stri):
-                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
-                            poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
 
-                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
-                            if strD["poSp"] == "All" or poSp == "All":
-                                if strD["frm"] == "All" or frm == "All":
-                                    if ( 
-                                        len(
-                                            re.compile(str(flt)).findall(
-                                                wrdStrD["mean"].lower()
-                                            )
-                                        ) > 0 
-                                        or len(
-                                            re.compile(str(stri)).findall(
-                                                wrdStrD["mean"].lower()
-                                            ) 
-                                        ) > 0 
-                                    ):
-                                        if pos not in inst[2]:
-                                            inst[2].append(pos)
-                                            # inst[3].append(mean)
-                                        # if surAy not in instD:
-                                        #     instD[surAy] = [pos]
-                                        # else:
-                                        #     if pos not in instD[surAy]:
-                                        #         instD[surAy].append(pos)
-                    
-                     
+        for k in ls:
+            if len(ls) == 1:
+                poSp = ls[0]
+                # print(poSp)
+                if poSp == 'All':
+                    for poSpK in prev.keys():
+                        instDArg = poSpMatch(prev[poSpK],instDArg,)
                 else:
-                    for strD in wrdStrD["striDLs"]:
-                        if strD["stri"] == stri:
-                            if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                
-                                poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
-                                # if strD["poSp"] == "All" or poSp == 'All' or strD["poSp"] == poSp:
-                                #     if strD["frm"] == "All" or frm == 'All' or strD["frm"] == frm:
-                                #         if ( len(
-                                #             re.compile(str(flt)).findall(
-                                #                 wrdStrD["mean"].lower()
-                                #             )> 0 
-                                #         )
-                                #             or len(re.compile(str(stri)).findall(
-                                #                 wrdStrD["mean"].lower()
-                                #             ) > 0 
-                                #         )):
-                                #             if surAy not in instD:
-                                #                 instD[surAy] = [pos]
-                                #             else:
-                                #                 instD[surAy].append(pos)
-                                            # if pos not in inst[2]:
-                                            #     inst[2].append(pos)
-                                            # inst[3].append(mean)
-            
-            if len(inst[2]) > 0:
-                instLst.append(inst)
+                    instDArg = poSpMatch(prev[k],instDArg,)
+            else:
+                if k != 'All':
+                    instDArg = insDMk(prev[k],ls[1:],instDArg)
+                else:
+                    for k2 in prev.keys():
+                        instDArg = insDMk(prev[k2],ls[1:],instDArg)
+
+        # print(instDArg)
+        return instDArg
+
+                
+    if strTyp == "stem" or strTyp == 'All':
+
+        if isRoot:
+            for root in striSuAyPosWMD["root"]:
+                if root in remVwls(stri):
+                    # print(root,stri)
+                    instD = insDMk(striSuAyPosWMD["root"][root],[frm,poSp],instD)
+                    # print(instD)
+                    break
+        else:
+            for stem in striSuAyPosWMD["stem"]:
+                if remVwls(stem) in remVwls(stri):
+                    instD = insDMk(striSuAyPosWMD["stem"][stem],[frm,poSp],instD)
+                    break
+                    # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+
+            for lem in striSuAyPosWMD["lem"]:
+                if remVwls(lem) in remVwls(stri):
+                    instD = insDMk(striSuAyPosWMD["lem"][lem],[frm,poSp],instD)
+                    break
+
+    
+    else:
+        for curStri in striSuAyPosWMD[strTyp]:
+            if curStri == stri:
+                print(curStri,stri)
+                instD = insDMk(striSuAyPosWMD[strTyp][stri],[frm,poSp],instD)
+                break
+
+
+    instLst = [
+        [sur2,ay2,poss]
+        for surAy, poss in instD.items()
+        for sur2,ay2 in [surAy.split(':')]
+    ]
 
     # print("instLst in dataGrabber", instLst)
     return instLst
