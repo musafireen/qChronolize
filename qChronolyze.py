@@ -193,9 +193,13 @@ inpLngSchD = {
     "english_Scheme": "engSch",
 }
 
+
 import json
-with open("data/striSuAyPosWMD.json") as f:
-    striSuAyPosWMD = json.loads(f.read())
+with open('data/surAyPosStrAdvWrdMD.json') as f:
+    surAyPosStrAdvWrdMD = json.loads(f.read())
+
+# with open("data/striSuAyPosWMD.json") as f:
+#     striSuAyPosWMD = json.loads(f.read())
 
 import json
 with open("posSerDict.json") as f:
@@ -292,9 +296,28 @@ def getSorter():
                         sorter[i] = sa
                         i += 1
 
-        with open(f'sorter.json', 'w') as f:
+        with open(f'sorter.json', 'w+') as f:
             f.write(json.dumps(sorter))
-    
+
+        # with open(f'posDict.json') as f:
+        #     posDict = json.loads(f.read())
+
+        posSerDict = {
+
+        }
+
+        ser = 0
+        for i in range(len(sorter)):
+            surAy = sorter[i]
+            sur,ay = surAy.split(":")
+            posLs = list(surAyPosStrAdvWrdMD[sur][ay].keys())
+            for j in range(len(posLs)):
+                ser += 1
+                surAyPos = ":".join([sur,ay,posLs[j]])
+                posSerDict[surAyPos] = ser
+        with open(f'posSerDict.json', 'w+') as f:
+            f.write(json.dumps(posSerDict))
+
     return sorter
 
 def getColMap(dicti):
@@ -391,27 +414,6 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
     
     return rtTrn
 
-def filecheck(filepath):
-    import os
-    BASE_DIR = os.getcwd()
-    dirc = os.path.join(BASE_DIR,filepath)
-    subdircL = filepath.split(os.sep)
-    try:
-        subdircL.remove('')
-    except:
-        pass
-    doesPathExist = ''
-    try:
-        for supDirc in subdircL[:-1]:
-            doesPathExist = os.path.join(doesPathExist,supDirc)
-            if not os.path.exists(os.path.join(BASE_DIR,doesPathExist)):
-                os.makedirs(os.path.join(BASE_DIR,doesPathExist))
-                if os.path.exists(doesPathExist):
-                    pass
-        return os.path.isfile(os.path.join(BASE_DIR,filepath))
-    except:
-        pass
-
 
 class row2DictCl:
         # lnkStyle = ' '
@@ -454,425 +456,26 @@ class row2DictCl:
         self.ayah_link = f"<a{self.lnkStyle} href='https://quran.com/{self.surah_ayah}/tafsirs/{tafs}'>{ayTxt}</a>"
         # self.ayah_link = f"<a{self.lnkStyle}>{ayTxt}</a> <a href='https://quran.com/{self.surah_ayah}/tafsirs/{tafs}'>Tafs</a>"
         self.query = query
-
-
-def tblUp(tblCumul,tblAgg,instDct,stri,lnk
-            #   frm='',ptSp=''
-                ):
-        # for tbl in tbls:
-        #     # print(tbl)
-        #     tblAgg += tbl
-
-        # print(len(tblAgg))
-        
-        # print(f"number of instances of {stri} in {lnk} before Adam filter: {len(tblAgg)}")
-
-        if len(tblAgg) > 0:
-        # if len(tbls) > 0:
-            # print(f"1st row of Table aggregate for {lnk} for {rt} is: {tblAgg[0].find_all('td')}")
-            print(tblAgg[0].find_all('td')[1])
-            if 'adam' in tblAgg[0].find_all('td')[1].get_text().lower():
-            # if 'adam' in tbls[0].find_all('td')[1].get_text().lower():
-                if stri.lower() != 'adam' and stri != 'A^dam':
-                    # print("no results")
-                    tblAgg = []
-                    # tbls = []
-
-        # print(f"number of instances of {stri} in {lnk} after Adam filter: {len(tblAgg)}")
-        # print(tblAgg)
-
-        tblCumul += tblAgg
-        # tblCumul += tbls
-
-        print("length of tblCumul: ", len(tblCumul))
-        # print(f"total number of instances so far of {rt} without removing duplicates: {len(tblCumul)}")
-
-        for rw in tblCumul:
-            row = [ fld.get_text() for fld in rw.find_all("td") ]
-            # row = []
-            # for fld in rw:
-            #   row.append(fld.get_text())
-        
-            # print(row)
-            pos = row[0].split(' ')[0].strip('()')
-            # print(pos)
-            if pos not in instDct:
-                # print(posSplit)
-                posSplit = pos.split(':')
-                # print(posSplit)
-                # instLst.append({
-                instDct[pos] = row2DictCl(
-                    f'{posSplit[0]}:{posSplit[1]}', 
-                    posSplit[2], 
-                    row[0].split(' ')[1], 
-                    row[1], 
-                    row[2], 
-                )
-                # instDct[pos] = {
-                #         "surah_ayah": f'{posSplit[0]}:{posSplit[1]}',
-                #         #   "position": int(posSplit[2]), 
-                #         "position": posSplit[2], 
-                #         "string": row[0].split(' ')[1], 
-                #         "meaning": row[1],
-                #         # "form": frm,
-                #         # "p-o-s": ptSp,
-                #         "ayah_link": row[2]
-                #     }
-                # # })
-        
-                # poss.add(pos)
-            else:
-                # if instDct[pos]["form"] == '' and frm != '':
-                #     instDct[pos]["form"] = frm
-                # if instDct[pos]["p-o-s"] == '' and ptSp != '':
-                #     instDct[pos]["p-o-s"] = ptSp
-                pass
-
-            # print(f"number of unique instances upto {lnk}: {len(poss)} or {len(instLst)}")
-            
-        print(len(tblCumul), len(instDct))
-        # print(tblAgg)
-
-        return tblCumul, instDct
-
-def fileGet(stri,filepath):
-        import csv
-        print(f"file found for {stri}")
-        instDct = {}
-        try:
-            with open(filepath) as f:
-                # print(f"loading {filepath}")
-                instTbl = csv.DictReader(f, delimiter='\t')
-                # instLst = [row for row in csv.DictReader(f, delimiter='\t') ]
-                for row in instTbl:
-                    surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
-                    # print('for ', surAyPos)
-                    # surAyPos = f'{row["surah_ayah"]}:{row["position"]}'
-
-                    # instDct[surAyPos] = row
-                    instDct[surAyPos] = row2DictCl(**row)
-                    # print(instDct[surAyPos].__dict__)
-
-                print(f"Successfully loaded data from '{filepath}: lenght {len(instDct)}'")
-                # propDat = True
-        except:
-            # propDat = False
-            instDct = {}
-            print(f"couldn't load data from '{filepath}': lenght {len(instDct)}")
-        
-        return instDct
-
-def webGet(stri,lnks,filepath,poSp,frm):
-    # import html2text
-    # import json
-    import requests
-    from bs4 import BeautifulSoup
-    import re
-
-    def getTbl(grabhtmlPara):
-        soup = BeautifulSoup(
-            grabhtmlPara,
-            'lxml' 
-        )
-
-        tblsRet = soup.find_all(
-            "table",
-            {"class":"taf"}
-        )
-
-        return tblsRet
-
-
-    # poss = set()
-    instDct={}
-    tblCumul = []
-    # tblAgg = []
-    print(f"proper data not found for {stri}")
-
-
-    for lnk in lnks:
-        print('\ngetting for link: ', lnk, '\n')
-        if lnk == f'https://corpus.quran.com/qurandictionary.jsp?q={stri}':
-            grabhtml = requests.get(lnk).text
-            # print(type(grabhtml))
-
-            import re
-
-            headTbls = re.findall('(<h4 class="dxe">.*?(?=<h4))',grabhtml,re.DOTALL)
-
-            # print(len(headTbls))
-
-            for headTbl in headTbls:
-                tblAgg = []
-                soup = BeautifulSoup(
-                    headTbl,
-                    'lxml',
-                    # 'html.parser',
-                )
-                head4 = soup.find_all(
-                    "h4",
-                    {"class":"dxe"}
-                )[0]
-
-                # if len(tblsRet) > 0:
-                    # print(len(tblsRet) > 0)
-                    # print(len(tblsRet))
-                    # if len(tblsRet) == len(head4s):
-                    # print(len(tblsRet) == len(head4s))
-                # for i in range(len(head4s)):
-                    # print(head4s[i].text)
-
-                tblGrm = head4.text.split('-')[0]
-                tblForms = re.findall('\(form (.*?)\)', tblGrm)
-                if len(tblForms) == 0:
-                    tblForm = 'All'
-                else:
-                    # print(tempForms[0])
-                    tblForm = tblForms[0]
-                tblPoSps = re.findall(f'(^[^\(\)]*?(?=\s*$|\s*\())', tblGrm)
-                if len(tblPoSps) == 0:
-                    tblPoSp = 'All'
-                else:
-                    # print(tempPtSps[0])
-                    tblPoSp = tblPoSps[0]
-
-                if tblForm == 'All':
-                    if tblPoSp != 'All':
-                        tblForm = 'I'
-                print(
-                    # grm, 
-                    tblForm, 
-                    tblPoSp
-                )
-
-                tbls = soup.find_all(
-                    "table",
-                    {"class":"taf"}
-                )
-
-                # tblAgg = [ tbl for tbl in tbls ]
-
-                # print(tblsRet)
-                for tbl in tbls:
-                    if tblPoSp == poSp and tblForm == frm:
-                        tblAgg += tbl
-                print("tblAgg length", len(tblAgg))
-                tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,
-                                        #  tempForm,tempPtSp
-                                        stri,lnk
-                                            )
-
-
-        else:
-            pgs = []
-            tblAgg = []
-            grabhtml = requests.get(f"{lnk}").text
-            tbls = getTbl(grabhtml)
-            if 'Results' in grabhtml:
-                matches = re.findall(">[\n\s]*Results[\s\n]*<b>\d*</b>[\s\n]*to[\s\n]*<b>\d*</b>[\s\n]*of[\s\n]*<b>(\d*)</b>", grabhtml, re.DOTALL)
-                # print('\nmatches: ', matches)
-                if len(matches) > 0:
-                    pgFlt = int(matches[0])/50
-                    pgCount = int(pgFlt) + 1 if int(matches[0]) % 50 != 0 else int(pgFlt)
-                    # print(f"page count in {lnk} is: {pgCount}")
-                    # print(type(pgCount), pgCount)
-                    pgs = list(map(lambda x : f'&page={x}', list(range(2,pgCount+1))))
-
-                for pg in pgs:
-                    print(f'\nin pg {pg}')
-                    grabhtml = requests.get(f"{lnk}{pg}").text
-                    tbls += getTbl(grabhtml)
-                    # print(f"length of grabhtml is: {len(grabhtmlNew)}")
-                    # grabhtml += grabhtmlNew
-                    # print(f"length of grabhtml after adding is: {len(grabhtml)}")
-                
-            for tbl in tbls:
-                tblAgg += tbl
-                
-            print("length of tblAgg: ", len(tblAgg))
-            
-            tblCumul,instDct = tblUp(tblCumul,tblAgg,instDct,stri,lnk)
-
-        # print(f"\nnumber of tables found in {lnk} for {rt} is: {len(tbls)}")
-        # print(f"{tbls}\n")
-
-
-    list_header = ['surah_ayah', 'position', 'string', 'meaning', 'ayah_link'
-                #    'form', 'p-o-s', 
-        ]
-    print(f"writing {stri} to '{filepath}'")
-    with open(f'{filepath}', 'x') as f:
-        # print(f"writing {stri} to '{filepath}'")
-        import csv
-        writer = csv.DictWriter(f, delimiter='\t', fieldnames=list_header)
-        writer.writeheader()
-        # for datum in instLst:
-        # for k, datum in instDct.items():
-        for datum in instDct.values():
-            writer.writerow({
-                # list_header[0] : datum['surah_ayah'],
-                # list_header[1] : datum['position'],
-                # list_header[2] : datum['string'],
-                # list_header[3] : datum['meaning'],
-                # list_header[4] : datum['ayah_link'],
-                list_header[0] : datum.surah_ayah,
-                list_header[1] : datum.position,
-                list_header[2] : datum.string,
-                list_header[3] : datum.meaning,
-                list_header[4] : datum.ayah_link,
-                # list_header[4] : datum['form'],
-                # list_header[5] : datum['p-o-s'],
-            })
     
-    return instDct
-
-
-def lnkPthsGet(stri,inpLng,filename,strTypA,frmA,poSpA):
-    mainLnk = "https://corpus.quran.com/search.jsp?q="
-    isArabic = strTypA != 'eng' and stri !='' and inpLng == 'arb'
-
-    if not isArabic:
-        if flt != '' and stri =='':
-            stri = str(flt).lower()
-            flt = ''
-    # strTyps = [strTypA] if strTypA != "All" else arStrTypD.values()
-    # frms = [frmA] if frmA != "All" else arFrmL
-    # poSps = [poSpA] if poSpA != "All" else arPoSpD.values()
-    strTyps = [strTypA]
-    frms = [frmA]
-    poSps = [poSpA]
-    lnkPths = []
-    for strTyp in strTyps:
-        for frm in frms:
-            for poSp in poSps:
-                lnks = []
-                if isArabic:
-                    filepath = f'data/cache/arb/{strTyp}/{filename}/{frm}/{poSp}.tsv'
-                    if poSp != "All":
-                        mainLnk += f"pos:{poSp} "
-                    if frm != "All":
-                        mainLnk += f"({frm}) "
-                    if strTyp !='All':
-                        mainLnk += f"{strTyp}:"
-                    if strTyp == 'All':
-                        for strTy in ['lem','stem','root']:
-                            lnks.append(
-                                f"https://corpus.quran.com/search.jsp?q={strTy}:{stri}"
-                            )
-                        # lnks = [
-                        #     f"https://corpus.quran.com/search.jsp?q=lem:{stri}",
-                        #     f"https://corpus.quran.com/search.jsp?q=stem:{stri}",
-                        #     f"https://corpus.quran.com/search.jsp?q=root:{stri}",
-                        # ]
-                    # lnks = [mainLnk]
-                    mainLnk += stri
-                    lnks = [*lnks, f"https://corpus.quran.com/qurandictionary.jsp?q={stri}"]
-                else:
-                    # lnks = [mainLnk]
-                    filepath = f'data/cache/nonarb/{stri}.json'
-                    mainLnk += stri
-                lnks = [*lnks,mainLnk]
-                lnkPths.append((
-                    filepath,
-                    lnks
-                ))
-    return lnkPths
-    
-
-def dataGrabberBAK(
-        strObj
-    ):
-
-    '''Grabs data from corpus.quran.com & formats them'''
-
-    flt = str(strObj.flt).lower()
-    frm = strObj.frm
-    strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
-    poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
-    inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
-    inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
-    stri = strObj.stri
-    filename = rtTrns(stri,inpLng,inpSch)
-
-    # flt = str(strObj["flt"]).lower()
-    # strTyp = strTypD[strObj["strTyp"]]
-    # frm = strObj["frm"]
-    # poSp = strObj["poSp"] if strObj["poSp"] in poSpD.values() else poSpD[strObj["poSp"]]
-    # inpLng = lngD[strObj["inpLng"]]
-    # inpSch = inpLngSchD[strObj["inpSch"]]
-    # stri = strObj["stri"]
-    # filename = rtTrns(strObj["stri"],inpLng,inpSch)
-
-
-    # if stri == "" or strTyp == "eng" "aeiou" not in stri and strTyp == "All":
-    #     strTyp = "root"
-    
-    # instLst=[]
-    instLst = []
-    lnkPths = lnkPthsGet(stri,inpLng,filename,strTyp,frm,poSp)
-
-    for filepath, lnks in lnkPths:
-        fileFound = filecheck(filepath)
-        # if len(links) != 1:
-        # import os
-        # for k, direcLnk in direcLnkDic.items():
-            # propDat, 
-        instDct = fileGet(stri,filepath) if fileFound else webGet(stri,lnks,filepath,poSp,frm,)
-            # for lnk in lnks:
-
-        # posDic = {
-        #     'ADJ': 'Adjective',
-        #     'N': 'Noun',
-        #     'PN': 'Proper noun',
-        #     'V': 'Verb',
-        #     'IMPN': 'Imperative verbal noun',
-        #     'PRON': 'Personal pronoun',
-        #     'DEM': 'Demonstrative pronoun',
-        #     '': '',
-        # }
-        
-        # print(frmReq, ptSpReq)
-            # print(len(instLst))
-        instLst += [datum for datum in instDct.values()]
-        # if frmReq != None:
-        #     # instLst = [datum if datum["form"] == frmReq.capitalize() else None for datum in instLst]
-        #     instLst = list(filter(lambda datum: datum["form"] == frmReq.capitalize(), instLst))
-        # if ptSpReq != None:
-        #     # instLst = [datum if datum["p-o-s"] == posDic[ptSpReq] else for datum in instLst]
-        #     instLst = list(filter(lambda datum: datum["p-o-s"] == posDic[ptSpReq], instLst))
-        
-
-    return instLst
-
 
 def dataGrabber(strObj):
-    import re
     flt = str(strObj.flt).lower()
     frm = strObj.frm
     strTyp = strObj.strTyp if strObj.strTyp in strTypD.values() else strTypD[strObj.strTyp]
     poSp = strObj.poSp if strObj.poSp in poSpD.values() else poSpD[strObj.poSp]
     inpLng = strObj.inpLng if strObj.inpLng in lngD.values() else lngD[strObj.inpLng]
     inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
-    # stri = strObj.stri
     stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
-    isRoot = False if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else True
-    
-    # print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
+    isNotRoot = True if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else False
+
+    print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
     instLst = []
-    instD = {}
+    import re
 
-    # def insDMk(prev,ls,strArg,meanArg,instDArg={}):
-    def insDMk(prev,ls,instDArg={}):
-
-        def poSpMatch(posDL,instDArg2,):
-            for wrdStrD in posDL:
-                curStri = wrdStrD["wrd"]
-                curMean = wrdStrD["mean"]
-                surAyPos = wrdStrD["surAyPos"]
-                # print(surAyPos)
-                sur,ay,pos = surAyPos
-                surAy = ":".join([sur,ay])
+    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
+        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
                 if ( 
                     len(
                         re.compile(str(flt)).findall(
@@ -885,75 +488,58 @@ def dataGrabber(strObj):
                         ) 
                     ) > 0 
                 ):
-                    if surAy not in instDArg2:
-                        instDArg2[surAy] = [pos]
-                    else:
-                        if pos not in instDArg2[surAy]:
-                            instDArg2[surAy].append(pos)
+                    if pos not in inst[2]:
+                        inst[2].append(pos)
+                    # inst[3].append(mean)
+                        
+    for sur, ayD in surAyPosStrAdvWrdMD.items():
+        for ay, posD in ayD.items():
+            # surAy = ":".join([sur,ay])
+            inst = [sur,ay,[]]
 
-            # print(instDArg2)
-            return instDArg2
-
-
-        for k in ls:
-            if len(ls) == 1:
-                poSp = ls[0]
-                # print(poSp)
-                if poSp == 'All':
-                    for poSpK in prev.keys():
-                        instDArg = poSpMatch(prev[poSpK],instDArg,)
-                else:
-                    instDArg = poSpMatch(prev[k],instDArg,)
-            else:
-                if k != 'All':
-                    instDArg = insDMk(prev[k],ls[1:],instDArg)
-                else:
-                    for k2 in prev.keys():
-                        instDArg = insDMk(prev[k2],ls[1:],instDArg)
-
-        # print(instDArg)
-        return instDArg
-
+            for pos, wrdStrD in posD.items():
+                # mean = wrdStrD["mean"]
                 
-    if strTyp == "stem" or strTyp == 'All':
+                if strTyp == "stem":
+                    for strD in wrdStrD["striDLs"]:
 
-        if isRoot:
-            for root in striSuAyPosWMD["root"]:
-                if root in remVwls(stri):
-                    # print(root,stri)
-                    instD = insDMk(striSuAyPosWMD["root"][root],[frm,poSp],instD)
-                    # print(instD)
-                    break
-        else:
-            for stem in striSuAyPosWMD["stem"]:
-                if remVwls(stem) in remVwls(stri):
-                    instD = insDMk(striSuAyPosWMD["stem"][stem],[frm,poSp],instD)
-                    break
-                    # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                        if remVwls(strD["stri"]) in remVwls(stri):
+                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                            poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
 
-            for lem in striSuAyPosWMD["lem"]:
-                if remVwls(lem) in remVwls(stri):
-                    instD = insDMk(striSuAyPosWMD["lem"][lem],[frm,poSp],instD)
-                    break
+                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
+                            if strD["poSp"] == "All" or poSp == "All":
+                                if strD["frm"] == "All" or frm == "All":
+                                    if ( 
+                                        len(
+                                            re.compile(str(flt)).findall(
+                                                wrdStrD["mean"].lower()
+                                            )
+                                        ) > 0 
+                                        or len(
+                                            re.compile(str(stri)).findall(
+                                                wrdStrD["mean"].lower()
+                                            ) 
+                                        ) > 0 
+                                    ):
+                                        if pos not in inst[2]:
+                                            inst[2].append(pos)
+                    
+                     
+                else:
+                    for strD in wrdStrD["striDLs"]:
+                        # print(strD["stri"],stri)
+                        if strD["stri"] == stri:
+                            if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                    poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
 
-    
-    else:
-        for curStri in striSuAyPosWMD[strTyp]:
-            if curStri == stri:
-                print(curStri,stri)
-                instD = insDMk(striSuAyPosWMD[strTyp][stri],[frm,poSp],instD)
-                break
+            
+            if len(inst[2]) > 0:
+                instLst.append(inst)
 
-
-    instLst = [
-        [sur2,ay2,poss]
-        for surAy, poss in instD.items()
-        for sur2,ay2 in [surAy.split(':')]
-    ]
-
-    # print("instLst in dataGrabber", instLst)
     return instLst
-    # return instD
+
 
 def filtDown(strObj):
     stri = strObj.stri
