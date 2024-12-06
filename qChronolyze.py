@@ -398,9 +398,8 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
         },
     }
 
-    print(inpLng,inpSch,outSch)
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
-    print(chrTrnsTbl == chrOut["arb"]["bkwSch"]["arbSch"])
+
     rtTrn = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
