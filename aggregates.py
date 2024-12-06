@@ -1020,7 +1020,7 @@ isa = [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "muwsaY", "flt": "musa",},
+        { "stri": "muwsaY`", "flt": "musa",},
       ],
     },
   ],
@@ -3033,7 +3033,7 @@ nabis = [
     {
       "wrdDis": 82012,
       "strL": [
-        { "stri": "muwsaY", "flt": "(?:Musa|)",},
+        { "stri": "muwsaY`", "flt": "(?:Musa|)",},
       ],
     },
     {

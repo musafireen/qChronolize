@@ -1026,7 +1026,14 @@ class combClass:
       qyArLegSch = lng2InpSchD["arabic"][1] if qyArLegSch == None else qyArLegSch
       print("qyArLegSch is ",qyArLegSch)
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
-      self.lbl = lbl if lbl != '' else ' '.join([ 
+
+      fltJoin =   ' '.join([ 
+                        strObj.flt for 
+                        # f'{strObj["stri"]} ({strObj["flt"]})' for 
+                        strObj 
+                        in self.strL
+                    ]) 
+      striJoin = ' '.join([ 
                 rtTrns(
                     strObj.stri,
                     lngD[strObj.inpLng],
@@ -1035,12 +1042,10 @@ class combClass:
                 # f'{strObj["stri"]} ({strObj["flt"]})' for 
                 ) for strObj 
                 in self.strL
-            ]) + " (" + ' '.join([ 
-                strObj.flt for 
-                # f'{strObj["stri"]} ({strObj["flt"]})' for 
-                strObj 
-                in self.strL
-            ]) + ")"
+            ])
+      self.lbl = lbl if lbl != '' else striJoin + (
+                f" ({fltJoin})" if len(fltJoin) > (len(self.strL)-1) else ''
+            )
     #   print(f"strL in comb after str obj: {self.strL}")
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
       # for strObj in strL:
