@@ -356,6 +356,7 @@ def remVwls(stri,schm="arbSch"):
     return stri
 
 def rtTrns(rt,inpLng,inpSch,outSch=None):
+    print(outSch)
     lngSts = {
         "arb": "arbSch",
         "eng": "engSch",
@@ -368,7 +369,8 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
     }
 
     lngDefOutLs = {
-        "arb": "arbSch"
+        "arb": "arbSch",
+        "eng": "engSch",
     }
 
     chrOut = {
@@ -396,7 +398,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
         },
     }
 
-
+    print(inpLng,inpSch,outSch)
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
     print(chrTrnsTbl == chrOut["arb"]["bkwSch"]["arbSch"])
     rtTrn = ''
@@ -480,7 +482,28 @@ def dataGrabber(strObj):
 
             for pos, wrdStrD in posD.items():
                 if inpLng == "eng":
-                    if stri in  wrdStrD["mean"].lower() or (flt != '' and flt in wrdStrD["mean"].lower()):
+                    import re
+                    engStrFound = re.findall(
+                        "(?<![a-zA-Z])"
+                        +
+                        stri
+                        +
+                        "(?![a-rt-zA-RT-Z])"
+                        ,
+                        wrdStrD["mean"].lower()
+                    )
+                    engFltFound = []
+                    if len(flt.strip()) > 0:
+                        engFltFound = re.findall(
+                            "(?<![a-zA-Z])"
+                            +
+                            flt
+                            +
+                            "(?![a-rt-zA-RT-Z])"
+                            ,
+                            wrdStrD["mean"].lower()
+                        )
+                    if len(engStrFound) > 0 or (len(engFltFound)>0):
                         if pos not in inst[2]:
                             inst[2].append(pos)
                 elif inpLng == "arb":
@@ -1023,7 +1046,7 @@ class combClass:
                     strObj.stri,
                     lngD[strObj.inpLng],
                     inpLngSchD[strObj.inpSch],
-                    outSch=inpLngSchD[qyArLegSch]
+                    outSch=inpLngSchD[qyArLegSch] if strObj.inpLng == "arb" else None
                 # f'{strObj["stri"]} ({strObj["flt"]})' for 
                 ) for strObj 
                 in self.strL
