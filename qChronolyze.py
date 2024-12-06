@@ -497,37 +497,19 @@ def dataGrabber(strObj):
             # surAy = ":".join([sur,ay])
             inst = [sur,ay,[]]
 
+            stemInWrd = remVwls(stri) in remVwls(wrdStrD["wrd"])
+
             for pos, wrdStrD in posD.items():
                 # mean = wrdStrD["mean"]
                 
-                if strTyp == "stem":
-                    for strD in wrdStrD["striDLs"]:
+                for strD in wrdStrD["striDLs"]:
+                    if strTyp == "stem":
 
-                        if remVwls(strD["stri"]) in remVwls(stri):
+                        if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
                             # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
                             poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
-
-                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
-                            if strD["poSp"] == "All" or poSp == "All":
-                                if strD["frm"] == "All" or frm == "All":
-                                    if ( 
-                                        len(
-                                            re.compile(str(flt)).findall(
-                                                wrdStrD["mean"].lower()
-                                            )
-                                        ) > 0 
-                                        or len(
-                                            re.compile(str(stri)).findall(
-                                                wrdStrD["mean"].lower()
-                                            ) 
-                                        ) > 0 
-                                    ):
-                                        if pos not in inst[2]:
-                                            inst[2].append(pos)
-                    
                      
-                else:
-                    for strD in wrdStrD["striDLs"]:
+                    else:
                         # print(strD["stri"],stri)
                         if strD["stri"] == stri:
                             if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
