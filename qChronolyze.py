@@ -507,9 +507,9 @@ def dataGrabber(strObj):
                             # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
                             poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
 
-                        elif remVwls(wrdStrD["wrd"]) in remVwls(stri):
-                            if strD["poSp"] == "All" or poSp == "All":
-                                if strD["frm"] == "All" or frm == "All":
+                        elif remVwls(stri) in remVwls(wrdStrD["wrd"]) :
+                            if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+                                if strD["frm"] == "All" or frm == "All" or strD["frm"] ==  frm:
                                     if ( 
                                         len(
                                             re.compile(str(flt)).findall(
