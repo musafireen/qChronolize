@@ -1072,7 +1072,7 @@ idols_base = [
     {
       "wrdDis": 77430,
       "strL": [
-        { "stri": "ma`lik2", "strTyp":"lem",  "flt": "malik",},
+        { "stri": "ma`lik2", "strTyp":"lem",  "flt": "",},
       ],
     },
   ],
