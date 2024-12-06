@@ -473,48 +473,51 @@ def dataGrabber(strObj):
     instLst = []
     import re
 
-    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
-        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
-            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
-                if ( 
-                    len(
-                        re.compile(str(flt)).findall(
-                            wrdStrD["mean"].lower()
-                        )
-                    ) > 0 
-                    or len(
-                        re.compile(str(stri)).findall(
-                            wrdStrD["mean"].lower()
-                        ) 
-                    ) > 0 
-                ):
-                    if pos not in inst[2]:
-                        inst[2].append(pos)
-                    # inst[3].append(mean)
-                        
     for sur, ayD in surAyPosStrAdvWrdMD.items():
         for ay, posD in ayD.items():
             # surAy = ":".join([sur,ay])
             inst = [sur,ay,[]]
 
-            stemInWrd = remVwls(stri) in remVwls(wrdStrD["wrd"])
-
             for pos, wrdStrD in posD.items():
-                # mean = wrdStrD["mean"]
+                if inpLng == "eng":
+                    if stri in  wrdStrD["mean"].lower() or (flt != '' and flt in wrdStrD["mean"].lower()):
+                        if pos not in inst[2]:
+                            inst[2].append(pos)
+                elif inpLng == "arb":
+                    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
+                        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
+                            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
+                                if ( 
+                                    len(
+                                        re.compile(str(flt)).findall(
+                                            wrdStrD["mean"].lower()
+                                        )
+                                    ) > 0 
+                                    or len(
+                                        re.compile(str(stri)).findall(
+                                            wrdStrD["mean"].lower()
+                                        ) 
+                                    ) > 0 
+                                ):
+                                    if pos not in inst[2]:
+                                        inst[2].append(pos)
+                                    # inst[3].append(mean)
+                    stemInWrd = remVwls(stri) in remVwls(wrdStrD["wrd"])
+                    # mean = wrdStrD["mean"]
                 
-                for strD in wrdStrD["striDLs"]:
-                    if strTyp == "stem":
+                    for strD in wrdStrD["striDLs"]:
+                        if strTyp == "stem":
 
-                        if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
-                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
-                            poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
-                     
-                    else:
-                        # print(strD["stri"],stri)
-                        if strD["stri"] == stri:
-                            if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
-                                    poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+                            if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
+                                # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                                poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+                        
+                        else:
+                            # print(strD["stri"],stri)
+                            if strD["stri"] == stri:
+                                if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                    if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                        poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
 
             
             if len(inst[2]) > 0:
@@ -1087,7 +1090,7 @@ class strObWdgCl:
         self.strTypeW = widg.Dropdown(options=strTypL, value=self.strTypSt,description=f"String_type")
         self.poSpW = widg.Dropdown(options=poSpL, value=self.poSpSt,description=f"Part_of_speech")
         self.frmW = widg.Dropdown(options=frmL, value=self.frmSt,description=f"Form")
-        self.inpLngW = widg.Dropdown(options=lngL, value=self.inpLngSt,description=f"Input_language")
+        self.inpLngW = widg.Dropdown(options=lngL[:-1], value=self.inpLngSt,description=f"Input_language")
         self.inpSchW = widg.Dropdown(description=f"Input_scheme")
         self.entStrObjB = widg.Button(description=f"Enter String Object")
         self.delStrObjB = widg.Button(description=f"Delete String Object")
