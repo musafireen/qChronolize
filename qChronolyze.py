@@ -1635,7 +1635,7 @@ def intctv(
     )
     combs = []
     from functools import partial
-    finish_query_B = widg.Button(description="Add Combination", layout=widg.Layout(width="auto"))
+    finish_query_B = widg.Button(description="Finish Query", layout=widg.Layout(width="auto"))
     finish_query_B.on_click(partial(finish_query_f,container=container,qL=qL,pres=pres,refLng=refLng,qyArLegSch=qyArLegSch))
     # Container to hold all groups of widgets
     # Initialize the first group of widgets
