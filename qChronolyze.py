@@ -75,6 +75,17 @@ bkwSch2arbSch = {
     **arbConsD,
 }
 
+arbSch2bkwSch = {
+    v : k for k,v in bkwSch2arbSch.items()
+}
+
+iasSch2arbSch = {
+
+}
+bkwSch2iasSch = {
+
+}
+
 presD={'1':'table','2':'plot'}
 
 refLngD={'1':'arabic','2':'bengali','3':'english'}
@@ -345,7 +356,7 @@ def getColMap(dicti):
         # print(f'rgb({int(p[idx-1])},{int(p[-idx]-50)},25)' )
     return colMap
 
-def remVwls(stri,schm="arbSch"):
+def remVwls(stri,schm="bkwSch"):
 
     if schm == "arbSch":
         for chr in arbVwlsDict.values():
@@ -356,20 +367,22 @@ def remVwls(stri,schm="arbSch"):
     return stri
 
 def rtTrns(rt,inpLng,inpSch,outSch=None):
-    print(outSch)
+    # print(outSch)
     lngSts = {
-        "arb": "arbSch",
+        "arb": "bkwSch",
+        # "arb": "arbSch",
         "eng": "engSch",
         "bng": "bngSch"
     }
 
+    global arbSch2bkwSch
     global bkwSch2arbSch
-    iasSch2arbSch = {
-
-    }
+    global iasSch2arbSch
+    global bkwSch2iasSch
 
     lngDefOutLs = {
-        "arb": "arbSch",
+        # "arb": "arbSch",
+        "arb": "bkwSch",
         "eng": "engSch",
     }
 
@@ -377,12 +390,15 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
         "arb": {
             "bkwSch": {
                 "arbSch": bkwSch2arbSch,
+                "bkwSch": None,
             },
             "iasSch": {
                 "arbSch": iasSch2arbSch,
+                "iasSch": None
             },
             "arbSch": {
-                "bkwSch": {v:k for k,v in bkwSch2arbSch.items()},
+                "bkwSch": arbSch2bkwSch,
+                "arbSch": None,
             },
         },
         "eng": {
@@ -392,14 +408,14 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
             
         },
         "bng": {
-            "bngSc": {
-                "bngSc":None
+            "bngSch": {
+                "bngSch":None
             }
         },
     }
 
     chrTrnsTbl = None if inpSch == outSch else chrOut[inpLng][inpSch][outSch] if outSch != None else chrOut[inpLng][inpSch][lngDefOutLs[inpLng]]
-
+    # print(chrTrnsTbl)
     rtTrn = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
@@ -431,10 +447,12 @@ class row2DictCl:
     # lnkStyle = "style='color:rgb(250,250,250);-webkit-text-stroke-width:1px;-webkit-text-stroke-color:rgb(0,0,0);' "
     def __init__(self,surah='',ayah='',positions=[],query='',tafs="ar-tafsir-al-tabari"):
         # print(surah, ayah, positions)
-        ayWrds = [posD["wrd"] 
-                  for posD in surAyPosStrAdvWrdMD[surah][ayah].values()
+        ayWrds = [
+            # posD["wrd"] 
+            posD["wrd"] 
+            for posD in surAyPosStrAdvWrdMD[surah][ayah].values()
                   
-                ]
+        ]
         positions = [int(pos) for pos in positions]
         ayWrdsHgh = [
             f"<b><i>{ayWrds[i]}</i></b>"
@@ -468,6 +486,8 @@ def dataGrabber(strObj):
     inpSch = strObj.inpSch if strObj.inpSch in inpLngSchD.values() else inpLngSchD[strObj.inpSch]
     stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
     isNotRoot = True if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else False
+
+    strArbSch = "None" if strTyp != "arb" else rtTrns(stri,"arb","bkwSch","arbSch",)
 
     print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
@@ -506,40 +526,50 @@ def dataGrabber(strObj):
                         if pos not in inst[2]:
                             inst[2].append(pos)
                 elif inpLng == "arb":
-                    def poSpOnward(inst,wrdStrD,strD,poSp,frm,flt):
+                    def poSpOnward(inst,curMean,strD,poSp,frm,flt):
                         if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
                             if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
                                 if ( 
                                     len(
                                         re.compile(str(flt)).findall(
-                                            wrdStrD["mean"].lower()
+                                            # wrdStrD["mean"].lower()
+                                            curMean
                                         )
                                     ) > 0 
                                     or len(
                                         re.compile(str(stri)).findall(
-                                            wrdStrD["mean"].lower()
+                                            # wrdStrD["mean"].lower()
+                                            curMean
                                         ) 
                                     ) > 0 
                                 ):
                                     if pos not in inst[2]:
                                         inst[2].append(pos)
                                     # inst[3].append(mean)
-                    stemInWrd = remVwls(stri) in remVwls(wrdStrD["wrd"])
-                    # mean = wrdStrD["mean"]
-                
-                    for strD in wrdStrD["striDLs"]:
-                        if strTyp == "stem":
 
-                            if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
-                                # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
-                                poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
-                        
-                        else:
-                            # print(strD["stri"],stri)
-                            if strD["stri"] == stri:
-                                if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                    if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
-                                        poSpOnward(inst,wrdStrD,strD,poSp,frm,flt)
+                    curMean = wrdStrD["mean"].lower()
+                    # mean = wrdStrD["mean"]
+                    
+                    if strTyp == "stem":
+                        stemInWrd = remVwls(strArbSch) in remVwls(wrdStrD["wrd"])
+                        poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                        if  stemInWrd:
+                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                            poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                
+                    else:
+                        for strD in wrdStrD["striDLs"]:
+                            # if strTyp == "stem":
+                            #     # if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
+                            #     if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
+                            #         # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                            #         poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                            
+                                # print(strD["stri"],stri)
+                                if strD["stri"] == stri:
+                                    if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                        if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                            poSpOnward(inst,curMean,strD,poSp,frm,flt)
 
             
             if len(inst[2]) > 0:
@@ -1044,8 +1074,12 @@ class combClass:
                 rtTrns(
                     strObj.stri,
                     lngD[strObj.inpLng],
-                    inpLngSchD[strObj.inpSch],
-                    outSch=inpLngSchD[qyArLegSch] if strObj.inpLng == "arb" else None
+                    # inpLngSchD[strObj.inpSch],
+                    "bkwSch",
+                    # outSch=inpLngSchD[qyArLegSch] 
+                    outSch="arbSch"
+                    if strObj.inpLng == "arabic" 
+                    else None
                 # f'{strObj["stri"]} ({strObj["flt"]})' for 
                 ) for strObj 
                 in self.strL
