@@ -75,6 +75,42 @@ bkwSch2arbSch = {
     **arbConsD,
 }
 
+bkw2Ala = [
+    (r"(?<!^)[\>\<\&\}\#]","'"),
+    (r"(?<=^)[\>\<\&\}\#]",""),
+    (r"\[","m"),
+    ("v","th"),
+    (r"\*","dh"),
+    ("T","ṭ"),
+    ("!","n"),
+    ("D","ḍ"),
+    ("Z","ẓ"),
+    ("S","ṣ"),
+    (r"\$","sh"),
+    ("x","kh"),
+    ("H","ḥ"),
+    ("g","gh"),
+    ("E","‘"),
+    ("p",""),
+    ("iy","ī"),
+    ("uw","ū"),
+    (r"(.)\~","\\1\\1"),
+    (r"(?:aY\`|a\,\`|a\.`|aY|a\,|a\.|\^A|aA|\`|\^)","ā"),
+    # (r"(?:aY\`|a\,\`|a\.`)","ā"),
+    # (r"(?:aY|a\,|a\.|\^A|aA)","ā"),
+    # (r"(?:\`|\^)","ā"),
+    ("o",""),
+    ("F","an"),
+    ("N","un"),
+    ("K","in"),
+    (r"[\%\+\-]",""),
+    (r"(?<=^)\{(?!l)","i"),
+    (r"(?<=^)\{(?=l)","a"),
+    (r"(?<=^)A(?!l)","i"),
+    (r"(?<=^)A(?=l)","a"),
+    # ("A",""),
+]
+
 arbSch2bkwSch = {
     v : k for k,v in bkwSch2arbSch.items()
 }
@@ -188,7 +224,8 @@ lngL = list(lngD.keys())
 lng2InpSchD = {
     "arabic": [
         "buckwalter_Scheme",
-        "arabic_Scheme"
+        "arabic_Scheme",
+        "ALA_Scheme",
     ],
     "bengali": [
         "bengali_Scheme"
@@ -199,6 +236,7 @@ lng2InpSchD = {
 }
 inpLngSchD = {
     "buckwalter_Scheme": "bkwSch",
+    "ALA_Scheme": "alaSch",
     "arabic_Scheme": "arbSch",
     "bengali_Scheme": "bngSch",
     "english_Scheme": "engSch",
@@ -391,6 +429,7 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
             "bkwSch": {
                 "arbSch": bkwSch2arbSch,
                 "bkwSch": None,
+                "alaSch": bkw2Ala,
             },
             "iasSch": {
                 "arbSch": iasSch2arbSch,
@@ -419,12 +458,26 @@ def rtTrns(rt,inpLng,inpSch,outSch=None):
     rtTrn = ''
     # print("\n",inpSch,outSch,"\n")
     if (chrTrnsTbl != None):
-        for chr in rt:
-            if chr in chrTrnsTbl.keys():
-                chrTrns = chrTrnsTbl[chr]
-            else:
-                chrTrns = chr
-            rtTrn += chrTrns
+        if outSch == 'alaSch':
+            import re
+            rtTrn = rt
+            for chTrns in chrTrnsTbl:
+                try:
+                    rtTrn =re.sub(
+                        chTrns[0],
+                        chTrns[1],
+                        rtTrn,
+                    )
+                except:
+                    print(chTrns)
+            rtTrn = rtTrn.capitalize()
+        else:
+            for chr in rt:
+                if chr in chrTrnsTbl.keys():
+                    chrTrns = chrTrnsTbl[chr]
+                else:
+                    chrTrns = chr
+                rtTrn += chrTrns
             # print("language schema is present\ncharacter transform: ", chrTrns)
     else:
         rtTrn = rt
@@ -907,7 +960,7 @@ def intersct(comb):
 def aggregLsts(
         qL,
         tafs="ar-tafsir-al-tabari",
-        # qyArLegSch=lng2InpSchD["arabic"][1]
+        # qyArLegSch=lng2InpSchD["arabic"][-1]
     ):
     instLstAgg = []
     for optSt in qL:
@@ -1060,7 +1113,7 @@ class combClass:
     #   print(f"strL in comb init: {strL}")
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
-      qyArLegSch = lng2InpSchD["arabic"][1] if qyArLegSch == None else qyArLegSch
+      qyArLegSch = lng2InpSchD["arabic"][-1] if qyArLegSch == None else qyArLegSch
       print("qyArLegSch is ",qyArLegSch)
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
 
@@ -1074,10 +1127,10 @@ class combClass:
                 rtTrns(
                     strObj.stri,
                     lngD[strObj.inpLng],
-                    # inpLngSchD[strObj.inpSch],
-                    "bkwSch",
-                    # outSch=inpLngSchD[qyArLegSch] 
-                    outSch="arbSch"
+                    inpLngSchD[strObj.inpSch],
+                    # "bkwSch",
+                    outSch=inpLngSchD[qyArLegSch] 
+                    # outSch="arbSch"
                     if strObj.inpLng == "arabic" 
                     else None
                 # f'{strObj["stri"]} ({strObj["flt"]})' for 
@@ -1539,7 +1592,7 @@ def sortchron(
         qL,
         pres='plot',
         refLng='english',
-        # qyArLegSch=lng2InpSchD["arabic"][1]
+        # qyArLegSch=lng2InpSchD["arabic"][-1]
     ):
     sorter = getSorter()
     # pres = confPres(pres=pres)
@@ -1578,7 +1631,7 @@ def sortchron(
     # get_ipython().magic('reset -sf')
 
 
-def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english',qyArLegSch=lng2InpSchD["arabic"][1]):
+def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='english',qyArLegSch=lng2InpSchD["arabic"][-1]):
     # global qL
     print("qyArLegSch in finished query is ",qyArLegSch)
     for k in range(len(container.children)-1,-1,-1):
@@ -1658,7 +1711,7 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
 
 def intctv(
     qL=[],
-    pres='',refLng='',qyArLegSch=lng2InpSchD["arabic"][1]
+    pres='',refLng='',qyArLegSch=lng2InpSchD["arabic"][-1]
     ):
     container = widg.VBox(
         # layout=widgets.Layout(
@@ -1724,7 +1777,7 @@ def querize(
         pres='plot',
         # tafs='ar-tafsir-al-tabari',
         refLng='english',
-        qyArLegSch=lng2InpSchD["arabic"][1],
+        qyArLegSch=lng2InpSchD["arabic"][-1],
     ):
     global presD
     global refLngD
