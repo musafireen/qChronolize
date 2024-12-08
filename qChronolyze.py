@@ -1570,13 +1570,13 @@ def plotDf(df,colMap,sorter):
         categoryorder='array',
         categoryarray=sorter,
         range=[0,len(sorter)],
-        title=" (earlier)   -->  'Surah_Ayah' (Chronologically Ordered)  -->   (latter)"
-        # title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (latter)"
+        title=" (earlier)   -->  'Surah_Ayah' (Chronologically Ordered)  -->   (later)"
+        # title=" (earlier)   -->  'Surah:Ayah' (Chronologically Ordered)  -->   (later)"
     )
     fig.update_xaxes(
     #  showticklabels=False,
     #  range=[0,len(df)],
-        title='query',
+        title='(earlier)  -->  queries  -->  (later)',
         dtick=1,
         tickangle=tick_angle,
         tickfont=dict(size=xtick_size)
