@@ -5,13 +5,18 @@ Stem	Buckwalter	Part-of-speech
 نَا	naA	Personal pronoun
 أَنتَ	>anta	Personal pronoun
 أَنتُمْ	>antumo	Personal pronoun
+أَنتُمَا	>antumaA	Personal pronoun
 كَ	ka	Personal pronoun
 كُمْ	kumo	Personal pronoun
+كُمَا	kumaA	Personal pronoun
 هُوَ	huwa	Personal pronoun
 هُ	hu	Personal pronoun
 هِىَ	hiYa	Personal pronoun
+هِيَهْ	hiyaho	Personal pronoun
 هَا	haA	Personal pronoun
 هُمْ	humo	Personal pronoun
+هُنَّ	hun~a	Personal pronoun
+هُمَا	humaA	Personal pronoun
 عٓسٓقٓ	E^s^q^	Quranic initials
 حمٓ	Hm^	Quranic initials
 الٓر	Al^r	Quranic initials
@@ -22,6 +27,9 @@ Stem	Buckwalter	Part-of-speech
 يسٓ	ys^	Quranic initials
 طه	Th	Quranic initials
 طسٓمٓ	Ts^m^	Quranic initials
+الٓمٓصٓ	Al^m^S^	Quranic initials
+الٓمٓر	Al^m^r	Quranic initials
+كٓهيعٓصٓ	k^hyE^S^	Quranic initials
 يَاسِينَ	yaAsiyna	Quranic initials
 طس	Ts	Quranic initials
 مَعَ	maEa	Preposition
