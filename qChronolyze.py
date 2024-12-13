@@ -605,9 +605,12 @@ def dataGrabber(strObj):
                     
                     for strD in wrdStrD["striDLs"]:
                         if strTyp == "stem":
-                            stemInWrd = remVwls(strArbSch) in remVwls(wrdStrD["wrd"])
-                            poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                            strArbSchNV = remVwls(strArbSch)
+                            wrdNV = remVwls(wrdStrD["wrd"])
+                            stemInWrd = strArbSchNV in wrdNV
+                            # poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             if  stemInWrd:
+                                print(wrdNV, strArbSchNV)
                                 # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
                                 poSpOnward(inst,curMean,strD,poSp,frm,flt)
                     
