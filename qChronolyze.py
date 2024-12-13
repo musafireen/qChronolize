@@ -716,14 +716,34 @@ def intersct(comb):
                 for oldSurAyPos in instLstFltAyD.keys():
                     # oldSurAy = list(instLstFltAyD.keys())[j]
                     oldSurAy = ":".join(oldSurAyPos.split(':')[:2])
-                    if wrdDis == sameVrsIndicator:
+                    if wrdDis == -1:
+                        for newInst in instLst:
+                            newSur,newAy,newPoss = newInst
+                            newSurAy = ":".join([newSur,newAy])
+                            # unmatched = True
+                            # if newSurAy == oldSurAy:
+                            #     unmatched = False
+                            # if unmatched:
+                            #     if instLstFltAyD[oldSurAyPos] != "matched":
+                            #         instLstFltAyD[oldSurAyPos] = "unmatched"
+                            # else:
+                            #     instLstFltAyD[oldSurAyPos] = "matched"
+                            if newSurAy == oldSurAy:
+                                instLstFltAyD[oldSurAyPos] = "matched"
+                            elif instLstFltAyD[oldSurAyPos] != "matched":
+                                    instLstFltAyD[oldSurAyPos] = "unmatched"
+                            # else:
+                                # instLstFltAyD[oldSurAyPos] = None
+                                # print("\n",newSurAy,"\n")
+                    elif wrdDis == sameVrsIndicator:
                         for newInst in instLst:
                             newSur,newAy,newPoss = newInst
                             newSurAy = ":".join([newSur,newAy])
                             for newPos in newPoss:
                                 if newSurAy == oldSurAy:
                                     newSurAyPos = ":".join([newSur,newAy,newPos])
-                                    instLstFltAyD[oldSurAyPos]  = newSurAyPos
+                                    if instLstFltAyD[oldSurAyPos] == None:
+                                        instLstFltAyD[oldSurAyPos]  = newSurAyPos
                                     # instLstFltAyD[newSurAy]["new"].append(newPos)
                         # if len(instLstFltAyD[oldSurAy]["new"]) == 0:
                         #     print('deleting ', instLstFltAyD[oldSurAy])
@@ -762,7 +782,7 @@ def intersct(comb):
                                 # )
                         if closestNew != None:
                             instLstFltAyD[oldSurAyPos] = closestNew
-                            print(oldSurAyPos,closestNew)
+                            # print(oldSurAyPos,closestNew)
                                 # closestNewSurAy = closestNew[0]
                                 # closestNewPos = closestNew[1]
                                 # if closestNewSurAy not in instLstFltAyD.keys():
@@ -787,23 +807,25 @@ def intersct(comb):
                 while j < len(instLstFltAyD):
                 # for old, new in instLstFltAyD.items():
                     old, new = list(instLstFltAyD.items())[j]
-                    if new == None:
+                    if new == None or new == "matched":
                         del instLstFltAyD[old]
                     else:
                         j += 1
                 
                 # newInstFltLs = []
                 newInstD = {}
-                for new,old in instLstFltAyD.items():
-                    for surAyPos in [new,old]:
-                        if surAyPos != None:
-                            sur,ay,pos = surAyPos.split(':')
-                            surAy = ":".join([sur,ay])
-                            if surAy not in newInstD:
-                                newInstD[surAy] = [pos]
-                            else:
-                                newInstD[surAy].append(pos)
-                print(newInstD)
+                for old,new in instLstFltAyD.items():
+                        for surAyPos in [old,new]:
+                            # if surAyPos != None and surAyPos != True:
+                            if surAyPos != "unmatched":
+                            # if surAyPos != None:
+                                sur,ay,pos = surAyPos.split(':')
+                                surAy = ":".join([sur,ay])
+                                if surAy not in newInstD:
+                                    newInstD[surAy] = [pos]
+                                else:
+                                    newInstD[surAy].append(pos)
+                # print(newInstD)
                 # newInstFltLs = [
                 instLstFlt = [
                     [sur,ay,poss]
@@ -1145,6 +1167,8 @@ class combClass:
             ])
       self.lbl = lbl if lbl != '' else striJoin + (
                 f" ({fltJoin})" if len(fltJoin) > (len(self.strL)-1) else ''
+            ) + (
+                '-' if wrdDis == -1 else '' if wrdDis == sameVrsIndicator else f'<{str(wrdDis)}>'
             )
     #   print(f"strL in comb after str obj: {self.strL}")
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
@@ -1281,7 +1305,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=0,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDistW = widg.IntText(min=-1,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
