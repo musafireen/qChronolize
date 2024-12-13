@@ -540,7 +540,7 @@ def dataGrabber(strObj):
     stri = rtTrns(strObj.stri,inpLng,inpSch,) if inpLng == "arb" else strObj.stri.lower() if inpLng == 'eng' else strObj.stri
     isNotRoot = True if (any(char in stri for char in arbVwlsDict.values()) and inpLng == "arb" ) else False
 
-    strArbSch = "None" if strTyp != "arb" else rtTrns(stri,"arb","bkwSch","arbSch",)
+    strArbSch = None if inpLng != "arb" else rtTrns(stri,"arb","bkwSch","arbSch")
 
     print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
@@ -603,13 +603,16 @@ def dataGrabber(strObj):
                     curMean = wrdStrD["mean"].lower()
                     # mean = wrdStrD["mean"]
                     
+                    if strTyp == "stem":
+                        wrdNV = remVwls(wrdStrD["wrd"])
+                        strArbSchNV = remVwls(strArbSch)
+                        stemInWrd = strArbSchNV in wrdNV
+                        # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
+
                     for strD in wrdStrD["striDLs"]:
                         if strTyp == "stem":
-                            strArbSchNV = remVwls(strArbSch)
-                            wrdNV = remVwls(wrdStrD["wrd"])
-                            stemInWrd = strArbSchNV in wrdNV
                             # poSpOnward(inst,curMean,strD,poSp,frm,flt)
-                            if  stemInWrd:
+                            if stemInWrd:
                                 print(wrdNV, strArbSchNV)
                                 # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
                                 poSpOnward(inst,curMean,strD,poSp,frm,flt)
