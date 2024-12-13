@@ -603,15 +603,15 @@ def dataGrabber(strObj):
                     curMean = wrdStrD["mean"].lower()
                     # mean = wrdStrD["mean"]
                     
-                    if strTyp == "stem":
-                        stemInWrd = remVwls(strArbSch) in remVwls(wrdStrD["wrd"])
-                        poSpOnward(inst,curMean,strD,poSp,frm,flt)
-                        if  stemInWrd:
-                            # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                    for strD in wrdStrD["striDLs"]:
+                        if strTyp == "stem":
+                            stemInWrd = remVwls(strArbSch) in remVwls(wrdStrD["wrd"])
                             poSpOnward(inst,curMean,strD,poSp,frm,flt)
-                
-                    else:
-                        for strD in wrdStrD["striDLs"]:
+                            if  stemInWrd:
+                                # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
+                                poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                    
+                        else:
                             # if strTyp == "stem":
                             #     # if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
                             #     if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
