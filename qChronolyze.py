@@ -613,7 +613,7 @@ def dataGrabber(strObj):
                         if strTyp == "stem":
                             # poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             if stemInWrd:
-                                print(wrdNV, strArbSchNV)
+                                # print(wrdNV, strArbSchNV)
                                 # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
                                 poSpOnward(inst,curMean,strD,poSp,frm,flt)
                     
