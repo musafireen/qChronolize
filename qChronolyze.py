@@ -604,8 +604,8 @@ def dataGrabber(strObj):
                     # mean = wrdStrD["mean"]
                     
                     if strTyp == "stem":
-                        wrdNV = remVwls(wrdStrD["wrd"])
-                        strArbSchNV = remVwls(strArbSch)
+                        wrdNV = remVwls(wrdStrD["wrd"],"arbSch")
+                        strArbSchNV = remVwls(strArbSch,"arbSch")
                         stemInWrd = strArbSchNV in wrdNV
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
 
