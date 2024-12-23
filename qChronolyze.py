@@ -579,26 +579,6 @@ def dataGrabber(strObj):
                         if pos not in inst[2]:
                             inst[2].append(pos)
                 elif inpLng == "arb":
-                    def poSpOnward(inst,curMean,strD,poSp,frm,flt):
-                        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
-                            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
-                                if ( 
-                                    len(
-                                        re.compile(str(flt)).findall(
-                                            # wrdStrD["mean"].lower()
-                                            curMean
-                                        )
-                                    ) > 0 
-                                    or len(
-                                        re.compile(str(stri)).findall(
-                                            # wrdStrD["mean"].lower()
-                                            curMean
-                                        ) 
-                                    ) > 0 
-                                ):
-                                    if pos not in inst[2]:
-                                        inst[2].append(pos)
-                                    # inst[3].append(mean)
 
                     curMean = wrdStrD["mean"].lower()
                     # mean = wrdStrD["mean"]
@@ -608,15 +588,22 @@ def dataGrabber(strObj):
                         strArbSchNV = remVwls(strArbSch,"arbSch")
                         stemInWrd = strArbSchNV in wrdNV
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
+                    
+                    poSpMatch = True
+                    frmMatch = True
+                    strTypMatch = False
+                    strMatch = False
+                    fltMatch = False
 
                     for strD in wrdStrD["striDLs"]:
                         if strTyp == "stem":
+                            strTypMatch = True
                             # poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             if stemInWrd:
                                 # print(wrdNV, strArbSchNV)
                                 # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
-                                poSpOnward(inst,curMean,strD,poSp,frm,flt)
-                    
+                                # poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                strMatch = True
                         else:
                             # if strTyp == "stem":
                             #     # if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
@@ -625,10 +612,40 @@ def dataGrabber(strObj):
                             #         poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             
                                 # print(strD["stri"],stri)
+                                if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                    if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                        # poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                        # pass
+                                        strTypMatch = True
                                 if strD["stri"] == stri:
-                                    if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                        if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
-                                            poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                    strMatch = True
+
+                    # def poSpOnward(inst,curMean,strD,poSp,frm,flt):
+                        if poSp != "All" and (strD["poSp"] != "All" and strD["poSp"] != poSp):
+                            poSpMatch = False
+                        if frm != "All" and (strD["frm"] != "All" and strD["frm"] != frm):
+                            frmMatch = False
+                        if ( 
+                            flt == '' or
+                            len(
+                                re.compile(str(flt)).findall(
+                                    # wrdStrD["mean"].lower()
+                                    curMean
+                                )
+                            ) > 0 
+                            or len(
+                                re.compile(str(stri)).findall(
+                                    # wrdStrD["mean"].lower()
+                                    curMean
+                                ) 
+                            ) > 0 
+                        ):
+                            fltMatch = True
+                                # inst[3].append(mean)
+
+                    if (poSpMatch and frmMatch and strTypMatch and strMatch and fltMatch):
+                        if pos not in inst[2]:
+                            inst[2].append(pos)
 
             
             if len(inst[2]) > 0:

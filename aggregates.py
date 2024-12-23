@@ -5350,3 +5350,108 @@ ftn = [
     },
   ],
 ]
+
+araf = [
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "Erf",
+                      "strTyp": "root",
+                      "poSp": "V",
+                      "frm": "i"
+                    },
+                ],
+                "lbl": "Erf i"
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "Erf",
+                      "strTyp": "root",
+                      "poSp": "V",
+                      "frm": "ii"
+                    },
+                ],
+                "lbl": "Erf ii"
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "Erf",
+                      "strTyp": "root",
+                      "poSp": "V",
+                      "frm": "vi"
+                    },
+                ],
+                "lbl": "Erf vi"
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "Erf",
+                      "strTyp": "root",
+                      "poSp": "V",
+                      "frm": "viii"
+                    },
+                ],
+                "lbl": "Erf viii"
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": ">aEoraAf",
+                      "strTyp": "lem",
+                      "poSp": "N",
+                    },
+                ],
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "Eurof",
+                      "strTyp": "lem",
+                      "poSp": "N",
+                    },
+                ],
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "maEoruwfap",
+                      "strTyp": "stem",
+                      "poSp": "ADJ",
+                    },
+                ],
+            },
+        ],
+        [
+            {
+                "strL": [
+                    {
+                      "stri": "m~aEoruwf",
+                      "strTyp": "lem",
+                      "poSp": "N",
+                      # "frm": "i"
+                    },
+
+                ],
+            },
+        ],
+]
+
+shahada = [
+	*araf,
+]
