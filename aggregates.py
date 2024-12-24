@@ -770,9 +770,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "rwH", "flt": "",},
-        { "stri": "Ayd", "flt": "",},
-        { "stri": "Amn", "flt": "(?:faith)",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amiyn", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -780,8 +780,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amn", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -789,8 +790,8 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "wHy", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -798,9 +799,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amr", "flt": "",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -808,8 +809,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amr", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -817,11 +820,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "qds", "flt": "",},
-        { "stri": "nzl", "flt": "",},
-        { "stri": "vbt", "flt": "",},
-        { "stri": "Amn", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "Erj", "strTyp": "root", "flt": "",},
+        { "stri": "yawom", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -829,9 +831,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "qds", "flt": "",},
-        { "stri": "Ayd", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "qwm", "strTyp": "root", "flt": "",},
+        { "stri": "yawom", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -839,9 +842,8 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amn", "flt": "(?:[Tt]rust)",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -849,8 +851,11 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "qds", "strTyp": "root", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
+        { "stri": "vbt", "strTyp": "root", "flt": "",},
+        { "stri": "Amn", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -858,8 +863,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "nfx", "flt": "(?:(?<!you )breath)",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "qds", "strTyp": "root", "flt": "",},
+        { "stri": "Ayd", "strTyp": "root", "flt": "",},
+        { "stri": "EiysaY", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -867,7 +874,81 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "EiysaY", "strTyp": "lem", "flt": "",},
+        { "stri": "glw", "strTyp": "root", "flt": "",},
+      ],
+      "lbl": "ruh isa"
+    },
+  ],
+    [
+    {
+      "wrdDis": 10,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "Ayd", "strTyp": "root", "flt": "",},
+        { "stri": "<iyma`n", "strTyp": "root","poSp": "N","frm": "iv",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "wHy", "strTyp": "root", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "lqy", "strTyp": "root", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": 12,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "ba$ar", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ بشر"
+    },
+    {
+      "wrdDis": 14,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "<insa`n", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ إنسان"
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "faroj", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ مريم"
+    },
+  ],
+    [
+    {
+      "wrdDis": 12,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "rsl", "strTyp": "root", "flt": "",},
+        { "stri": "maroyam", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
