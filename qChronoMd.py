@@ -194,6 +194,13 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
+                    for nK in [surAyOld]['queries'].keys():
+                        sKSt = re.sub(
+                            '(^.*)\s*\d*$',
+                            sK
+                        )
+                        if nK == sKSt:
+                            del [surAyOld]['queries'][nK]
                         
                     #     })
                 if bef != newDic[surAyOld]:
