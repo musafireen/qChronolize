@@ -194,6 +194,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
+                    kDels = []
                     for nK in newDic[surAyOld]['queries'].keys():
                         sKSt = re.sub(
                             '^(?:~~~ |)(.*)\s*\d*$',
@@ -201,8 +202,10 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                             sK
                         )
                         if nK == sKSt:
-                            del newDic[surAyOld]['queries'][nK]
-                        
+                            kDels.append(nK)
+                    
+                    for kDel in kDels:
+                        del newDic[surAyOld]['queries'][kDel]
                     #     })
                 if bef != newDic[surAyOld]:
                     print(f'\nVerse string before reading: {bef}')
