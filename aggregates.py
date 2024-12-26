@@ -770,9 +770,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "rwH", "flt": "",},
-        { "stri": "Ayd", "flt": "",},
-        { "stri": "Amn", "flt": "(?:faith)",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amiyn", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -780,8 +780,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amn", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -789,8 +790,8 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "wHy", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -798,9 +799,9 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amr", "flt": "",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -808,8 +809,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amr", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -817,11 +820,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "qds", "flt": "",},
-        { "stri": "nzl", "flt": "",},
-        { "stri": "vbt", "flt": "",},
-        { "stri": "Amn", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "Erj", "strTyp": "root", "flt": "",},
+        { "stri": "yawom", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -829,9 +831,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "qds", "flt": "",},
-        { "stri": "Ayd", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
+        { "stri": "qwm", "strTyp": "root", "flt": "",},
+        { "stri": "yawom", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -839,9 +842,8 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "Amn", "flt": "(?:[Tt]rust)",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "malak", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -849,8 +851,11 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "nzl", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "qds", "strTyp": "root", "flt": "",},
+        { "stri": "nzl", "strTyp": "root", "flt": "",},
+        { "stri": "vbt", "strTyp": "root", "flt": "",},
+        { "stri": "Amn", "strTyp": "root", "flt": "",},
       ],
     },
   ],
@@ -858,8 +863,10 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
-        { "stri": "nfx", "flt": "(?:(?<!you )breath)",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "qds", "strTyp": "root", "flt": "",},
+        { "stri": "Ayd", "strTyp": "root", "flt": "",},
+        { "stri": "EiysaY", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -867,7 +874,81 @@ ruh = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ruwH", "flt": "",},
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "EiysaY", "strTyp": "lem", "flt": "",},
+        { "stri": "glw", "strTyp": "root", "flt": "",},
+      ],
+      "lbl": "ruh isa"
+    },
+  ],
+    [
+    {
+      "wrdDis": 10,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "Ayd", "strTyp": "root", "flt": "",},
+        { "stri": "<iyma`n", "strTyp": "root","poSp": "N","frm": "iv",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "wHy", "strTyp": "root", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "lqy", "strTyp": "root", "flt": "",},
+        { "stri": ">amor", "strTyp": "lem", "flt": "",},
+      ],
+    },
+  ],
+    [
+    {
+      "wrdDis": 12,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "ba$ar", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ بشر"
+    },
+    {
+      "wrdDis": 14,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "<insa`n", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ إنسان"
+    },
+  ],
+    [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "nfx", "strTyp": "root", "flt": "",},
+        { "stri": "faroj", "strTyp": "lem", "flt": "",},
+      ],
+      "lbl": "روح نفخ مريم"
+    },
+  ],
+    [
+    {
+      "wrdDis": 12,
+      "strL": [
+        { "stri": "ruwH", "strTyp": "lem", "flt": "",},
+        { "stri": "rsl", "strTyp": "root", "flt": "",},
+        { "stri": "maroyam", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -1022,16 +1103,109 @@ isa = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "muwsaY", "flt": "musa",},
+        { "stri": "muwsaY`", "flt": "musa",},
       ],
     },
   ],
 ]
 
+
+idols_base = [
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "wad~", "strTyp":"lem", "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "manaw`p", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "baEol2", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "ma`lik2", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "suwaAE", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "yaEuwq", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "nasor", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 77430,
+      "strL": [
+        { "stri": "T~a`guwt", "strTyp":"lem",  "flt": "",},
+      ],
+    },
+  ],    
+]
+
+
 idols = [
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "wad~", "strTyp":"lem", "flt": "wadd",},
         { "stri": "wdd", "strTyp":"root", "flt": "",},
@@ -1040,7 +1214,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lwt", "strTyp":"root", "flt": "",},
@@ -1049,7 +1223,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lwy", "strTyp":"root", "flt": "",},
@@ -1058,7 +1232,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lyt", "strTyp":"root", "flt": "",},
@@ -1067,7 +1241,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
         { "stri": "Ezz", "strTyp":"root", "flt": "",},
@@ -1076,7 +1250,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
         { "stri": "Ezw", "strTyp":"root", "flt": "",},
@@ -1085,7 +1259,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "manaw`p", "strTyp":"lem",  "flt": "",},
         { "stri": "mny", "strTyp":"root", "flt": "",},
@@ -1094,7 +1268,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "baEol2", "strTyp":"lem",  "flt": "",},
         { "stri": "bEl", "strTyp":"root", "flt": "",},
@@ -1103,7 +1277,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "ma`lik2", "strTyp":"lem",  "flt": "malik",},
         { "stri": "mlk", "strTyp":"root", "flt": "",},
@@ -1112,7 +1286,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "suwaAE", "strTyp":"lem",  "flt": "",},
         { "stri": "swE", "strTyp":"root", "flt": "",},
@@ -1121,7 +1295,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
         { "stri": "gyv", "strTyp":"root", "flt": "",},
@@ -1130,7 +1304,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
         { "stri": "gwv", "strTyp":"root", "flt": "",},
@@ -1139,7 +1313,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "yaEuwq", "strTyp":"lem",  "flt": "",},
         { "stri": "Ewq", "strTyp":"root", "flt": "",},
@@ -1148,7 +1322,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "nasor", "strTyp":"lem",  "flt": "",},
       ],
@@ -1156,7 +1330,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "T~a`guwt", "strTyp":"lem",  "flt": "",},
         { "stri": "Tgy", "strTyp":"root", "flt": "",},
@@ -1206,7 +1380,7 @@ heavenlies = [
       ],
     },
   ],
-  
+
 ]
 
 shirk2 = [
@@ -1335,7 +1509,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "waSiylap", "strTyp": "stem", "flt": "",},
         { "stri": "wSl", "strTyp": "root", "poSp":"V", "frm": "i", "flt": "",},
@@ -1344,7 +1518,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "waSiylap", "strTyp": "stem", "flt": "",},
         { "stri": "wSl", "strTyp": "root", "poSp":"V", "frm": "ii", "flt": "",},
@@ -1353,7 +1527,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 82011,
+      "wrdDis": 77430,
       "strL": [
         { "stri": "baHor", "strTyp": "stem", "flt": "",},
         { "stri": "baHiyrap", "strTyp": "stem", "flt": "",},
@@ -1425,7 +1599,8 @@ rituals = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Hh]air)",},
+        { "stri": "ma$oEar", "strTyp": "lem", "flt": "",},
+        { "stri": "$Er", "strTyp": "root", "poSp":"V", "frm": "i", "flt": "(?:[Hh]air)",},
       ],
     },
   ],
@@ -1433,7 +1608,7 @@ rituals = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Ss]ymbol|rite)",},
+        { "stri": "$aAEir", "strTyp": "lem", "flt": "(?:[Ss]ymbol|rite)",},
       ],
     },
   ],
@@ -1441,15 +1616,15 @@ rituals = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "$Er", "flt": "(?:[Mm]onument)",},
+        { "stri": "$iEor", "strTyp": "lem", "flt": "(?:[Mm]onument)",},
       ],
     },
   ],
-        [
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "$Er", "flt": "(?:perceive|aware|realize)",},
+        { "stri": "$Er", "flt": "[Ss]irius",},
       ],
     },
   ],
@@ -3034,7 +3209,7 @@ nabis = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "muwsaY", "flt": "(?:Musa|)",},
+        { "stri": "muwsaY`", "flt": "(?:Musa|)",},
       ],
     },
     {
@@ -5256,7 +5431,6 @@ ftn = [
     },
   ],
 ]
-
 
 araf = [
         [
