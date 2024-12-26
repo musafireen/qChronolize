@@ -256,7 +256,11 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         # print("\nstring =", addStr)
 
         for q, pq in newDic[surAy]['queries'].items():
-            qReal = q.replace("~~~ ","")
+            qReal = re.sub(
+                "^(?:~~~ |)(.*)\s*\d*$",
+                q,
+            )
+            # qReal = q.replace("~~~ ","")
             if qReal in queriesLeft:
                 # print(f'\nquery left at {surAy} : {qReal}')
                 newStrUp = f'\n## {qReal}'
