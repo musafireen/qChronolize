@@ -189,7 +189,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                 for secondary in secondaries:
                     sK = secondary[0] if '~~~ ' not in secondary[0] else secondary[0].replace('~~~ ','')
                     # newDic[surAyOld]['queries'][sK] = secondary[1].strip('\n').strip('\s') + '\n\n' + secondary[2]
-                    newDic[surAyOld]['queries'][sK] = secondary[2]
+                    newDic[surAyOld]['queries'][secondary[0]] = secondary[2]
                     # newDic[surAyOld]['queries'][quer[0]] = quer[1]
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
