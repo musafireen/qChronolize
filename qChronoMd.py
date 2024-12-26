@@ -189,12 +189,23 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                 for secondary in secondaries:
                     sK = secondary[0] if '~~~ ' not in secondary[0] else secondary[0].replace('~~~ ','')
                     # newDic[surAyOld]['queries'][sK] = secondary[1].strip('\n').strip('\s') + '\n\n' + secondary[2]
-                    newDic[surAyOld]['queries'][sK] = secondary[2]
                     # newDic[surAyOld]['queries'][quer[0]] = quer[1]
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
-                        
+                    kDels = []
+                    for nK in newDic[surAyOld]['queries'].keys():
+                        sKSt = re.sub(
+                            '^(?:\s*~~~\s*|)(.*?)\s*\d*$',
+                            '\\1',
+                            sK
+                        )
+                        if nK == sKSt:
+                            kDels.append(nK)
+                    for kDel in kDels:
+                        del newDic[surAyOld]['queries'][kDel]
+                    newDic[surAyOld]['queries'][secondary[0]] = secondary[2]
+                    
                     #     })
                 if bef != newDic[surAyOld]:
                     print(f'\nVerse string before reading: {bef}')
@@ -221,7 +232,13 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     queriesLeft = set()
     for surAy in surAyOrdered:
         for q in newDic[surAy]['queries'].keys():
-            queriesLeft.add(q)
+            qReal = re.sub(
+                "s*\d*\s*$",
+                "",
+                q,
+            )
+            qStrp = qReal.strip('~~~ ')
+            queriesLeft.add(qStrp)
 
     for surAy in surAyOrdered:
         # if surAy == '68:2':
@@ -249,15 +266,23 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         # print("\nstring =", addStr)
 
         for q, pq in newDic[surAy]['queries'].items():
-            qReal = q.replace("~~~ ","")
-            if qReal in queriesLeft:
+            qStrp = q.strip('~~~ ')
+            qReal = re.sub(
+                "s*\d*\s*$",
+                "",
+                q,
+            )
+
+            qRlStrp = qReal.strip('~~~ ')
+            # qReal = q.replace("~~~ ","")
+            if qRlStrp in queriesLeft:
                 # print(f'\nquery left at {surAy} : {qReal}')
-                newStrUp = f'\n## {qReal}'
-                frstAys[qReal] = surAy
-                queriesLeft.remove(qReal)
+                newStrUp = f'\n## {qStrp}'
+                frstAys[qRlStrp] = surAy
+                queriesLeft.remove(qRlStrp)
             else:
-                qHd = f'\n## ~~~ {qReal}' 
-                qRef ='\n' + f"1st inst: [[#Q:{frstAys[qReal]}]]"
+                qHd = f'\n## ~~~ {qStrp}' 
+                qRef ='\n' + f"1st inst: [[#Q:{frstAys[qRlStrp]}]]"
                 newStrUp = ''
                 if qHd not in q:
                    newStrUp  += qHd
