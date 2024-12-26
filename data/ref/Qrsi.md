@@ -115,7 +115,7 @@ We too shall summon the guards of Hell.
 
 
 ### 96:19
-كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب ۩
+كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب 
 
 No, not at all. Never obey him. But prostrate yourself and become nigh (to your Lord).
 
@@ -135,7 +135,7 @@ No, not at all. Never obey him. But prostrate yourself and become nigh (to your 
 68.1-16
 
 ### 68:1
-نٓ ۚ وَٱلْقَلَمِ وَمَا يَسْطُرُونَ
+نٓ  وَٱلْقَلَمِ وَمَا يَسْطُرُونَ
 
 Nun. By the pen and what the scribes write.
 
@@ -273,7 +273,7 @@ that (in the Hereafter) you shall have all that you choose for yourselves?
 
 
 ### 68:39
-أَمْ لَكُمْ أَيْمَـٰنٌ عَلَيْنَا بَـٰلِغَةٌ إِلَىٰ يَوْمِ ٱلْقِيَـٰمَةِ ۙ إِنَّ لَكُمْ لَمَا تَحْكُمُونَ
+أَمْ لَكُمْ أَيْمَـٰنٌ عَلَيْنَا بَـٰلِغَةٌ إِلَىٰ يَوْمِ ٱلْقِيَـٰمَةِ  إِنَّ لَكُمْ لَمَا تَحْكُمُونَ
 
 Or have We sworn a covenant with you which We are bound to keep till the Day of Resurrection, (a covenant requiring that whatever you ordain for yourselves shall be yours)?
 
@@ -297,19 +297,19 @@ On the Day when the dreadful calamity will unfold, when people will be summoned 
 
 
 ### 68:43
-خَـٰشِعَةً أَبْصَـٰرُهُمْ تَرْهَقُهُمْ ذِلَّةٌ ۖ وَقَدْ كَانُوا۟ يُدْعَوْنَ إِلَى ٱلسُّجُودِ وَهُمْ سَـٰلِمُونَ
+خَـٰشِعَةً أَبْصَـٰرُهُمْ تَرْهَقُهُمْ ذِلَّةٌ  وَقَدْ كَانُوا۟ يُدْعَوْنَ إِلَى ٱلسُّجُودِ وَهُمْ سَـٰلِمُونَ
 
 Their eyes shall be downcast and ignominy shall overwhelm them. For when they were safe and sound, they were summoned to prostrate themselves, (and they refused).
 
 
 ### 68:44
-فَذَرْنِى وَمَن يُكَذِّبُ بِهَـٰذَا ٱلْحَدِيثِ ۖ سَنَسْتَدْرِجُهُم مِّنْ حَيْثُ لَا يَعْلَمُونَ
+فَذَرْنِى وَمَن يُكَذِّبُ بِهَـٰذَا ٱلْحَدِيثِ  سَنَسْتَدْرِجُهُم مِّنْ حَيْثُ لَا يَعْلَمُونَ
 
 So leave Me, (O Prophet), to deal with him who gives the lie to this Discourse. We shall draw them little by little (to their undoing) in a way that they will not know.
 
 
 ### 68:45
-وَأُمْلِى لَهُمْ ۚ إِنَّ كَيْدِى مَتِينٌ
+وَأُمْلِى لَهُمْ  إِنَّ كَيْدِى مَتِينٌ
 
 I am giving them a respite. Great is My scheme!
 
@@ -449,7 +449,7 @@ If you persist in disbelieving, how will you guard yourself against the (woe of 
 
 
 ### 73:18
-ٱلسَّمَآءُ مُنفَطِرٌۢ بِهِۦ ۚ كَانَ وَعْدُهُۥ مَفْعُولًا
+ٱلسَّمَآءُ مُنفَطِرٌۢ بِهِۦ  كَانَ وَعْدُهُۥ مَفْعُولًا
 
 the Day whose severity shall cause the heaven to split asunder? Allah's promise is ever bound to be fulfilled.
 
@@ -467,7 +467,7 @@ the Day whose severity shall cause the heaven to split asunder? Allah's promise 
 73.19-19
 
 ### 73:19
-إِنَّ هَـٰذِهِۦ تَذْكِرَةٌ ۖ فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا
+إِنَّ هَـٰذِهِۦ تَذْكِرَةٌ  فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا
 
 Indeed this is nothing but a Good Counsel; so let him who will take a way leading to his Lord.
 
@@ -576,7 +576,7 @@ and who still greedily desires that I should bestow upon him more.
 
 
 ### 74:16
-كَلَّآ ۖ إِنَّهُۥ كَانَ لِـَٔايَـٰتِنَا عَنِيدًا
+كَلَّآ  إِنَّهُۥ كَانَ لِـَٔايَـٰتِنَا عَنِيدًا
 
 By no means; he is stubbornly opposed to Our Signs.
 
@@ -677,7 +677,7 @@ Over it are nineteen keepers.
 
 
 ### 74:31
-وَمَا جَعَلْنَآ أَصْحَـٰبَ ٱلنَّارِ إِلَّا مَلَـٰٓئِكَةً ۙ وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةً لِّلَّذِينَ كَفَرُوا۟ لِيَسْتَيْقِنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَيَزْدَادَ ٱلَّذِينَ ءَامَنُوٓا۟ إِيمَـٰنًا ۙ وَلَا يَرْتَابَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَٱلْمُؤْمِنُونَ ۙ وَلِيَقُولَ ٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌ وَٱلْكَـٰفِرُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَـٰذَا مَثَلًا ۚ كَذَٰلِكَ يُضِلُّ ٱللَّهُ مَن يَشَآءُ وَيَهْدِى مَن يَشَآءُ ۚ وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ ۚ وَمَا هِىَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ
+وَمَا جَعَلْنَآ أَصْحَـٰبَ ٱلنَّارِ إِلَّا مَلَـٰٓئِكَةً  وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةً لِّلَّذِينَ كَفَرُوا۟ لِيَسْتَيْقِنَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَيَزْدَادَ ٱلَّذِينَ ءَامَنُوٓا۟ إِيمَـٰنًا  وَلَا يَرْتَابَ ٱلَّذِينَ أُوتُوا۟ ٱلْكِتَـٰبَ وَٱلْمُؤْمِنُونَ  وَلِيَقُولَ ٱلَّذِينَ فِى قُلُوبِهِم مَّرَضٌ وَٱلْكَـٰفِرُونَ مَاذَآ أَرَادَ ٱللَّهُ بِهَـٰذَا مَثَلًا  كَذَٰلِكَ يُضِلُّ ٱللَّهُ مَن يَشَآءُ وَيَهْدِى مَن يَشَآءُ  وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ  وَمَا هِىَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ
 
 We have appointed none but angels as the keepers of the Fire, and We have not made their number but as a trial for the unbelievers so that those who have been endowed with the Book will be convinced and the believers' faith will increase, and neither those who have been endowed with the Book nor the believers will fall into any doubt. As for those in whose hearts there is a sickness as well as the unbelievers, they will say: “What did Allah aim at by this strange parable?” Thus does Allah let whomsoever He pleases to go astray, and directs whomsoever He pleases to the Right Way. And none knows the hosts of your Lord but He. (And Hell has only been mentioned here) that people may take heed.
 
@@ -820,7 +820,7 @@ No indeed; each one of them desires that open letters be sent to each of them.
 
 
 ### 74:53
-كَلَّا ۖ بَل لَّا يَخَافُونَ ٱلْـَٔاخِرَةَ
+كَلَّا  بَل لَّا يَخَافُونَ ٱلْـَٔاخِرَةَ
 
 No indeed; the truth is that they have no fear of the Hereafter.
 
@@ -15461,12 +15461,10 @@ Had your Lord so willed, He would surely have made mankind one community. But as
 except for those on whom your Lord has mercy. And it is for this (exercise of freedom of choice) that He has created them. And the word of your Lord was fulfilled: 'Indeed I will fill the Hell, with men and jinn, altogether.'
 
 
-### 11:12
-0
-
+### 11:120
 وَكُلًّا نَّقُصُّ عَلَيْكَ مِنْ أَنۢبَآءِ ٱلرُّسُلِ مَا نُثَبِّتُ بِهِۦ فُؤَادَكَ ۚ وَجَآءَكَ فِى هَـٰذِهِ ٱلْحَقُّ وَمَوْعِظَةٌ وَذِكْرَىٰ لِلْمُؤْمِنِينَ
 
-(O Messenger!) Let it not happen that you omit (to expound) a portion of what was revealed to you. And do not be distressed that they will say: 'Why was a treasure not bestowed upon him?' or 'Why did no angel accompany him?' For you are merely a warner, whereas Allah has control over everything.
+(O Muhammad!) We narrate these anecdotes of Messengers to you that We may strengthen through them your heart. In these anecdotes come to you the truth, and an exhortation, and a reminder for the believers.
 
 
 ### 11:121
@@ -15522,12 +15520,11 @@ And call to mind when the brothers of Joseph conferred together and said: "Surel
 So either kill Joseph or cast him into some distant land so that your father's attention may become exclusively yours. And after so doing become righteous."
 
 
-### 12:1
-0
+### 12:10
 
 قَالَ قَآئِلٌ مِّنْهُمْ لَا تَقْتُلُوا۟ يُوسُفَ وَأَلْقُوهُ فِى غَيَـٰبَتِ ٱلْجُبِّ يَلْتَقِطْهُ بَعْضُ ٱلسَّيَّارَةِ إِن كُنتُمْ فَـٰعِلِينَ
 
-Alif. Lam. Ra'. These are the verses of a Book that clearly expounds the truth.
+Thereupon one of them said: "Do not kill Joseph, but if you are bent upon doing something, cast him down to the bottom of some dark pit, perhaps some caravan passing by will take him out of it."
 
 
 ### 12:11
@@ -15584,12 +15581,10 @@ And they brought Joseph's shirt, stained with false blood. Seeing this their fat
 And a caravan came, and they sent their water drawer to draw water. As he let down his bucket in the well he (observed Joseph) and cried out: "This is good news. There is a boy." They concealed him, considering him as part of their merchandise, while Allah was well aware of what they did.
 
 
-### 12:2
-0
-
+### 12:20
 وَشَرَوْهُ بِثَمَنٍۭ بَخْسٍ دَرَٰهِمَ مَعْدُودَةٍ وَكَانُوا۟ فِيهِ مِنَ ٱلزَّٰهِدِينَ
 
-We have revealed it as a Recitation in Arabic that you may fully understand.
+Later they sold him for a paltry sum1 - just a few dirhams; they did not care to obtain a higher price.
 
 
 ## r12.3.x
@@ -15668,12 +15663,10 @@ Joseph, disregard this. And you - woman - ask forgiveness for your sin, for inde
 [Q.12.30-35](https://www.islamicstudies.info/tafheem.php?sura=12&verse=30&to=35)
 12.30-35
 
-### 12:3
-0
-
+### 12:30
 ۞ وَقَالَ نِسْوَةٌ فِى ٱلْمَدِينَةِ ٱمْرَأَتُ ٱلْعَزِيزِ تُرَٰوِدُ فَتَىٰهَا عَن نَّفْسِهِۦ ۖ قَدْ شَغَفَهَا حُبًّا ۖ إِنَّا لَنَرَىٰهَا فِى ضَلَـٰلٍ مُّبِينٍ
 
-(O Muhammad), by revealing the Qur'an to you We narrate to you in the best manner the stories of the past although before this narration you were utterly unaware of them.
+And some ladies in the city began to say: "The chief's wife, violently in love with her houseboy, is out to tempt him. We think she is clearly mistaken."
 
 
 ### 12:31
@@ -15965,12 +15958,10 @@ And it so happened that when they entered the city (by many gates) as their fath
 When they presented themselves before Joseph, he took his brother aside to himself and said: "Verily I am your own brother Joseph; so do not grieve over the manner they have treated you."
 
 
-### 12:7
-0
-
+### 12:70
 فَلَمَّا جَهَّزَهُم بِجَهَازِهِمْ جَعَلَ ٱلسِّقَايَةَ فِى رَحْلِ أَخِيهِ ثُمَّ أَذَّنَ مُؤَذِّنٌ أَيَّتُهَا ٱلْعِيرُ إِنَّكُمْ لَسَـٰرِقُونَ
 
-Verily in the story of Joseph and his brothers there are many signs for those who inquire (about the truth).
+Then, while Joseph was having their provisions loaded, he put his drinking-cup in his brother's saddlebag.1 And then a herald cried: "Travellers, you are thieves."2
 
 
 ### 12:71
@@ -30091,12 +30082,10 @@ Therefore, (O Prophet), have patience. Surely Allah's promise is true. Let those
 [Q.29.12-13](https://www.islamicstudies.info/tafheem.php?sura=29&verse=12&to=13)
 29.12-13
 
-### 29:1
-2
-
+### 29:12
 وَقَالَ ٱلَّذِينَ كَفَرُوا۟ لِلَّذِينَ ءَامَنُوا۟ ٱتَّبِعُوا۟ سَبِيلَنَا وَلْنَحْمِلْ خَطَـٰيَـٰكُمْ وَمَا هُم بِحَـٰمِلِينَ مِنْ خَطَـٰيَـٰهُم مِّن شَىْءٍ ۖ إِنَّهُمْ لَكَـٰذِبُونَ
 
-Alif. Lam. Mim.
+The unbelievers say to the believers: “Follow our way and we will carry the burden of your sins.”1 (They say so even though) they are not going to carry any part of their sins.2 Surely they are lying.
 
 
 ### 29:13
@@ -30152,12 +30141,11 @@ And if you give the lie (to the Messenger), then many nations before you also ga
 Have they never observed how Allah creates for the first time and then repeats it? Indeed (to repeat the creation of a thing) is even easier for Allah (than creating it for the first time).
 
 
-### 29:2
-0
+### 29:20
 
 قُلْ سِيرُوا۟ فِى ٱلْأَرْضِ فَٱنظُرُوا۟ كَيْفَ بَدَأَ ٱلْخَلْقَ ۚ ثُمَّ ٱللَّهُ يُنشِئُ ٱلنَّشْأَةَ ٱلْـَٔاخِرَةَ ۚ إِنَّ ٱللَّهَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ
 
-Do people think that they will be let go merely by saying: “We believe,” and that they will not be tested,
+Say: “Go about the earth and see how He created for the first time, and then Allah will recreate life.” Surely, Allah has power over everything.1
 
 
 ### 29:21
@@ -30225,12 +30213,11 @@ We sent Lot and he said to his people: “You commit the abomination that none i
 What! Do you go to men (to satisfy your lust), engage in highway robbery, and commit evil deeds in your gatherings?” Then they had no answer to offer other than to say: “Bring Allah's chastisement upon us if you are truthful.”
 
 
-### 29:3
-0
+### 29:30
 
 قَالَ رَبِّ ٱنصُرْنِى عَلَى ٱلْقَوْمِ ٱلْمُفْسِدِينَ
 
-for We indeed tested those who went before them? Allah will most certainly ascertain those who spoke the truth and those who lied.
+Lot said: “My Lord, aid me against these mischievous people.”
 
 
 ## r29.4.x
@@ -30298,12 +30285,11 @@ And We destroyed Ad and Thamud, whose dwellings you have observed. Satan had emb
 And We destroyed Qarun (Korah) and Pharaoh and Haman. Moses came to them with Clear Signs but they waxed arrogant in the land although they could not have outstripped (Us).
 
 
-### 29:4
-0
+### 29:40
 
 فَكُلًّا أَخَذْنَا بِذَنۢبِهِۦ ۖ فَمِنْهُم مَّنْ أَرْسَلْنَا عَلَيْهِ حَاصِبًا وَمِنْهُم مَّنْ أَخَذَتْهُ ٱلصَّيْحَةُ وَمِنْهُم مَّنْ خَسَفْنَا بِهِ ٱلْأَرْضَ وَمِنْهُم مَّنْ أَغْرَقْنَا ۚ وَمَا كَانَ ٱللَّهُ لِيَظْلِمَهُمْ وَلَـٰكِن كَانُوٓا۟ أَنفُسَهُمْ يَظْلِمُونَ
 
-Do the evil-doers suppose that they will get the better of Us? How evil is their judgement!
+So We seized each for their sin. We let loose upon some a violent tornado with showers of stones;1 some were overtaken by a mighty Cry;2 some were caused to be swallowed up by the earth,3 and some We drowned.4 Allah would not wrong them, but it is they who wronged themselves.5
 
 
 ### 29:41
@@ -30371,12 +30357,11 @@ Argue not with the People of the Book except in the fairest manner, unless it be
 But it is a set of Clear Signs in the hearts of those who have been endowed with knowledge. None except the utterly unjust will deny Our Signs.
 
 
-### 29:5
-0
+### 29:50
 
 وَقَالُوا۟ لَوْلَآ أُنزِلَ عَلَيْهِ ءَايَـٰتٌ مِّن رَّبِّهِۦ ۖ قُلْ إِنَّمَا ٱلْـَٔايَـٰتُ عِندَ ٱللَّهِ وَإِنَّمَآ أَنَا۠ نَذِيرٌ مُّبِينٌ
 
-Let him who looks forward to meeting Allah know that Allah's appointed term will surely come to pass. He is All-Hearing, All-Knowing.
+They say: “Why were Signs1 from his Lord not sent down upon him?” Say: “The Signs are only with Allah. As for me, I am no more than a plain warner.”
 
 
 ### 29:51
@@ -30444,12 +30429,11 @@ We shall house those who believed and acted righteously in the lofty mansions of
 who remained steadfast and put their trust in their Lord!
 
 
-### 29:6
-0
+### 29:60
 
 وَكَأَيِّن مِّن دَآبَّةٍ لَّا تَحْمِلُ رِزْقَهَا ٱللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ ۚ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ
 
-Whosoever strives (in the cause of Allah) does so to his own good. Surely Allah stands in no need of anyone in the whole Universe.
+How many an animal there is that does not carry about its sustenance. Allah provides sustenance to them and to you. He is All-Hearing, All-Knowing.1
 
 
 ### 29:61
@@ -30756,12 +30740,10 @@ Have the unbelievers been duly rewarded for their deeds?
 [Q.8.30-36](https://www.islamicstudies.info/tafheem.php?sura=8&verse=30&to=36)
 8.30-36
 
-### 8:3
-0
-
+### 8:30
 وَإِذْ يَمْكُرُ بِكَ ٱلَّذِينَ كَفَرُوا۟ لِيُثْبِتُوكَ أَوْ يَقْتُلُوكَ أَوْ يُخْرِجُوكَ ۚ وَيَمْكُرُونَ وَيَمْكُرُ ٱللَّهُ ۖ وَٱللَّهُ خَيْرُ ٱلْمَـٰكِرِينَ
 
-who establish Prayer and spend out of what We have provided them.
+And recall how those who disbelieved schemed against you to take you captive, or kill you, or drive you away.1 They schemed and Allah did also scheme. Allah is the best of those who scheme.
 
 
 ### 8:31
@@ -30805,12 +30787,10 @@ Surely those who deny the truth spend their wealth to hinder people from the way
 [Q.47.13-19](https://www.islamicstudies.info/tafheem.php?sura=47&verse=13&to=19)
 47.13-19
 
-### 47:1
-3
-
+### 47:13
 وَكَأَيِّن مِّن قَرْيَةٍ هِىَ أَشَدُّ قُوَّةً مِّن قَرْيَتِكَ ٱلَّتِىٓ أَخْرَجَتْكَ أَهْلَكْنَـٰهُمْ فَلَا نَاصِرَ لَهُمْ
 
-Allah has caused the works of those who disbelieve and hinder people from the way of Allah to go to waste.
+(O Prophet), how many are the cities that had greater power than your city that drove you out? We destroyed them and there was none to protect them.1
 
 
 ## r9.16.2
@@ -30818,12 +30798,10 @@ Allah has caused the works of those who disbelieve and hinder people from the wa
 [Q.9.128-129](https://www.islamicstudies.info/tafheem.php?sura=9&verse=128&to=129)
 9.128-129
 
-### 9:1
-28
-
+### 9:128
 لَقَدْ جَآءَكُمْ رَسُولٌ مِّنْ أَنفُسِكُمْ عَزِيزٌ عَلَيْهِ مَا عَنِتُّمْ حَرِيصٌ عَلَيْكُم بِٱلْمُؤْمِنِينَ رَءُوفٌ رَّحِيمٌ
 
-This is a declaration of disavowal by Allah and His Messenger to those who associate others with Allah in His Divinity and with whom you have made treaties:
+There has come to you a Messenger of Allah from among yourselves, who is distressed by the losses you sustain, who is ardently desirous of your welfare and is tender and merciful to those that believe.
 
 
 ### 9:129
@@ -31438,8 +31416,9 @@ Surely those against whom the word of your Lord has been fulfilled will not beli
 11.12-16
 
 ### 11:12
-
 فَلَعَلَّكَ تَارِكٌۢ بَعْضَ مَا يُوحَىٰٓ إِلَيْكَ وَضَآئِقٌۢ بِهِۦ صَدْرُكَ أَن يَقُولُوا۟ لَوْلَآ أُنزِلَ عَلَيْهِ كَنزٌ أَوْ جَآءَ مَعَهُۥ مَلَكٌ ۚ إِنَّمَآ أَنتَ نَذِيرٌ ۚ وَٱللَّهُ عَلَىٰ كُلِّ شَىْءٍ وَكِيلٌ
+
+(O Messenger!) Let it not happen that you omit (to expound) a portion of what was revealed to you. And do not be distressed that they will say: 'Why was a treasure not bestowed upon him?' or 'Why did no angel accompany him?' For you are merely a warner, whereas Allah has control over everything.
 
 ## r11.2.3
 
@@ -31484,13 +31463,19 @@ And establish the Prayer at the two ends of the day and in the first hours of th
 
 الٓر ۚ تِلْكَ ءَايَـٰتُ ٱلْكِتَـٰبِ ٱلْمُبِينِ
 
+Alif. Lam. Ra'. These are the verses of a Book that clearly expounds the truth.
+
 ### 12:2
 
 إِنَّآ أَنزَلْنَـٰهُ قُرْءَٰنًا عَرَبِيًّا لَّعَلَّكُمْ تَعْقِلُونَ
 
+We have revealed it as a Recitation1 in Arabic that you may fully understand2.
+
 ### 12:3
 
 نَحْنُ نَقُصُّ عَلَيْكَ أَحْسَنَ ٱلْقَصَصِ بِمَآ أَوْحَيْنَآ إِلَيْكَ هَـٰذَا ٱلْقُرْءَانَ وَإِن كُنتَ مِن قَبْلِهِۦ لَمِنَ ٱلْغَـٰفِلِينَ
+
+(O Muhammad), by revealing the Qur'an to you We narrate to you in the best manner the stories of the past although before this narration you were utterly unaware of them1.
 
 ## r12.2.x
 
@@ -31504,8 +31489,9 @@ And establish the Prayer at the two ends of the day and in the first hours of th
 12.7-20
 
 ### 12:7
-
 ۞ لَّقَدْ كَانَ فِى يُوسُفَ وَإِخْوَتِهِۦٓ ءَايَـٰتٌ لِّلسَّآئِلِينَ
+
+Verily in the story of Joseph and his brothers there are many signs for those who inquire (about the truth).
 
 ## r15.6.2
 
@@ -31983,29 +31969,38 @@ So glorify Allah in the evening and the morning.
 29.1-11
 
 ### 29:1
-
 الٓمٓ
+
+Alif. Lam. Mim.
 
 ### 29:2
 
 أَحَسِبَ ٱلنَّاسُ أَن يُتْرَكُوٓا۟ أَن يَقُولُوٓا۟ ءَامَنَّا وَهُمْ لَا يُفْتَنُونَ
 
+Do people think that they will be let go merely by saying: “We believe,” and that they will not be tested,
+
 ### 29:3
 
 وَلَقَدْ فَتَنَّا ٱلَّذِينَ مِن قَبْلِهِمْ ۖ فَلَيَعْلَمَنَّ ٱللَّهُ ٱلَّذِينَ صَدَقُوا۟ وَلَيَعْلَمَنَّ ٱلْكَـٰذِبِينَ
+
+for We indeed tested those who went before them? Allah will most certainly ascertain those who spoke the truth and those who lied.
 
 ### 29:4
 
 أَمْ حَسِبَ ٱلَّذِينَ يَعْمَلُونَ ٱلسَّيِّـَٔاتِ أَن يَسْبِقُونَا ۚ سَآءَ مَا يَحْكُمُونَ
 
+Do the evil-doers suppose that they will get the better of Us? How evil is their judgement!
+
 ### 29:5
 
 مَن كَانَ يَرْجُوا۟ لِقَآءَ ٱللَّهِ فَإِنَّ أَجَلَ ٱللَّهِ لَـَٔاتٍ ۚ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ
 
+Let him who looks forward to meeting Allah know that Allah's appointed term will surely come to pass. He is All-Hearing, All-Knowing.
 ### 29:6
 
 وَمَن جَـٰهَدَ فَإِنَّمَا يُجَـٰهِدُ لِنَفْسِهِۦٓ ۚ إِنَّ ٱللَّهَ لَغَنِىٌّ عَنِ ٱلْعَـٰلَمِينَ
 
+Whosoever strives (in the cause of Allah) does so to his own good. Surely Allah stands in no need of anyone in the whole Universe.
 ### 29:7
 وَٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ لَنُكَفِّرَنَّ عَنْهُمْ سَيِّـَٔاتِهِمْ وَلَنَجْزِيَنَّهُمْ أَحْسَنَ ٱلَّذِى كَانُوا۟ يَعْمَلُونَ
 
@@ -32041,12 +32036,10 @@ Allah will surely ascertain who are the believers and who are the hypocrites.
 [Q.22.52-55](https://www.islamicstudies.info/tafheem.php?sura=22&verse=52&to=55)
 22.52-55
 
-### 22:5
-2
-
+### 22:52
 وَمَآ أَرْسَلْنَا مِن قَبْلِكَ مِن رَّسُولٍ وَلَا نَبِىٍّ إِلَّآ إِذَا تَمَنَّىٰٓ أَلْقَى ٱلشَّيْطَـٰنُ فِىٓ أُمْنِيَّتِهِۦ فَيَنسَخُ ٱللَّهُ مَا يُلْقِى ٱلشَّيْطَـٰنُ ثُمَّ يُحْكِمُ ٱللَّهُ ءَايَـٰتِهِۦ ۗ وَٱللَّهُ عَلِيمٌ حَكِيمٌ
 
-O mankind! If you have any doubt concerning Resurrection, then know that it is surely We Who created you from dust, then from a drop of sperm, then from a clot of blood, then from a little lump of flesh, some of it shapely and other shapeless. (We are rehearsing this) that We may make the reality clear to you. We cause (the drop of sperm) that We please to remain in the wombs till an appointed time. We bring you forth as infants (and nurture you) that you may come of age. Among you is he that dies (at a young age) and he who is kept back to the most abject age so that after once having known, he reaches a stage when he knows nothing. You see the earth dry and barren and then no sooner than We send down water upon it, it begins to quiver and swell and brings forth every kind of beauteous vegetation.
+Never did We send a Messenger or a Prophet1 before you (O Muhammad), but that whenever he had a desire,2 Satan interfered with that desire.3 Allah eradicates the interference of Satan and strengthens His Signs.4 Allah is All-Knowing, All-Wise.5
 
 
 ### 22:53
@@ -34279,8 +34272,9 @@ The true believers are those who, when Allah's name is mentioned, their hearts q
 
 
 ### 8:3
-
 ٱلَّذِينَ يُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقْنَـٰهُمْ يُنفِقُونَ
+
+And recall how those who disbelieved schemed against you to take you captive, or kill you, or drive you away.1 They schemed and Allah did also scheme. Allah is the best of those who scheme.
 
 ### 8:4
 أُو۟لَـٰٓئِكَ هُمُ ٱلْمُؤْمِنُونَ حَقًّا ۚ لَّهُمْ دَرَجَـٰتٌ عِندَ رَبِّهِمْ وَمَغْفِرَةٌ وَرِزْقٌ كَرِيمٌ
@@ -38478,8 +38472,9 @@ Believers, have fear of Allah and believe in His Messenger, and He will grant yo
 47.1-11
 
 ### 47:1
-
 ٱلَّذِينَ كَفَرُوا۟ وَصَدُّوا۟ عَن سَبِيلِ ٱللَّهِ أَضَلَّ أَعْمَـٰلَهُمْ
+
+Allah has caused the works of those who disbelieve1 and hinder people from the way of Allah2 to go to waste.3
 
 ### 47:2
 وَٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ وَءَامَنُوا۟ بِمَا نُزِّلَ عَلَىٰ مُحَمَّدٍ وَهُوَ ٱلْحَقُّ مِن رَّبِّهِمْ ۙ كَفَّرَ عَنْهُمْ سَيِّـَٔاتِهِمْ وَأَصْلَحَ بَالَهُمْ
@@ -40624,8 +40619,10 @@ although it is decreed about him that he shall lead into error whosoever takes h
 
 
 ### 22:5
-
 يَـٰٓأَيُّهَا ٱلنَّاسُ إِن كُنتُمْ فِى رَيْبٍ مِّنَ ٱلْبَعْثِ فَإِنَّا خَلَقْنَـٰكُم مِّن تُرَابٍ ثُمَّ مِن نُّطْفَةٍ ثُمَّ مِنْ عَلَقَةٍ ثُمَّ مِن مُّضْغَةٍ مُّخَلَّقَةٍ وَغَيْرِ مُخَلَّقَةٍ لِّنُبَيِّنَ لَكُمْ ۚ وَنُقِرُّ فِى ٱلْأَرْحَامِ مَا نَشَآءُ إِلَىٰٓ أَجَلٍ مُّسَمًّى ثُمَّ نُخْرِجُكُمْ طِفْلًا ثُمَّ لِتَبْلُغُوٓا۟ أَشُدَّكُمْ ۖ وَمِنكُم مَّن يُتَوَفَّىٰ وَمِنكُم مَّن يُرَدُّ إِلَىٰٓ أَرْذَلِ ٱلْعُمُرِ لِكَيْلَا يَعْلَمَ مِنۢ بَعْدِ عِلْمٍ شَيْـًٔا ۚ وَتَرَى ٱلْأَرْضَ هَامِدَةً فَإِذَآ أَنزَلْنَا عَلَيْهَا ٱلْمَآءَ ٱهْتَزَّتْ وَرَبَتْ وَأَنۢبَتَتْ مِن كُلِّ زَوْجٍۭ بَهِيجٍ
+
+O mankind! If you have any doubt concerning Resurrection, then know that it is surely We Who created you from dust, then from a drop of sperm,1 then from a clot of blood, then from a little lump of flesh, some of it shapely and other shapeless.2 (We are rehearsing this) that We may make the reality clear to you. We cause (the drop of sperm) that We please to remain in the wombs till an appointed time. We bring you forth as infants (and nurture you) that you may come of age. Among you is he that dies (at a young age) and he who is kept back to the most abject age so that after once having known, he reaches a stage when he knows nothing.3 You see the earth dry and barren and then no sooner than We send down water upon it, it begins to quiver and swell and brings forth every kind of beauteous vegetation.
+
 
 ### 22:6
 ذَٰلِكَ بِأَنَّ ٱللَّهَ هُوَ ٱلْحَقُّ وَأَنَّهُۥ يُحْىِ ٱلْمَوْتَىٰ وَأَنَّهُۥ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ
@@ -42398,12 +42395,10 @@ Even if you stretch forth your hand against me to kill, I will not stretch forth
 I would desire that you be laden with my sin and with your sin, and thus become among the inmates of the Fire. That indeed is the right recompense of the wrong-doers.'
 
 
-### 5:3
-0
-
+### 5:30
 فَطَوَّعَتْ لَهُۥ نَفْسُهُۥ قَتْلَ أَخِيهِ فَقَتَلَهُۥ فَأَصْبَحَ مِنَ ٱلْخَـٰسِرِينَ
 
-Forbidden to you are carrion, blood, the flesh of swine, the animal slaughtered in any name other than Allah's, the animal which has either been strangled, killed by blows, has died of a fall, by goring or that devoured by a beast of prey - unless it be that which you yourselves might have slaughtered while it was still alive - and that which was slaughtered at the altars. - You are also forbidden to seek knowledge of your fate by divining arrows. All these are sinful acts. This day the unbelievers have fully despaired of your religion. Do not fear them; but fear Me. This day I have perfected for you your religion, and have bestowed upon you My bounty in full measure, and have been pleased to assign for you Islam as your religion. (Follow, then, the lawful and unlawful bounds enjoined upon you.) As for he who is driven by hunger, without being wilfully inclined to sin, surely Allah is All-Forgiving, All-Compassionate.
+At last his evil soul drove him to the murder of his brother, and he killed him, whereby he himself became one of the losers.
 
 
 ### 5:31
@@ -43089,8 +43084,10 @@ To Allah belongs the dominion of the heavens and the earth and all that is in th
 9.1-10
 
 ### 9:1
-
 بَرَآءَةٌ مِّنَ ٱللَّهِ وَرَسُولِهِۦٓ إِلَى ٱلَّذِينَ عَـٰهَدتُّم مِّنَ ٱلْمُشْرِكِينَ
+
+This is a declaration of disavowal by Allah and His Messenger to those who associate others with Allah in His Divinity and with whom you have made treaties:
+
 
 ### 9:2
 فَسِيحُوا۟ فِى ٱلْأَرْضِ أَرْبَعَةَ أَشْهُرٍ وَٱعْلَمُوٓا۟ أَنَّكُمْ غَيْرُ مُعْجِزِى ٱللَّهِ ۙ وَأَنَّ ٱللَّهَ مُخْزِى ٱلْكَـٰفِرِينَ
@@ -44018,8 +44015,10 @@ And whenever a surah is revealed, they glance at each other as though saying: "I
 5.3-5
 
 ### 5:3
-
 حُرِّمَتْ عَلَيْكُمُ ٱلْمَيْتَةُ وَٱلدَّمُ وَلَحْمُ ٱلْخِنزِيرِ وَمَآ أُهِلَّ لِغَيْرِ ٱللَّهِ بِهِۦ وَٱلْمُنْخَنِقَةُ وَٱلْمَوْقُوذَةُ وَٱلْمُتَرَدِّيَةُ وَٱلنَّطِيحَةُ وَمَآ أَكَلَ ٱلسَّبُعُ إِلَّا مَا ذَكَّيْتُمْ وَمَا ذُبِحَ عَلَى ٱلنُّصُبِ وَأَن تَسْتَقْسِمُوا۟ بِٱلْأَزْلَـٰمِ ۚ ذَٰلِكُمْ فِسْقٌ ۗ ٱلْيَوْمَ يَئِسَ ٱلَّذِينَ كَفَرُوا۟ مِن دِينِكُمْ فَلَا تَخْشَوْهُمْ وَٱخْشَوْنِ ۚ ٱلْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِى وَرَضِيتُ لَكُمُ ٱلْإِسْلَـٰمَ دِينًا ۚ فَمَنِ ٱضْطُرَّ فِى مَخْمَصَةٍ غَيْرَ مُتَجَانِفٍ لِّإِثْمٍ ۙ فَإِنَّ ٱللَّهَ غَفُورٌ رَّحِيمٌ
+
+Forbidden to you are carrion,1 blood, the flesh of swine, the animal slaughtered in any name other than Allah's,2 the animal which has either been strangled, killed by blows, has died of a fall, by goring or that devoured by a beast of prey - unless it be that which you yourselves might have slaughtered while it was still alive3 - and that which was slaughtered at the altars.4-5 You are also forbidden to seek knowledge of your fate by divining arrows.6 All these are sinful acts. This day the unbelievers have fully despaired of your religion. Do not fear them; but fear Me.7 This day I have perfected for you your religion, and have bestowed upon you My bounty in full measure, and have been pleased to assign for you Islam as your religion. (Follow, then, the lawful and unlawful bounds enjoined upon you.)8 As for he who is driven by hunger, without being wilfully inclined to sin, surely Allah is All-Forgiving, All-Compassionate.9
+
 
 ## r2.38.2
 
