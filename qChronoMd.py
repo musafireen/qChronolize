@@ -201,7 +201,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                             sK
                         )
                         if nK == sKSt:
-                            del [surAyOld]['queries'][nK]
+                            del newDic[surAyOld]['queries'][nK]
                         
                     #     })
                 if bef != newDic[surAyOld]:
