@@ -196,7 +196,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     #         'postquery': quer[1],
                     for nK in newDic[surAyOld]['queries'].keys():
                         sKSt = re.sub(
-                            '^(?~~~ |)(.*)\s*\d*$',
+                            '^(?:~~~ |)(.*)\s*\d*$',
                             '\\1',
                             sK
                         )
