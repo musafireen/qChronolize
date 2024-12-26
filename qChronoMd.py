@@ -262,6 +262,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         for q, pq in newDic[surAy]['queries'].items():
             qReal = re.sub(
                 "^(?:~~~ |)(.*)\s*\d*$",
+                "\\1",
                 q,
             )
             # qReal = q.replace("~~~ ","")
