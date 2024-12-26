@@ -197,7 +197,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     kDels = []
                     for nK in newDic[surAyOld]['queries'].keys():
                         sKSt = re.sub(
-                            '^(?:~~~ |)(.*)\s*\d*$',
+                            '^(?:\s*~~~\s*|)(.*?)\s*\d*$',
                             '\\1',
                             sK
                         )
@@ -232,7 +232,13 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     queriesLeft = set()
     for surAy in surAyOrdered:
         for q in newDic[surAy]['queries'].keys():
-            queriesLeft.add(q)
+            qReal = re.sub(
+                "s*\d*\s*$",
+                "",
+                q,
+            )
+            qStrp = qReal.strip('~~~ ')
+            queriesLeft.add(qStrp)
 
     for surAy in surAyOrdered:
         # if surAy == '68:2':
@@ -260,20 +266,23 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         # print("\nstring =", addStr)
 
         for q, pq in newDic[surAy]['queries'].items():
+            qStrp = q.strip('~~~ ')
             qReal = re.sub(
-                "^(?:~~~ |)(.*)\s*\d*$",
-                "\\1",
+                "s*\d*\s*$",
+                "",
                 q,
             )
+
+            qRlStrp = qReal.strip('~~~ ')
             # qReal = q.replace("~~~ ","")
-            if qReal in queriesLeft:
+            if qRlStrp in queriesLeft:
                 # print(f'\nquery left at {surAy} : {qReal}')
-                newStrUp = f'\n## {qReal}'
-                frstAys[qReal] = surAy
-                queriesLeft.remove(qReal)
+                newStrUp = f'\n## {qStrp}'
+                frstAys[qRlStrp] = surAy
+                queriesLeft.remove(qRlStrp)
             else:
-                qHd = f'\n## ~~~ {qReal}' 
-                qRef ='\n' + f"1st inst: [[#Q:{frstAys[qReal]}]]"
+                qHd = f'\n## ~~~ {qStrp}' 
+                qRef ='\n' + f"1st inst: [[#Q:{frstAys[qRlStrp]}]]"
                 newStrUp = ''
                 if qHd not in q:
                    newStrUp  += qHd
