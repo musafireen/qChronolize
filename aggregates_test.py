@@ -632,3 +632,62 @@ Erf = [
             },
         ],    
 ]
+
+hwy = [
+    [
+        {
+            "strL": [
+                {
+                "stri": "hawaA^'",
+                "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                "stri": "haAwiyap",
+                "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                "stri": ">ahowaA^'",
+                "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                "stri": "hwy",
+                "strTyp": "root",
+                "poSp": "V",
+                "frm": "x",
+                },
+            ],
+            "lbl": "هوي x",
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                "stri": "hwy",
+                "strTyp": "root",
+                "poSp": "V",
+                "frm": "i",
+                },
+            ],
+            "lbl": "هوي i",
+        },
+    ]
+]

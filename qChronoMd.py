@@ -108,7 +108,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                 # '((?<=\n)##\s{1,}[^\n]*\n*)'
                 '(?<=\n)##\s{1,}([^\n]*(?=\n))\n*'
                 +'((?:\n*1st inst\: \[\[[^\n]*\]\]\n*){0,1})'
-                +'((?:(?!1st inst:|\n## ).)*?'
+                +'((?:(?!1st inst:|(?<=\n)## ).)*?'
                 # +'(^(?!1st inst\:)[^#]'
                 # +'(.*'
                 +'(?=\n## |$)*$'
@@ -129,7 +129,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                 
                 queryContents = "".join([queryCont[2].replace('\n','').replace('\s','') for queryCont in secondaries])
 
-                isQueryContent = len(queryContents) > 0 
+                isQueryContent = len(queryContents) > 0
                 
                 if isQueryContent:
                     print(f"for {surAyOld} secondaries: ", secondaries)
@@ -177,8 +177,13 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     print(f'\nold not in new {i}: {surAyOld}')
 
             else:
+                if newDic[surAyOld]['string'].strip('\n') != primaryOld.strip():
+                    print('\n',surAyOld)
+                    print('new', newDic[surAyOld]['string'])
+                    print('old', primaryOld)
+
                 newDic[surAyOld]['string'] = primaryOld
-                bef = copy.deepcopy(newDic[surAyOld])
+                # bef = copy.deepcopy(newDic[surAyOld]['queries'])
                 secondaries = findSec(queriesOld)
                 # for quer in re.compile(
                 #             '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
@@ -200,6 +205,11 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                             '\\1',
                             sK
                         )
+                        if newDic[surAyOld]['queries'][nK].strip('\n') != secondary[2].strip():
+                            print('\n',surAyOld)
+                            print('new', newDic[surAyOld]['queries'][nK])
+                            print('old', secondary[2])
+
                         if nK == sKSt:
                             kDels.append(nK)
                     for kDel in kDels:
@@ -207,9 +217,9 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     newDic[surAyOld]['queries'][secondary[0]] = secondary[2]
                     
                     #     })
-                if bef != newDic[surAyOld]:
-                    print(f'\nVerse string before reading: {bef}')
-                    print(f'\nVerse string after reading: {newDic[surAyOld]}')
+                # if bef != newDic[surAyOld]['queries']:
+                #     print(f'\nVerse string before reading: {bef}')
+                #     print(f'\nVerse string after reading: {newDic[surAyOld]}')
     
 
     # print("newDic", newDic)
