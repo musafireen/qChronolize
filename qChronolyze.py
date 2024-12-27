@@ -1009,7 +1009,7 @@ def aggregLsts(
     ):
     instLstAgg = []
     for optSt in qL:
-        print(optSt)
+        # print(optSt)
         lblParts = []
         optStInsts = []
         # print(f"optStInsts before comb: {optStInsts}")
@@ -1159,7 +1159,7 @@ class combClass:
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
       qyArLegSch = lng2InpSchD["arabic"][-1] if qyArLegSch == None else qyArLegSch
-      print("qyArLegSch is ",qyArLegSch)
+    #   print("qyArLegSch is ",qyArLegSch)
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
 
       fltJoin =   ' '.join([ 
@@ -1736,18 +1736,18 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                                 "inpSch":strCFlds[6].value,
                             }
                         )
-                        print(f"combClass.strLSt: {combClass.strLSt}")
+                        # print(f"combClass.strLSt: {combClass.strLSt}")
                 # if len(combObj["strL"]) > 0:
                 if len(combClass.strLSt) > 0:
-                    print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
-                    print(f"optSt before appending comb:{optSt}")
+                    # print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
+                    # print(f"optSt before appending comb:{optSt}")
                     optSt.append(combClass(lbl=qyLblFld.value,qyArLegSch=qyArLegSch))
-                    print(f"comb.strL appended to optSt: {optSt[-1].strL}")
-                    print(f"optSt after appending comb:{optSt}")
+                    # print(f"comb.strL appended to optSt: {optSt[-1].strL}")
+                    # print(f"optSt after appending comb:{optSt}")
             if len(optSt) > 0:
-                print(f"qL before appending optSt:{qL}")
+                # print(f"qL before appending optSt:{qL}")
                 qL.append(optSt)
-                print(f"qL after appending optSt:{qL}")
+                # print(f"qL after appending optSt:{qL}")
                 # qL.append(combObj.__dict__)
         # dg = aggregLsts(qL)
         # sortchron(dg)
