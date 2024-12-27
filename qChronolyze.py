@@ -542,7 +542,7 @@ def dataGrabber(strObj):
 
     strArbSch = None if inpLng != "arb" else rtTrns(stri,"arb","bkwSch","arbSch")
 
-    print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
+    # print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
     instLst = []
     import re
@@ -1012,9 +1012,9 @@ def aggregLsts(
         print(optSt)
         lblParts = []
         optStInsts = []
-        print(f"optStInsts before comb: {optStInsts}")
+        # print(f"optStInsts before comb: {optStInsts}")
         for comb in optSt:
-            print(comb)
+            # print(comb)
             strL = comb.strL
             # strL = comb["strL"]
             lblParts += [comb.lbl]
@@ -1024,7 +1024,7 @@ def aggregLsts(
             #     strObj 
             #     in strL
             # ])]
-            print(f"optStInsts after comb: {optStInsts}")
+            # print(f"optStInsts after comb: {optStInsts}")
             combInstLst = intersct(comb)
             # optStInsts += combInstLst
             optStInsts = [*optStInsts,*combInstLst]
@@ -1090,16 +1090,16 @@ class strObjClass:
                 #  **kwargs
                 ):
         
-        print(
-            "args in str init: ",
-            "stri: ", stri,
-            "flt:", flt,
-            "strTyp:", strTyp,
-            "frm:", frm,
-            "poSp:", poSp,
-            "inpLng:", inpLng,
-            "inpSch:", inpSch,
-        )
+        # print(
+        #     "args in str init: ",
+        #     "stri: ", stri,
+        #     "flt:", flt,
+        #     "strTyp:", strTyp,
+        #     "frm:", frm,
+        #     "poSp:", poSp,
+        #     "inpLng:", inpLng,
+        #     "inpSch:", inpSch,
+        # )
         self.stri = stri
         self.flt = flt
         self.strTyp = strTyp if strTyp != None else self.strTypSt
@@ -1116,16 +1116,16 @@ class strObjClass:
         #     "inpLng": inpLng,
         #     "inpSch": inpSch,
         # }
-        print(
-            "props set in str init: ",
-            "stri: ", self.stri,
-            "flt:",self.flt,
-            "strTyp:", self.strTyp,
-            "frm:", self.frm,
-            "poSp:", self.poSp,
-            "inpLng:", self.inpLng,
-            "inpSch:", self.inpSch,
-        )
+        # print(
+        #     "props set in str init: ",
+        #     "stri: ", self.stri,
+        #     "flt:",self.flt,
+        #     "strTyp:", self.strTyp,
+        #     "frm:", self.frm,
+        #     "poSp:", self.poSp,
+        #     "inpLng:", self.inpLng,
+        #     "inpSch:", self.inpSch,
+        # )
         # print(
         #     self.stri,
         #     self.flt,
