@@ -6,7 +6,6 @@ from qChronolyze import refLngD, lng2InpSchD, tafsDict, surAyPosStrAdvWrdMD
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
 
 def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
-    mdFile = f'data/compare/{flnm}.md'
     # instLstAgg = []   
     # tafsDict={"arabic":"tfTb","bengali":"tfKthB","english":"tfKthE"}
     tafs = tafsDict[refLng]
@@ -25,11 +24,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     # df['position'] = df['position'].astype('int')
     df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
     # df.sort_values(["surah_ayah","position"],inplace=True)
-    df.sort_values(
-        ["surah_ayah","positions"],
-        key=lambda x: x.map(min) if x.name=='positions' else x,
-        inplace=True
-    )
+    df.sort_values(["surah_ayah","position"],inplace=True)
     # df.reset_index(drop=True,inplace=True)
     sortedRecs = df.to_dict(orient='records')
 
@@ -105,6 +100,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     # print('\nnewDic before checking md: ', newDic, '\n')
 
+    mdFile = f'data/compare/{flnm}.md'
     import os
 
     if os.path.isfile(mdFile):
@@ -146,20 +142,29 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         
         i = 0
 
+        def findSec(queriesOld):
+            secondaries = re.findall(
+                # '((?<=\n)##\s{1,}[^\n]*\n*)'
+                '(?<=\n)##\s{1,}([^\n]*(?=\n))\n*'
+                +'((?:\n*1st inst\: \[\[[^\n]*\]\]\n*){0,1})'
+                +'((?:(?!1st inst:|(?<=\n)## ).)*?'
+                # +'(^(?!1st inst\:)[^#]'
+                # +'(.*'
+                +'(?=\n## |$)*$'
+                +')',
+                queriesOld,
+                re.DOTALL,
+            )
+
+            return secondaries
+        
+
         for old in olds:
             surAyOld = old[0]
             primaryOld = old[1]
             queriesOld = old[2]
             if surAyOld not in newDic.keys():
-                secondaries = re.findall(
-                                '((?<=\n)##\s{1,}[^\n]*\n*)'
-                                +'((?:\n*1st inst\: \[\[[^\n]*\]\]\n*){0,1})'
-                                +'(^(?!1st inst\:)[^#]'
-                                +'(?=\n#|$)*$'
-                                +')',
-                                queriesOld,
-                                re.DOTALL,
-                            )
+                secondaries = findSec(queriesOld)
                 
                 queryContents = "".join([queryCont[2].replace('\n','').replace('\s','') for queryCont in secondaries])
 
@@ -170,19 +175,21 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     newDic[surAyOld] = { 
                         'string' : primaryOld , 
                         'queries': {
-                            quer[0]: quer[1]
+                            secondary[0]: secondary[2]
+                            for secondary in secondaries
+                            # quer[0]: quer[1]
                             
                             
                             # quer
-                            for quer in re.compile(
-                                '\n##\s{1,}'
-                                +'([^\n]{1,}(?=\n))'
-                                +'(.*?(?=\n#|$))'
-                                ,    
-                                re.DOTALL,
-                            ).findall(
-                                queriesOld 
-                            )
+                            # for quer in re.compile(
+                            #     '\n##\s{1,}'
+                            #     +'([^\n]{1,}(?=\n))'
+                            #     +'(.*?(?=\n#|$))'
+                            #     ,    
+                            #     re.DOTALL,
+                            # ).findall(
+                            #     queriesOld 
+                            # )
                         }
                             # how many queries
                             # if isQueryContent 
@@ -208,23 +215,49 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
                     print(f'\nold not in new {i}: {surAyOld}')
 
             else:
+                if newDic[surAyOld]['string'].strip('\n') != primaryOld.strip():
+                    print('\n',surAyOld)
+                    print('new', newDic[surAyOld]['string'])
+                    print('old', primaryOld)
+
                 newDic[surAyOld]['string'] = primaryOld
-                bef = dict(newDic[surAyOld])
-                for quer in re.compile(
-                            '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
-                            re.DOTALL,
-                        ).findall(
-                            queriesOld 
-                        ):
-                    newDic[surAyOld]['queries'][quer[0]] = quer[1]
+                # # bef = dict(newDic[surAyOld])
+                secondaries = findSec(queriesOld)
+                # for quer in re.compile(
+                #             '\n##\s{1,}([^\n]{1,}(?=\n))(.*?(?=\n#|$))',    
+                #             re.DOTALL,
+                #         ).findall(
+                #             queriesOld 
+                #         ):
+                for secondary in secondaries:
+                    sK = secondary[0] if '~~~ ' not in secondary[0] else secondary[0].replace('~~~ ','')
+                #     newDic[surAyOld]['queries'][quer[0]] = quer[1]
                     # newDic[old[0]]['queries'].append({
                     #         'query': quer[0],
                     #         'postquery': quer[1],
                         
                     #     })
-                if bef != newDic[surAyOld]:
-                    print(f'\nVerse string before reading: {bef}')
-                    print(f'\nVerse string after reading: {newDic[surAyOld]}')
+                    kDels = []
+                    for nK in newDic[surAyOld]['queries'].keys():
+                        sKSt = re.sub(
+                            '^(?:\s*~~~\s*|)(.*?)\s*\d*$',
+                            '\\1',
+                            sK
+                        )
+                        if newDic[surAyOld]['queries'][nK].strip('\n') != secondary[2].strip():
+                            print('\n',surAyOld)
+                            print('new', newDic[surAyOld]['queries'][nK])
+                            print('old', secondary[2])
+
+                        if nK == sKSt:
+                            kDels.append(nK)
+                    for kDel in kDels:
+                        del newDic[surAyOld]['queries'][kDel]
+                    newDic[surAyOld]['queries'][secondary[0]] = secondary[2]
+                    
+                # if bef != newDic[surAyOld]:
+                #     print(f'\nVerse string before reading: {bef}')
+                #     print(f'\nVerse string after reading: {newDic[surAyOld]}')
         
 
     # print('\nnewDic after checking md: ', newDic, '\n')
@@ -244,14 +277,23 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     queriesLeft = set()
     for surAy in surAyOrdered:
         for q in newDic[surAy]['queries'].keys():
-            queriesLeft.add(q)
+            qReal = re.sub(
+                "s*\d*\s*$",
+                "",
+                q,
+            )
+            qStrp = qReal.strip('~~~ ')
+            queriesLeft.add(qStrp)
 
     for surAy in surAyOrdered:
         # if surAy == '68:2':
         #     print(f'\nnew string: {newDic[surAy]}\n')
         # newStrUp =   f'\n# Q:{surAy}\n' + f'\n[Q.{surAy}](https://quran.com/{surAy}/tafsirs/{tafs})\n' + f'\n![[Qrsi#{surAy}]]\n'
         # qpq = newDic[surAy]['queries'].items()
-        newStr += f'\n# Q:{surAy}' + newDic[surAy]['string']
+
+        addStr = f'\n# Q:{surAy}' + newDic[surAy]['string']
+
+        newStr += addStr
 
         # newStr += newStrUp
 
@@ -267,21 +309,33 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
         
 
         for q, pq in newDic[surAy]['queries'].items():
-            qReal = q.replace("~~~ ","")
-            if qReal in queriesLeft:
-                print(f'\nquery left at {surAy} : {qReal}')
-                newStrUp = f'\n## {qReal}' + pq
-                frstAys[qReal] = surAy
-                queriesLeft.remove(qReal)
+            qStrp = q.strip('~~~ ')
+            qReal = re.sub(
+                "s*\d*\s*$",
+                "",
+                q,
+            )
+
+            qRlStrp = qReal.strip('~~~ ')
+            # qReal = q.replace("~~~ ","")
+            if qRlStrp in queriesLeft:
+                # print(f'\nquery left at {surAy} : {qReal}')
+                newStrUp = f'\n## {qStrp}'
+                frstAys[qRlStrp] = surAy
+                queriesLeft.remove(qRlStrp)
             else:
-                qHd = f'\n## ~~~ {qReal}' 
-                qRef ='\n' + f"1st inst: [[#{frstAys[qReal]}]]" + pq
+                qHd = f'\n## ~~~ {qStrp}' 
+                qRef ='\n' + f"1st inst: [[#Q:{frstAys[qRlStrp]}]]"
                 newStrUp = ''
                 if qHd not in q:
                    newStrUp  += qHd
                 if qRef not in pq:
                     newStrUp += qRef
+            # print("\nnewStrUp =", newStrUp)
+            newStrUp += '\n' + pq.strip('\n') + '\n'
             newStr += newStrUp
+        
+        # print('\n')
                 
 
     with open(mdFile, 'w+') as f:
