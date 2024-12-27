@@ -691,3 +691,25 @@ hwy = [
         },
     ]
 ]
+
+qwl_kfr = [
+  [
+    {
+      "wrdDis": 2,
+      "strL": [
+        {
+          "stri": "qwl",
+          "strTyp": "root",
+          #"poSp": "V",
+          "frm": "i",
+        },
+        {
+          "stri": "kfr",
+          "strTyp": "root",
+          #"poSp": "V",
+          "frm": "i",
+        },
+      ],
+    },
+  ],
+]
