@@ -1,6 +1,7 @@
 # from qChronolyze import filtDown, getSorter
 import ipywidgets as widg
 from ipywidgets import interactive as intct
+import re
 from IPython.display import display, clear_output
 from qChronolyze import refLngD, lng2InpSchD, tafsDict, surAyPosStrAdvWrdMD
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
@@ -24,7 +25,11 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     # df['position'] = df['position'].astype('int')
     df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
     # df.sort_values(["surah_ayah","position"],inplace=True)
-    df.sort_values(["surah_ayah","position"],inplace=True)
+    df.sort_values(
+        ["surah_ayah","positions"],
+        key=lambda x: x.map(min) if x.name=='positions' else x,
+        inplace=True
+    )
     # df.reset_index(drop=True,inplace=True)
     sortedRecs = df.to_dict(orient='records')
 
@@ -104,7 +109,7 @@ def qChronoTx(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     import os
 
     if os.path.isfile(mdFile):
-        import re
+        # import re
 
         with open(mdFile) as f:
             strn = f.read()
