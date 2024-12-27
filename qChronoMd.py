@@ -70,7 +70,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
     import os
 
     if os.path.isfile(mdFile):
-        import re
+        # import re
 
         with open(mdFile) as f:
             strn = f.read()
