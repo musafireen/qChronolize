@@ -1,6 +1,7 @@
 # from qChronolyze import filtDown, getSorter
 import ipywidgets as widg
 from ipywidgets import interactive as intct
+import re
 from IPython.display import display, clear_output
 from qChronolyze import refLngD, tafsDict, lng2InpSchD
 from qChronolyze import aggregLsts, getSorter, combClass, optStWdgCl, confFcheck
