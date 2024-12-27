@@ -20,7 +20,7 @@ def qChronoMd(dicti,flnm,refLng,qyArLegSch=lng2InpSchD["arabic"][1]):
 
     df = pd.DataFrame(instLstAgg)
     sorter = getSorter()
-    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","position","string","meaning","ayah_link","query"])
+    df = pd.DataFrame([obj.__dict__ for obj in instLstAgg],columns = ["surah_ayah","positions","string","meaning","ayah_link","query"])
     # df['position'] = df['position'].astype('int')
     df['surah_ayah'] = pd.Categorical(df['surah_ayah'], categories=sorter, ordered=True)
     df.sort_values(
