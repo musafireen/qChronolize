@@ -542,7 +542,7 @@ def dataGrabber(strObj):
 
     strArbSch = None if inpLng != "arb" else rtTrns(stri,"arb","bkwSch","arbSch")
 
-    print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
+    # print(stri,strTyp,frm,flt,poSp,isNotRoot,inpLng,inpSch)
 
     instLst = []
     import re
@@ -579,26 +579,6 @@ def dataGrabber(strObj):
                         if pos not in inst[2]:
                             inst[2].append(pos)
                 elif inpLng == "arb":
-                    def poSpOnward(inst,curMean,strD,poSp,frm,flt):
-                        if strD["poSp"] == "All" or poSp == "All" or strD["poSp"] == poSp:
-                            if strD["frm"] == "All" or frm == "All" or strD["frm"] == frm:
-                                if ( 
-                                    len(
-                                        re.compile(str(flt)).findall(
-                                            # wrdStrD["mean"].lower()
-                                            curMean
-                                        )
-                                    ) > 0 
-                                    or len(
-                                        re.compile(str(stri)).findall(
-                                            # wrdStrD["mean"].lower()
-                                            curMean
-                                        ) 
-                                    ) > 0 
-                                ):
-                                    if pos not in inst[2]:
-                                        inst[2].append(pos)
-                                    # inst[3].append(mean)
 
                     curMean = wrdStrD["mean"].lower()
                     # mean = wrdStrD["mean"]
@@ -608,15 +588,22 @@ def dataGrabber(strObj):
                         strArbSchNV = remVwls(strArbSch,"arbSch")
                         stemInWrd = strArbSchNV in wrdNV
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
+                    
+                    poSpMatch = True
+                    frmMatch = True
+                    strTypMatch = False
+                    strMatch = False
+                    fltMatch = False
 
                     for strD in wrdStrD["striDLs"]:
                         if strTyp == "stem":
+                            strTypMatch = True
                             # poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             if stemInWrd:
                                 # print(wrdNV, strArbSchNV)
                                 # poSpOnward(instD,wrdStrD,strD,poSp,frm,flt)
-                                poSpOnward(inst,curMean,strD,poSp,frm,flt)
-                    
+                                # poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                strMatch = True
                         else:
                             # if strTyp == "stem":
                             #     # if remVwls(strD["stri"]) in remVwls(stri) or stemInWrd:
@@ -625,10 +612,40 @@ def dataGrabber(strObj):
                             #         poSpOnward(inst,curMean,strD,poSp,frm,flt)
                             
                                 # print(strD["stri"],stri)
+                                if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
+                                    if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
+                                        # poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                        # pass
+                                        strTypMatch = True
                                 if strD["stri"] == stri:
-                                    if strD["strTyp"] == "All" or strTyp == 'All' or strD["strTyp"] == strTyp:
-                                        if not (strD["strTyp"] == 'root' and strTyp == 'All' and isNotRoot == True):
-                                            poSpOnward(inst,curMean,strD,poSp,frm,flt)
+                                    strMatch = True
+
+                    # def poSpOnward(inst,curMean,strD,poSp,frm,flt):
+                        if poSp != "All" and (strD["poSp"] != "All" and strD["poSp"] != poSp):
+                            poSpMatch = False
+                        if frm != "All" and (strD["frm"] != "All" and strD["frm"] != frm):
+                            frmMatch = False
+                        if ( 
+                            flt == '' or
+                            len(
+                                re.compile(str(flt)).findall(
+                                    # wrdStrD["mean"].lower()
+                                    curMean
+                                )
+                            ) > 0 
+                            or len(
+                                re.compile(str(stri)).findall(
+                                    # wrdStrD["mean"].lower()
+                                    curMean
+                                ) 
+                            ) > 0 
+                        ):
+                            fltMatch = True
+                                # inst[3].append(mean)
+
+                    if (poSpMatch and frmMatch and strTypMatch and strMatch and fltMatch):
+                        if pos not in inst[2]:
+                            inst[2].append(pos)
 
             
             if len(inst[2]) > 0:
@@ -992,12 +1009,12 @@ def aggregLsts(
     ):
     instLstAgg = []
     for optSt in qL:
-        print(optSt)
+        # print(optSt)
         lblParts = []
         optStInsts = []
-        print(f"optStInsts before comb: {optStInsts}")
+        # print(f"optStInsts before comb: {optStInsts}")
         for comb in optSt:
-            print(comb)
+            # print(comb)
             strL = comb.strL
             # strL = comb["strL"]
             lblParts += [comb.lbl]
@@ -1007,7 +1024,7 @@ def aggregLsts(
             #     strObj 
             #     in strL
             # ])]
-            print(f"optStInsts after comb: {optStInsts}")
+            # print(f"optStInsts after comb: {optStInsts}")
             combInstLst = intersct(comb)
             # optStInsts += combInstLst
             optStInsts = [*optStInsts,*combInstLst]
@@ -1073,16 +1090,16 @@ class strObjClass:
                 #  **kwargs
                 ):
         
-        print(
-            "args in str init: ",
-            "stri: ", stri,
-            "flt:", flt,
-            "strTyp:", strTyp,
-            "frm:", frm,
-            "poSp:", poSp,
-            "inpLng:", inpLng,
-            "inpSch:", inpSch,
-        )
+        # print(
+        #     "args in str init: ",
+        #     "stri: ", stri,
+        #     "flt:", flt,
+        #     "strTyp:", strTyp,
+        #     "frm:", frm,
+        #     "poSp:", poSp,
+        #     "inpLng:", inpLng,
+        #     "inpSch:", inpSch,
+        # )
         self.stri = stri
         self.flt = flt
         self.strTyp = strTyp if strTyp != None else self.strTypSt
@@ -1099,16 +1116,16 @@ class strObjClass:
         #     "inpLng": inpLng,
         #     "inpSch": inpSch,
         # }
-        print(
-            "props set in str init: ",
-            "stri: ", self.stri,
-            "flt:",self.flt,
-            "strTyp:", self.strTyp,
-            "frm:", self.frm,
-            "poSp:", self.poSp,
-            "inpLng:", self.inpLng,
-            "inpSch:", self.inpSch,
-        )
+        # print(
+        #     "props set in str init: ",
+        #     "stri: ", self.stri,
+        #     "flt:",self.flt,
+        #     "strTyp:", self.strTyp,
+        #     "frm:", self.frm,
+        #     "poSp:", self.poSp,
+        #     "inpLng:", self.inpLng,
+        #     "inpSch:", self.inpSch,
+        # )
         # print(
         #     self.stri,
         #     self.flt,
@@ -1142,7 +1159,7 @@ class combClass:
     #   self.strL = [ strObjClass(**strObj).strObj for strObj in strL  ]
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
       qyArLegSch = lng2InpSchD["arabic"][-1] if qyArLegSch == None else qyArLegSch
-      print("qyArLegSch is ",qyArLegSch)
+    #   print("qyArLegSch is ",qyArLegSch)
       self.strL = [ strObjClass(**strObj) for strObj in strL  ]
 
       fltJoin =   ' '.join([ 
@@ -1719,18 +1736,18 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                                 "inpSch":strCFlds[6].value,
                             }
                         )
-                        print(f"combClass.strLSt: {combClass.strLSt}")
+                        # print(f"combClass.strLSt: {combClass.strLSt}")
                 # if len(combObj["strL"]) > 0:
                 if len(combClass.strLSt) > 0:
-                    print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
-                    print(f"optSt before appending comb:{optSt}")
+                    # print(f"combClass.strL while appending to optSt: {combClass.strLSt}")
+                    # print(f"optSt before appending comb:{optSt}")
                     optSt.append(combClass(lbl=qyLblFld.value,qyArLegSch=qyArLegSch))
-                    print(f"comb.strL appended to optSt: {optSt[-1].strL}")
-                    print(f"optSt after appending comb:{optSt}")
+                    # print(f"comb.strL appended to optSt: {optSt[-1].strL}")
+                    # print(f"optSt after appending comb:{optSt}")
             if len(optSt) > 0:
-                print(f"qL before appending optSt:{qL}")
+                # print(f"qL before appending optSt:{qL}")
                 qL.append(optSt)
-                print(f"qL after appending optSt:{qL}")
+                # print(f"qL after appending optSt:{qL}")
                 # qL.append(combObj.__dict__)
         # dg = aggregLsts(qL)
         # sortchron(dg)
