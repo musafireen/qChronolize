@@ -586,7 +586,7 @@ def dataGrabber(strObj):
                     if strTyp == "stem":
                         # wrdNV = remVwls(wrdStrD["wrd"],"arbSch").replace('_','')
                         # strArbSchNV = remVwls(strArbSch,"arbSch")
-                        wrdNV = wrdStrD["wrd"].replace('_','')
+                        wrdNV = wrdStrD["wrd"].replace('ـ','')
                         strArbSchNV = strArbSch
                         stemInWrd = strArbSchNV in wrdNV
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
