@@ -16,6 +16,7 @@ arbVwlsDict = {
         "F": "ً",
         "N": "ٌ",
         "K": "ٍ",
+        "_": "ـ",
 }
 
 arbConsD = {
@@ -44,7 +45,6 @@ arbConsD = {
         "Z": "ظ",
         "E": "ع",
         "g": "غ",
-        "_": "ـ",
         "f": "ف",
         "q": "ق",
         "k": "ك",
@@ -584,8 +584,10 @@ def dataGrabber(strObj):
                     # mean = wrdStrD["mean"]
                     
                     if strTyp == "stem":
-                        wrdNV = remVwls(wrdStrD["wrd"],"arbSch")
-                        strArbSchNV = remVwls(strArbSch,"arbSch")
+                        # wrdNV = remVwls(wrdStrD["wrd"],"arbSch").replace('_','')
+                        # strArbSchNV = remVwls(strArbSch,"arbSch")
+                        wrdNV = wrdStrD["wrd"]
+                        strArbSchNV = strArbSch.replace('_','')
                         stemInWrd = strArbSchNV in wrdNV
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
                     

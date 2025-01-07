@@ -1,4 +1,4 @@
-from qChronolyze import sameVrsIndicator
+from qChronolyze import sameVrsIndicator, rtTrns
 
 dEw_duwn_baEd = [
     [
@@ -1112,3 +1112,673 @@ Hjb = [
     ],
 ]
 
+
+Hwr = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "Hwr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "i",
+          }
+        ],
+        "lbl": "حور i"
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "Hwr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "iii",
+          }
+        ],
+        "lbl": "حور iii"
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "Huwr",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+        # "lbl": "حور iii"
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "taHaAwur",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+        # "lbl": "حور iii"
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "HawaAriy~uwn",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+        # "lbl": "حور iii"
+      }
+    ],
+]
+
+Hwr_isa_maryam = [
+    [
+      {
+        "wrdDis": 20,
+        "strL": [
+          optO[0]["strL"][0],
+          {
+            # "stri": "naASir",
+            # "strTyp": "lem",
+            "stri": stri,
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+        ],
+        "lbl": (rtTrns(optO[0]["strL"][0]["stri"], "arb", "bkwSch", "arbSch") if "lbl" not in optO[0] else optO[0]["lbl"])+ ' ' + rtTrns(stri, "arb", "bkwSch", "arbSch"),
+      }
+        # optO[0]["strL"][0]
+      for stri in ["EiysaY","maroyam","masiyH"]
+    ]
+    for optO in Hwr
+]
+
+nSr = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "nSr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "i",
+          }
+        ],
+        "lbl": "نصر i",
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "nSr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "vi",
+          }
+        ],
+        "lbl": "نصر vi",
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "nSr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "viii",
+          }
+        ],
+        "lbl": "نصر viii",
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "nSr",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "x",
+          }
+        ],
+        "lbl": "نصر x",
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSor",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSoraAniy~",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSiyr",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "naASir",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "manSuwr",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "m~untaSir",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+nSr_isa_maryam = [
+    # [
+    #   {
+    #     "wrdDis": 40,
+    #     "strL": [
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "nSr",
+    #         "strTyp": "root",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "maroyam",
+    #         "strTyp": "lem",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #     ],
+    #   },
+    # ],
+    # [
+    #   {
+    #     "wrdDis": 40,
+    #     "strL": [
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "nSr",
+    #         "strTyp": "root",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "masiyH",
+    #         "strTyp": "lem",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #     ],
+    #   },
+    # ],
+    # [
+    #   {
+    #     "wrdDis": 40,
+    #     "strL": [
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "nSr",
+    #         "strTyp": "root",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #       {
+    #         # "stri": "naASir",
+    #         # "strTyp": "lem",
+    #         "stri": "EiysaY",
+    #         "strTyp": "lem",
+    #         # "poSp": "N",
+    #         # "frm": "i",
+    #       },
+    #     ],
+    #   },
+    # ],
+    [
+      {
+        "wrdDis": 30,
+        "strL": [
+          optO[0]["strL"][0],
+          {
+            # "stri": "naASir",
+            # "strTyp": "lem",
+            "stri": stri,
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+        ],
+        "lbl": (rtTrns(optO[0]["strL"][0]["stri"], "arb", "bkwSch", "arbSch") if "lbl" not in optO[0] else optO[0]["lbl"])+ ' ' + rtTrns(stri, "arb", "bkwSch", "arbSch")
+      }
+        # optO[0]["strL"][0]
+      for stri in ["EiysaY","maroyam","masiyH"]
+    ]
+    for optO in nSr
+]
+
+israel = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "<isoraA}iyl",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+hwd = [    
+    [
+      {
+        "strL": [
+          {
+            "stri": "hwd",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "huwd2",
+            "strTyp": "lem",
+            "flt": "Jew",
+            "poSp": "PN",
+            "frm": "All",
+          }
+        ],
+        "lbl": "هود Jew"
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "huwd",
+            "strTyp": "lem",
+            "flt": "Hud",
+            "poSp": "PN",
+            "frm": "All",
+          }
+        ],
+        "lbl": "هود Hud"
+      }
+    ],
+]
+
+sabian = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "S~a`bi_#iyn",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+majus = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "majuws",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+torah = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "t~aworaY`p",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+injil = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "<injiyl",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+zabur = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "zabuwr",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+zbr = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "zabuwr",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "zubur",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "zubar",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+SHf = [
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": ">aw~al",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "muwsaY`",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "<iboraAhiym",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "m~ukar~amap",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "m~uTah~arap",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "m~una$~arap",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "SuHuf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "n$r",
+            "strTyp": "root",
+            "poSp": "V",
+            # "frm": "i",
+          }
+        ],
+      },
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "SiHaAf",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+mll = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "mll",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "iv",
+          }
+        ],
+        "lbl": "ملل iv",
+      },
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "mil~ap",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+Hanif = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "Haniyf",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
