@@ -58,6 +58,7 @@ dEw = [
         },
     ],
 ]
+
 shrk = [
     [
         {
@@ -375,8 +376,9 @@ amr = [
        "poSp": "V",
        "frm": "i",
       }
-     ]
-   }
+     ],
+    "lbl": "امر i"
+   },
 ],
 [
    {
@@ -387,7 +389,8 @@ amr = [
        "poSp": "V",
        "frm": "viii",
       }
-     ]
+     ],
+    "lbl": "امر viii"
    }
 ],
 [
@@ -450,7 +453,8 @@ wthq_Ehd = [
        "poSp": "V",
        "frm": "iii",
       }
-     ]
+     ],
+     "lbl": "وثق iii"
    }
  ],
  [
@@ -462,7 +466,8 @@ wthq_Ehd = [
        "poSp": "V",
        "frm": "iv",
       }
-     ]
+     ],
+     "lbl": "وثق iv"
    }
  ],
  [
@@ -523,7 +528,7 @@ wthq_Ehd = [
        "frm": "i",
       }
      ],
-    "lbl": "Ehd i",
+    "lbl": "عهد i",
    }
  ],
  [
@@ -536,7 +541,7 @@ wthq_Ehd = [
        "frm": "iii",
       }
      ],
-    "lbl": "Ehd iii",
+    "lbl": "عهد iii",
    }
  ],
  [
@@ -713,3 +718,397 @@ qwl_kfr = [
     },
   ],
 ]
+
+# qwl_kfr = [
+#   [
+#     {
+#       "wrdDis": 20,
+#       "strL": [
+#         {
+#           "stri": "qwl",
+#           "strTyp": "root",
+#           #"poSp": "V",
+#           "frm": "i",
+#         },
+#         {
+#           "stri": "kfr",
+#           "strTyp": "root",
+#           #"poSp": "V",
+#           "frm": "i",
+#         },
+#       ],
+#     },
+#   ],
+# ]
+
+shbh = [
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "$bh",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "ii",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "$bh",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "vi",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "muta$a`bih",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "mu$otabih",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+]
+
+rkb = [
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "rkb",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "i",
+        },
+      ],
+      "lbl": "ركب i"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "rkb",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "ii",
+        },
+      ],
+      "lbl": "ركب ii"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "rikaAb",
+          "strTyp": "lem",
+          # "poSp": "N",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "r~akob",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "rakuwb",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "rukobaAn",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "m~utaraAkib",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+]
+
+Hjj = [
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Hjj",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "i",
+        },
+      ],
+      "lbl": "حجج i"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Hjj",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "iii",
+        },
+      ],
+      "lbl": "حجج iii"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Hjj",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "vi",
+        },
+      ],
+      "lbl": "حجج vi"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Hij~",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Haj~",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Hijaj",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Huj~ap",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "HaA^j~",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+]
+
+baEod = [
+    [
+        {
+            # "wrdDis": 4,
+            "strL": [
+                {
+                    "stri": "baEod",
+                    "flt": "^((?!fter).)*$",
+                    "strTyp": "lem",
+                    #"poSp": "V",
+                    #"frm": "i",
+                },
+            ]
+        },
+    ],
+]
+
+Zll = [
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Zll",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "i",
+        },
+      ],
+      "lbl": "ظلل i"
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Zll",
+          "strTyp": "root",
+          "poSp": "V",
+          "frm": "ii",
+        },
+      ],
+      "lbl": "ظلل ii",
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Zil~",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Zaliyl",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      # "wrdDis": 20,
+      "strL": [
+        {
+          "stri": "Zul~ap",
+          "strTyp": "lem",
+          # "poSp": "V",
+          # "frm": "i",
+        },
+      ],
+    },
+  ],
+]
+
+Hjb = [
+    [
+        {
+            "strL": [
+                {
+                  "stri": "HijaAb",
+                  "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                  "stri": "maHojuwbuwn",
+                  "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+]
+

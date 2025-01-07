@@ -43164,6 +43164,8 @@ But if they repent and establish Prayer and give Zakah they are your brothers in
 
 وَإِن نَّكَثُوٓا۟ أَيْمَـٰنَهُم مِّنۢ بَعْدِ عَهْدِهِمْ وَطَعَنُوا۟ فِى دِينِكُمْ فَقَـٰتِلُوٓا۟ أَئِمَّةَ ٱلْكُفْرِ ۙ إِنَّهُمْ لَآ أَيْمَـٰنَ لَهُمْ لَعَلَّهُمْ يَنتَهُونَ
 
+But if they break their pledges after making them and attack your faith, make war on the leaders of unbelief that they may desist, for they have no regard for their pledged words.
+
 ### 9:13
 أَلَا تُقَـٰتِلُونَ قَوْمًا نَّكَثُوٓا۟ أَيْمَـٰنَهُمْ وَهَمُّوا۟ بِإِخْرَاجِ ٱلرَّسُولِ وَهُم بَدَءُوكُمْ أَوَّلَ مَرَّةٍ ۚ أَتَخْشَوْنَهُمْ ۚ فَٱللَّهُ أَحَقُّ أَن تَخْشَوْهُ إِن كُنتُم مُّؤْمِنِينَ
 
