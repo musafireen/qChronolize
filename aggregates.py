@@ -1,5 +1,7 @@
 from qChronolyze import sameVrsIndicator
 
+from aggregates_test import *
+
 angels = [
         [
     {
@@ -5535,4 +5537,277 @@ araf = [
 
 shahada = [
 	*araf,
+]
+
+naSara = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSoraAniy~",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    # *nSr_isa_maryam,
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSiyr",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+              "stri": "masiyH",
+              "strTyp": "lem",
+              # "poSp": "N",
+              # "frm": "i",
+          },
+        ],
+      }
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "naSiyr",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+              "stri": "EiysaY",
+              "strTyp": "lem",
+              # "poSp": "N",
+              # "frm": "i",
+          },
+        ],
+      },
+    ],
+    [
+      {
+        "strL": [
+          {
+            "stri": "HawaAriy~uwn",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+        # "lbl": "حور iii"
+      }
+    ],
+    # *Hwr_isa_maryam
+]
+
+hwd_yahudi = [
+    *hwd,
+    [
+      {
+        "strL": [
+          {
+            "stri": "yahuwdiy~",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+hwd_yahudi_israel = [
+    *hwd_yahudi,
+    *israel,
+]
+
+kitab_munir = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "m~uniyr",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+kutub = [
+    *SHf,
+    *torah,
+    *injil,
+    *zbr,
+    *kitab_munir,
+    [
+      {
+        "strL": [
+          {
+            # "stri": "kita`b",
+            # "strTyp": "lem",
+            "stri": "kita`bu",
+            "strTyp": "stem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "muwsaY`",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "maA",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "{l~a*iY",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "maE",
+            "strTyp": "lem",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "maA",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            # "stri": "qabol",
+            # "strTyp": "lem",
+            # # "poSp": "N",
+            # # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+milla_ibrahim = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "mil~ap",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "<iboraAhiym",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+Hanif_milla_ibrahim = [
+    *milla_ibrahim,
+    *Hanif,
+]
+
+ahl_kitab = [
+# ahl_kitab_majus_sabian = [
+    *kitab_ahl,
+    *majus,
+    *sabian,
+    *Hanif_milla_ibrahim,
+    *kutub,
+    *naSara,
+    *hwd_yahudi_israel,
 ]
