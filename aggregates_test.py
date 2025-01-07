@@ -1150,7 +1150,6 @@ Hwr = [
             # "frm": "i",
           }
         ],
-        # "lbl": "حور iii"
       }
     ],
     [
@@ -1163,7 +1162,6 @@ Hwr = [
             # "frm": "i",
           }
         ],
-        # "lbl": "حور iii"
       }
     ],
     [
@@ -1176,7 +1174,6 @@ Hwr = [
             # "frm": "i",
           }
         ],
-        # "lbl": "حور iii"
       }
     ],
 ]
@@ -1188,12 +1185,8 @@ Hwr_isa_maryam = [
         "strL": [
           optO[0]["strL"][0],
           {
-            # "stri": "naASir",
-            # "strTyp": "lem",
             "stri": stri,
             "strTyp": "lem",
-            # "poSp": "N",
-            # "frm": "i",
           },
         ],
         "lbl": (rtTrns(optO[0]["strL"][0]["stri"], "arb", "bkwSch", "arbSch") if "lbl" not in optO[0] else optO[0]["lbl"])+ ' ' + rtTrns(stri, "arb", "bkwSch", "arbSch"),
@@ -1332,75 +1325,6 @@ nSr = [
 ]
 
 nSr_isa_maryam = [
-    # [
-    #   {
-    #     "wrdDis": 40,
-    #     "strL": [
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "nSr",
-    #         "strTyp": "root",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "maroyam",
-    #         "strTyp": "lem",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #     ],
-    #   },
-    # ],
-    # [
-    #   {
-    #     "wrdDis": 40,
-    #     "strL": [
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "nSr",
-    #         "strTyp": "root",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "masiyH",
-    #         "strTyp": "lem",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #     ],
-    #   },
-    # ],
-    # [
-    #   {
-    #     "wrdDis": 40,
-    #     "strL": [
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "nSr",
-    #         "strTyp": "root",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #       {
-    #         # "stri": "naASir",
-    #         # "strTyp": "lem",
-    #         "stri": "EiysaY",
-    #         "strTyp": "lem",
-    #         # "poSp": "N",
-    #         # "frm": "i",
-    #       },
-    #     ],
-    #   },
-    # ],
     [
       {
         "wrdDis": 30,
@@ -1591,7 +1515,6 @@ zbr = [
       }
     ],
 ]
-
 SHf = [
     [
       {
@@ -1739,6 +1662,26 @@ SHf = [
       }
     ],
 ]
+kitab_munir = [
+    [
+      {
+        "strL": [
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          },
+          {
+            "stri": "m~uniyr",
+            "strTyp": "lem",
+            # "poSp": "PN",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
 
 mll = [
     [
@@ -1777,6 +1720,111 @@ Hanif = [
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
+          }
+        ],
+      }
+    ],
+]
+
+kitab_ahl = [
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": ">ahol",
+            "strTyp": "lem",
+            "poSp": "N",
+            "frm": "i",
+          },
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            "poSp": "N",
+            "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 3,
+        "strL": [ 
+          {
+            "stri": "TaA^}ifap",
+            "strTyp": "lem",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+          },
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "ii",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 4,
+        "strL": [
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+          },
+          {
+            "stri": "ktb",
+            "strTyp": "root",
+            "poSp": "V",
+            "frm": "i",
+          }
+        ],
+        "lbl": "قبل كتب i"
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+          },
+          {
+            # "stri": "kita`b",
+            # "strTyp": "lem",
+            "stri": "{lokita`b",
+            "strTyp": "stem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 3,
+        "strL": [
+          {
+            "stri": "Aty",
+            "strTyp": "root",
+            # "poSp": "V",
+            "frm": "iv",
+          },
+          {
+            "stri": "{l~a*iY",
+            "strTyp": "lem",
+            # "poSp": "V",
+            # "frm": "i",
+          },
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            "poSp": "N",
+            "frm": "i",
           }
         ],
       }

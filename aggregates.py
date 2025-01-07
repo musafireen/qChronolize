@@ -5657,8 +5657,10 @@ kutub = [
       {
         "strL": [
           {
-            "stri": "kita`b",
-            "strTyp": "lem",
+            # "stri": "kita`b",
+            # "strTyp": "lem",
+            "stri": "kita`bu",
+            "strTyp": "stem",
             # "poSp": "N",
             # "frm": "i",
           },
@@ -5667,6 +5669,106 @@ kutub = [
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "maA",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "kita`b",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 2,
+        "strL": [
+          {
+            "stri": "nzl",
+            "strTyp": "root",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "{l~a*iY",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            "stri": "qabol",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          }
+        ],
+      }
+    ],
+    [
+      {
+        "wrdDis": 1,
+        "strL": [
+          {
+            "stri": "maE",
+            "strTyp": "lem",
+            # "poSp": "V",
+            # "frm": "iv",
+          },
+          {
+            "stri": "maA",
+            "strTyp": "lem",
+            # "poSp": "N",
+            # "frm": "i",
+          },
+          {
+            # "stri": "qabol",
+            # "strTyp": "lem",
+            # # "poSp": "N",
+            # # "frm": "i",
           }
         ],
       }
@@ -5682,13 +5784,7 @@ milla_ibrahim = [
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
-          }
-        ],
-      }
-    ],
-    [
-      {
-        "strL": [
+          },
           {
             "stri": "<iboraAhiym",
             "strTyp": "lem",
@@ -5705,8 +5801,9 @@ Hanif_milla_ibrahim = [
     *Hanif,
 ]
 
-ahl_kitab_majus_sabian = [
-    *ahl_kitab,
+ahl_kitab = [
+# ahl_kitab_majus_sabian = [
+    *kitab_ahl,
     *majus,
     *sabian,
     *Hanif_milla_ibrahim,
