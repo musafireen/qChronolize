@@ -101,7 +101,7 @@ angels = [
       "wrdDis": 1,
       "strL": [
         { "stri": "jund", "strTyp": "lem",},
-        { "stri": "rab~", "strTyp": "",},
+        { "stri": "rab~", "strTyp": "lem",},
       ],
     },
   ],
