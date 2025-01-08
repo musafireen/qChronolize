@@ -329,14 +329,14 @@ angels = [
         },
     ],
       [
-          [
+
       {
         "strL": [
           { "stri": "malak", "strTyp": "lem",},
           { "stri": "jan~ap", "strTyp": "lem",},
         ],
       },
-    ],
+
   ]
 ]
 
