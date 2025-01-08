@@ -7,7 +7,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "(?:angel|messenger)",},
+        { "stri": "malak", "strTyp": "lem",},
       ],
     },
   ],
@@ -15,7 +15,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "jiboriyl", "flt": "",},
+        { "stri": "jiboriyl", "strTyp": "lem",},
       ],
     },
   ],
@@ -23,7 +23,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "miykaY`l", "flt": "",},
+        { "stri": "miykaY`l", "strTyp": "lem",},
       ],
     },
   ],
@@ -31,7 +31,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "ha`ruwt", "flt": "harut",},
+        { "stri": "ma`lik2", "strTyp": "lem",},
       ],
     },
   ],
@@ -39,7 +39,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "maAruwt", "flt": "marut",},
+        { "stri": "ha`ruwt", "strTyp": "lem",},
       ],
     },
   ],
@@ -47,7 +47,7 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "zbn", "flt": "",},
+        { "stri": "ma`ruwt", "strTyp": "lem",},
       ],
     },
   ],
@@ -55,8 +55,25 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlA", "flt": "(?:chief|assembly)",},
-        { "stri": "Elw", "flt": "(?:high|exalted)",},
+        { "stri": "z~abaAniyap", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 20,
+      "strL": [
+        { "stri": "xazanat", "strTyp": "lem",},
+        { "stri": "jan~ap", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 20,
+      "strL": [
+        { "stri": "xazanat", "strTyp": "lem",},
+        { "stri": "jahan~am", "strTyp": "lem",},
       ],
     },
   ],
@@ -64,22 +81,8 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "jnd", "flt": "(?:host|troop|force)",},
-        { "stri": "Alh", "flt": "(?:Allah|God)",},
-      ],
-    },
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "jnd", "flt": "(?:host|troop|force)",},
-        { "stri": "rab~", "flt": "(?:Lord|lord)",},
-      ],
-    },
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "jnd", "flt": "(?:host|troop|force)",},
-        { "stri": "raHomaAn", "flt": "(?:)",},
+        { "stri": "mala>", "strTyp": "lem",},
+        { "stri": ">aEolaY`", "strTyp": "lem",},
       ],
     },
   ],
@@ -87,8 +90,18 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "jnd", "flt": "(?:host|troop|force)",},
-        { "stri": "smw", "flt": "(?:heaven|sky|skies)",},
+        { "stri": "jund", "strTyp": "lem",},
+        { "stri": "lam", "strTyp": "lem",},
+        { "stri": "rAy", "strTyp": "root",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 1,
+      "strL": [
+        { "stri": "jund", "strTyp": "lem",},
+        { "stri": "rab~", "strTyp": "",},
       ],
     },
   ],
@@ -96,9 +109,8 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "",},
-        { "stri": "rsl", "flt": "",},
-        { "stri": "jEl", "flt": "",},
+        { "stri": "jund", "strTyp": "lem",},
+        { "stri": "samaA^'", "strTyp": "lem",},
       ],
     },
   ],
@@ -106,9 +118,19 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "",},
-        { "stri": "rsl", "flt": "",},
-        { "stri": "nzl", "flt": "(?:have sent down)",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "rasuwl", "strTyp": "lem",},
+        { "stri": "jEl", "strTyp": "root",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 4,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "rasuwl", "strTyp": "lem",},
+        { "stri": "nzl", "strTyp": "root",},
       ],
     },
   ],
@@ -116,9 +138,9 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "",},
-        { "stri": "rsl", "flt": "",},
-        { "stri": "Sfw", "flt": "",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "rasuwl", "strTyp": "lem",},
+        { "stri": "Sfw", "strTyp": "root",},
       ],
     },
   ],
@@ -126,10 +148,19 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "",},
-        { "stri": "laA", "flt": "",},
-        { "stri": "ESy", "flt": "",},
-        { "stri": "Amr", "flt": "",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "laA", "strTyp": "lem",},
+        { "stri": "ESy", "strTyp": "root",},
+        { "stri": "Amr", "strTyp": "root",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 11,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": ">amor", "strTyp": "lem",},
       ],
     },
   ],
@@ -137,8 +168,8 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "Hml", "flt": "",},
-        { "stri": "Er$", "flt": "",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "ruwH", "strTyp": "lem",},
       ],
     },
   ],
@@ -146,8 +177,9 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "(?:[Aa]ngel)",},
-        { "stri": "mdd", "flt": "",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": ">amor", "strTyp": "lem",},
+        { "stri": "ruwH", "strTyp": "lem",},
       ],
     },
   ],
@@ -155,8 +187,8 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "",},
-        { "stri": "qrb", "flt": "(?:are near)",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "Saf~", "strTyp": "lem",},
       ],
     },
   ],
@@ -164,12 +196,148 @@ angels = [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
-        { "stri": "mlk", "flt": "(?:[Aa]ngel)",},
-        { "stri": "Ax*", "flt": "", "strTyp": "root",  "frm": "viii", },
-        { "stri": "rbb", "flt": " (?:[Ll]ords)",},
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "Erj", "strTyp": "root",},
       ],
     },
   ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "Hml", "strTyp": "root",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "Hml", "strTyp": "root",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "mdd", "strTyp": "root",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "sbH", "strTyp": "root",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 5,
+      "strL": [
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 3,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "rab~", "strTyp": "lem",},
+        { "stri": "Ax*", "strTyp": "root",},
+      ],
+    },
+  ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 14
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 14
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 14
+        },
+    ],
+      [
+          [
+      {
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+          { "stri": "jan~ap", "strTyp": "lem",},
+        ],
+      },
+    ],
+  ]
 ]
 
 jinn = [
@@ -223,12 +391,12 @@ jinn = [
         {
             "strL": [
                 {
-                    "stri": "jnn",
-                    # "strTyp": "lem",
+                    "stri": "majonuwn",
+                    "strTyp": "lem",
                 },
                 {
-                    "stri": "khn", 
-                    # "strTyp": "root",
+                    "stri": "kaAhin", 
+                    "strTyp": "lem",
                 },
             ],
             "wrdDis": 20
@@ -246,7 +414,37 @@ jinn = [
                     "strTyp": "lem",
                 },
             ],
-            "wrdDis": 30
+            "wrdDis": 14
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 14
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 14
         },
     ],
     [
@@ -277,6 +475,32 @@ jinn = [
                 },
             ],
             "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "m~uqar~aniyn", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "wrdDis": sameVrsIndicator,
+            "strL": [
+                {
+                    "stri": "m~uqar~aniyn", 
+                    "strTyp": "lem",
+                },
+            ],
         },
     ],
     [
@@ -321,10 +545,11 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "$Tn", 
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
                 },
             ],
-            "wrdDis": 20
+            "wrdDis": 30
         },
     ],
     [
@@ -344,31 +569,7 @@ jinn = [
                     "stri": "jnn",
                     "strTyp": "root",
                     "poSp": "V",
-                    # "frm": "ii",
-                },
-            ],
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jnn",
-                    "strTyp": "root",
-                    "flt": "(?:[Pp]aradise|[Gg]arden|[Hh]eaven)",
-                    "poSp": "N",
-                },
-            ],
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jnn",
-                    "strTyp": "root",
-                    "flt": "^((?![Pp]aradise|[Gg]arden|[Hh]eaven|[Mm]ad|[Cc]raz|[Dd]emon|[Dd]evil|[Jj]inn).)*$",
-                    "poSp": "N",
+                    "frm": "i",
                 },
             ],
         },
@@ -378,9 +579,14 @@ jinn = [
             "strL": [
                 {
                     "stri": "Ew*", 
+                    "strTyp": "root",
                 },
                 {
                     "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
                     "strTyp": "lem",
                 },
             ],
@@ -395,10 +601,11 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "wly", 
+                    "stri": "<ins", 
+                    "strTyp": "lem",
                 },
             ],
-            "wrdDis": 20
+            "wrdDis": 30
         },
     ],
     [
@@ -409,9 +616,44 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "$rk", 
+                    "stri": "kvr",
                     "strTyp": "root",
-                    "poSp": "N",
+                    "poSp": "V",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wly", 
+                    "strTyp": "root",
+                },
+            ],
+            "wrdDis": 7
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$ariyk", 
+                    "strTyp": "lem",
+                    # "poSp": "N",
                     # "frm": "i",
                 },
             ],
@@ -427,6 +669,9 @@ jinn = [
                 },
                 {
                     "stri": "Ebd", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "i"
                 },
             ],
             "wrdDis": 1
@@ -441,6 +686,40 @@ jinn = [
                 },
                 {
                     "stri": "nsb", 
+                    "strTyp": "root",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+kahin = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "kaAhin", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "majonuwn",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "kaAhin", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$aAEir",
+                    "strTyp": "lem",
                 },
             ],
             "wrdDis": 20
@@ -530,6 +809,21 @@ evil_spirits = [
       ],
     },
   ],
+      [
+        {
+            "strL": [
+                {
+                    "stri": "<iboliys",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
         [
     {
       "wrdDis": sameVrsIndicator,
