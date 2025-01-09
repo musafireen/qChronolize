@@ -804,7 +804,7 @@ malak = [
   ]
 ]
 
-malak = list(set(malak))
+# malak = list(set(malak))
 
 angels = malak
 
@@ -1534,12 +1534,12 @@ shaytan = [
     *shaytan_akhi_bdhr,
     *shaytan_mani,
     *shaytan_amr,
-    *shaytan_why
+    *shaytan_why,
     *shaytan_wiswas,
     *iblis,
 ]
 
-shaytan = list(set(shaytan))
+# shaytan = list(set(shaytan))
 
 muqarran = [
     *shaytan_muqarran,
@@ -2277,7 +2277,7 @@ jinn = [
     ],
 ]
 
-jinn = list(set(jinn))
+# jinn = list(set(jinn))
 
 jinn_shaytan = [
     *jinn,
