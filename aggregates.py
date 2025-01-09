@@ -740,6 +740,24 @@ jinnah_malak_maqam_saff = [
 ]
 
 
+malak_qabil = [
+                [
+            {
+                "strL": [
+                    {
+                        "stri": "qabiyl",
+                        "strTyp": "lem",
+                        "frm": "All",
+                    },
+                    {
+                        "stri": "malak",
+                        "strTyp": "lem",
+                    },
+                ],
+            },
+        ],
+]
+
 malak = [
   *jinn_malak,
   *malak_ism,
@@ -756,6 +774,7 @@ malak = [
   *malak_shafaah,
   *malak_janah,
   *jinnah_malak_maqam_saff,
+  *malak_qabil,
         [
     {
       "wrdDis": sameVrsIndicator,
@@ -807,6 +826,29 @@ malak = [
 # malak = list(set(malak))
 
 angels = malak
+
+shaytan_qabil = [
+                [
+            {
+                "strL": [
+                    {
+                        "stri": "qabiyl",
+                        "strTyp": "lem",
+                        "frm": "All",
+                    },
+                    {
+                        "stri": "$ayoTa`n",
+                        "strTyp": "lem",
+                    },
+                ],
+            },
+        ],
+]
+
+qabil = [
+    malak_qabil,
+    shaytan_qabil,
+]
 
 shaytan_mareed_dua_shirk = [
     [
@@ -1536,6 +1578,7 @@ shaytan = [
     *shaytan_amr,
     *shaytan_why,
     *shaytan_wiswas,
+    *shaytan_qabil,
     *iblis,
 ]
 
@@ -2060,6 +2103,7 @@ jinn_ijtima_ins = [
 ]
 
 jinn_shirk = [
+    *jinna_wiswas,
     *jinn_ijtima_ins,
     *jinn_istikthar_ins,
     *jinn_wHy_ins_shaytan,
