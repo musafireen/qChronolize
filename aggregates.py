@@ -108,6 +108,33 @@ iblis = [
     *jinn_iblis,
 ]
 
+jinnah_malak_maqam_saff = [
+      [
+          [
+      {
+        "wrdDis": 70,
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+        { "stri": "jin~ap", "strTyp": "lem",},
+          { "stri": "S~aA^f~uwn", "strTyp": "lem",},
+        ],
+      },
+    ],
+  ],
+      [
+          [
+      {
+        "wrdDis": 70,
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+        { "stri": "jin~ap", "strTyp": "lem",},
+          { "stri": "maqaAm", "strTyp": "lem",},
+        ],
+      },
+    ],
+  ]
+]
+
 jinn_malak = [
     *iblis_malak,
     [
@@ -509,10 +536,22 @@ malak_jund = [
   ],
 ]
 
+malak_janah = [
+        [
+    {
+      "wrdDis": 10,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "janaAH", "strTyp": "lem",},
+      ],
+    },
+  ],
+]
+
 malak_rasul = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      "wrdDis": 5,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "rasuwl", "strTyp": "lem",},
@@ -530,20 +569,19 @@ malak_rasul = [
       ],
     },
   ],
-]
-
-malak_ruh = [
-            [
+          [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": "laA", "strTyp": "lem",},
-        { "stri": "ESy", "strTyp": "root",},
-        { "stri": "Amr", "strTyp": "root",},
+        { "stri": "rasuwl", "strTyp": "lem",},
+        { "stri": "Sfw", "strTyp": "root",},
       ],
     },
   ],
+]
+
+malak_ruh = [
         [
     {
       "wrdDis": 11,
@@ -690,12 +728,16 @@ malak_rabb_akhadh = [
 ]
 
 malak_shafaah = [
-    {
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "$afa`Eap", "strTyp": "lem",},
-      ],
-    }
+    [
+      {
+        "wrdDis": 10,
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+          { "stri": "$afa`Eap", "strTyp": "lem",},
+        ],
+      }
+        
+    ]
 ]
 
 angels = [
@@ -711,30 +753,13 @@ angels = [
   *malak_muqarrab,
   *malak_rabb_akhadh,
   *malak_shafaah,
+  *malak_janah,
+  *jinnah_malak_maqam_saff,
         [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "rasuwl", "strTyp": "lem",},
-        { "stri": "Sfw", "strTyp": "root",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "Saf~", "strTyp": "lem",},
       ],
     },
   ],
