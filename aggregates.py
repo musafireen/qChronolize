@@ -670,18 +670,18 @@ malak_muqarrab = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      "wrdDis": 5,
       "strL": [
         { "stri": "muqar~abuwn", "strTyp": "lem",},
+        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": 5,
+      "wrdDis": sameVrsIndicator,
       "strL": [
         { "stri": "muqar~abuwn", "strTyp": "lem",},
-        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
       ],
     },
   ],
@@ -714,30 +714,29 @@ malak_shafaah = [
 ]
 
 jinnah_malak_maqam_saff = [
-      [
-          [
-      {
-        "wrdDis": 70,
-        "strL": [
-          { "stri": "malak", "strTyp": "lem",},
-        { "stri": "jin~ap", "strTyp": "lem",},
-          { "stri": "S~aA^f~uwn", "strTyp": "lem",},
-        ],
-      },
-    ],
+  [
+      
+        {
+          "wrdDis": 70,
+          "strL": [
+            { "stri": "malak", "strTyp": "lem",},
+            { "stri": "jin~ap", "strTyp": "lem",},
+            { "stri": "S~aA^f~uwn", "strTyp": "lem",},
+          ],
+        },
+
   ],
-      [
-          [
+  [
+
       {
         "wrdDis": 70,
         "strL": [
           { "stri": "malak", "strTyp": "lem",},
-        { "stri": "jin~ap", "strTyp": "lem",},
+          { "stri": "jin~ap", "strTyp": "lem",},
           { "stri": "maqaAm", "strTyp": "lem",},
         ],
       },
     ],
-  ]
 ]
 
 
@@ -792,16 +791,17 @@ malak = [
       ],
     },
   ],
-      [
+  #     [
 
-      {
-        "strL": [
-          { "stri": "malak", "strTyp": "lem",},
-          { "stri": "jan~ap", "strTyp": "lem",},
-        ],
-      },
+  #     {
+  #     "wrdDis": 20,
+  #       "strL": [
+  #         { "stri": "malak", "strTyp": "lem",},
+  #         { "stri": "jan~ap", "strTyp": "lem",},
+  #       ],
+  #     },
 
-  ]
+  # ]
 ]
 
 # malak = list(set(malak))
