@@ -3758,6 +3758,7 @@ Woe on that Day to those that give the lie to the Truth!
 
 ![[#r77.2.1]]
 ![[#r77.2.2]]
+![[#r77.2.3]]
 ## r77.2.1
 
 [Q.77.41-47](https://www.islamicstudies.info/tafheem.php?sura=77&verse=41&to=47)
@@ -3804,6 +3805,10 @@ Eat and enjoy yourselves for a while. Surely you are evil-doers.
 
 Woe on that Day to those that give the lie to the Truth!
 
+## r77.2.3
+
+[Q.77.49-50](https://www.islamicstudies.info/tafheem.php?sura=77&verse=49&to=50)
+77.49-50
 
 ### 77:49
 وَيْلٌ يَوْمَئِذٍ لِّلْمُكَذِّبِينَ
@@ -4022,6 +4027,7 @@ My Word is not changed; and never do I inflict the least wrong upon My servants.
 
 ![[#r50.3.1]]
 ![[#r50.3.2]]
+![[#r50.3.3]]
 ## r50.3.1
 
 [Q.50.30-37](https://www.islamicstudies.info/tafheem.php?sura=50&verse=30&to=37)
@@ -4074,6 +4080,10 @@ How many a nation did We destroy before them that were stronger in prowess than 
 
 Verily there is a lesson in this for everyone who has a (sound) heart and who listens with an attentive mind.
 
+## r50.3.3
+
+[Q.50.39-45](https://www.islamicstudies.info/tafheem.php?sura=50&verse=39&to=45)
+50.39-45
 
 ### 50:39
 فَٱصْبِرْ عَلَىٰ مَا يَقُولُونَ وَسَبِّحْ بِحَمْدِ رَبِّكَ قَبْلَ طُلُوعِ ٱلشَّمْسِ وَقَبْلَ ٱلْغُرُوبِ
@@ -7165,6 +7175,7 @@ All of them shall (one day) be gathered before Us.
 
 ![[#r36.3.1]]
 ![[#r36.3.2]]
+![[#r36.3.3]]
 ## r36.3.1
 
 [Q.36.33-44](https://www.islamicstudies.info/tafheem.php?sura=36&verse=33&to=44)
@@ -7241,6 +7252,10 @@ Should We so wish, We can drown them, and there will be none to heed their cries
 
 It is only Our Mercy (that rescues them) and enables enjoyment of life for a while.
 
+## r36.3.3
+
+[Q.36.46-50](https://www.islamicstudies.info/tafheem.php?sura=36&verse=36&to=50)
+36.46-50
 
 ### 36:46
 وَمَا تَأْتِيهِم مِّنْ ءَايَةٍ مِّنْ ءَايَـٰتِ رَبِّهِمْ إِلَّا كَانُوا۟ عَنْهَا مُعْرِضِينَ
@@ -8674,6 +8689,7 @@ and We bestowed on them Our mercy, and granted them a truly lofty renown.
 
 ![[#r19.4.1]]
 ![[#r19.4.2]]
+![[#r19.4.3]]
 ## r19.4.1
 
 [Q.19.51-57](https://www.islamicstudies.info/tafheem.php?sura=19&verse=51&to=57)
@@ -8720,6 +8736,10 @@ And recite in the Book the account of Idris. He was a man of truth, a Prophet;
 
 and We exalted him to a lofty position.
 
+## r19.4.3
+
+[Q.19.59-65](https://www.islamicstudies.info/tafheem.php?sura=19&verse=59&to=65)
+19.59-65
 
 ### 19:59
 ۞ فَخَلَفَ مِنۢ بَعْدِهِمْ خَلْفٌ أَضَاعُوا۟ ٱلصَّلَوٰةَ وَٱتَّبَعُوا۟ ٱلشَّهَوَٰتِ ۖ فَسَوْفَ يَلْقَوْنَ غَيًّا
@@ -8770,6 +8790,7 @@ He is the Lord of the heavens and the earth and all that is in between. Serve Hi
 
 ![[#r19.5.1]]
 ![[#r19.5.2]]
+![[#r19.5.3]]
 ## r19.5.1
 
 [Q.19.66-70](https://www.islamicstudies.info/tafheem.php?sura=19&verse=66&to=70)
@@ -8804,6 +8825,10 @@ and then We will draw aside from each party those who were most rebellious again
 
 and then We shall know well all those most worthy to be cast in Hell.
 
+## r19.5.3
+
+[Q.19.72-82](https://www.islamicstudies.info/tafheem.php?sura=19&verse=72&to=82)
+19.72-82
 
 ### 19:72
 ثُمَّ نُنَجِّى ٱلَّذِينَ ٱتَّقَوا۟ وَّنَذَرُ ٱلظَّـٰلِمِينَ فِيهَا جِثِيًّا
@@ -10475,10 +10500,10 @@ So glorify the name of your Great Lord.
 26.1-9
 
 ![[#r26.1.1]]
-![[#r26.10.1]]
-![[#r26.11.1]]
-![[#r26.11.2]]
-![[#r26.11.3]]
+![[#r26.1.1]]
+![[#r26.1.2]]
+![[#r26.1.3]]
+![[#r26.1.4]]
 ## r26.1.1
 
 [Q.26.1-9](https://www.islamicstudies.info/tafheem.php?sura=26&verse=1&to=9)
@@ -11737,6 +11762,7 @@ Verily Your Lord is Immensely Mighty, Most Compassionate.
 ![[#r26.11.1]]
 ![[#r26.11.2]]
 ![[#r26.11.3]]
+![[#r26.11.4]]
 ## r26.11.1
 
 [Q.26.192-196](https://www.islamicstudies.info/tafheem.php?sura=26&verse=192&to=196)
@@ -11771,6 +11797,10 @@ to your heart that you might become one of those who warn (others on behalf of A
 
 (a revelation embodied) in the scriptures of the ancients.
 
+## r26.11.3
+
+[Q.26.198-223](https://www.islamicstudies.info/tafheem.php?sura=26&verse=198&to=223)
+26.198-223
 
 ### 26:198
 وَلَوْ نَزَّلْنَـٰهُ عَلَىٰ بَعْضِ ٱلْأَعْجَمِينَ
@@ -13137,6 +13167,7 @@ And those who had envied his position the day before began to say on the morrow:
 
 ![[#r28.9.1]]
 ![[#r28.9.2]]
+![[#r28.9.3]]
 ## r28.9.1
 
 [Q.28.83-84](https://www.islamicstudies.info/tafheem.php?sura=28&verse=83&to=84)
@@ -13153,6 +13184,10 @@ As for the Abode of the Hereafter, We shall assign it exclusively for those who 
 
 He who shall bring a good deed shall be rewarded with what is better. But those who bring evil deeds shall not be requited more than their deeds.
 
+## r28.9.3
+
+[Q.28.86-88](https://www.islamicstudies.info/tafheem.php?sura=28&verse=86&to=88)
+28.86-88
 
 ### 28:86
 وَمَا كُنتَ تَرْجُوٓا۟ أَن يُلْقَىٰٓ إِلَيْكَ ٱلْكِتَـٰبُ إِلَّا رَحْمَةً مِّن رَّبِّكَ ۖ فَلَا تَكُونَنَّ ظَهِيرًا لِّلْكَـٰفِرِينَ
@@ -13253,6 +13288,7 @@ and warns those who do not believe in the Hereafter that We have prepared for th
 
 ![[#r17.2.1]]
 ![[#r17.2.2]]
+![[#r17.2.3]]
 ## r17.2.1
 
 [Q.17.11-25](https://www.islamicstudies.info/tafheem.php?sura=17&verse=11&to=25)
@@ -13347,6 +13383,10 @@ and be humble and tender to them and say: "Lord, show mercy to them as they nurt
 
 Your Lord is best aware of what is in your hearts. If you are righteous, He will indeed forgive those who relent and revert (to serving Allah).
 
+## r17.2.3
+
+[Q.17.27-30](https://www.islamicstudies.info/tafheem.php?sura=17&verse=11&to=30)
+17.27-30
 
 ### 17:27
 إِنَّ ٱلْمُبَذِّرِينَ كَانُوٓا۟ إِخْوَٰنَ ٱلشَّيَـٰطِينِ ۖ وَكَانَ ٱلشَّيْطَـٰنُ لِرَبِّهِۦ كَفُورًا
@@ -13528,6 +13568,7 @@ on the Day when He will call you and you will rise praising Him in response to H
 
 ![[#r17.5.1]]
 ![[#r17.5.2]]
+![[#r17.5.3]]
 ## r17.5.1
 
 [Q.17.53-56](https://www.islamicstudies.info/tafheem.php?sura=17&verse=53&to=56)
@@ -13556,6 +13597,10 @@ Your Lord knows all who dwell in the heavens and the earth. We have exalted some
 
 Tell them: "Call upon those whom you fancy to be (your helpers) instead of Him! They have no power to remove any affliction from you, nor can they shift it (to any other)."
 
+## r17.5.3
+
+[Q.17.59-70](https://www.islamicstudies.info/tafheem.php?sura=17&verse=58&to=70)
+17.58-70
 
 ### 17:58
 وَإِن مِّن قَرْيَةٍ إِلَّا نَحْنُ مُهْلِكُوهَا قَبْلَ يَوْمِ ٱلْقِيَـٰمَةِ أَوْ مُعَذِّبُوهَا عَذَابًا شَدِيدًا ۚ كَانَ ذَٰلِكَ فِى ٱلْكِتَـٰبِ مَسْطُورًا
@@ -14719,6 +14764,8 @@ And were We to put off the chastisement from them for a determined period, they 
 ![[#r11.2.1]]
 ![[#r11.2.2]]
 ![[#r11.2.3]]
+![[#r11.2.4]]
+![[#r11.2.5]]
 ## r11.2.1
 
 [Q.11.9-11](https://www.islamicstudies.info/tafheem.php?sura=11&verse=9&to=11)
@@ -14741,6 +14788,10 @@ And if We let him taste favour after harm has touched him, he says: 'All my ills
 
 except those who are patient and act righteously. Such shall have Allah's forgiveness and a great reward.
 
+## r11.2.3
+
+[Q.11.13-16](https://www.islamicstudies.info/tafheem.php?sura=11&verse=13&to=16)
+11.13-16
 
 ### 11:13
 أَمْ يَقُولُونَ ٱفْتَرَىٰهُ ۖ قُلْ فَأْتُوا۟ بِعَشْرِ سُوَرٍ مِّثْلِهِۦ مُفْتَرَيَـٰتٍ وَٱدْعُوا۟ مَنِ ٱسْتَطَعْتُم مِّن دُونِ ٱللَّهِ إِن كُنتُمْ صَـٰدِقِينَ
@@ -14765,6 +14816,10 @@ Those who seek merely the present world and its adornment. We fully recompense t
 
 They are the ones who shall have nothing in the Hereafter except Fire. (There they shall come to know) that their deeds in the world have come to naught; and that whatever they have done is absolutely useless.
 
+## r11.2.5
+
+[Q.11.18-24](https://www.islamicstudies.info/tafheem.php?sura=11&verse=18&to=24)
+11.18-24
 
 ### 11:18
 وَمَنْ أَظْلَمُ مِمَّنِ ٱفْتَرَىٰ عَلَى ٱللَّهِ كَذِبًا ۚ أُو۟لَـٰٓئِكَ يُعْرَضُونَ عَلَىٰ رَبِّهِمْ وَيَقُولُ ٱلْأَشْهَـٰدُ هَـٰٓؤُلَآءِ ٱلَّذِينَ كَذَبُوا۟ عَلَىٰ رَبِّهِمْ ۚ أَلَا لَعْنَةُ ٱللَّهِ عَلَى ٱلظَّـٰلِمِينَ
@@ -15402,6 +15457,7 @@ And as for those who are blessed, they shall abide in the Garden as long as the 
 
 ![[#r11.10.1]]
 ![[#r11.10.2]]
+![[#r11.10.3]]
 ## r11.10.1
 
 [Q.11.110-113](https://www.islamicstudies.info/tafheem.php?sura=11&verse=110&to=113)
@@ -15430,6 +15486,11 @@ So remain, (O Muhammad), you and those who have returned with you (to the fold o
 
 And do not incline towards the wrong-doers lest the Fire might seize you and you will have none as your protector against Allah; and then you will not be helped from anywhere.
 
+
+## r11.10.3
+
+[Q.11.115-123](https://www.islamicstudies.info/tafheem.php?sura=11&verse=115&to=123)
+11.115-123
 
 ### 11:115
 وَٱصْبِرْ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُحْسِنِينَ
@@ -16781,6 +16842,7 @@ So We chastised them. The desolate locations of both communities lie on a well-k
 
 ![[#r15.6.1]]
 ![[#r15.6.2]]
+![[#r15.6.3]]
 ## r15.6.1
 
 [Q.15.80-86](https://www.islamicstudies.info/tafheem.php?sura=15&verse=80&to=86)
@@ -16827,6 +16889,10 @@ We have not created the heavens and the earth and all that is in between them ex
 
 Your Lord is indeed the Creator of all, the All-Knowing.
 
+## r15.6.3
+
+[Q.15.88-99](https://www.islamicstudies.info/tafheem.php?sura=15&verse=88&to=99)
+15.80-99
 
 ### 15:88
 لَا تَمُدَّنَّ عَيْنَيْكَ إِلَىٰ مَا مَتَّعْنَا بِهِۦٓ أَزْوَٰجًا مِّنْهُمْ وَلَا تَحْزَنْ عَلَيْهِمْ وَٱخْفِضْ جَنَاحَكَ لِلْمُؤْمِنِينَ
@@ -17076,6 +17142,11 @@ And who could be more wrong-doing than he who either foists a lie on Allah or gi
 
 And on the Day when We shall gather them all together, We shall ask those who associated others with -Allah in His divinity: 'Where, now, are your partners whom you imagined (to have a share in the divinity of Allah)?'
 
+
+## r6.3.3
+
+[Q.6.24-30](https://www.islamicstudies.info/tafheem.php?sura=6&verse=24&to=30)
+6.24-30
 
 ### 6:24
 ٱنظُرْ كَيْفَ كَذَبُوا۟ عَلَىٰٓ أَنفُسِهِمْ ۚ وَضَلَّ عَنْهُم مَّا كَانُوا۟ يَفْتَرُونَ
@@ -17555,12 +17626,20 @@ Those are the ones to whom We gave the Book, and judgement and prophethood. And 
 
 (O Muhammad!) Those are the ones Allah guided to the right way. Follow, then, their way, and say: 'I ask of you no reward (for carrying on this mission); it is merely an admonition to all mankind.'
 
+## r6.11.2
+
+[Q.6.92-92](https://www.islamicstudies.info/tafheem.php?sura=6&verse=92&to=92)
+6.92-92
 
 ### 6:92
 وَهَـٰذَا كِتَـٰبٌ أَنزَلْنَـٰهُ مُبَارَكٌ مُّصَدِّقُ ٱلَّذِى بَيْنَ يَدَيْهِ وَلِتُنذِرَ أُمَّ ٱلْقُرَىٰ وَمَنْ حَوْلَهَا ۚ وَٱلَّذِينَ يُؤْمِنُونَ بِٱلْـَٔاخِرَةِ يُؤْمِنُونَ بِهِۦ ۖ وَهُمْ عَلَىٰ صَلَاتِهِمْ يُحَافِظُونَ
 
 (Like that Book) this too is a Book which We have revealed; full of blessing, confirming what was revealed before it so that you might warn the people of the Mother of Cities (Makka) and those around it. Those who believe in the Hereafter believe in it, and are evermindful of their Prayers.
 
+## r6.11.4
+
+[Q.6.94-94](https://www.islamicstudies.info/tafheem.php?sura=6&verse=94&to=94)
+6.94-94
 
 ### 6:94
 وَلَقَدْ جِئْتُمُونَا فُرَٰدَىٰ كَمَا خَلَقْنَـٰكُمْ أَوَّلَ مَرَّةٍ وَتَرَكْتُم مَّا خَوَّلْنَـٰكُمْ وَرَآءَ ظُهُورِكُمْ ۖ وَمَا نَرَىٰ مَعَكُمْ شُفَعَآءَكُمُ ٱلَّذِينَ زَعَمْتُمْ أَنَّهُمْ فِيكُمْ شُرَكَـٰٓؤُا۟ ۚ لَقَد تَّقَطَّعَ بَيْنَكُمْ وَضَلَّ عَنكُم مَّا كُنتُمْ تَزْعُمُونَ
@@ -17693,6 +17772,7 @@ We are turning their hearts and eyes away from the Truth even as they did not be
 
 ![[#r6.14.1]]
 ![[#r6.14.2]]
+![[#r6.14.3]]
 ## r6.14.1
 
 [Q.6.111-113](https://www.islamicstudies.info/tafheem.php?sura=6&verse=111&to=113)
@@ -17715,6 +17795,10 @@ And so it is that against every Prophet We have set up the evil ones from among 
 
 So that the hearts of those who do not believe in the Life to Come might incline towards this attractive delusion, and that they may be well pleased with it and might acquire the evils that they are bent on acquiring.
 
+## r6.14.3
+
+[Q.6.115-121](https://www.islamicstudies.info/tafheem.php?sura=6&verse=115&to=121)
+6.115-121
 
 ### 6:115
 وَتَمَّتْ كَلِمَتُ رَبِّكَ صِدْقًا وَعَدْلًا ۚ لَّا مُبَدِّلَ لِكَلِمَـٰتِهِۦ ۚ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ
@@ -21518,6 +21602,7 @@ Allah is Most Gentle to His servants and grants sustenance to whomsoever He plea
 ![[#r42.3.2]]
 ![[#r42.3.3]]
 ![[#r42.3.4]]
+![[#r42.3.5]]
 ## r42.3.1
 
 [Q.42.20-22](https://www.islamicstudies.info/tafheem.php?sura=42&verse=20&to=22)
@@ -21551,6 +21636,10 @@ You will see the wrongdoers fearful of the consequence of their deeds which will
 
 and answers the prayers of those who believe and do good deeds and bestows upon them even more out of His Bounty. As for those who deny (the Truth), a grievous chastisement awaits them.
 
+## r42.3.5
+
+[Q.42.28-29](https://www.islamicstudies.info/tafheem.php?sura=42&verse=28&to=29)
+42.28-29
 
 ### 42:28
 وَهُوَ ٱلَّذِى يُنَزِّلُ ٱلْغَيْثَ مِنۢ بَعْدِ مَا قَنَطُوا۟ وَيَنشُرُ رَحْمَتَهُۥ ۚ وَهُوَ ٱلْوَلِىُّ ٱلْحَمِيدُ
@@ -22053,6 +22142,7 @@ Ask all Our Messengers whom We sent before you whether We had appointed any deit
 
 ![[#r43.5.1]]
 ![[#r43.5.2]]
+![[#r43.5.3]]
 ## r43.5.1
 
 [Q.43.46-53](https://www.islamicstudies.info/tafheem.php?sura=43&verse=46&to=53)
@@ -22105,6 +22195,10 @@ Am I better or this contemptible man who is scarcely able to express himself?
 
 Why were bracelets of gold not bestowed upon him? Why did a retinue of angels not accompany him as attendants?”
 
+## r43.5.3
+
+[Q.43.55-56](https://www.islamicstudies.info/tafheem.php?sura=43&verse=55&to=56)
+43.55-56
 
 ### 43:55
 فَلَمَّآ ءَاسَفُونَا ٱنتَقَمْنَا مِنْهُمْ فَأَغْرَقْنَـٰهُمْ أَجْمَعِينَ
@@ -22813,6 +22907,7 @@ This (Qur'an) is the true guidance. Those who deny the Signs of their Lord shall
 
 ![[#r45.2.1]]
 ![[#r45.2.2]]
+![[#r45.2.3]]
 ## r45.2.1
 
 [Q.45.12-13](https://www.islamicstudies.info/tafheem.php?sura=45&verse=12&to=13)
@@ -22829,6 +22924,10 @@ Allah it is Who has subjected the sea to you so that ships may sail upon it at H
 
 He has subjected to you all that is in the heavens and the earth, all being from Him. Verily there are Signs in this for those who reflect.
 
+## r45.2.3
+
+[Q.45.15-21](https://www.islamicstudies.info/tafheem.php?sura=45&verse=15&to=21)
+45.15-21
 
 ### 45:15
 مَنْ عَمِلَ صَـٰلِحًا فَلِنَفْسِهِۦ ۖ وَمَنْ أَسَآءَ فَعَلَيْهَا ۖ ثُمَّ إِلَىٰ رَبِّكُمْ تُرْجَعُونَ
@@ -23065,6 +23164,7 @@ Tell them: “I am not the first of the Messengers; and I do not know what shall
 
 ![[#r46.2.1]]
 ![[#r46.2.2]]
+![[#r46.2.3]]
 ## r46.2.1
 
 [Q.46.11-14](https://www.islamicstudies.info/tafheem.php?sura=46&verse=11&to=14)
@@ -23093,6 +23193,10 @@ Surely those who said: “Our Lord is Allah” and then remained steadfast shall
 
 They are the people of Paradise. They shall remain in it forever as a reward for their deeds.
 
+## r46.2.3
+
+[Q.46.16-20](https://www.islamicstudies.info/tafheem.php?sura=46&verse=16&to=20)
+46.16-20
 
 ### 46:16
 أُو۟لَـٰٓئِكَ ٱلَّذِينَ نَتَقَبَّلُ عَنْهُمْ أَحْسَنَ مَا عَمِلُوا۟ وَنَتَجَاوَزُ عَن سَيِّـَٔاتِهِمْ فِىٓ أَصْحَـٰبِ ٱلْجَنَّةِ ۖ وَعْدَ ٱلصِّدْقِ ٱلَّذِى كَانُوا۟ يُوعَدُونَ
@@ -23966,6 +24070,7 @@ Some will say concerning them: "They were three and their dog, the fourth"; and 
 
 ![[#r18.4.1]]
 ![[#r18.4.2]]
+![[#r18.4.3]]
 ## r18.4.1
 
 [Q.18.23-27](https://www.islamicstudies.info/tafheem.php?sura=18&verse=23&to=27)
@@ -24000,6 +24105,10 @@ Say: "Allah knows best how long they remained in it, for only He knows all that 
 
 (O Prophet), recite to them from the Book of your Lord what has been revealed to you for none may change His words; (and were you to make any change in His words) you will find no refuge from Him.
 
+## r18.4.3
+
+[Q.18.29-31](https://www.islamicstudies.info/tafheem.php?sura=18&verse=29&to=31)
+18.29-31
 
 ### 18:29
 وَقُلِ ٱلْحَقُّ مِن رَّبِّكُمْ ۖ فَمَن شَآءَ فَلْيُؤْمِن وَمَن شَآءَ فَلْيَكْفُرْ ۚ إِنَّآ أَعْتَدْنَا لِلظَّـٰلِمِينَ نَارًا أَحَاطَ بِهِمْ سُرَادِقُهَا ۚ وَإِن يَسْتَغِيثُوا۟ يُغَاثُوا۟ بِمَآءٍ كَٱلْمُهْلِ يَشْوِى ٱلْوُجُوهَ ۚ بِئْسَ ٱلشَّرَابُ وَسَآءَتْ مُرْتَفَقًا
@@ -29734,6 +29843,7 @@ Evil was the end of those evil-doers, for they gave the lie to Allah's Signs and
 
 ![[#r30.2.1]]
 ![[#r30.2.2]]
+![[#r30.2.3]]
 ## r30.2.1
 
 [Q.30.11-16](https://www.islamicstudies.info/tafheem.php?sura=30&verse=11&to=16)
@@ -29774,6 +29884,10 @@ Then those who believed and acted righteously will be placed in a Garden and wil
 
 As for those who disbelieved and gave the lie to Our Signs and to the encounter of the Hereafter, they will be arraigned for chastisement.
 
+## r30.2.3
+
+[Q.30.18-19](https://www.islamicstudies.info/tafheem.php?sura=30&verse=18&to=19)
+30.18-19
 
 ### 30:18
 وَلَهُ ٱلْحَمْدُ فِى ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ وَعَشِيًّا وَحِينَ تُظْهِرُونَ
@@ -31214,7 +31328,7 @@ and your portion in it is simply that you denounce it as false?
 Is it not a Sign to them - (to wit, the Makkans) - that the learned men of the Children of Israel know that?
 
 
-## r26.11.3
+## r26.11.4
 
 [Q.26.224-227](https://www.islamicstudies.info/tafheem.php?sura=26&verse=224&to=227)
 26.224-227
@@ -31533,10 +31647,12 @@ Then they will be able to play no mischief but will say (falsely): 'By Allah, ou
 
 ![[#r6.11.1]]
 ![[#r6.11.2]]
+![[#r6.11.3]]
+![[#r6.11.4]]
 ## r6.11.1
 
-[Q.6.91-92](https://www.islamicstudies.info/tafheem.php?sura=6&verse=91&to=92)
-6.91-92
+[Q.6.91-91](https://www.islamicstudies.info/tafheem.php?sura=6&verse=91&to=91)
+6.91-91
 
 ### 6:91
 وَمَا قَدَرُوا۟ ٱللَّهَ حَقَّ قَدْرِهِۦٓ إِذْ قَالُوا۟ مَآ أَنزَلَ ٱللَّهُ عَلَىٰ بَشَرٍ مِّن شَىْءٍ ۗ قُلْ مَنْ أَنزَلَ ٱلْكِتَـٰبَ ٱلَّذِى جَآءَ بِهِۦ مُوسَىٰ نُورًا وَهُدًى لِّلنَّاسِ ۖ تَجْعَلُونَهُۥ قَرَاطِيسَ تُبْدُونَهَا وَتُخْفُونَ كَثِيرًا ۖ وَعُلِّمْتُم مَّا لَمْ تَعْلَمُوٓا۟ أَنتُمْ وَلَآ ءَابَآؤُكُمْ ۖ قُلِ ٱللَّهُ ۖ ثُمَّ ذَرْهُمْ فِى خَوْضِهِمْ يَلْعَبُونَ
@@ -31544,10 +31660,10 @@ Then they will be able to play no mischief but will say (falsely): 'By Allah, ou
 They did not form any proper estimate of Allah when they said: 'Allah has not revealed anything to any man.' Ask them: 'The Book which Moses brought as a light and guidance for men and which you keep in bits and scraps, some of which you disclose while the rest you conceal, even though through it you were taught that which neither you nor your forefathers knew -who was it who revealed it?' Say: 'Allah!'- and then leave them to sport with their argumentation.
 
 
-## r6.11.2
+## r6.11.3
 
-[Q.6.93-94](https://www.islamicstudies.info/tafheem.php?sura=6&verse=93&to=94)
-6.93-94
+[Q.6.93-93](https://www.islamicstudies.info/tafheem.php?sura=6&verse=93&to=94)
+6.93-93
 
 ### 6:93
 وَمَنْ أَظْلَمُ مِمَّنِ ٱفْتَرَىٰ عَلَى ٱللَّهِ كَذِبًا أَوْ قَالَ أُوحِىَ إِلَىَّ وَلَمْ يُوحَ إِلَيْهِ شَىْءٌ وَمَن قَالَ سَأُنزِلُ مِثْلَ مَآ أَنزَلَ ٱللَّهُ ۗ وَلَوْ تَرَىٰٓ إِذِ ٱلظَّـٰلِمُونَ فِى غَمَرَٰتِ ٱلْمَوْتِ وَٱلْمَلَـٰٓئِكَةُ بَاسِطُوٓا۟ أَيْدِيهِمْ أَخْرِجُوٓا۟ أَنفُسَكُمُ ۖ ٱلْيَوْمَ تُجْزَوْنَ عَذَابَ ٱلْهُونِ بِمَا كُنتُمْ تَقُولُونَ عَلَى ٱللَّهِ غَيْرَ ٱلْحَقِّ وَكُنتُمْ عَنْ ءَايَـٰتِهِۦ تَسْتَكْبِرُونَ
@@ -34199,7 +34315,8 @@ If your debtor be in straitened circumstances, give him time till his monetary c
 2.282-283
 
 ![[#r2.39.1]]
-## r2.39.1
+![[#r2.39.2]]
+## r2.39.2
 
 [Q.2.282-283](https://www.islamicstudies.info/tafheem.php?sura=2&verse=282&to=283)
 2.282-283
@@ -38543,6 +38660,7 @@ That is because Allah is the Protector of the believers whereas the unbelievers 
 
 ![[#r47.2.1]]
 ![[#r47.2.2]]
+![[#r47.2.3]]
 ## r47.2.1
 
 [Q.47.12-12](https://www.islamicstudies.info/tafheem.php?sura=47&verse=12&to=12)
@@ -38553,6 +38671,10 @@ That is because Allah is the Protector of the believers whereas the unbelievers 
 
 Allah shall admit those who believe and do righteous works to the Gardens beneath which rivers flow. As for the unbelievers, they enjoy the pleasures of this transient life and eat as cattle eat. The Fire shall be their resort.
 
+## r47.2.3
+
+[Q.47.14-19](https://www.islamicstudies.info/tafheem.php?sura=47&verse=14&to=19)
+47.14-19
 
 ### 47:14
 أَفَمَن كَانَ عَلَىٰ بَيِّنَةٍ مِّن رَّبِّهِۦ كَمَن زُيِّنَ لَهُۥ سُوٓءُ عَمَلِهِۦ وَٱتَّبَعُوٓا۟ أَهْوَآءَهُم
@@ -42171,13 +42293,8 @@ Muhammad is Allah's Messenger, and those who are with him are firm with the unbe
 
 ![[#r5.1.1]]
 ![[#r5.1.2]]
-![[#r5.10.1]]
-![[#r5.11.1]]
-![[#r5.12.1]]
-![[#r5.13.1]]
-![[#r5.14.1]]
-![[#r5.15.1]]
-![[#r5.16.1]]
+![[#r5.1.3]]
+
 ## r5.1.1
 
 [Q.5.1-2](https://www.islamicstudies.info/tafheem.php?sura=5&verse=1&to=2)
@@ -42194,6 +42311,10 @@ Believers! Honour your bonds! All grazing beasts of the flock are permitted to y
 
 Believers! Neither desecrate the symbols of (devotion to) Allah, nor the holy month, nor the animals of offering, nor the animals wearing collars indicating they are for sacrifice, nor ill-treat those who have set out for the Holy House seeking from their Lord His bounty and good pleasure. But once you are free from Pilgrimage obligations, you are free to hunt. Do not let your wrath against the people who have barred you from the Holy Mosque move you to commit undue transgressions; rather, help one another in acts of righteousness and piety, and do not help one another in sin and transgression. Fear Allah. Surely Allah is severe in retribution.
 
+## r5.1.3
+
+[Q.5.4-5](https://www.islamicstudies.info/tafheem.php?sura=5&verse=4&to=5)
+5.-5
 
 ### 5:4
 يَسْـَٔلُونَكَ مَاذَآ أُحِلَّ لَهُمْ ۖ قُلْ أُحِلَّ لَكُمُ ٱلطَّيِّبَـٰتُ ۙ وَمَا عَلَّمْتُم مِّنَ ٱلْجَوَارِحِ مُكَلِّبِينَ تُعَلِّمُونَهُنَّ مِمَّا عَلَّمَكُمُ ٱللَّهُ ۖ فَكُلُوا۟ مِمَّآ أَمْسَكْنَ عَلَيْكُمْ وَٱذْكُرُوا۟ ٱسْمَ ٱللَّهِ عَلَيْهِ ۖ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ سَرِيعُ ٱلْحِسَابِ
