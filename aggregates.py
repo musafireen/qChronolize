@@ -14,13 +14,14 @@ jinn_iblis_dhurriya = [
                 {
                     "stri": "*rr", 
                     "strTyp": "root",
+            "wrdDisPos": 35,
                 },
                 {
                     "stri": "<iboliys", 
                     "strTyp": "lem",
+            "wrdDisPos": 35,
                 },
             ],
-            "wrdDis": 35
         },
     ],
 ]
@@ -37,9 +38,9 @@ jinn_iblis = [
                 {
                     "stri": "<iboliys", 
                     "strTyp": "lem",
+            "wrdDisPos": 30,
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -55,13 +56,14 @@ iblis_shaytan = [
                 {
                     "stri": "<iboliys", 
                     "strTyp": "lem",
+            "wrdDisPos": 45
                 },
                 {
                     "stri": "wEd", 
                     "strTyp": "lem",
+            "wrdDisPos": 45
                 },
             ],
-            "wrdDis": 45
         },
     ],
 ]
@@ -77,9 +79,9 @@ iblis_nar = [
                 {
                     "stri": "<iboliys", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -95,9 +97,9 @@ iblis_malak = [
                 {
                     "stri": "<iboliys",
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],
 ]
@@ -120,9 +122,9 @@ jinn_malak = [
                 {
                     "stri": "malak", 
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],
     [
@@ -135,9 +137,9 @@ jinn_malak = [
                 {
                     "stri": "malak", 
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],
     [
@@ -150,9 +152,9 @@ jinn_malak = [
                 {
                     "stri": "malak", 
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],
 ]
@@ -169,18 +171,20 @@ untha_dua_shirk = [
                 {
                     "stri": ">unvaY`", 
                     "strTyp": "lem",
+            "wrdDisPos": 11
                 },
                 {
                     "stri": "dEw",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 11
                 },
                 {
                     "stri": "duwn", 
                     "strTyp": "lem",
+            "wrdDisPos": 11
                 },
             ],
-            "wrdDis": 11
         },
     ],
 ]
@@ -188,7 +192,6 @@ untha_dua_shirk = [
 lat_uzza_manat_untha_ism = [
     [
     {
-      "wrdDis": 75,
       "strL": [
                 {
                     "stri": ">unvaY`", 
@@ -197,25 +200,34 @@ lat_uzza_manat_untha_ism = [
                 {
                     "stri": "smw", 
                     "strTyp": "root",
+      "wrdDisPos": 75,
                     # "poSp": "N",
                     # "frm": "ii"
                 },
-        { "stri": goddess, "strTyp":"lem",  "flt": "",},
+        { 
+            "stri": goddess, 
+            "strTyp":"lem",  
+            "flt": "",
+      "wrdDisPos": 75,
+            },
                 {
                     "stri": "A^baA'", 
                     "strTyp": "lem",
+      "wrdDisPos": 75,
                 },
                 {
                     "stri": "Znn", 
                     "strTyp": "root",
                     # "poSp": "N",
                     # "frm": "ii"
+      "wrdDisPos": 75,
                 },
                 {
                     "stri": "hwy", 
                     "strTyp": "root",
                     # "poSp": "N",
                     # "frm": "ii"
+      "wrdDisPos": 75,
                 },
       ],
     },
@@ -226,7 +238,6 @@ lat_uzza_manat_untha_ism = [
 lat_uzza_manat_untha_ism_malak = [
     [
     {
-      "wrdDis": optO[0]["wrdDis"],
       "strL": optO[0]["strL"] + [ {"stri": "malak","strTyp": "lem",},]
     },
   ]
@@ -243,7 +254,7 @@ malak_tasmiya_untha = [
     #                 "strTyp": "lem",
     #             },
     #         ],
-    #         "wrdDis": 20,
+    #         "wrdDisPos": 20,
     #     },
     # ],
 ]
@@ -256,7 +267,6 @@ tasmiya_untha = [
 ism_liqab = [
         [
     {
-      "wrdDis": 10,
       "strL": [
                 {
                     "stri": "smw", 
@@ -265,11 +275,13 @@ ism_liqab = [
                     # "frm": "ii"
                 },
                 {
+      "wrdDisPos": 10,
                     "stri": "lqb", 
                     "strTyp": "root",
                     # "frm": "ii"
                 },
                 {
+      "wrdDisPos": 10,
                     "stri": "fsq", 
                     "strTyp": "root",
                     # "frm": "ii"
@@ -282,7 +294,7 @@ ism_liqab = [
 # ism_jdl = [
 #         [
 #     {
-#       "wrdDis": 10,
+#       "wrdDisPos": 10,
 #       "strL": [
 #                 {
 #                     "stri": "smw", 
@@ -304,19 +316,20 @@ tasmiya_abd = [
     # *malak_tasmiya_untha,
         [
     {
-      "wrdDis": 20,
       "strL": [
                 {
                     "stri": "A^baA'", 
                     "strTyp": "lem",
                 },
                 {
+      "wrdDisPos": 20,
                     "stri": "smw", 
                     "strTyp": "root",
                     "poSp": "V",
                     "frm": "ii"
                 },
                 {
+      "wrdDisPos": 20,
                     "stri": "Ebd", 
                     "strTyp": "root",
                     # "frm": "ii"
@@ -326,13 +339,13 @@ tasmiya_abd = [
   ],
         [
     {
-      "wrdDis": 10,
       "strL": [
                 {
                     "stri": "$ariyk", 
                     "strTyp": "lem",
                 },
                 {
+      "wrdDisPos": 10,
                     "stri": "smw", 
                     "strTyp": "root",
                     "poSp": "V",
@@ -359,15 +372,16 @@ malak_banat = [
                     "strTyp": "lem",
                 },
                 {
+            "wrdDisPos": 50,
                     "stri": "malak",
                     "strTyp": "lem",
                 },
                 {
+            "wrdDisPos": 50,
                     "stri": "banaAt", 
                     "strTyp": "lem",
                 },
             ],
-            "wrdDis": 50,
         },
     ],
 ]
@@ -385,9 +399,9 @@ malak_untha = [
                 {
                     "stri": ">unvaY`", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
             ],
-            "wrdDis": 20,
         },
     ],
 
@@ -397,7 +411,7 @@ malak_ism = [
     *malak_tasmiya_untha,
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jiboriyl", "strTyp": "lem",},
       ],
@@ -405,7 +419,7 @@ malak_ism = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "miykaY`l", "strTyp": "lem",},
       ],
@@ -413,7 +427,7 @@ malak_ism = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ma`lik2", "strTyp": "lem",},
       ],
@@ -421,7 +435,7 @@ malak_ism = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ha`ruwt", "strTyp": "lem",},
       ],
@@ -429,7 +443,7 @@ malak_ism = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ma`ruwt", "strTyp": "lem",},
       ],
@@ -440,7 +454,7 @@ malak_ism = [
 malak_khazanah_zabaniya = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "z~abaAniyap", "strTyp": "lem",},
       ],
@@ -448,19 +462,24 @@ malak_khazanah_zabaniya = [
   ],
         [
     {
-      "wrdDis": 20,
       "strL": [
-        { "stri": "xazanat", "strTyp": "lem",},
-        { "stri": "jan~ap", "strTyp": "lem",},
+        { 
+            "stri": "xazanat", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 20,
+            "stri": "jan~ap", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": 20,
       "strL": [
-        { "stri": "xazanat", "strTyp": "lem",},
-        { "stri": "jahan~am", "strTyp": "lem",},
+        { 
+            "stri": "xazanat", "strTyp": "lem",
+            },
+        { 
+      "wrdDisPos": 20,
+            "stri": "jahan~am", "strTyp": "lem",},
       ],
     },
   ],
@@ -469,7 +488,7 @@ malak_khazanah_zabaniya = [
 malak_mala = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mala>", "strTyp": "lem",},
         { "stri": ">aEolaY`", "strTyp": "lem",},
@@ -481,7 +500,7 @@ malak_mala = [
 malak_jund = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jund", "strTyp": "lem",},
         { "stri": "lam", "strTyp": "lem",},
@@ -491,19 +510,21 @@ malak_jund = [
   ],
         [
     {
-      "wrdDis": 1,
       "strL": [
         { "stri": "jund", "strTyp": "lem",},
-        { "stri": "rab~", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 1,
+            "stri": "rab~", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": 4,
       "strL": [
         { "stri": "jund", "strTyp": "lem",},
-        { "stri": "samaA^'", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 4,
+            "stri": "samaA^'", "strTyp": "lem",},
       ],
     },
   ],
@@ -512,10 +533,11 @@ malak_jund = [
 malak_janah = [
         [
     {
-      "wrdDis": 10,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": "janaAH", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 10,
+            "stri": "janaAH", "strTyp": "lem",},
       ],
     },
   ],
@@ -524,27 +546,29 @@ malak_janah = [
 malak_rasul = [
             [
     {
-      "wrdDis": 5,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": "rasuwl", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 5,
+            "stri": "rasuwl", "strTyp": "lem",},
         { "stri": "jEl", "strTyp": "root",},
       ],
     },
   ],
         [
     {
-      "wrdDis": 4,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": "rasuwl", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 4,
+            "stri": "rasuwl", "strTyp": "lem",},
         { "stri": "nzl", "strTyp": "root",},
       ],
     },
   ],
           [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "rasuwl", "strTyp": "lem",},
@@ -557,16 +581,17 @@ malak_rasul = [
 malak_ruh = [
         [
     {
-      "wrdDis": 11,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": ">amor", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 11,
+            "stri": ">amor", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "ruwH", "strTyp": "lem",},
@@ -575,7 +600,7 @@ malak_ruh = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": ">amor", "strTyp": "lem",},
@@ -588,7 +613,7 @@ malak_ruh = [
 malak_amr = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "laA", "strTyp": "lem",},
@@ -599,16 +624,17 @@ malak_amr = [
   ],
         [
     {
-      "wrdDis": 11,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": ">amor", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 11,
+            "stri": ">amor", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "ruwH", "strTyp": "lem",},
@@ -617,7 +643,7 @@ malak_amr = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": ">amor", "strTyp": "lem",},
@@ -630,7 +656,7 @@ malak_amr = [
 malak_arsh = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "Hml", "strTyp": "root",},
@@ -640,7 +666,7 @@ malak_arsh = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "Earo$", "strTyp": "lem",},
@@ -649,7 +675,7 @@ malak_arsh = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hml", "strTyp": "root",},
         { "stri": "Earo$", "strTyp": "lem",},
@@ -661,7 +687,7 @@ malak_arsh = [
 malak_muqarrab = [
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "muqar~abuwn", "strTyp": "lem",},
@@ -670,16 +696,17 @@ malak_muqarrab = [
   ],
         [
     {
-      "wrdDis": 5,
       "strL": [
         { "stri": "muqar~abuwn", "strTyp": "lem",},
-        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
+        { 
+      "wrdDisPos": 5,
+            "stri": "Eil~iy~iyn", "strTyp": "lem",},
       ],
     },
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "muqar~abuwn", "strTyp": "lem",},
       ],
@@ -690,11 +717,12 @@ malak_muqarrab = [
 malak_rabb_akhadh = [
             [
     {
-      "wrdDis": 3,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "rab~", "strTyp": "lem",},
-        { "stri": "Ax*", "strTyp": "root",},
+        { 
+      "wrdDisPos": 3,
+            "stri": "Ax*", "strTyp": "root",},
       ],
     },
   ],
@@ -703,10 +731,11 @@ malak_rabb_akhadh = [
 malak_shafaah = [
     [
       {
-        "wrdDis": 10,
         "strL": [
           { "stri": "malak", "strTyp": "lem",},
-          { "stri": "$afa`Eap", "strTyp": "lem",},
+          { 
+        "wrdDisPos": 10,
+              "stri": "$afa`Eap", "strTyp": "lem",},
         ],
       }
         
@@ -717,11 +746,14 @@ jinnah_malak_maqam_saff = [
   [
       
         {
-          "wrdDis": 70,
           "strL": [
             { "stri": "malak", "strTyp": "lem",},
-            { "stri": "jin~ap", "strTyp": "lem",},
-            { "stri": "S~aA^f~uwn", "strTyp": "lem",},
+            { 
+          "wrdDisPos": 70,
+                "stri": "jin~ap", "strTyp": "lem",},
+            { 
+          "wrdDisPos": 70,
+                "stri": "S~aA^f~uwn", "strTyp": "lem",},
           ],
         },
 
@@ -729,11 +761,14 @@ jinnah_malak_maqam_saff = [
   [
 
       {
-        "wrdDis": 70,
         "strL": [
           { "stri": "malak", "strTyp": "lem",},
-          { "stri": "jin~ap", "strTyp": "lem",},
-          { "stri": "maqaAm", "strTyp": "lem",},
+          { 
+        "wrdDisPos": 70,
+              "stri": "jin~ap", "strTyp": "lem",},
+          { 
+        "wrdDisPos": 70,
+              "stri": "maqaAm", "strTyp": "lem",},
         ],
       },
     ],
@@ -777,7 +812,7 @@ malak = [
   *malak_qabil,
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
       ],
@@ -785,7 +820,7 @@ malak = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "Erj", "strTyp": "root",},
@@ -794,7 +829,7 @@ malak = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "mdd", "strTyp": "root",},
@@ -803,7 +838,7 @@ malak = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "sbH", "strTyp": "root",},
@@ -813,7 +848,7 @@ malak = [
   #     [
 
   #     {
-  #     "wrdDis": 20,
+  #     "wrdDisPos": 20,
   #       "strL": [
   #         { "stri": "malak", "strTyp": "lem",},
   #         { "stri": "jan~ap", "strTyp": "lem",},
@@ -860,15 +895,18 @@ shaytan_mareed_dua_shirk = [
                     # "poSp": "V",
                 },
                 {
+            "wrdDisPos": 16,
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
                 },
                 {
+            "wrdDisPos": 16,
                     "stri": "dEw",
                     "strTyp": "root",
                     # "poSp": "V",
                 },
                 {
+            "wrdDisPos": 16,
                     "stri": "m~ariyd", 
                     "strTyp": "lem",
                 },
@@ -877,7 +915,6 @@ shaytan_mareed_dua_shirk = [
                 #     "strTyp": "lem",
                 # },
             ],
-            "wrdDis": 16
         },
     ],
 ]
@@ -899,9 +936,9 @@ shaytan_mareed = [
                 {
                     "stri": "m~ariyd", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -917,26 +954,30 @@ shaytan_sam_srq_sama_buruj = [
                 {
                     "stri": "buruwj", 
                     "strTyp": "lem",
+            "wrdDisPos": 30,
                 },
                 {
                     "stri": "samaA^'", 
                     "strTyp": "lem",
+            "wrdDisPos": 30,
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 30,
                 },
                 {
                     "stri": "rajiym", 
                     "strTyp": "lem",
+            "wrdDisPos": 30,
                 },
                 {
                     "stri": "srq",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30,
                 },
             ],
-            "wrdDis": 30,
         },
     ],
     
@@ -953,14 +994,15 @@ shaytan_zyn_dun = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 5,
                 },
                 {
                     "stri": "zyn",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 5,
                 },
             ],
-            "wrdDis": 5,
         },
     ],
     
@@ -977,21 +1019,24 @@ shaytan_marid_sama_dunya_kawkab = [
                 {
                     "stri": "kawokab", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
                 {
                     "stri": "d~unoyaA", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
                 {
                     "stri": "samaA^'", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
                 {
                     "stri": "m~aArid", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
             ],
-            "wrdDis": 20,
         },
     ],
 ]
@@ -1012,13 +1057,13 @@ shaytan_abd = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 5,
                 },
             #     {
             #         "stri": "<ila`h", 
             #         "strTyp": "lem",
             #     },
             ],
-            "wrdDis": 5,
         },
     ],
 ]
@@ -1036,13 +1081,14 @@ shaytan_akhi_bdhr = [
                     "stri": "b*r",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 20,
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 20,
                 },
             ],
-            "wrdDis": 20
         },
     ], 
 ]
@@ -1059,9 +1105,9 @@ shaytan_mani = [
                     "strTyp": "root",
                     "poSp": "V",
                     "frm": "ii",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ],
 ]
@@ -1078,31 +1124,35 @@ shaytan_nabi_tamanna_ilqa_naskh_fitna = [
                     "stri": "mny",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 20
                 },
                 {
                     "stri": "ftn",
                     "strTyp": "root",
                     # "poSp": "V",
                     # "frm": "ii",
+            "wrdDisPos": 20
                 },
                 {
                     "stri": "nsx",
                     "strTyp": "root",
                     # "poSp": "V",
                     # "frm": "ii",
+            "wrdDisPos": 20
                 },
                 {
                     "stri": "lqy",
                     "strTyp": "root",
                     # "poSp": "V",
                     # "frm": "ii",
+            "wrdDisPos": 20
                 },
                 {
                     "stri": "n~abiY~", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ], 
 ]
@@ -1119,23 +1169,26 @@ shaytan_amr_btk_anam_adhan = [
                     "stri": "btk",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": ">u*unN",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "n~aEam", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],    
 ]
@@ -1152,19 +1205,21 @@ shaytan_amr_ghayr_khalq = [
                     "stri": "gyr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "xaloq",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
 ]
@@ -1181,14 +1236,15 @@ shaytan_amr_munkar = [
                     "stri": "munkar",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
 ]
@@ -1205,14 +1261,15 @@ shaytan_amr_sayyiah = [
                     "stri": "suw^'",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
     [
@@ -1226,14 +1283,15 @@ shaytan_amr_sayyiah = [
                     "stri": "say~i}ap",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
     [
@@ -1247,14 +1305,15 @@ shaytan_amr_sayyiah = [
                     "stri": "say~i_#aAt",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
 ]
@@ -1271,14 +1330,15 @@ shaytan_amr_fahisha = [
                     "stri": "faHo$aA^'",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
     [
@@ -1292,14 +1352,15 @@ shaytan_amr_fahisha = [
                     "stri": "fa`Hi$ap",
                     "strTyp": "lem",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "Amr",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ], 
 ]
@@ -1321,7 +1382,7 @@ shaytan_amr = [
     #                 "strTyp": "lem",
     #             },
     #         ],
-    #         "wrdDis": 30
+    #         "wrdDisPos": 30
     #     },
     # ],
 ]
@@ -1341,10 +1402,12 @@ shaytan_shirk = [
                     "stri": "$rk",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
                 # {
                 #     "stri": "<ins", 
@@ -1355,7 +1418,6 @@ shaytan_shirk = [
                 #     "strTyp": "lem",
                 # },
             ],
-            "wrdDis": 30
         },
     ],
     [
@@ -1370,10 +1432,12 @@ shaytan_shirk = [
                     "stri": "$rk",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
                 # {
                 #     "stri": "<ins", 
@@ -1384,7 +1448,6 @@ shaytan_shirk = [
                 #     "strTyp": "lem",
                 # },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -1401,11 +1464,12 @@ shaytan_sharik_awlad = [
                     "stri": "$rk",
                     "strTyp": "root",
                     "poSp": "V",
-                    "frm": "iii"
+                    "frm": "iii",
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 # {
                 #     "stri": "maAl", 
@@ -1414,9 +1478,9 @@ shaytan_sharik_awlad = [
                 {
                     "stri": "walad", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ],
 ]
@@ -1437,6 +1501,7 @@ shaytan_why = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 # {
                 #     "stri": "<ins", 
@@ -1447,7 +1512,6 @@ shaytan_why = [
                 #     "strTyp": "lem",
                 # },
             ],
-            "wrdDis": 10
         },
     ],
 ]
@@ -1465,7 +1529,7 @@ shaytan_why = [
 #                     "strTyp": "lem",
 #                 },
 #             ],
-#             "wrdDis": 20
+#             "wrdDisPos": 20
 #         },
 #     ],
 # ]
@@ -1481,13 +1545,14 @@ shaytan_qarin = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 25
                 },
                 {
                     "stri": "ri}aA^'", 
                     "strTyp": "root",
+            "wrdDisPos": 25
                 },
             ],
-            "wrdDis": 25
         },
     ],
     [
@@ -1500,13 +1565,14 @@ shaytan_qarin = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 25
                 },
                 {
                     "stri": "E$w", 
                     "strTyp": "root",
+            "wrdDisPos": 25
                 },
             ],
-            "wrdDis": 25
         },
     ],
 ]
@@ -1522,7 +1588,7 @@ qarin = [
                     "strTyp": "lem",
                 },
             ],
-            # "wrdDis": 25
+            # "wrdDisPos": 25
         },
     ],
 ]
@@ -1538,9 +1604,9 @@ shaytan_muqarran = [
                 {
                     "stri": "m~uqar~aniyn", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -1558,9 +1624,9 @@ shaytan_wiswas = [
                     "strTyp": "root",
                     # "poSp": "V",
                     # "frm": "ii",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -1588,7 +1654,7 @@ muqarran = [
     *shaytan_muqarran,
         [
         {
-            "wrdDis": sameVrsIndicator,
+            
             "strL": [
                 {
                     "stri": "m~uqar~aniyn", 
@@ -1615,9 +1681,9 @@ kahin_majnun = [
                 {
                     "stri": "kaAhin", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -1633,9 +1699,9 @@ ifrit_jinn = [
                 {
                     "stri": "Eiforiyt", 
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],
 ]
@@ -1657,9 +1723,9 @@ jinna_wiswas = [
                     "strTyp": "root",
                     # "poSp": "V",
                     # "frm": "ii",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -1680,23 +1746,26 @@ jinn_sama_mss_qEd_sam = [
                 {
                     "stri": "samoE", 
                     "strTyp": "lem",
+            "wrdDisPos": 75,
                 },
                 {
                     "stri": "samaA^'", 
                     "strTyp": "lem",
+            "wrdDisPos": 75,
                 },
                 {
                     "stri": "lms",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 75,
                 },
                 {
                     "stri": "qEd",
                     "strTyp": "root",
                     # "poSp": "V",
+            "wrdDisPos": 75,
                 },
             ],
-            "wrdDis": 75,
         },
     ],
 ]
@@ -1712,13 +1781,14 @@ jinn_rasul_ins = [
                 {
                     "stri": "rasuwl", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ], 
 ]
@@ -1734,18 +1804,20 @@ jinn_ins_ummah_khala = [
                 {
                     "stri": ">um~ap", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "xlw", 
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ], 
 ]
@@ -1761,18 +1833,20 @@ jinn_ins_nfdh_sama = [
                 {
                     "stri": "samaA^'", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "nf*", 
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ], 
 ]
@@ -1788,13 +1862,14 @@ jinn_ins_abd = [
                 {
                     "stri": "Ebd", 
                     "strTyp": "root",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ],
 ]
@@ -1810,14 +1885,15 @@ jinn_ins_dll = [
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 5
                 },
                 {
                     "stri": "Dll", 
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 5
                 },
             ],
-            "wrdDis": 5
         },
     ], 
 ]
@@ -1834,17 +1910,19 @@ jinn_wHy_ins_shaytan = [
                     "stri": "wHy",
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 10
                 },
             ],
-            "wrdDis": 10
         },
     ],
 ]
@@ -1870,17 +1948,19 @@ jinn_sharik_kharaq_bani = [
                     "strTyp": "lem",
                     # "poSp": "N",
                     # "frm": "i",
+            "wrdDisPos": 35
                 },
                 {
                     "stri": "xrq", 
                     "strTyp": "root",
+            "wrdDisPos": 35
                 },
                 {
                     "stri": "banaAt", 
                     "strTyp": "lem",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ],    
 ]
@@ -1899,9 +1979,9 @@ jinn_sharik = [
                     "strTyp": "lem",
                     # "poSp": "N",
                     # "frm": "i",
+            "wrdDisPos": 35
                 },
             ],
-            "wrdDis": 35
         },
     ], 
 ]
@@ -1918,18 +1998,20 @@ jinn_abd = [
                     "stri": "Ebd", 
                     "strTyp": "root",
                     "poSp": "V",
-                    "frm": "i"
+                    "frm": "i",
+            "wrdDisPos": 15
                 },
                 {
                     "stri": ">akovar",
                     "strTyp": "lem",
+            "wrdDisPos": 15
                 },
                 {
                     "stri": "malak",
                     "strTyp": "lem",
+            "wrdDisPos": 15
                 },
             ],
-            "wrdDis": 15
         },
     ],
 ]
@@ -1945,9 +2027,9 @@ jinna_nasab = [
                 {
                     "stri": "nsb", 
                     "strTyp": "root",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -1963,13 +2045,14 @@ jinnah_nas_khannas = [
                 {
                     "stri": "n~aAs", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
                 {
                     "stri": "xan~aAs", 
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
     
@@ -1989,7 +2072,6 @@ khannas = [
                     "strTyp": "lem",
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -2005,13 +2087,14 @@ jinn_wali_ins = [
                 {
                     "stri": "wly", 
                     "strTyp": "root",
+            "wrdDisPos": 7
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 7
                 },
             ],
-            "wrdDis": 7
         },
     ],
 ]
@@ -2027,13 +2110,14 @@ jinn_awdh_ins = [
                 {
                     "stri": "jin~",
                     "strTyp": "lem",
+            "wrdDisPos": 25
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 25
                 },
             ],
-            "wrdDis": 25
         },
     ],
 ]
@@ -2050,13 +2134,14 @@ jinn_istikthar_ins = [
                     "stri": "kvr",
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -2072,9 +2157,9 @@ jinn_tayr = [
                 {
                     "stri": "Tayor", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -2091,13 +2176,14 @@ jinn_ijtima_ins = [
                     "stri": "jmE",
                     "strTyp": "root",
                     "poSp": "V",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -2126,13 +2212,14 @@ jinn_ins_jahannam = [
                 {
                     "stri": "jahan~am",
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
     [
@@ -2145,13 +2232,14 @@ jinn_ins_jahannam = [
                 {
                     "stri": "jahan~am",
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
                 {
                     "stri": "n~aAs", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -2201,9 +2289,9 @@ jinn_ins = [
                 {
                     "stri": "<ins", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -2339,9 +2427,9 @@ kahin_shair = [
                 {
                     "stri": "$aAEir",
                     "strTyp": "lem",
+            "wrdDisPos": 20
                 },
             ],
-            "wrdDis": 20
         },
     ],
 ]
@@ -2356,7 +2444,7 @@ kahin = [
 evil_spirits = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "(?:devil|[^d]evil|demon|shaitaan)",},
       ],
@@ -2364,7 +2452,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<iboliys", "flt": "",},
       ],
@@ -2372,7 +2460,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bls", "flt": "",},
       ],
@@ -2380,7 +2468,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jin~", "flt": "(?:[jJ]inn)",},
       ],
@@ -2388,7 +2476,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jin~ap", "flt": "(?:[Jj]inn|mad)",},
       ],
@@ -2396,7 +2484,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnn", "flt": "(?:^mad$|mad man|madman|surely mad)",},
       ],
@@ -2404,7 +2492,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jaAn~", "flt": "(?:snake|jinn)",},
       ],
@@ -2412,7 +2500,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hyy", "flt": "snake",},
       ],
@@ -2420,7 +2508,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qrn", "flt": "companion",},
       ],
@@ -2428,7 +2516,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "qrn", "flt": "",},
@@ -2445,14 +2533,14 @@ evil_spirits = [
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnn", "flt": "jinn",},
         { "stri": "$Tn", "flt": "",},
@@ -2461,7 +2549,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mrd", "flt": "rebellious",},
       ],
@@ -2469,7 +2557,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Eiforiyt", "flt": "",},
       ],
@@ -2477,7 +2565,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "mss", "flt": "",},
@@ -2486,7 +2574,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnd", "flt": "(?:host|troop|force)",},
         { "stri": "<iboliys", "flt": "(?:iblis|devil|satan)",},
@@ -2496,7 +2584,7 @@ evil_spirits = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "wly", "flt": "(?:ally|allies|guardian|protector|friend)",},
@@ -2505,7 +2593,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "Ebd", "flt": "",},
@@ -2515,7 +2603,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "Anv", "flt": "",},
@@ -2525,7 +2613,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "qrn", "flt": "",},
@@ -2535,7 +2623,7 @@ evil_spirits = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnn", "flt": "(?:jinn)",},
         { "stri": "dwn", "flt": "",},
@@ -2545,7 +2633,7 @@ evil_spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnn", "flt": "(?:jinn)",},
         { "stri": "$rk", "flt": "",},
@@ -2559,7 +2647,7 @@ magic = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "poetry",},
       ],
@@ -2567,7 +2655,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "hair",},
       ],
@@ -2575,7 +2663,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "Sirius",},
       ],
@@ -2583,7 +2671,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "monument",},
       ],
@@ -2591,7 +2679,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "(?:symbol|rite)",},
       ],
@@ -2599,7 +2687,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "poet(?!r)",},
       ],
@@ -2607,7 +2695,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "V", },
       ],
@@ -2615,7 +2703,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
       ],
@@ -2623,7 +2711,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sHr", "flt": "magic(?!i)",},
       ],
@@ -2631,7 +2719,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sHr", "flt": "magician",},
       ],
@@ -2639,7 +2727,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sHr", "flt": "(?<!they )bewitched",},
       ],
@@ -2647,7 +2735,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sHr", "flt": "(?:they bewitch|you bewitch|delude)",},
       ],
@@ -2655,7 +2743,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "baAbil", "flt": "",},
       ],
@@ -2663,7 +2751,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jbt", "flt": "",},
       ],
@@ -2671,7 +2759,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfv", "flt": "",},
       ],
@@ -2679,7 +2767,7 @@ magic = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "khn", "flt": "",},
       ],
@@ -2690,7 +2778,7 @@ magic = [
 ruh = [
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": ">amiyn", "strTyp": "lem", "flt": "",},
@@ -2700,7 +2788,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": ">amor", "strTyp": "lem", "flt": "",},
@@ -2710,7 +2798,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": ">amor", "strTyp": "lem", "flt": "",},
@@ -2719,7 +2807,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": ">amor", "strTyp": "lem", "flt": "",},
@@ -2729,7 +2817,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": ">amor", "strTyp": "lem", "flt": "",},
@@ -2740,7 +2828,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "malak", "strTyp": "lem", "flt": "",},
@@ -2751,7 +2839,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "malak", "strTyp": "lem", "flt": "",},
@@ -2762,7 +2850,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "malak", "strTyp": "lem", "flt": "",},
@@ -2771,7 +2859,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "qds", "strTyp": "root", "flt": "",},
@@ -2783,7 +2871,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "qds", "strTyp": "root", "flt": "",},
@@ -2794,7 +2882,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "EiysaY", "strTyp": "lem", "flt": "",},
@@ -2805,17 +2893,19 @@ ruh = [
   ],
     [
     {
-      "wrdDis": 10,
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
-        { "stri": "Ayd", "strTyp": "root", "flt": "",},
-        { "stri": "<iyma`n", "strTyp": "root","poSp": "N","frm": "iv",},
+        { 
+            "stri": "Ayd", "strTyp": "root", "flt": "",},
+        { 
+      "wrdDisPos": 10,
+            "stri": "<iyma`n", "strTyp": "root","poSp": "N","frm": "iv",},
       ],
     },
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "wHy", "strTyp": "root", "flt": "",},
@@ -2825,7 +2915,7 @@ ruh = [
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "lqy", "strTyp": "root", "flt": "",},
@@ -2835,27 +2925,33 @@ ruh = [
   ],
     [
     {
-      "wrdDis": 12,
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
-        { "stri": "nfx", "strTyp": "root", "flt": "",},
-        { "stri": "ba$ar", "strTyp": "lem", "flt": "",},
+        { 
+      "wrdDisPos": 12,
+            "stri": "nfx", "strTyp": "root", "flt": "",},
+        { 
+      "wrdDisPos": 12,
+            "stri": "ba$ar", "strTyp": "lem", "flt": "",},
       ],
       "lbl": "روح نفخ بشر"
     },
     {
-      "wrdDis": 14,
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
-        { "stri": "nfx", "strTyp": "root", "flt": "",},
-        { "stri": "<insa`n", "strTyp": "lem", "flt": "",},
+        { 
+      "wrdDisPos": 14,
+            "stri": "nfx", "strTyp": "root", "flt": "",},
+        { 
+      "wrdDisPos": 14,
+            "stri": "<insa`n", "strTyp": "lem", "flt": "",},
       ],
       "lbl": "روح نفخ إنسان"
     },
   ],
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
         { "stri": "nfx", "strTyp": "root", "flt": "",},
@@ -2866,11 +2962,14 @@ ruh = [
   ],
     [
     {
-      "wrdDis": 12,
       "strL": [
         { "stri": "ruwH", "strTyp": "lem", "flt": "",},
-        { "stri": "rsl", "strTyp": "root", "flt": "",},
-        { "stri": "maroyam", "strTyp": "lem", "flt": "",},
+        { 
+      "wrdDisPos": 12,
+            "stri": "rsl", "strTyp": "root", "flt": "",},
+        { 
+      "wrdDisPos": 12,
+            "stri": "maroyam", "strTyp": "lem", "flt": "",},
       ],
     },
   ],
@@ -2879,7 +2978,7 @@ ruh = [
 nafs = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfs", "flt": "(?:soul|self)",},
       ],
@@ -2892,7 +2991,7 @@ spirits = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfx", "flt": "",},
       ],
@@ -2900,7 +2999,7 @@ spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Suwr", "flt": "",},
       ],
@@ -2908,7 +3007,7 @@ spirits = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Swr", "flt": "",},
       ],
@@ -2927,7 +3026,7 @@ isa = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "masiyH", "flt": "",},
       ],
@@ -2935,7 +3034,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "EiysaY", "flt": "isa",},
       ],
@@ -2943,7 +3042,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "maryam", "flt": "",},
       ],
@@ -2951,7 +3050,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yaHoyaY`", "flt": "yahya",},
       ],
@@ -2959,7 +3058,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zakariy~aA", "flt": "zakariya",},
       ],
@@ -2967,7 +3066,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "EimoraAn", "flt": "imran",},
       ],
@@ -2975,7 +3074,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kalimap", "flt": "(?:word|.*)",},
       ],
@@ -2983,7 +3082,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kalaAm", "flt": "(?:word|.*)",},
       ],
@@ -2991,7 +3090,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Tayor", "flt": "(?:bird)",},
       ],
@@ -2999,7 +3098,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mahod", "flt": "bed",},
       ],
@@ -3007,7 +3106,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fTr", "flt": "",},
       ],
@@ -3015,7 +3114,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ftr", "flt": "",},
       ],
@@ -3023,7 +3122,7 @@ isa = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "muwsaY`", "flt": "musa",},
       ],
@@ -3035,7 +3134,7 @@ isa = [
 idols_base = [
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "wad~", "strTyp":"lem", "flt": "",},
       ],
@@ -3043,7 +3142,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
       ],
@@ -3051,7 +3150,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
       ],
@@ -3059,7 +3158,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "manaw`p", "strTyp":"lem",  "flt": "",},
       ],
@@ -3067,7 +3166,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "baEol2", "strTyp":"lem",  "flt": "",},
       ],
@@ -3075,7 +3174,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "ma`lik2", "strTyp":"lem",  "flt": "",},
       ],
@@ -3083,7 +3182,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "suwaAE", "strTyp":"lem",  "flt": "",},
       ],
@@ -3091,7 +3190,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
       ],
@@ -3099,7 +3198,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "yaEuwq", "strTyp":"lem",  "flt": "",},
       ],
@@ -3107,7 +3206,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "nasor", "strTyp":"lem",  "flt": "",},
       ],
@@ -3115,7 +3214,7 @@ idols_base = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "T~a`guwt", "strTyp":"lem",  "flt": "",},
       ],
@@ -3127,7 +3226,7 @@ idols_base = [
 idols = [
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "wad~", "strTyp":"lem", "flt": "wadd",},
         { "stri": "wdd", "strTyp":"root", "flt": "",},
@@ -3136,7 +3235,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lwt", "strTyp":"root", "flt": "",},
@@ -3145,7 +3244,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lwy", "strTyp":"root", "flt": "",},
@@ -3154,7 +3253,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{ll~a`t", "strTyp":"lem",  "flt": "",},
         { "stri": "lyt", "strTyp":"root", "flt": "",},
@@ -3163,7 +3262,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
         { "stri": "Ezz", "strTyp":"root", "flt": "",},
@@ -3172,7 +3271,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "{loEuz~aY`", "strTyp":"lem",  "flt": "",},
         { "stri": "Ezw", "strTyp":"root", "flt": "",},
@@ -3181,7 +3280,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "manaw`p", "strTyp":"lem",  "flt": "",},
         { "stri": "mny", "strTyp":"root", "flt": "",},
@@ -3190,7 +3289,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "baEol2", "strTyp":"lem",  "flt": "",},
         { "stri": "bEl", "strTyp":"root", "flt": "",},
@@ -3199,7 +3298,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "ma`lik2", "strTyp":"lem",  "flt": "malik",},
         { "stri": "mlk", "strTyp":"root", "flt": "",},
@@ -3208,7 +3307,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "suwaAE", "strTyp":"lem",  "flt": "",},
         { "stri": "swE", "strTyp":"root", "flt": "",},
@@ -3217,7 +3316,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
         { "stri": "gyv", "strTyp":"root", "flt": "",},
@@ -3226,7 +3325,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "yaguwv", "strTyp":"lem",  "flt": "",},
         { "stri": "gwv", "strTyp":"root", "flt": "",},
@@ -3235,7 +3334,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "yaEuwq", "strTyp":"lem",  "flt": "",},
         { "stri": "Ewq", "strTyp":"root", "flt": "",},
@@ -3244,7 +3343,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "nasor", "strTyp":"lem",  "flt": "",},
       ],
@@ -3252,7 +3351,7 @@ idols = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "T~a`guwt", "strTyp":"lem",  "flt": "",},
         { "stri": "Tgy", "strTyp":"root", "flt": "",},
@@ -3264,7 +3363,7 @@ idols = [
 heavenlies = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kwkb", "flt": "",},
       ],
@@ -3272,7 +3371,7 @@ heavenlies = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "njm", "flt": "",},
       ],
@@ -3280,7 +3379,7 @@ heavenlies = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$ms", "flt": "",},
       ],
@@ -3288,7 +3387,7 @@ heavenlies = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qmr", "flt": "",},
       ],
@@ -3296,7 +3395,7 @@ heavenlies = [
   ],
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "[Ss]irius",},
       ],
@@ -3308,7 +3407,7 @@ heavenlies = [
 shirk2 = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$rk", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
       ],
@@ -3316,7 +3415,7 @@ shirk2 = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mu$orik", "flt": "",},
       ],
@@ -3324,7 +3423,7 @@ shirk2 = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<ila`h", "flt": "",},
       ],
@@ -3332,7 +3431,7 @@ shirk2 = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "a`lihap", "flt": "",},
       ],
@@ -3343,7 +3442,7 @@ shirk2 = [
 rituals = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wvn", "flt": "idol",},
       ],
@@ -3351,7 +3450,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Snm", "flt": "idol",},
       ],
@@ -3359,7 +3458,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "naSiyb", "strTyp": "stem", "flt": "",},
@@ -3368,7 +3467,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "nuSob", "strTyp": "stem", "flt": "",},
@@ -3377,7 +3476,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "naSiyb", "strTyp": "stem", "flt": "",},
@@ -3386,7 +3485,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "naSab", "strTyp": "stem", "flt": "",},
@@ -3395,7 +3494,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "n~aASibap", "strTyp": "stem", "flt": "",},
@@ -3404,7 +3503,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuSub", "strTyp": "stem", "flt": "",},
         { "stri": "nSb", "strTyp": "root", "poSp": "V", "flt": "",},
@@ -3413,7 +3512,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "naSiyb", "strTyp": "stem", "flt": "",},
         { "stri": "jEl", "strTyp": "root", "flt": "assign",},
@@ -3423,7 +3522,7 @@ rituals = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "saA^}ibap", "flt": "",},
       ],
@@ -3431,7 +3530,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "waSiylap", "strTyp": "stem", "flt": "",},
         { "stri": "wSl", "strTyp": "root", "poSp":"V", "frm": "i", "flt": "",},
@@ -3440,7 +3539,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "waSiylap", "strTyp": "stem", "flt": "",},
         { "stri": "wSl", "strTyp": "root", "poSp":"V", "frm": "ii", "flt": "",},
@@ -3449,7 +3548,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": 77430,
+      
       "strL": [
         { "stri": "baHor", "strTyp": "stem", "flt": "",},
         { "stri": "baHiyrap", "strTyp": "stem", "flt": "",},
@@ -3458,7 +3557,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HaAm", "strTyp": "stem", "flt": "",},
         { "stri": "Hamiy~ap", "strTyp": "stem", "flt": "",},
@@ -3467,7 +3566,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HaAm", "strTyp": "stem", "flt": "",},
         { "stri": "Hmy", "strTyp": "root", "poSp": "V", "flt": "",},
@@ -3476,7 +3575,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": ">azolaAm", "flt": "",},
       ],
@@ -3484,7 +3583,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hrm", "flt": "",},
         { "stri": "Anv", "flt": "",},
@@ -3493,7 +3592,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xlS", "flt": "",},
         { "stri": "bTn", "flt": "",},
@@ -3503,7 +3602,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "[Pp]oet(?!r)",},
       ],
@@ -3511,7 +3610,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "(?:[Pp]oetry)",},
       ],
@@ -3519,7 +3618,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ma$oEar", "strTyp": "lem", "flt": "",},
         { "stri": "$Er", "strTyp": "root", "poSp":"V", "frm": "i", "flt": "(?:[Hh]air)",},
@@ -3528,7 +3627,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$aAEir", "strTyp": "lem", "flt": "(?:[Ss]ymbol|rite)",},
       ],
@@ -3536,7 +3635,7 @@ rituals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$iEor", "strTyp": "lem", "flt": "(?:[Mm]onument)",},
       ],
@@ -3544,7 +3643,7 @@ rituals = [
   ],
             [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Er", "flt": "[Ss]irius",},
       ],
@@ -3569,9 +3668,9 @@ ilah_dun_baEd = [
                 {
                     "stri": "<ila`h", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
     [
@@ -3589,9 +3688,9 @@ ilah_dun_baEd = [
                 {
                     "stri": "<ila`h", 
                     "strTyp": "lem",
+            "wrdDisPos": 30
                 },
             ],
-            "wrdDis": 30
         },
     ],
 ]
@@ -3606,16 +3705,17 @@ shirk = [
 
         [
     {
-      "wrdDis": 1,
       "strL": [
         { "stri": "Alh", "flt": "(?:^((?!Allah).)*$)",},
-        { "stri": "dwn", "flt": "(?:other|esides|exclud|Us|instead)",},
+        { 
+      "wrdDisPos": 1,
+            "stri": "dwn", "flt": "(?:other|esides|exclud|Us|instead)",},
       ],
     },
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Alh", "flt": "(?:^((?!Allah).)*$)",},
         { "stri": "Axr", "flt": "",},
@@ -3625,7 +3725,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ebd", "flt": "(?:worship|serv)",},
         { "stri": "dwn", "flt": "(?:other|esides|exclud|Us|instead)",},
@@ -3634,7 +3734,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dEw", "flt": "",},
         { "stri": "maEa", "flt": "",},
@@ -3644,7 +3744,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dEw", "flt": "(?:^((?!caller).)*$)",},
         { "stri": "dwn", "flt": "(?:other|esides|exclud|Us|instead)",},
@@ -3653,7 +3753,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "", "strTyp": "root",  "frm": "viii", },
         { "stri": "Alh", "flt": "(?:^((?!Allah).)*$)",},
@@ -3662,7 +3762,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "", "strTyp": "root",  "frm": "viii", },
         { "stri": "dwn", "flt": "",},
@@ -3672,7 +3772,7 @@ shirk = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "(?:^((?!we).)*$)", "strTyp": "root",  "frm": "viii", },
         { "stri": "wld", "flt": "",},
@@ -3681,7 +3781,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wld", "flt": "(?:begot|beget)",},
         { "stri": "Alh", "flt": "",},
@@ -3690,7 +3790,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wld", "flt": "",},
         { "stri": "sbH", "flt": "",},
@@ -3699,7 +3799,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "lam", "flt": "",},
         { "stri": "wld", "flt": "(?:begot|beget)",},
@@ -3708,7 +3808,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "",},
         { "stri": "SHb", "flt": "(?:wife)",},
@@ -3717,7 +3817,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<an~aY", "flt": "",},
         { "stri": "wld", "flt": "(?:son)",},
@@ -3726,7 +3826,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<an~aY", "flt": "",},
         { "stri": "SaAHibap", "flt": "",},
@@ -3735,7 +3835,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "",},
         { "stri": "Anv", "flt": "",},
@@ -3744,7 +3844,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "malak", "flt": "(?:[Aa]ngel)",},
         { "stri": "Anv", "flt": "",},
@@ -3753,7 +3853,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ax*", "flt": "",},
         { "stri": "bny", "flt": "(?:[Dd]aughter)",},
@@ -3762,7 +3862,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jEl", "flt": "assign",},
         { "stri": "bny", "flt": "(?:[Dd]aughter)",},
@@ -3771,7 +3871,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xrq", "flt": "",},
         { "stri": "bny", "flt": "(?:[Ss]on|[Ss]hild|[Dd]aughter)",},
@@ -3781,7 +3881,7 @@ shirk = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$ariyk", "flt": "",},
       ],
@@ -3790,7 +3890,7 @@ shirk = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjd", "flt": "",},
         { "stri": "A^dam", "flt": "",},
@@ -3801,7 +3901,7 @@ shirk = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kwkb", "flt": "star",},
         { "stri": "rAy", "flt": "",},
@@ -3810,7 +3910,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kwkb", "flt": "",},
         { "stri": "rab~", "flt": "",},
@@ -3820,7 +3920,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "njm", "flt": "",},
         { "stri": "nZr", "flt": "",},
@@ -3829,7 +3929,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$ms", "flt": "",},
         { "stri": "rab~", "flt": "",},
@@ -3839,7 +3939,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$ms", "flt": "",},
         { "stri": "sjd", "flt": "",},
@@ -3849,7 +3949,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$ms", "flt": "",},
         { "stri": "sjd", "flt": "",},
@@ -3860,7 +3960,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qmr", "flt": "",},
         { "stri": "rab~", "flt": "",},
@@ -3871,7 +3971,7 @@ shirk = [
         
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rhb", "flt": "",},
         { "stri": "rbb", "flt": "",},
@@ -3881,7 +3981,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hbr", "flt": "",},
         { "stri": "rbb", "flt": "",},
@@ -3891,7 +3991,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mlk", "flt": "(?:[Aa]ngel)",},
         { "stri": "Ax*", "flt": "", "strTyp": "root",  "frm": "viii", },
@@ -3901,7 +4001,7 @@ shirk = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nbA", "flt": "",},
         { "stri": "Ax*", "flt": "", "strTyp": "root",  "frm": "viii", },
@@ -3913,7 +4013,7 @@ shirk = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jzA", "flt": "",},
         { "stri": "Ebd", "flt": "",},
@@ -3927,7 +4027,7 @@ places = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SafaA", "flt": "safa",},
       ],
@@ -3935,7 +4035,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "marowap", "flt": "marwa",},
       ],
@@ -3943,7 +4043,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "siyniyn", "flt": "sin",},
       ],
@@ -3951,7 +4051,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qurayo$", "flt": "",},
       ],
@@ -3959,7 +4059,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tub~aE", "flt": "tubba",},
       ],
@@ -3967,7 +4067,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "saba<", "flt": "saba",},
       ],
@@ -3975,7 +4075,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "misor", "flt": "",},
       ],
@@ -3983,7 +4083,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ruwm", "flt": "rom",},
       ],
@@ -3991,7 +4091,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ramaDaAn", "flt": "ramadan",},
       ],
@@ -3999,7 +4099,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "EarafaAt", "flt": "arafa",},
       ],
@@ -4007,7 +4107,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bak~ap", "flt": "bakka",},
       ],
@@ -4015,7 +4115,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bador", "flt": "badr",},
       ],
@@ -4023,7 +4123,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yavorib", "flt": "yathrib",},
       ],
@@ -4031,7 +4131,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "makkap", "flt": "makka",},
       ],
@@ -4039,7 +4139,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kaEobap", "flt": "ka",},
       ],
@@ -4047,7 +4147,7 @@ places = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hunayon", "flt": "hunayn",},
       ],
@@ -4059,7 +4159,7 @@ animals = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nml", "flt": "ant",},
       ],
@@ -4067,7 +4167,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qrd", "flt": "(?:monkey|ape)",},
       ],
@@ -4075,7 +4175,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nHl", "flt": "bee",},
       ],
@@ -4083,7 +4183,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Tyr", "flt": "bird",},
       ],
@@ -4091,7 +4191,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "TaA}ir", "flt": "",},
       ],
@@ -4099,7 +4199,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ejl", "flt": "calf",},
       ],
@@ -4107,7 +4207,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jml", "flt": "camel",},
       ],
@@ -4115,7 +4215,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bEr", "flt": "camel",},
       ],
@@ -4123,7 +4223,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nwq", "flt": "camel",},
       ],
@@ -4131,7 +4231,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<ibil", "flt": "camel",},
       ],
@@ -4139,7 +4239,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "hym", "flt": "camel",},
       ],
@@ -4147,7 +4247,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "E$r", "flt": "camel",},
       ],
@@ -4155,7 +4255,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bqr", "flt": "(?:heifer|cow)",},
       ],
@@ -4163,7 +4263,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "grb", "flt": "(?:raven|crow)",},
       ],
@@ -4171,7 +4271,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "klb", "flt": "(?:dog|hound)",},
       ],
@@ -4179,7 +4279,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hmr", "flt": "(?:donkey|ass)",},
       ],
@@ -4187,7 +4287,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fyl", "flt": "elephant",},
       ],
@@ -4195,7 +4295,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nEj", "flt": "ewe",},
       ],
@@ -4203,7 +4303,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hwt", "flt": "fish",},
       ],
@@ -4211,7 +4311,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "*bb", "flt": "(?:fly|flies)",},
       ],
@@ -4219,7 +4319,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "DfdE", "flt": "frog",},
       ],
@@ -4227,7 +4327,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mEz", "flt": "goat",},
       ],
@@ -4235,7 +4335,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "hdhd", "flt": "hoopoe",},
       ],
@@ -4243,7 +4343,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xyl", "flt": "(?:horse|cavalry)",},
       ],
@@ -4251,7 +4351,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jwd", "flt": "steed",},
       ],
@@ -4259,7 +4359,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qml", "flt": "lice",},
       ],
@@ -4267,7 +4367,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qsr", "flt": "lion",},
       ],
@@ -4275,7 +4375,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jrd", "flt": "locust",},
       ],
@@ -4283,7 +4383,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bED", "flt": "mosquito",},
       ],
@@ -4291,7 +4391,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fr$", "flt": "moth",},
       ],
@@ -4299,7 +4399,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bgl", "flt": "mule",},
       ],
@@ -4307,7 +4407,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xnzr", "flt": "(?:pig|swine)",},
       ],
@@ -4315,7 +4415,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "slw", "flt": "quail",},
       ],
@@ -4323,7 +4423,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "gnm", "flt": "sheep",},
       ],
@@ -4331,7 +4431,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "vEb", "flt": "(?:serpent|snake)",},
       ],
@@ -4339,7 +4439,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hyy", "flt": "(?:serpent|snake)",},
       ],
@@ -4347,7 +4447,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jaAn~", "flt": "(?:snake|serpent|jinn)",},
       ],
@@ -4355,7 +4455,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Enkb", "flt": "spider",},
       ],
@@ -4363,7 +4463,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "*#b", "flt": "wolf",},
       ],
@@ -4371,7 +4471,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nEm", "flt": "(?:cattle|livestock)",},
       ],
@@ -4379,7 +4479,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bhm", "flt": "",},
       ],
@@ -4387,7 +4487,7 @@ animals = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dbb", "flt": "(?:creature|animal|beast)",},
       ],
@@ -4398,7 +4498,7 @@ animals = [
 hindi = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "msk", "flt": "musk",},
       ],
@@ -4410,7 +4510,7 @@ geez = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hwr", "flt": "disciple",},
       ],
@@ -4418,7 +4518,7 @@ geez = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zrb", "flt": "",},
       ],
@@ -4430,7 +4530,7 @@ copt_gypt = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xtm", "flt": "seal",},
       ],
@@ -4438,7 +4538,7 @@ copt_gypt = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "taAbuwt", "flt": "(?:ark|chest|.*)",},
       ],
@@ -4446,7 +4546,7 @@ copt_gypt = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Tgy", "flt": "(?:idol|deit|god|evil)",},
       ],
@@ -4454,7 +4554,7 @@ copt_gypt = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jbt", "flt": "(?:copt|gypsy|superstition)",},
       ],
@@ -4466,7 +4566,7 @@ latin = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sij~iyl", "flt": "clay",},
       ],
@@ -4474,7 +4574,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjl", "flt": "scroll",},
       ],
@@ -4482,7 +4582,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qnTr", "flt": "(?:centenarium|heap|wealth|store)",},
       ],
@@ -4490,7 +4590,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dnr", "flt": "(?:denarius|coin)",},
       ],
@@ -4498,7 +4598,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qmS", "flt": "shirt",},
       ],
@@ -4506,7 +4606,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qSr", "flt": "(?:castle|palace|fort)",},
       ],
@@ -4514,7 +4614,7 @@ latin = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SrT", "flt": "(?:path|way)",},
       ],
@@ -4526,7 +4626,7 @@ greek = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qsTs", "flt": "balance",},
       ],
@@ -4534,7 +4634,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qrTs", "flt": "parchment",},
       ],
@@ -4542,7 +4642,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "drhm", "flt": "dirham",},
       ],
@@ -4550,7 +4650,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qld", "flt": "key",},
       ],
@@ -4558,7 +4658,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qld", "flt": "garland",},
       ],
@@ -4566,7 +4666,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qlm", "flt": "(?:pen|reed|cane)",},
       ],
@@ -4574,7 +4674,7 @@ greek = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sTr", "flt": "(?:story|tale)",},
       ],
@@ -4586,7 +4686,7 @@ syr_christ = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nHs", "flt": "(?:copper|bronze|brass|smoke)",},
       ],
@@ -4594,7 +4694,7 @@ syr_christ = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "krs", "flt": "throne",},
       ],
@@ -4602,7 +4702,7 @@ syr_christ = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Abb", "flt": "(?:pasture|grass)",},
       ],
@@ -4610,7 +4710,7 @@ syr_christ = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ajr", "flt": "(?:reward)",},
       ],
@@ -4618,7 +4718,7 @@ syr_christ = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbl", "flt": "(?:way|path)",},
       ],
@@ -4630,7 +4730,7 @@ aram_jew = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jlw", "flt": "exile",},
       ],
@@ -4638,7 +4738,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbt", "flt": "(?:sabbath|rest)",},
       ],
@@ -4646,7 +4746,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbT", "flt": "(?:tribe|descendants|scepter|rod|stick)",},
       ],
@@ -4654,7 +4754,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "safarap", "flt": "scribe",},
       ],
@@ -4662,7 +4762,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sfr", "flt": "book",},
       ],
@@ -4670,7 +4770,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rbb", "flt": "(?:the rabbis|worshipper)",},
       ],
@@ -4678,7 +4778,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rib~iy~uwn", "flt": "(?:scholar)",},
       ],
@@ -4686,7 +4786,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bhm", "flt": "(?:beast|quadruped)",},
       ],
@@ -4694,7 +4794,7 @@ aram_jew = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Sdq", "flt": "charity",},
       ],
@@ -4706,7 +4806,7 @@ akkadian = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fxr", "flt": "pottery",},
       ],
@@ -4714,7 +4814,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": ">asowaAq", "flt": "market",},
       ],
@@ -4722,7 +4822,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "swq", "flt": "(?:leg|shin|stem)",},
       ],
@@ -4730,7 +4830,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "frt", "flt": "(?:sweet|fresh)",},
       ],
@@ -4738,7 +4838,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "swr", "flt": "(?:bracelet|fetter|chain)",},
       ],
@@ -4746,7 +4846,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "k#s", "flt": "cup",},
       ],
@@ -4754,7 +4854,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sunodus", "flt": "silk",},
       ],
@@ -4762,7 +4862,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sTr", "flt": "(?:writ)",},
       ],
@@ -4770,7 +4870,7 @@ akkadian = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sTr", "flt": "(?:control)",},
       ],
@@ -4782,7 +4882,7 @@ farsi = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fyl", "flt": "elephant",},
       ],
@@ -4790,7 +4890,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fxr", "flt": "boast",},
       ],
@@ -4798,7 +4898,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fwj", "flt": "(?:group|company|.*)",},
       ],
@@ -4806,7 +4906,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "srj", "flt": "(?:lamp|.*)",},
       ],
@@ -4814,7 +4914,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": ">abaAriyq", "flt": "(?:jug)",},
       ],
@@ -4822,7 +4922,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Efr", "flt": "strong",},
       ],
@@ -4830,7 +4930,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tan~uwr", "flt": "oven",},
       ],
@@ -4838,7 +4938,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnh", "flt": "(?:blame|sin)",},
       ],
@@ -4846,7 +4946,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnd", "flt": "(?:host|troop|army|force)",},
       ],
@@ -4854,7 +4954,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "srd", "flt": "link",},
       ],
@@ -4862,7 +4962,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "srdq", "flt": "wall",},
       ],
@@ -4870,7 +4970,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "firodaws", "flt": "paradise",},
       ],
@@ -4878,7 +4978,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mjs", "flt": "mag",},
       ],
@@ -4886,7 +4986,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "srbl", "flt": "(?:trouser|pants|garment)",},
       ],
@@ -4894,7 +4994,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kaAfuwr", "flt": "(?:camphor|kafur)",},
       ],
@@ -4902,7 +5002,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zanjabiyl", "flt": "(?:ginger|zanjabil)",},
       ],
@@ -4910,7 +5010,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "barozax", "flt": "barrier",},
       ],
@@ -4918,7 +5018,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "knz", "flt": "(?:treasure|hoard)",},
       ],
@@ -4926,7 +5026,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<isotibraq", "flt": "(?:brocade|silk)",},
       ],
@@ -4934,7 +5034,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ebqr", "flt": "carpet",},
       ],
@@ -4942,7 +5042,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "namaAriq", "flt": "cushion",},
       ],
@@ -4950,7 +5050,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ark", "flt": "(?:couch|throne)",},
       ],
@@ -4958,7 +5058,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zmhr", "flt": "cold",},
       ],
@@ -4966,7 +5066,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "m$j", "flt": "mix",},
       ],
@@ -4974,7 +5074,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mzj", "flt": "mix",},
       ],
@@ -4982,7 +5082,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wzr", "flt": "(?:minister|assist|bear|burden|refuge)",},
       ],
@@ -4990,7 +5090,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Er$", "flt": "(?:erect|construct|roof|throne|trellis)",},
       ],
@@ -4998,7 +5098,7 @@ farsi = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dwl", "flt": "(?:circul|alter)",},
       ],
@@ -5011,7 +5111,7 @@ nabis = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "A^dam", "flt": "(?:Adam|)",},
       ],
@@ -5019,7 +5119,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuwH", "flt": "(?:Nuh|)",},
       ],
@@ -5027,7 +5127,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<idoriys", "flt": "(?:Idris|)",},
       ],
@@ -5035,13 +5135,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "huwd", "flt": "(?:Hud|)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ewd", "flt": "Aad",},
       ],
@@ -5049,13 +5149,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SaAliH", "flt": "(?:Salih)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "vamuwd", "flt": "Thamud",},
       ],
@@ -5063,7 +5163,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tub~aE", "flt": "Tubba",},
       ],
@@ -5071,7 +5171,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": ">ayokap", "flt": "wood",},
       ],
@@ -5079,7 +5179,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ras~", "flt": "(?:rass|Raas)",},
       ],
@@ -5087,7 +5187,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hijor", "flt": "(?:the Rocky Tract)",},
       ],
@@ -5095,7 +5195,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<iram", "flt": "(?:Aram|Iram)",},
       ],
@@ -5103,7 +5203,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<iboraAhiym", "flt": "(?:Ibrahim|)",},
       ],
@@ -5111,7 +5211,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "luwT", "flt": "(?:Lut)",},
       ],
@@ -5119,7 +5219,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<isoma`Eiyl", "flt": "(?:Ishmael|)",},
       ],
@@ -5127,7 +5227,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<isoHaAq", "flt": "(?:Isaac|)",},
       ],
@@ -5135,7 +5235,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yaEquwb", "flt": "(?:Yaqub|)",},
       ],
@@ -5143,7 +5243,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yuwsuf", "flt": "(?:Yusuf|)",},
       ],
@@ -5151,7 +5251,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": ">ay~uwb", "flt": "(?:Ayyub|)",},
       ],
@@ -5159,13 +5259,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$uEayb", "flt": "(?:Shuaib|)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "madoyan", "flt": "(?:Midian|Madyan)",},
       ],
@@ -5173,13 +5273,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "muwsaY`", "flt": "(?:Musa|)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "firoEawon", "flt": "(?:Pharaoh|Firaun)",},
       ],
@@ -5187,7 +5287,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ha`ruwn", "flt": "(?:Harun|)",},
       ],
@@ -5195,13 +5295,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "TaAluwt", "flt": "(?:Saul|Talut)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jaAluwt", "flt": "(?:Goliath|Jalut)",},
       ],
@@ -5209,7 +5309,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "daAwud", "flt": "(?:Dawood|Dawud|)",},
       ],
@@ -5217,7 +5317,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sulaymaAn", "flt": "(?:Sulaiman|)",},
       ],
@@ -5225,7 +5325,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kifol", "flt": "(?:Kifl)",},
       ],
@@ -5233,13 +5333,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nuwn", "flt": "(?:Nun)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yuwnus", "flt": "(?:Yunus)",},
       ],
@@ -5247,7 +5347,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<iloyaAs", "flt": "(?:Elijah|)",},
       ],
@@ -5255,7 +5355,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yasaE", "flt": "(?:Elisha)",},
       ],
@@ -5263,7 +5363,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qrn", "flt": "(?:Qarnain)",},
       ],
@@ -5271,7 +5371,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Euzayor", "flt": "(?:Uzair)",},
       ],
@@ -5279,7 +5379,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "luqomaAn", "flt": "(?:Luqman)",},
       ],
@@ -5287,7 +5387,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zakariy~aA", "flt": "(?:Zakariya|)",},
       ],
@@ -5295,7 +5395,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "yaHoyaY", "flt": "(?:Yahya)",},
       ],
@@ -5303,7 +5403,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "maroyam", "flt": "(?:Mary)",},
       ],
@@ -5311,13 +5411,13 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "EiysaY", "flt": "isa",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Aibn", "flt": "son",},
         { "stri": "maryam", "flt": "Mary",},
@@ -5326,7 +5426,7 @@ nabis = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "muHam~ad", "flt": "(?:Muhammad|)",},
       ],
@@ -5338,7 +5438,7 @@ islam_iman = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
       ],
@@ -5346,7 +5446,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(?:believer|believing|who believe|\(will\) believe)", "strTyp": "root",  "frm": "iv",  "poSp": "N", },
       ],
@@ -5354,7 +5454,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(?:faith|belief)", "strTyp": "root",  "frm": "iv",  "poSp": "N", },
       ],
@@ -5362,7 +5462,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "V", },
       ],
@@ -5370,13 +5470,13 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "[tT]rustworthy", "strTyp": "root",  "frm": "i",  "poSp": "ADJ", },
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "[tT]rustworthy", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5384,13 +5484,13 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(safe|secure)", "strTyp": "root",  "frm": "i",  "poSp": "ADJ", },
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(safely|safe(?!ty)|secure)", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5398,7 +5498,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(?:security)", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5406,7 +5506,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "(?:trust)", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5414,7 +5514,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "place of safety", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5422,7 +5522,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "", "strTyp": "root",  "frm": "viii", },
       ],
@@ -5431,7 +5531,7 @@ islam_iman = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "slm", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
       ],
@@ -5439,7 +5539,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<isolaAm", "flt": "",},
       ],
@@ -5447,19 +5547,19 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "musolim", "flt": "(?:submissive|submit|surrender|Muslim)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "musolimaAt", "flt": "(?:submissive|surrender|submit|Muslim)",},
       ],
     },
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "musolimap", "flt": "(?:submissive|submit|surrender|Muslim)",},
       ],
@@ -5467,7 +5567,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "slm", "flt": "(?:greet(?!ing)|submit|pay|save)", "strTyp": "root",  "frm": "ii",  "poSp": "V", },
       ],
@@ -5475,7 +5575,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "slm", "flt": "", "strTyp": "root",  "frm": "ii",  "poSp": "ADJ", },
       ],
@@ -5483,7 +5583,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tasoliym", "flt": "",},
       ],
@@ -5491,7 +5591,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "slm", "flt": "", "strTyp": "root",  "frm": "x", },
       ],
@@ -5499,7 +5599,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sala`m", "flt": "",},
       ],
@@ -5507,7 +5607,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "salam", "flt": "(?:\[the\] peace|the submission)",},
       ],
@@ -5515,7 +5615,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "salom", "flt": "(?<!\] )peace",},
       ],
@@ -5523,7 +5623,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "silom", "flt": "Islam",},
       ],
@@ -5531,7 +5631,7 @@ islam_iman = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "saliym", "flt": "",},
       ],
@@ -5542,7 +5642,7 @@ islam_iman = [
 salah = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
       ],
@@ -5550,7 +5650,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "", "strTyp": "root",  "frm": "ii", },
       ],
@@ -5558,7 +5658,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "N", },
       ],
@@ -5566,7 +5666,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Salaw`p", "flt": "",},
       ],
@@ -5574,7 +5674,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "(?:standing place)",},
         { "stri": "muSal~aY", "flt": "(?:place of prayer)",},
@@ -5583,7 +5683,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "muSal~iyn", "flt": "",},
       ],
@@ -5592,7 +5692,7 @@ salah = [
 
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tlw", "flt": "",},
         { "stri": "qwm", "flt": "(?:standing)",},
@@ -5601,7 +5701,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tlw", "flt": "",},
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "V", },
@@ -5610,7 +5710,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tlw", "flt": "",},
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
@@ -5619,7 +5719,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tlw", "flt": "",},
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "N", },
@@ -5629,7 +5729,7 @@ salah = [
       
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "tlw", "flt": "",},
         { "stri": "Salaw`p", "flt": "",},
@@ -5639,7 +5739,7 @@ salah = [
 
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Salaw`p", "flt": "",},
         { "stri": "qay~imap", "flt": "",},
@@ -5648,7 +5748,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
         { "stri": "qaA}im", "flt": "",},
@@ -5658,7 +5758,7 @@ salah = [
 
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "V", },
         { "stri": "Slw", "flt": "(?:pray(?!er))",},
@@ -5667,7 +5767,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "i",  "poSp": "V", },
         { "stri": "Salaw`p", "flt": "",},
@@ -5677,7 +5777,7 @@ salah = [
 
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "(?:stablishment|stablishing|ncampment)", "strTyp": "root",  "frm": "iv", },
         { "stri": "Salaw`p", "flt": "",},
@@ -5686,7 +5786,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "(?:who establish|enduring|lasting|establisher|established)", "strTyp": "root",  "frm": "iv", },
         { "stri": "Salaw`p", "flt": "",},
@@ -5695,7 +5795,7 @@ salah = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
         { "stri": "Salaw`p", "flt": "",},
@@ -5705,7 +5805,7 @@ salah = [
 
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qDy", "flt": "",},
         { "stri": "Salaw`p", "flt": "",},
@@ -5715,7 +5815,7 @@ salah = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
         { "stri": "dlk", "flt": "",},
@@ -5725,7 +5825,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
         { "stri": "gsq", "flt": "",},
@@ -5735,7 +5835,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbH", "flt": "",},
         { "stri": "Trf", "flt": "",},
@@ -5745,7 +5845,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
         { "stri": "Trf", "flt": "",},
@@ -5755,7 +5855,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Slw", "flt": "",},
         { "stri": "zlf", "flt": "",},
@@ -5766,7 +5866,7 @@ salah = [
 
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rkE", "flt": "",},
       ],
@@ -5774,7 +5874,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjd", "flt": "",},
       ],
@@ -5782,7 +5882,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjd", "flt": "(?:jid|place)",},
       ],
@@ -5790,7 +5890,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjd", "flt": "^(.(?!jid|place))*$",},
       ],
@@ -5798,7 +5898,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbH", "flt": "(?:swim|float|occup)",},
       ],
@@ -5806,7 +5906,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sbH", "flt": "(?:^((?!swim|float|occup).)*$)",},
       ],
@@ -5814,7 +5914,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kbr", "flt": "(?:magnif)",},
       ],
@@ -5822,7 +5922,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kbr", "flt": "(?:admir)",},
       ],
@@ -5830,7 +5930,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kbr", "flt": "(?:proud|arrogan)",},
       ],
@@ -5838,7 +5938,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "kbr", "flt": "(?:^((?!magnif|proud|arrogan|admir).)*$)",},
       ],
@@ -5846,7 +5946,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "hjd", "flt": " ",},
       ],
@@ -5854,7 +5954,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qwm", "flt": "stand",},
         { "stri": "lyl", "flt": "",},
@@ -5863,7 +5963,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qnt", "flt": "",},
         { "stri": "lyl", "flt": "",},
@@ -5872,7 +5972,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qnt", "flt": "",},
       ],
@@ -5880,7 +5980,7 @@ salah = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Any", "flt": "hour",},
         { "stri": "lyl", "flt": "",},
@@ -5892,7 +5992,7 @@ salah = [
 mamluk_yaman = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Asr", "flt": "(?:captive|prisoner)",},
       ],
@@ -5900,7 +6000,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Asr", "flt": "(?:form)",},
       ],
@@ -5908,7 +6008,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mlk", "flt": "",},
         { "stri": "ymn", "flt": "",},
@@ -5917,7 +6017,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fty", "flt": "(?:boy|youth|young|servant)",},
       ],
@@ -5925,7 +6025,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fty", "flt": "girl",},
       ],
@@ -5933,7 +6033,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Arb", "flt": "(?:use)",},
       ],
@@ -5941,7 +6041,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Arb", "flt": "(?:physical)",},
       ],
@@ -5949,7 +6049,7 @@ mamluk_yaman = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amw", "flt": "",},
       ],
@@ -5960,7 +6060,7 @@ mamluk_yaman = [
 nisa = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
       ],
@@ -5968,7 +6068,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mrA", "flt": "(?:woman|women|wife)",},
       ],
@@ -5976,7 +6076,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Anv", "flt": "",},
       ],
@@ -5984,7 +6084,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wAd", "flt": "",},
       ],
@@ -5992,7 +6092,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HfZ", "flt": "",},
         { "stri": "frj", "flt": "",},
@@ -6001,7 +6101,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xmr", "flt": "",},
         { "stri": "jyb", "flt": "",},
@@ -6010,7 +6110,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bdw", "flt": "",},
         { "stri": "zyn", "flt": "",},
@@ -6019,7 +6119,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "brj", "flt": "displaying",},
@@ -6028,7 +6128,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "wDE", "flt": "",},
@@ -6038,7 +6138,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wDE", "flt": "",},
         { "stri": "vwb", "flt": "",},
@@ -6047,7 +6147,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "lam", "flt": "",},
@@ -6057,7 +6157,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "HyD", "flt": "",},
@@ -6066,7 +6166,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ahl", "flt": "",},
         { "stri": "byt", "flt": "",},
@@ -6076,7 +6176,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ahl", "flt": "",},
         { "stri": "brj", "flt": "display(?!i)",},
@@ -6085,7 +6185,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ahl", "flt": "",},
         { "stri": "brj", "flt": "display$",},
@@ -6094,7 +6194,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "brj", "flt": "(?:tower|constellation)",},
       ],
@@ -6102,7 +6202,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "msk", "flt": "",},
@@ -6113,7 +6213,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "fH$", "flt": "",},
@@ -6122,7 +6222,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zny", "flt": " ",},
       ],
@@ -6130,7 +6230,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nsw", "flt": "",},
         { "stri": "Drb", "flt": "",},
@@ -6139,7 +6239,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amw", "flt": "",},
       ],
@@ -6147,7 +6247,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fty", "flt": "girl",},
       ],
@@ -6155,7 +6255,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "(?:married|he.*chaste)",},
         { "stri": "nkH", "flt": "",},
@@ -6164,7 +6264,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "",},
         { "stri": "frj", "flt": "",},
@@ -6173,7 +6273,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "(?:store|protect)",},
       ],
@@ -6181,7 +6281,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "",},
         { "stri": "qry", "flt": "",},
@@ -6190,7 +6290,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "fortress",},
       ],
@@ -6198,7 +6298,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "ing.*chaste",},
       ],
@@ -6206,7 +6306,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "chastity",},
       ],
@@ -6214,7 +6314,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "(?:married|he.*chaste)",},
       ],
@@ -6222,7 +6322,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nkH", "flt": "",},
         { "stri": "mtE", "flt": "",},
@@ -6231,7 +6331,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nkH", "flt": "",},
         { "stri": "wj", "flt": "",},
@@ -6240,7 +6340,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nkH", "flt": "",},
         { "stri": "nsw", "flt": "",},
@@ -6249,7 +6349,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nkH", "flt": "",},
       ],
@@ -6257,7 +6357,7 @@ nisa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bny", "flt": "[Dd]aughter",},
       ],
@@ -6268,7 +6368,7 @@ nisa = [
 ahl_kitab = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Aty", "flt": "", "strTyp": "root",  "frm": "iv",  "poSp": "V", },
         { "stri": "ktb", "flt": "",},
@@ -6277,7 +6377,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Aty", "flt": "", "strTyp": "root",  "frm": "iv", },
         { "stri": "ktb", "flt": "",},
@@ -6286,7 +6386,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ahl", "flt": "",},
         { "stri": "ktb", "flt": "",},
@@ -6295,7 +6395,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "<inojiyl", "flt": "",},
       ],
@@ -6303,7 +6403,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "taworaY`p", "flt": "",},
       ],
@@ -6311,7 +6411,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "zbr", "flt": "",},
       ],
@@ -6319,7 +6419,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SHf", "flt": "",},
       ],
@@ -6327,7 +6427,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sfr", "flt": "book",},
       ],
@@ -6335,7 +6435,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "lwH", "flt": "scorching",},
       ],
@@ -6343,7 +6443,7 @@ ahl_kitab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "lwH", "flt": "(?:[Tt]ablet|plank)",},
       ],
@@ -6354,7 +6454,7 @@ ahl_kitab = [
 badr = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "",},
         { "stri": "xrj", "flt": "",},
@@ -6366,7 +6466,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Twf", "flt": "",},
         { "stri": "$wk", "flt": "",},
@@ -6375,7 +6475,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mdd", "flt": "",},
         { "stri": "Alf", "flt": "",},
@@ -6386,7 +6486,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nEs", "flt": "",},
         { "stri": "Amn", "flt": "",},
@@ -6400,7 +6500,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ywm", "flt": "",},
         { "stri": "lqy", "flt": "",},
@@ -6411,7 +6511,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wHy", "flt": "",},
         { "stri": "mlk", "flt": "",},
@@ -6423,7 +6523,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Alh", "flt": "",},
         { "stri": "rmy", "flt": "",},
@@ -6433,7 +6533,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fAy", "flt": "",},
         { "stri": "qtl", "flt": "",},
@@ -6443,7 +6543,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bdr", "flt": "Badr",},
       ],
@@ -6451,7 +6551,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xrj", "flt": "",},
         { "stri": "dyr", "flt": "",},
@@ -6462,7 +6562,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$Tn", "flt": "",},
         { "stri": "nkS", "flt": "",},
@@ -6472,7 +6572,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rAy", "flt": "",},
         { "stri": "qll", "flt": "",},
@@ -6482,7 +6582,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rAy", "flt": "",},
         { "stri": "qll", "flt": "",},
@@ -6492,7 +6592,7 @@ badr = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Edw", "flt": "",},
         { "stri": "qSw", "flt": "",},
@@ -6505,7 +6605,7 @@ badr = [
 qaynuqa = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfq", "flt": "",},
         { "stri": "mrD", "flt": "",},
@@ -6516,7 +6616,7 @@ qaynuqa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ehd", "flt": "",},
         { "stri": "nqD", "flt": "",},
@@ -6526,7 +6626,7 @@ qaynuqa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xwn", "flt": "",},
         { "stri": "xwf", "flt": "",},
@@ -6536,7 +6636,7 @@ qaynuqa = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "$rd", "flt": "",},
       ],
@@ -6547,7 +6647,7 @@ qaynuqa = [
 najran = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bhl", "flt": "",},
       ],
@@ -6558,7 +6658,7 @@ najran = [
 uhud = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bwA", "flt": "",},
         { "stri": "qEd", "flt": "",},
@@ -6567,7 +6667,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "hmm", "flt": "",},
         { "stri": "Twf", "flt": "",},
@@ -6577,7 +6677,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mdd", "flt": "",},
         { "stri": "vlv", "flt": "",},
@@ -6588,7 +6688,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "mdd", "flt": "",},
         { "stri": "xms", "flt": "",},
@@ -6599,7 +6699,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "qTE", "flt": "",},
         { "stri": "kbt", "flt": "",},
@@ -6609,7 +6709,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "",},
         { "stri": "TwE", "flt": "",},
@@ -6621,7 +6721,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "f$l", "flt": "",},
         { "stri": "ESy", "flt": "",},
@@ -6632,7 +6732,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SEd", "flt": "",},
         { "stri": "rsl", "flt": "",},
@@ -6642,7 +6742,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "jhl", "flt": "",},
@@ -6654,7 +6754,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ywm", "flt": "",},
         { "stri": "lqy", "flt": "",},
@@ -6665,7 +6765,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ywm", "flt": "",},
         { "stri": "lqy", "flt": "",},
@@ -6676,7 +6776,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfq", "flt": "",},
         { "stri": "qtl", "flt": "",},
@@ -6686,7 +6786,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Axw", "flt": "",},
         { "stri": "qEd", "flt": "",},
@@ -6696,7 +6796,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nEs", "flt": "",},
         { "stri": "Amn", "flt": "",},
@@ -6707,7 +6807,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "End", "flt": "",},
         { "stri": "kfr", "flt": "",},
@@ -6719,7 +6819,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "lyn", "flt": "",},
         { "stri": "rHm", "flt": "",},
@@ -6728,7 +6828,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "gll", "flt": "",},
         { "stri": "nbA", "flt": "",},
@@ -6738,7 +6838,7 @@ uhud = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jwb", "flt": "",},
         { "stri": "rsl", "flt": "",},
@@ -6761,7 +6861,7 @@ hamra = [
 ahzab = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jnd", "flt": "",},
         { "stri": "jyA", "flt": "",},
@@ -6772,7 +6872,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfq", "flt": "",},
         { "stri": "mrD", "flt": "",},
@@ -6783,7 +6883,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Twf", "flt": "",},
         { "stri": "yavorib", "flt": "",},
@@ -6794,7 +6894,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "A*n", "flt": "",},
         { "stri": "byt", "flt": "",},
@@ -6805,7 +6905,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "dxl", "flt": "",},
         { "stri": "sAl", "flt": "",},
@@ -6816,7 +6916,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ehd", "flt": "",},
         { "stri": "laA", "flt": "",},
@@ -6827,7 +6927,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ewq", "flt": "",},
         { "stri": "Axw", "flt": "",},
@@ -6836,7 +6936,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xwf", "flt": "",},
         { "stri": "slq", "flt": "",},
@@ -6846,7 +6946,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hsb", "flt": "",},
         { "stri": "Hzb", "flt": "",},
@@ -6856,7 +6956,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Amn", "flt": "",},
         { "stri": "rAy", "flt": "",},
@@ -6867,7 +6967,7 @@ ahzab = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rdd", "flt": "",},
         { "stri": "kfr", "flt": "",},
@@ -6880,7 +6980,7 @@ ahzab = [
 qurayza = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "SyS", "flt": "",},
         { "stri": "Ahl", "flt": "",},
@@ -6892,7 +6992,7 @@ qurayza = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wrv", "flt": "",},
         { "stri": "ArD", "flt": "",},
@@ -6910,7 +7010,7 @@ fidak = [
 nadir = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "HSn", "flt": "",},
         { "stri": "Ahl", "flt": "",},
@@ -6921,7 +7021,7 @@ nadir = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fyA", "flt": "",},
         { "stri": "Ahl", "flt": "",},
@@ -6932,7 +7032,7 @@ nadir = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfq", "flt": "",},
         { "stri": "Axw", "flt": "",},
@@ -6943,7 +7043,7 @@ nadir = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "jlw", "flt": "",},
         { "stri": "E*b", "flt": "",},
@@ -6956,7 +7056,7 @@ nadir = [
 hudaybiya = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "byE", "flt": "",},
         { "stri": "$jr", "flt": "",},
@@ -6968,7 +7068,7 @@ hudaybiya = [
 khaybar = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wEd", "flt": "",},
         { "stri": "gnm", "flt": "",},
@@ -6977,7 +7077,7 @@ khaybar = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "gnm", "flt": "",},
         { "stri": "xlf", "flt": "",},
@@ -7010,7 +7110,7 @@ hunayn = [
 tabuk = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "nfr", "flt": "",},
         { "stri": "vql", "flt": "",},
@@ -7020,7 +7120,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "bEd", "flt": "",},
         { "stri": "$qq", "flt": "",},
@@ -7031,7 +7131,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "krh", "flt": "",},
         { "stri": "jhd", "flt": "",},
@@ -7040,7 +7140,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "A*n", "flt": "",},
         { "stri": "jhd", "flt": "",},
@@ -7049,7 +7149,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "A*n", "flt": "",},
         { "stri": "qEd", "flt": "",},
@@ -7058,7 +7158,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "xlf", "flt": "",},
         { "stri": "qEd", "flt": "",},
@@ -7067,7 +7167,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "E*r", "flt": "",},
         { "stri": "Erb", "flt": "",},
@@ -7076,7 +7176,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Aty", "flt": "",},
         { "stri": "Hml", "flt": "",},
@@ -7086,7 +7186,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Erb", "flt": "",},
         { "stri": "nfq", "flt": "",},
@@ -7096,7 +7196,7 @@ tabuk = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rDw", "flt": "",},
         { "stri": "maEa", "flt": "",},
@@ -7109,7 +7209,7 @@ tabuk = [
 dirar = [
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sjd", "flt": "",},
         { "stri": "Drr", "flt": "",},
@@ -7148,7 +7248,7 @@ jhd = [
 fadl = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fDl", "flt": "",},
         { "stri": "EalaY", "flt": "",},
@@ -7157,7 +7257,7 @@ fadl = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "fDl", "flt": "",},
         { "stri": "drj", "flt": "",},
@@ -7166,7 +7266,7 @@ fadl = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "drj", "flt": "(?:[Dd]egree|[Rr]ank)",},
       ],
@@ -7174,7 +7274,7 @@ fadl = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "drj", "flt": "",},
         { "stri": "EalaY", "flt": "",},
@@ -7183,7 +7283,7 @@ fadl = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "rfE", "flt": "",},
         { "stri": "drj", "flt": "",},
@@ -7192,7 +7292,7 @@ fadl = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "sxr", "flt": "",},
         { "stri": "bED", "flt": "",},
@@ -7204,7 +7304,7 @@ fadl = [
 zann = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "jhl", "flt": "",},
@@ -7213,7 +7313,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Amr", "flt": "",},
@@ -7223,7 +7323,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Hrm", "flt": "",},
@@ -7232,7 +7332,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "tbE", "flt": "",},
@@ -7241,7 +7341,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "$bh", "flt": "",},
@@ -7250,7 +7350,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Slb", "flt": "",},
@@ -7259,7 +7359,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "EiysaY", "flt": "",},
@@ -7268,7 +7368,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "masiyH", "flt": "",},
@@ -7277,7 +7377,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "nfs", "flt": "",},
@@ -7287,7 +7387,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Amn", "flt": "",},
@@ -7297,7 +7397,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Afk", "flt": "",},
@@ -7306,7 +7406,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "jnb", "flt": "",},
@@ -7315,7 +7415,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Avm", "flt": "",},
@@ -7324,7 +7424,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "",},
         { "stri": "Alh", "flt": "Allah",},
@@ -7334,7 +7434,7 @@ zann = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Znn", "flt": "assum",},
         { "stri": "swA", "flt": "",},
@@ -7346,7 +7446,7 @@ zann = [
 ftn = [
     [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Ehd", "flt": "",},
       ],
@@ -7354,7 +7454,7 @@ ftn = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "wvq", "flt": "",},
       ],
@@ -7362,7 +7462,7 @@ ftn = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "blw", "flt": "",},
       ],
@@ -7370,7 +7470,7 @@ ftn = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "ftn", "flt": "",},
       ],
@@ -7378,7 +7478,7 @@ ftn = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "Hml", "flt": "",},
         { "stri": "Ans", "flt": "",},
@@ -7388,7 +7488,7 @@ ftn = [
   ],
       [
     {
-      "wrdDis": sameVrsIndicator,
+      
       "strL": [
         { "stri": "*rr", "flt": "",},
         { "stri": "bnw", "flt": "",},
@@ -7639,7 +7739,6 @@ kutub = [
     ],
     [
       {
-        "wrdDis": 2,
         "strL": [
           {
             "stri": "nzl",
@@ -7648,12 +7747,14 @@ kutub = [
             # "frm": "iv",
           },
           {
+        "wrdDisPos": 2,
             "stri": "maA",
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
           },
           {
+        "wrdDisPos": 2,
             "stri": "qabol",
             "strTyp": "lem",
             # "poSp": "N",
@@ -7664,7 +7765,6 @@ kutub = [
     ],
     [
       {
-        "wrdDis": 2,
         "strL": [
           {
             "stri": "nzl",
@@ -7673,12 +7773,14 @@ kutub = [
             # "frm": "iv",
           },
           {
+        "wrdDisPos": 2,
             "stri": "kita`b",
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
           },
           {
+        "wrdDisPos": 2,
             "stri": "qabol",
             "strTyp": "lem",
             # "poSp": "N",
@@ -7689,7 +7791,6 @@ kutub = [
     ],
     [
       {
-        "wrdDis": 2,
         "strL": [
           {
             "stri": "nzl",
@@ -7698,12 +7799,14 @@ kutub = [
             # "frm": "iv",
           },
           {
+        "wrdDisPos": 2,
             "stri": "{l~a*iY",
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
           },
           {
+        "wrdDisPos": 2,
             "stri": "qabol",
             "strTyp": "lem",
             # "poSp": "N",
@@ -7714,7 +7817,6 @@ kutub = [
     ],
     [
       {
-        "wrdDis": 1,
         "strL": [
           {
             "stri": "maE",
@@ -7723,12 +7825,14 @@ kutub = [
             # "frm": "iv",
           },
           {
+        "wrdDisPos": 1,
             "stri": "maA",
             "strTyp": "lem",
             # "poSp": "N",
             # "frm": "i",
           },
           {
+        "wrdDisPos": 1,
             # "stri": "qabol",
             # "strTyp": "lem",
             # # "poSp": "N",
