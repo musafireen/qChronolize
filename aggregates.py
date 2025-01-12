@@ -2,16 +2,400 @@ from qChronolyze import sameVrsIndicator
 
 from aggregates_test import *
 
-angels = [
+
+jinn_iblis_dhurriya = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "*rr", 
+                    "strTyp": "root",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+]
+
+jinn_iblis = [
+    *jinn_iblis_dhurriya,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+iblis_shaytan = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wEd", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 45
+        },
+    ],
+]
+
+iblis_nar = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "naAr",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<iboliys", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+iblis_malak = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<iboliys",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+]
+
+iblis = [
+    *iblis_nar,
+    *iblis_malak,
+    *jinn_iblis,
+]
+
+jinn_malak = [
+    *iblis_malak,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ],
+]
+
+untha_dua_shirk = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$rk",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": ">unvaY`", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "dEw",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "duwn", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 11
+        },
+    ],
+]
+
+lat_uzza_manat_untha_ism = [
+    [
+    {
+      "wrdDis": 75,
+      "strL": [
+                {
+                    "stri": ">unvaY`", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "smw", 
+                    "strTyp": "root",
+                    # "poSp": "N",
+                    # "frm": "ii"
+                },
+        { "stri": goddess, "strTyp":"lem",  "flt": "",},
+                {
+                    "stri": "A^baA'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Znn", 
+                    "strTyp": "root",
+                    # "poSp": "N",
+                    # "frm": "ii"
+                },
+                {
+                    "stri": "hwy", 
+                    "strTyp": "root",
+                    # "poSp": "N",
+                    # "frm": "ii"
+                },
+      ],
+    },
+  ]
+    for goddess in ["{ll~a`t","{loEuz~aY`","manaw`p"]
+]
+
+lat_uzza_manat_untha_ism_malak = [
+    [
+    {
+      "wrdDis": optO[0]["wrdDis"],
+      "strL": optO[0]["strL"] + [ {"stri": "malak","strTyp": "lem",},]
+    },
+  ]
+    for optO in lat_uzza_manat_untha_ism
+]
+
+malak_tasmiya_untha = [
+    *lat_uzza_manat_untha_ism_malak,
+    # [
+    #     {
+    #         "strL": [
+    #             {
+    #                 "stri": "malak",
+    #                 "strTyp": "lem",
+    #             },
+    #         ],
+    #         "wrdDis": 20,
+    #     },
+    # ],
+]
+
+tasmiya_untha = [
+    # *lat_uzza_manat_untha_ism,
+    *lat_uzza_manat_untha_ism_malak,
+]
+
+ism_liqab = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      "wrdDis": 10,
       "strL": [
-        { "stri": "malak", "strTyp": "lem",},
+                {
+                    "stri": "smw", 
+                    "strTyp": "root",
+                    # "poSp": "N",
+                    # "frm": "ii"
+                },
+                {
+                    "stri": "lqb", 
+                    "strTyp": "root",
+                    # "frm": "ii"
+                },
+                {
+                    "stri": "fsq", 
+                    "strTyp": "root",
+                    # "frm": "ii"
+                },
+      ],
+    },
+  ],
+]
+
+# ism_jdl = [
+#         [
+#     {
+#       "wrdDis": 10,
+#       "strL": [
+#                 {
+#                     "stri": "smw", 
+#                     "strTyp": "root",
+#                     "poSp": "V",
+#                     "frm": "ii"
+#                 },
+#                 {
+#                     "stri": "jdl", 
+#                     "strTyp": "root",
+#                     # "frm": "ii"
+#                 },
+#       ],
+#     },
+#   ],
+# ]
+
+tasmiya_abd = [
+    # *malak_tasmiya_untha,
+        [
+    {
+      "wrdDis": 20,
+      "strL": [
+                {
+                    "stri": "A^baA'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "smw", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "ii"
+                },
+                {
+                    "stri": "Ebd", 
+                    "strTyp": "root",
+                    # "frm": "ii"
+                },
       ],
     },
   ],
         [
+    {
+      "wrdDis": 10,
+      "strL": [
+                {
+                    "stri": "$ariyk", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "smw", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "ii"
+                },
+      ],
+    },
+  ],
+    
+]
+
+tasmiya_abd_malak_untha = [
+    *malak_tasmiya_untha,
+    *tasmiya_untha,
+    *tasmiya_abd,
+]
+
+malak_banat = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": ">unvaY`", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "banaAt", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 50,
+        },
+    ],
+]
+
+malak_untha = [
+    *malak_tasmiya_untha,
+    *malak_banat,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "malak",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": ">unvaY`", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20,
+        },
+    ],
+
+]
+
+malak_ism = [
+    *malak_tasmiya_untha,
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -51,7 +435,10 @@ angels = [
       ],
     },
   ],
-        [
+]
+
+malak_khazanah_zabaniya = [
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -77,7 +464,10 @@ angels = [
       ],
     },
   ],
-        [
+]
+
+malak_mala = [
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -86,7 +476,10 @@ angels = [
       ],
     },
   ],
-        [
+]
+
+malak_jund = [
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -107,16 +500,31 @@ angels = [
   ],
         [
     {
-      "wrdDis": sameVrsIndicator,
+      "wrdDis": 4,
       "strL": [
         { "stri": "jund", "strTyp": "lem",},
         { "stri": "samaA^'", "strTyp": "lem",},
       ],
     },
   ],
+]
+
+malak_janah = [
         [
     {
-      "wrdDis": sameVrsIndicator,
+      "wrdDis": 10,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "janaAH", "strTyp": "lem",},
+      ],
+    },
+  ],
+]
+
+malak_rasul = [
+            [
+    {
+      "wrdDis": 5,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "rasuwl", "strTyp": "lem",},
@@ -134,7 +542,7 @@ angels = [
       ],
     },
   ],
-        [
+          [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -144,7 +552,41 @@ angels = [
       ],
     },
   ],
+]
+
+malak_ruh = [
         [
+    {
+      "wrdDis": 11,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": ">amor", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "ruwH", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": ">amor", "strTyp": "lem",},
+        { "stri": "ruwH", "strTyp": "lem",},
+      ],
+    },
+  ],
+]
+
+malak_amr = [
+            [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
@@ -183,12 +625,161 @@ angels = [
       ],
     },
   ],
+]
+
+malak_arsh = [
+            [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "Hml", "strTyp": "root",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
         [
     {
       "wrdDis": sameVrsIndicator,
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
-        { "stri": "Saf~", "strTyp": "lem",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "Hml", "strTyp": "root",},
+        { "stri": "Earo$", "strTyp": "lem",},
+      ],
+    },
+  ],
+]
+
+malak_muqarrab = [
+            [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": 5,
+      "strL": [
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
+      ],
+    },
+  ],
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "muqar~abuwn", "strTyp": "lem",},
+      ],
+    },
+  ],
+]
+
+malak_rabb_akhadh = [
+            [
+    {
+      "wrdDis": 3,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
+        { "stri": "rab~", "strTyp": "lem",},
+        { "stri": "Ax*", "strTyp": "root",},
+      ],
+    },
+  ],
+]
+
+malak_shafaah = [
+    [
+      {
+        "wrdDis": 10,
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+          { "stri": "$afa`Eap", "strTyp": "lem",},
+        ],
+      }
+        
+    ]
+]
+
+jinnah_malak_maqam_saff = [
+  [
+      
+        {
+          "wrdDis": 70,
+          "strL": [
+            { "stri": "malak", "strTyp": "lem",},
+            { "stri": "jin~ap", "strTyp": "lem",},
+            { "stri": "S~aA^f~uwn", "strTyp": "lem",},
+          ],
+        },
+
+  ],
+  [
+
+      {
+        "wrdDis": 70,
+        "strL": [
+          { "stri": "malak", "strTyp": "lem",},
+          { "stri": "jin~ap", "strTyp": "lem",},
+          { "stri": "maqaAm", "strTyp": "lem",},
+        ],
+      },
+    ],
+]
+
+
+malak_qabil = [
+                [
+            {
+                "strL": [
+                    {
+                        "stri": "qabiyl",
+                        "strTyp": "lem",
+                        "frm": "All",
+                    },
+                    {
+                        "stri": "malak",
+                        "strTyp": "lem",
+                    },
+                ],
+            },
+        ],
+]
+
+malak = [
+  *jinn_malak,
+  *malak_ism,
+  *malak_untha,
+  *malak_khazanah_zabaniya,
+  *malak_mala,
+  *malak_jund,
+  *malak_rasul,
+  *malak_ruh,
+  *malak_amr,
+  *malak_arsh,
+  *malak_muqarrab,
+  *malak_rabb_akhadh,
+  *malak_shafaah,
+  *malak_janah,
+  *jinnah_malak_maqam_saff,
+  *malak_qabil,
+        [
+    {
+      "wrdDis": sameVrsIndicator,
+      "strL": [
+        { "stri": "malak", "strTyp": "lem",},
       ],
     },
   ],
@@ -198,34 +789,6 @@ angels = [
       "strL": [
         { "stri": "malak", "strTyp": "lem",},
         { "stri": "Erj", "strTyp": "root",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "Hml", "strTyp": "root",},
-        { "stri": "Earo$", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "Earo$", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "Hml", "strTyp": "root",},
-        { "stri": "Earo$", "strTyp": "lem",},
       ],
     },
   ],
@@ -247,147 +810,802 @@ angels = [
       ],
     },
   ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "muqar~abuwn", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": sameVrsIndicator,
-      "strL": [
-        { "stri": "muqar~abuwn", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": 5,
-      "strL": [
-        { "stri": "muqar~abuwn", "strTyp": "lem",},
-        { "stri": "Eil~iy~iyn", "strTyp": "lem",},
-      ],
-    },
-  ],
-        [
-    {
-      "wrdDis": 3,
-      "strL": [
-        { "stri": "malak", "strTyp": "lem",},
-        { "stri": "rab~", "strTyp": "lem",},
-        { "stri": "Ax*", "strTyp": "root",},
-      ],
-    },
-  ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "jin~ap",
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "jaA^n~",
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-      [
+  #     [
 
-      {
-        "strL": [
-          { "stri": "malak", "strTyp": "lem",},
-          { "stri": "jan~ap", "strTyp": "lem",},
-        ],
-      },
+  #     {
+  #     "wrdDis": 20,
+  #       "strL": [
+  #         { "stri": "malak", "strTyp": "lem",},
+  #         { "stri": "jan~ap", "strTyp": "lem",},
+  #       ],
+  #     },
 
-  ]
+  # ]
 ]
 
-jinn = [
+# malak = list(set(malak))
+
+angels = malak
+
+shaytan_qabil = [
+                [
+            {
+                "strL": [
+                    {
+                        "stri": "qabiyl",
+                        "strTyp": "lem",
+                        "frm": "All",
+                    },
+                    {
+                        "stri": "$ayoTa`n",
+                        "strTyp": "lem",
+                    },
+                ],
+            },
+        ],
+]
+
+qabil = [
+    malak_qabil,
+    shaytan_qabil,
+]
+
+shaytan_mareed_dua_shirk = [
     [
         {
             "strL": [
                 {
-                    "stri": "jin~",
+                    "stri": "$rk",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "dEw",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "m~ariyd", 
+                    "strTyp": "lem",
+                },
+                # {
+                #     "stri": "duwn", 
+                #     "strTyp": "lem",
+                # },
+            ],
+            "wrdDis": 16
+        },
+    ],
+]
+
+shaytan_mareed = [
+    *shaytan_mareed_dua_shirk,
+        [
+        {
+            "strL": [
+                # {
+                #     "stri": "tbE",
+                #     "strTyp": "root",
+                #     # "poSp": "V",
+                # },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "m~ariyd", 
                     "strTyp": "lem",
                 },
             ],
+            "wrdDis": 30
+        },
+    ],
+]
 
+shaytan_sam_srq_sama_buruj = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "samoE", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "buruwj", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "samaA^'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "rajiym", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "srq",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30,
+        },
+    ],
+    
+]
+
+shaytan_zyn_dun = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "duwn", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "zyn",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 5,
+        },
+    ],
+    
+]
+
+shaytan_marid_sama_dunya_kawkab = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "kawokab", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "d~unoyaA", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "samaA^'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "m~aArid", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20,
+        },
+    ],
+]
+
+shaytan_maarid = [
+    *shaytan_marid_sama_dunya_kawkab,   
+]
+
+shaytan_abd = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "Ebd",
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+            #     {
+            #         "stri": "<ila`h", 
+            #         "strTyp": "lem",
+            #     },
+            ],
+            "wrdDis": 5,
+        },
+    ],
+]
+
+shaytan_akhi_bdhr = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": ">ax",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "b*r",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ], 
+]
+shaytan_mani = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "mny",
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "ii",
+                },
+            ],
+            "wrdDis": 10
+        },
+    ],
+]
+
+shaytan_nabi_tamanna_ilqa_naskh_fitna = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "mny",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "ftn",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                    # "frm": "ii",
+                },
+                {
+                    "stri": "nsx",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                    # "frm": "ii",
+                },
+                {
+                    "stri": "lqy",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                    # "frm": "ii",
+                },
+                {
+                    "stri": "n~abiY~", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ], 
+]
+
+shaytan_amr_btk_anam_adhan = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "btk",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": ">u*unN",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "n~aEam", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],    
+]
+
+shaytan_amr_ghayr_khalq = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "gyr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "xaloq",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+]
+
+shaytan_amr_munkar = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "munkar",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+]
+
+shaytan_amr_sayyiah = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "suw^'",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "say~i}ap",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "say~i_#aAt",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+]
+
+shaytan_amr_fahisha = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "faHo$aA^'",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+    [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "fa`Hi$ap",
+                    "strTyp": "lem",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "Amr",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ], 
+]
+
+shaytan_amr = [
+    *shaytan_amr_ghayr_khalq,
+    *shaytan_amr_btk_anam_adhan,
+    *shaytan_amr_fahisha,
+    # [
+    #     {
+    #         "strL": [
+    #             {
+    #                 "stri": "Amr",
+    #                 "strTyp": "root",
+    #                 # "poSp": "V",
+    #             },
+    #             {
+    #                 "stri": "$ayoTa`n", 
+    #                 "strTyp": "lem",
+    #             },
+    #         ],
+    #         "wrdDis": 30
+    #     },
+    # ],
+]
+
+shaytan_shirk = [
+    *shaytan_mareed_dua_shirk,
+    *shaytan_abd,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "TwE",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$rk",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                # {
+                #     "stri": "<ins", 
+                #     "strTyp": "lem",
+                # },
+                # {
+                #     "stri": "waliY~", 
+                #     "strTyp": "lem",
+                # },
+            ],
+            "wrdDis": 30
         },
     ],
     [
         {
             "strL": [
                 {
-                    "stri": "jin~ap",
+                    "stri": "tbE",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$rk",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                # {
+                #     "stri": "<ins", 
+                #     "strTyp": "lem",
+                # },
+                # {
+                #     "stri": "waliY~", 
+                #     "strTyp": "lem",
+                # },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+shaytan_sharik_awlad = [
+    [
+        {
+            "strL": [
+                # {
+                #     "stri": "jin~",
+                #     "strTyp": "lem",
+                # },
+                {
+                    "stri": "$rk",
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "iii"
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                # {
+                #     "stri": "maAl", 
+                #     "strTyp": "lem",
+                # },
+                {
+                    "stri": "walad", 
                     "strTyp": "lem",
                 },
             ],
+            "wrdDis": 10
+        },
+    ],
+]
 
+shaytan_why = [
+    [
+        {
+            "strL": [
+                # {
+                #     "stri": "jin~",
+                #     "strTyp": "lem",
+                # },
+                {
+                    "stri": "wHy",
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                # {
+                #     "stri": "<ins", 
+                #     "strTyp": "lem",
+                # },
+                # {
+                #     "stri": "waliY~", 
+                #     "strTyp": "lem",
+                # },
+            ],
+            "wrdDis": 10
+        },
+    ],
+]
+
+# jinn_qarin = [
+#         [
+#         {
+#             "strL": [
+#                 {
+#                     "stri": "jin~",
+#                     "strTyp": "lem",
+#                 },
+#                 {
+#                     "stri": "qariyn", 
+#                     "strTyp": "lem",
+#                 },
+#             ],
+#             "wrdDis": 20
+#         },
+#     ],
+# ]
+
+shaytan_qarin = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "qariyn", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "ri}aA^'", 
+                    "strTyp": "root",
+                },
+            ],
+            "wrdDis": 25
         },
     ],
     [
         {
             "strL": [
                 {
-                    "stri": "jaA^n~",
+                    "stri": "qariyn", 
                     "strTyp": "lem",
-                    "flt": "(?:[Ss]nake|[Rr]eptile|[Vv]iper)",
+                },
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "E$w", 
+                    "strTyp": "root",
                 },
             ],
-
+            "wrdDis": 25
         },
     ],
+]
+
+qarin = [
+    # *jinn_qarin,
+    *shaytan_qarin,
     [
         {
             "strL": [
                 {
-                    "stri": "jaA^n~",
+                    "stri": "qariyn", 
                     "strTyp": "lem",
-                    "flt": "^((?![Ss]nake|[Rr]eptile|[Vv]iper).)*$",
                 },
             ],
-
+            # "wrdDis": 25
         },
     ],
-    [
+]
+
+shaytan_muqarran = [
+        [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "m~uqar~aniyn", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+shaytan_wiswas = [
+        [
+        {
+            "strL": [
+                {
+                    "stri": "$ayoTa`n", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wsws",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                    # "frm": "ii",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+shaytan = [
+    *shaytan_sam_srq_sama_buruj,
+    *shaytan_maarid,
+    *shaytan_mareed,
+    *shaytan_qarin,
+    *shaytan_muqarran,
+    *shaytan_sharik_awlad,
+    *shaytan_shirk,
+    *shaytan_akhi_bdhr,
+    *shaytan_mani,
+    *shaytan_amr,
+    *shaytan_why,
+    *shaytan_wiswas,
+    *shaytan_qabil,
+    *iblis,
+]
+
+# shaytan = list(set(shaytan))
+
+muqarran = [
+    *shaytan_muqarran,
+        [
+        {
+            "wrdDis": sameVrsIndicator,
+            "strL": [
+                {
+                    "stri": "m~uqar~aniyn", 
+                    "strTyp": "lem",
+                },
+            ],
+        },
+    ],
+]
+
+qarin_muqarran = [
+    *qarin,
+    *muqarran,
+]
+
+kahin_majnun = [
+        [
         {
             "strL": [
                 {
@@ -402,52 +1620,10 @@ jinn = [
             "wrdDis": 20
         },
     ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~ap",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jaA^n~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "malak", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 14
-        },
-    ],
-    [
+]
+
+ifrit_jinn = [
+        [
         {
             "strL": [
                 {
@@ -462,6 +1638,70 @@ jinn = [
             "wrdDis": 35
         },
     ],
+]
+
+ifrit = [
+    *ifrit_jinn,
+]
+
+jinna_wiswas = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wsws",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                    # "frm": "ii",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+wiswas = [
+    jinna_wiswas,
+    *shaytan_wiswas,
+]
+
+jinn_sama_mss_qEd_sam = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "samoE", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "samaA^'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "lms",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+                {
+                    "stri": "qEd",
+                    "strTyp": "root",
+                    # "poSp": "V",
+                },
+            ],
+            "wrdDis": 75,
+        },
+    ],
+]
+
+jinn_rasul_ins = [
     [
         {
             "strL": [
@@ -470,39 +1710,154 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "qariyn", 
+                    "stri": "rasuwl", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
                     "strTyp": "lem",
                 },
             ],
-            "wrdDis": 20
+            "wrdDis": 10
         },
-    ],
+    ], 
+]
+
+jinn_ins_ummah_khala = [
     [
         {
             "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": ">um~ap", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "xlw", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+            ],
+            "wrdDis": 10
+        },
+    ], 
+]
+
+jinn_ins_nfdh_sama = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "samaA^'", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "nf*", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+            ],
+            "wrdDis": 10
+        },
+    ], 
+]
+
+jinn_ins_abd = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Ebd", 
+                    "strTyp": "root",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 10
+        },
+    ],
+]
+
+jinn_ins_dll = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Dll", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+            ],
+            "wrdDis": 5
+        },
+    ], 
+]
+
+jinn_wHy_ins_shaytan = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wHy",
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
                 {
                     "stri": "$ayoTa`n", 
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "m~uqar~aniyn", 
+                    "stri": "<ins", 
                     "strTyp": "lem",
                 },
             ],
-            "wrdDis": 20
+            "wrdDis": 10
         },
     ],
-    [
-        {
-            "wrdDis": sameVrsIndicator,
-            "strL": [
-                {
-                    "stri": "m~uqar~aniyn", 
-                    "strTyp": "lem",
-                },
-            ],
-        },
-    ],
+]
+
+jinn_wHy_ins = [
+    *jinn_wHy_ins_shaytan,  
+]
+
+jinn_shaytan = [
+    *jinn_wHy_ins_shaytan,
+]
+
+jinn_sharik_kharaq_bani = [
     [
         {
             "strL": [
@@ -511,17 +1866,27 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "*rr", 
+                    "stri": "$ariyk", 
+                    "strTyp": "lem",
+                    # "poSp": "N",
+                    # "frm": "i",
+                },
+                {
+                    "stri": "xrq", 
                     "strTyp": "root",
                 },
                 {
-                    "stri": "<iboliys", 
+                    "stri": "banaAt", 
                     "strTyp": "lem",
                 },
             ],
             "wrdDis": 35
         },
-    ],
+    ],    
+]
+
+jinn_sharik = [
+    *jinn_sharik_kharaq_bani,
     [
         {
             "strL": [
@@ -530,7 +1895,240 @@ jinn = [
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "<iboliys", 
+                    "stri": "$ariyk", 
+                    "strTyp": "lem",
+                    # "poSp": "N",
+                    # "frm": "i",
+                },
+            ],
+            "wrdDis": 35
+        },
+    ], 
+]
+
+jinn_abd = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Ebd", 
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "i"
+                },
+                {
+                    "stri": ">akovar",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "malak",
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 15
+        },
+    ],
+]
+
+jinna_nasab = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "nsb", 
+                    "strTyp": "root",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+jinnah_nas_khannas = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "n~aAs", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "xan~aAs", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+    
+]
+
+jinnah_khannas = [
+    *jinnah_nas_khannas,
+]
+
+khannas = [
+    *jinnah_nas_khannas,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "xan~aAs", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 20
+        },
+    ],
+]
+
+jinn_wali_ins = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "wly", 
+                    "strTyp": "root",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 7
+        },
+    ],
+]
+
+jinn_awdh_ins = [
+        [
+        {
+            "strL": [
+                {
+                    "stri": "Ew*", 
+                    "strTyp": "root",
+                },
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 25
+        },
+    ],
+]
+
+jinn_istikthar_ins = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "kvr",
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+jinn_tayr = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Tayor", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+jinn_ijtima_ins = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "jmE",
+                    "strTyp": "root",
+                    "poSp": "V",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+jinn_shirk = [
+    *jinna_wiswas,
+    *jinn_ijtima_ins,
+    *jinn_istikthar_ins,
+    *jinn_wHy_ins_shaytan,
+    *jinn_wali_ins,
+    *jinn_awdh_ins,
+    *jinn_sharik,
+    *jinn_abd,
+    *jinna_nasab,
+    *jinn_sharik_kharaq_bani
+]
+
+jinn_ins_jahannam = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "jahan~am",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
                     "strTyp": "lem",
                 },
             ],
@@ -541,15 +2139,162 @@ jinn = [
         {
             "strL": [
                 {
-                    "stri": "jin~",
+                    "stri": "jin~ap",
                     "strTyp": "lem",
                 },
                 {
-                    "stri": "$ayoTa`n", 
+                    "stri": "jahan~am",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "n~aAs", 
                     "strTyp": "lem",
                 },
             ],
             "wrdDis": 30
+        },
+    ],
+]
+
+jann_ins_Tmth = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "Tmv",
+                    "strTyp": "root",
+                },
+            ],
+
+        },
+    ],   
+]
+
+jinn_ins = [
+    *jinn_wali_ins,
+    *jinn_awdh_ins,
+    *jinn_istikthar_ins,
+    *jinn_ijtima_ins,
+    *jinn_wHy_ins_shaytan,
+    *jinn_ins_jahannam,
+    *jinnah_nas_khannas,
+    *jinn_ins_nfdh_sama,
+    *jinn_ins_dll,
+    *jinn_ins_ummah_khala,
+    *jinn_rasul_ins,
+    *jann_ins_Tmth,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ins", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+]
+
+jann_dhanb = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "*anb",
+                    "strTyp": "lem",
+                },
+            ],
+
+        },
+    ],   
+]
+
+jann_nar = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "naAr",
+                    "strTyp": "lem",
+                },
+            ],
+
+        },
+    ],   
+]
+
+jann_hzz = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "hzz",
+                    "strTyp": "root",
+                },
+            ],
+
+        },
+    ],   
+]
+
+jinn = [
+    *kahin_majnun,
+    *jinn_malak,
+    *ifrit_jinn,
+    # *jinn_qarin,
+    *jinn_iblis,
+    *jinn_shaytan,
+    *jinn_ins,
+    *jinn_tayr,
+    *jinn_shirk,
+    *jann_nar,
+    *jann_dhanb,
+    *jann_hzz,
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+            ],
+
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+            ],
+
         },
     ],
     [
@@ -574,142 +2319,16 @@ jinn = [
             ],
         },
     ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "Ew*", 
-                    "strTyp": "root",
-                },
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "<ins", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 25
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "<ins", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 30
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "kvr",
-                    "strTyp": "root",
-                    "poSp": "V",
-                },
-                {
-                    "stri": "<ins", 
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 30
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "wly", 
-                    "strTyp": "root",
-                },
-            ],
-            "wrdDis": 7
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "$ariyk", 
-                    "strTyp": "lem",
-                    # "poSp": "N",
-                    # "frm": "i",
-                },
-            ],
-            "wrdDis": 35
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "Ebd", 
-                    "strTyp": "root",
-                    "poSp": "V",
-                    "frm": "i"
-                },
-            ],
-            "wrdDis": 1
-        },
-    ],
-    [
-        {
-            "strL": [
-                {
-                    "stri": "jin~ap",
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "nsb", 
-                    "strTyp": "root",
-                },
-            ],
-            "wrdDis": 20
-        },
-    ],
 ]
 
-kahin = [
-    [
-        {
-            "strL": [
-                {
-                    "stri": "kaAhin", 
-                    "strTyp": "lem",
-                },
-                {
-                    "stri": "majonuwn",
-                    "strTyp": "lem",
-                },
-            ],
-            "wrdDis": 20
-        },
-    ],
+# jinn = list(set(jinn))
+
+jinn_shaytan = [
+    *jinn,
+    *shaytan,
+]
+
+kahin_shair = [
     [
         {
             "strL": [
@@ -726,6 +2345,13 @@ kahin = [
         },
     ],
 ]
+
+kahin = [
+    *kahin_majnun,
+    *kahin_shair,
+
+]
+
 
 evil_spirits = [
         [
@@ -1924,6 +3550,50 @@ rituals = [
       ],
     },
   ],
+]
+
+
+ilah_dun_baEd = [
+    [
+        {
+            "strL": [
+                # {
+                #     "stri": "Ax*",
+                #     "strTyp": "root",
+                #     # "poSp": "V",
+                # },
+                {
+                    "stri": "duwn", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ila`h", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
+    [
+        {
+            "strL": [
+                # {
+                #     "stri": "Ax*",
+                #     "strTyp": "root",
+                #     # "poSp": "V",
+                # },
+                {
+                    "stri": "baEod", 
+                    "strTyp": "lem",
+                },
+                {
+                    "stri": "<ila`h", 
+                    "strTyp": "lem",
+                },
+            ],
+            "wrdDis": 30
+        },
+    ],
 ]
 
 shirk = [

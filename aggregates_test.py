@@ -1,5 +1,90 @@
 from qChronolyze import sameVrsIndicator, rtTrns
 
+jnn = [
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jnn",
+                    "strTyp": "root",
+                    "poSp": "V",
+                    "frm": "i",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jin~ap",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jaA^n~",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jan~ap",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "jun~ap",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": "majonuwn",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+    [
+        {
+            "strL": [
+                {
+                    "stri": ">ajin~ap",
+                    "strTyp": "lem",
+                },
+            ]
+        },
+    ],
+]
+
 dEw_duwn_baEd = [
     [
         {
