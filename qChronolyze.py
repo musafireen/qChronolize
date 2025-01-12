@@ -707,6 +707,9 @@ def intersct(comb):
         # surahAyahAggSet = set()
         for i in range(len(strL)):
             strObj = strL[i]
+            strUnwanted = strObj.strUnwanted
+            wrdDisPos = strObj.wrdDisPos
+            wrdDisNeg = strObj.wrdDisNeg
             # instLst = filtDown(strObj)
             instLst = dataGrabber(strObj)
             # print('instLst at each:',)
@@ -735,7 +738,7 @@ def intersct(comb):
                 for oldSurAyPos in instLstFltAyD.keys():
                     # oldSurAy = list(instLstFltAyD.keys())[j]
                     oldSurAy = ":".join(oldSurAyPos.split(':')[:2])
-                    if wrdDis == -1:
+                    if strUnwanted == True:
                         for newInst in instLst:
                             newSur,newAy,newPoss = newInst
                             newSurAy = ":".join([newSur,newAy])
@@ -754,7 +757,7 @@ def intersct(comb):
                             # else:
                                 # instLstFltAyD[oldSurAyPos] = None
                                 # print("\n",newSurAy,"\n")
-                    elif wrdDis == sameVrsIndicator:
+                    elif wrdDisPos == sameVrsIndicator:
                         for newInst in instLst:
                             newSur,newAy,newPoss = newInst
                             newSurAy = ":".join([newSur,newAy])
@@ -786,13 +789,11 @@ def intersct(comb):
                             # if (newSurAy := ":".join([newSur,newAy]))
                             # for oldPos in oldPoss
                             if (newSurAyPos := ":".join([newSur,newAy,newPos]))
-                            if (curDist := abs(
-                                posSerDict[newSurAyPos] 
-                                - posSerDict[oldSurAyPos])
+                            if (curDist := posSerDict[newSurAyPos] - posSerDict[oldSurAyPos]
                                 # posSerDict[":".join([newSur,newAy,newPos])] 
                                 # - posSerDict[":".join([oldSurAy,oldPos])])
                             )
-                            if curDist <= wrdDis
+                            if (curDist > 0 and curDist <= wrdDisPos) or (curDist >= wrdDisNeg and curDist < 0)
                         }
                         closestNew = None if len(validDistsD) == 0 else validDistsD[str(min([int(k) for k in validDistsD.keys()]))]
                                 # curDist = abs(
@@ -1062,6 +1063,9 @@ def aggregLsts(
 
 class strObjClass:
     # idx = 0
+    wrdDisPosSt = sameVrsIndicator
+    wrdDisNegSt = -sameVrsIndicator
+    strUnwantedSt = False
     # parentIdx = 1
     striSt = ''
     fltSt=''
@@ -1081,6 +1085,10 @@ class strObjClass:
                 poSp = None,
                 inpLng = None,
                 inpSch = None ,
+                strUnwanted=False,
+                wrdDisPos=sameVrsIndicator,
+                wrdDisNeg=-sameVrsIndicator,
+                qyArLegSch = None,
                 # stri = striSt,
                 # flt = fltSt,
                 # strTyp = strTypSt,
@@ -1102,6 +1110,11 @@ class strObjClass:
         #     "inpLng:", inpLng,
         #     "inpSch:", inpSch,
         # )
+        qyArLegSch = lng2InpSchD["arabic"][-1] if qyArLegSch == None else qyArLegSch
+        wrdDisPos = self.wrdDisPosSt if (wrdDisPos == sameVrsIndicator or wrdDisPos == None) else wrdDisPos
+        self.wrdDisPos = wrdDisPos
+        wrdDisNeg = self.wrdDisNegSt if (wrdDisNeg == -sameVrsIndicator or wrdDisNeg == None) else wrdDisNeg
+        self.wrdDisNeg = -self.wrdDisPos if (wrdDisNeg == -sameVrsIndicator and self.wrdDisPos != sameVrsIndicator) else wrdDisNeg
         self.stri = stri
         self.flt = flt
         self.strTyp = strTyp if strTyp != None else self.strTypSt
@@ -1109,6 +1122,25 @@ class strObjClass:
         self.poSp = poSp if poSp != None else self.poSpSt
         self.inpLng = inpLng if inpLng != None else self.inpLngSt
         self.inpSch = inpSch if inpSch != None else self.inpSchSt
+        self.strUnwanted = strUnwanted
+        wrdDisYes = wrdDisPos != sameVrsIndicator
+        self.strLbl = (
+            "-" if self.strUnwanted == True else ''
+            ) + (
+                    f'<{str(self.wrdDisPos)}' if wrdDisYes else ''
+                ) + (
+                    f',{str(self.wrdDisNeg)}' if self.wrdDisNeg != -self.wrdDisPos and wrdDisYes else ""
+                ) + ('>' if wrdDisYes else '') + rtTrns(
+                    self.stri,
+                    lngD[self.inpLng],
+                    inpLngSchD[self.inpSch],
+                    # "bkwSch",
+                    outSch=inpLngSchD[qyArLegSch] 
+                    # outSch="arbSch"
+                    if self.inpLng == "arabic" 
+                    else None
+                # f'{strObj["stri"]} ({strObj["flt"]})' for 
+                ) + (f" {self.frm}" if self.strTyp == 'root' and self.frm != 'All' else '') + (f" ({self.flt})" if self.flt != '' else '')
         # self.strObj = {
         #     "stri": stri,
         #     "flt": flt,
@@ -1146,7 +1178,11 @@ class combClass:
     #     "strL": [],
     #     "wrdDis": 0,
     # }
-    def __init__(self,strL=[],wrdDis=sameVrsIndicator,qyArLegSch=None,lbl=''):
+    def __init__(
+            self,strL=[],
+            wrdDis=sameVrsIndicator,
+            qyArLegSch=None,lbl=''
+    ):
     #   global strObjClass
       # print(combsLsA)
       strL = self.strLSt if (strL==[] or strL==None) else strL
@@ -1162,33 +1198,41 @@ class combClass:
     #   self.strL = [ strObjClass(**strObj) for strObj in self.strLSt  ]
       qyArLegSch = lng2InpSchD["arabic"][-1] if qyArLegSch == None else qyArLegSch
     #   print("qyArLegSch is ",qyArLegSch)
-      self.strL = [ strObjClass(**strObj) for strObj in strL  ]
+      self.strL = [ 
+            strObjClass(**strObj,qyArLegSch=qyArLegSch) if strObj==strL[0]  
+            else strObjClass(wrdDisPos=wrdDis,**strObj,qyArLegSch=qyArLegSch) if ("wrdDisPos" not in strObj.keys()) 
+            else strObjClass(**strObj,qyArLegSch=qyArLegSch)
+            for strObj in strL  
+        ]
 
-      fltJoin =   ' '.join([ 
-                        strObj.flt for 
-                        # f'{strObj["stri"]} ({strObj["flt"]})' for 
-                        strObj 
-                        in self.strL
-                    ]) 
-      striJoin = ' '.join([ 
-                rtTrns(
-                    strObj.stri,
-                    lngD[strObj.inpLng],
-                    inpLngSchD[strObj.inpSch],
-                    # "bkwSch",
-                    outSch=inpLngSchD[qyArLegSch] 
-                    # outSch="arbSch"
-                    if strObj.inpLng == "arabic" 
-                    else None
-                # f'{strObj["stri"]} ({strObj["flt"]})' for 
-                ) for strObj 
-                in self.strL
-            ])
-      self.lbl = lbl if lbl != '' else striJoin + (
-                f" ({fltJoin})" if len(fltJoin) > (len(self.strL)-1) else ''
-            ) + (
-                '-' if wrdDis == -1 else '' if wrdDis == sameVrsIndicator else f'<{str(wrdDis)}>'
-            )
+    #   fltJoin =   ' '.join([ 
+    #                     strObj.flt for 
+    #                     # f'{strObj["stri"]} ({strObj["flt"]})' for 
+    #                     strObj 
+    #                     in self.strL
+    #                 ]) 
+    #   striJoin = ' '.join([ 
+    #             rtTrns(
+    #                 strObj.stri,
+    #                 lngD[strObj.inpLng],
+    #                 inpLngSchD[strObj.inpSch],
+    #                 # "bkwSch",
+    #                 outSch=inpLngSchD[qyArLegSch] 
+    #                 # outSch="arbSch"
+    #                 if strObj.inpLng == "arabic" 
+    #                 else None
+    #             # f'{strObj["stri"]} ({strObj["flt"]})' for 
+    #             ) for strObj 
+    #             in self.strL
+    #         ])
+    #   self.lbl = lbl if lbl != '' else striJoin + (
+    #             f" ({fltJoin})" if len(fltJoin) > (len(self.strL)-1) else ''
+    #         ) + (
+    #             '-' if wrdDis == -1 else '' if wrdDis == sameVrsIndicator else f'<{str(wrdDis)}>'
+    #         )
+      self.lbl = ' '.join([
+          strObj.strLbl for strObj in self.strL
+      ])
     #   print(f"strL in comb after str obj: {self.strL}")
     #   print([strObjClass(**strObj).strObj for strObj in self.strL ])
       # for strObj in strL:
@@ -1210,6 +1254,9 @@ class strObWdgCl:
     poSpSt = strObjClass.poSpSt
     inpLngSt = strObjClass.inpLngSt
     inpSchSt = strObjClass.inpSchSt
+    wrdDisPosSt = strObjClass.wrdDisPosSt
+    wrdDisNegSt = strObjClass.wrdDisNegSt
+    strUnwantedSt = strObjClass.strUnwantedSt
 
     def update_language_scheme_options(self,*args):
         # print(self.inpLngW.value)
@@ -1225,6 +1272,9 @@ class strObWdgCl:
         strObWdgCl.poSpSt=self.poSpW.value
         strObWdgCl.inpLngSt=self.inpLngW.value
         strObWdgCl.inpSchSt=self.inpSchW.value
+        strObWdgCl.strUnwantedSt=self.strUnwantedW.value
+        strObWdgCl.wrdDisPosSt=self.wrdDisPosW.value
+        strObWdgCl.wrdDisNegSt=self.wrdDisNegW.value
 
         strObWdgCl(
             self.parentComb
@@ -1242,7 +1292,7 @@ class strObWdgCl:
                 ):
 
         self.parentComb = parentComb
-
+        
         self.striW = widg.Text(description=f"String_Object")
         self.fltW = widg.Text(description=f"Translation_filter")
         self.strTypeW = widg.Dropdown(options=strTypL, value=self.strTypSt,description=f"String_type")
@@ -1257,6 +1307,10 @@ class strObWdgCl:
         self.inpLngW.observe(self.update_language_scheme_options)
         self.update_language_scheme_options(self)
 
+        self.strUnwantedW = widg.ToggleButton(value=False,description='Exclude')
+        self.wrdDisPosW = widg.IntText(min=0,max=sameVrsIndicator,value=self.wrdDisPosSt, description=f"Word Distance before")
+        self.wrdDisNegW = widg.IntText(min=-sameVrsIndicator,max=0,value=self.wrdDisNegSt, description=f"Word Distance after")
+
         self.strContainer = widg.VBox(
             [
                 self.striW,
@@ -1266,8 +1320,11 @@ class strObWdgCl:
                 self.frmW,
                 self.inpLngW,
                 self.inpSchW,
+                self.wrdDisPosW,
+                self.wrdDisNegW,
+                self.strUnwantedW,
                 self.entStrObjB,
-                self.delStrObjB
+                self.delStrObjB,
             ]
         )
 
@@ -1324,7 +1381,7 @@ class combWdgCl:
         self.opt_container = opt_container
         # print(len(self.container.children))
 
-        self.wrdDistW = widg.IntText(min=-1,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
+        self.wrdDisW = widg.IntText(min=-1,max=sameVrsIndicator,value=self.wrdDisSt, description=f"Word Distance")
         self.qyLblW = widg.Text(value='', description=f"Query Label")
         self.entCombB = widg.Button(description="Enter Combination of String Objects")
         self.entCombB.on_click(self.entCombM)
@@ -1335,7 +1392,7 @@ class combWdgCl:
             [
                 widg.VBox(
                     [
-                        self.wrdDistW,
+                        self.wrdDisW,
                         self.qyLblW,
                         widg.HBox([self.entCombB, self.delCombB]),
                     ],
@@ -1396,7 +1453,7 @@ class optStWdgCl:
         self.container = container
         # print(len(self.container.children))
 
-        # self.wrdDistW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
+        # self.wrdDisW = widg.IntText(min=0,max=6236,value=0, description=f"Verse Distance")
         self.entOptStB = widg.Button(description="Enter Option of String Objects")
         self.entOptStB.on_click(self.entOptStM)
         self.delOptStB = widg.Button(description="Delete Option of String Objects")
@@ -1736,6 +1793,9 @@ def finish_query_f(button,container=widg.VBox([]),qL=[],pres='plot',refLng='engl
                                 "frm":strCFlds[4].value,
                                 "inpLng":strCFlds[5].value,
                                 "inpSch":strCFlds[6].value,
+                                "wrdDisPos":strCFlds[7].value,
+                                "wrdDisNeg":strCFlds[8].value,
+                                "strUnwanted":strCFlds[9].value,
                             }
                         )
                         # print(f"combClass.strLSt: {combClass.strLSt}")
