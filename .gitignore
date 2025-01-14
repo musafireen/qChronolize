@@ -5,6 +5,7 @@ __pycache__
 dev.ipynb
 data/ref/*
 data/compare/*
+data/html/*
 *.md
 !data/ref/QsortedRukued.md
 !data/ref/Qrsi.md
