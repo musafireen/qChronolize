@@ -586,9 +586,14 @@ def dataGrabber(strObj):
                     if strTyp == "stem":
                         # wrdNV = remVwls(wrdStrD["wrd"],"arbSch").replace('_','')
                         # strArbSchNV = remVwls(strArbSch,"arbSch")
-                        wrdNV = wrdStrD["wrd"].replace('ـ','')
-                        strArbSchNV = strArbSch
-                        stemInWrd = strArbSchNV in wrdNV
+                        # wrdNV = wrdStrD["wrd"].replace('ـ','')
+                        # strArbSchNV = strArbSch
+                        # stemInWrd = strArbSchNV in wrdNV
+                        wrdBkw = rtTrns(
+                            wrdStrD["wrd"].replace('ـ',''),
+                            "arb", "arbSch", "bkwSch"
+                        )
+                        stemInWrd = len(re.findall(stri, wrdBkw)) > 0
                         # print("at least got stem", strArbSch, strArbSchNV, wrdNV, stemInWrd)
                     
                     poSpMatch = True
