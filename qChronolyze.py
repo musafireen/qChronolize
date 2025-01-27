@@ -1948,20 +1948,21 @@ def sAPFin(qL):
                     if not isinstance(qL[0][0], combClass):
                         qL = qLModder(qL)
     instLstAgg = aggregLsts(qL)
-    # sAPL = [
-    #     ":".join(sur_ay,pos)
-    #     for inst in instLstAgg
-    #     if (poss := inst.__dict__.positions) and (sur_ay := inst.__dict__.surah_ayah)
-    #     for pos in poss
-    # ]
-    sAPL = []
-    for inst in instLstAgg:
-        # Extract `positions` and `surah_ayah` if they exist
-        poss = inst.__dict__.get("positions")
-        sur_ay = inst.__dict__.get("surah_ayah")
+    sAPL = [
+        f"{sur_ay}:{pos}"
+        for inst in instLstAgg
+        if (poss := inst.positions) and (sur_ay := inst.surah_ayah)
+        for pos in poss
+    ]
+    # sAPL = []
+    # for inst in instLstAgg:
+    #     # print(inst)
+    #     # Extract `positions` and `surah_ayah` if they exist
+    #     poss = inst.positions
+    #     sur_ay = inst.surah_ayah
         
-        # If both are truthy, construct the pairs
-        if poss and sur_ay:
-            for pos in poss:
-                sAPL.append(":".join(sur_ay,pos))
+    #     # If both are truthy, construct the pairs
+    #     if poss and sur_ay:
+    #         for pos in poss:
+    #             sAPL.append(f"{sur_ay}:{pos}")
     return sAPL
