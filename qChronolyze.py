@@ -1951,7 +1951,7 @@ def sAPFin(qL):
     sAPL = [
         ":".join(sur_ay,pos)
         for inst in instLstAgg
-        if (poss := inst.__dict__poss) and (sur_ay := inst.__dict__.surah_ayah)
+        if (poss := inst.__dict__.positions) and (sur_ay := inst.__dict__.surah_ayah)
         for pos in poss
     ]
     return sAPL
