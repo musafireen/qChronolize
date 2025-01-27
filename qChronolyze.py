@@ -1149,7 +1149,9 @@ class strObjClass:
                     lngD[self.inpLng],
                     inpLngSchD[self.inpSch],
                     # "bkwSch",
-                    outSch=inpLngSchD[qyArLegSch] 
+                    outSch=inpLngSchD[self.inpSch]
+                    if self.strTyp == "stem" 
+                    else inpLngSchD[qyArLegSch] 
                     # outSch="arbSch"
                     if self.inpLng == "arabic" 
                     else None
