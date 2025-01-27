@@ -530,6 +530,15 @@ class row2DictCl:
         self.query = query
     
 
+def qLModder(qL,qyArLegSch=lng2InpSchD["arabic"][-1]):
+    qLMod = [
+                # [combClass(**comb).combObj for comb in optLs]
+                [combClass(**comb,qyArLegSch=qyArLegSch) for comb in optLs]
+                for optLs in qL
+            ]
+    return qLMod
+
+
 def dataGrabber(strObj):
     flt = str(strObj.flt).lower()
     frm = strObj.frm
@@ -1009,7 +1018,6 @@ def intersct(comb):
         print("please provide at least one root/word")
         return []
 
-
 def aggregLsts(
         qL,
         tafs="ar-tafsir-al-tabari",
@@ -1065,6 +1073,7 @@ def aggregLsts(
     
     print(f"\ntotal {len(instLstAgg)} instances found")
     return instLstAgg
+
 
 class strObjClass:
     # idx = 0
@@ -1920,11 +1929,7 @@ def querize(
             intctv(qL,pres,refLng,qyArLegSch)
         else:
             print("not interactive")
-            qL = [
-                # [combClass(**comb).combObj for comb in optLs]
-                [combClass(**comb,qyArLegSch=qyArLegSch) for comb in optLs]
-                for optLs in qL
-            ]
+            qL = qLModder(qL,qyArLegSch)
             # colMap = getColMap(dicti)
             sortchron(qL,pres,refLng)
     confSetB = widg.Button(description='Enter configuration')
@@ -1933,3 +1938,20 @@ def querize(
     confCont = widg.VBox([presW,refLngW,qyArLegSchW,confSetB])
     clear_output()
     display(confCont)
+
+
+def sAPFin(qL):
+    if isinstance(qL,list):
+        if len(qL) > 0:
+            if isinstance(qL[0],list):
+                if len(qL[0]) > 0:
+                    if not isinstance(qL[0][0], combClass):
+                        qL = qLModder(qL)
+    instLstAgg = aggregLsts(qL)
+    sAPL = [
+        ":".join(sur_ay,pos)
+        for inst in instLstAgg
+        if (poss := inst.__dict__poss) and (sur_ay := inst.__dict__.surah_ayah)
+        for pos in poss
+    ]
+    return sAPL
